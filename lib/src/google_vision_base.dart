@@ -30,8 +30,8 @@ class GoogleVision {
     return yt;
   }
 
-  static Future<GoogleVision> withJwt(
-      String credentialsFile, String scope) async {
+  static Future<GoogleVision> withJwt(String credentialsFile,
+      [String scope = 'https://www.googleapis.com/auth/cloud-vision']) async {
     GoogleVision yt = GoogleVision();
 
     tokenGenerator =

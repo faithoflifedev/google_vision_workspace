@@ -5,6 +5,10 @@ library google_vision;
 
 export 'src/google_vision_base.dart';
 export 'src/token_generator.dart';
+export 'src/cmd/vision_detect_command.dart';
+export 'src/cmd/vision_helper_command.dart';
+export 'src/cmd/vision_highlight_command.dart';
+export 'src/cmd/vision_score_command.dart';
 export 'src/model/annotate_image_response.dart';
 export 'src/model/annotated_responses.dart';
 export 'src/model/annotation_request.dart';
@@ -18,3 +22,4 @@ export 'src/model/token.dart';
 export 'src/model/vertex.dart';
 export 'src/provider/oauth.dart';
 export 'src/provider/vision.dart';
+export 'util/util.dart';
