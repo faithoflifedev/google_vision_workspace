@@ -17,7 +17,6 @@ export 'src/model/feature.dart';
 export 'src/model/image.dart';
 export 'src/model/jwt_credentials.dart';
 export 'src/model/normalized_vertex.dart';
-export 'src/model/oauth_credentials.dart';
 export 'src/model/token.dart';
 export 'src/model/vertex.dart';
 export 'src/provider/oauth.dart';

@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 
-import 'package:easy_enum/easy_enum.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'feature.g.dart';
@@ -23,7 +22,6 @@ class Feature {
   String toString() => jsonEncode(toJson());
 }
 
-@EasyEnum()
 enum DetectionType {
   TEXT_DETECTION,
   DOCUMENT_TEXT_DETECTION,
