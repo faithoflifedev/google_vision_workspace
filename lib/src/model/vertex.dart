@@ -8,9 +8,11 @@ part 'vertex.g.dart';
 ///in the same scale as the original image.
 @JsonSerializable()
 class Vertex {
+  ///X coordinate.
   @JsonKey(defaultValue: 0)
   final int x;
 
+  ///Y coordinate.
   @JsonKey(defaultValue: 0)
   final int y;
 
