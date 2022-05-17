@@ -1,4 +1,4 @@
-# Youtube REST API Client
+# Google Vision images REST API Client
 
 [![pub package](https://img.shields.io/pub/v/google_vision.svg)](https://pub.dartlang.org/packages/google_vision)
 
