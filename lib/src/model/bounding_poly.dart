@@ -15,9 +15,11 @@ part 'bounding_poly.g.dart';
 ///appears in the image to be annotated.
 @JsonSerializable(explicitToJson: true)
 class BoundingPoly {
+  ///The bounding polygon normalized vertices.
   @JsonKey(defaultValue: [])
   final List<NormalizedVertex> normalizedVertices;
 
+  ///The bounding polygon vertices.
   @JsonKey(defaultValue: [])
   final List<Vertex> vertices;
 

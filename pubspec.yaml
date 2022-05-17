@@ -1,7 +1,8 @@
 name: google_vision
-description: Integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
-version: 1.0.0
-# homepage: https://www.example.com
+description: Allows you to add Google Visions image labeling, face, logo, and landmark detection, OCR, and detection of explicit content, into applications.
+version: 1.0.1
+repository: https://github.com/faithoflifedev/google_vision
+homepage: https://github.com/faithoflifedev/google_vision
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
