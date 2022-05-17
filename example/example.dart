@@ -1,9 +1,8 @@
 import 'package:google_vision/google_vision.dart';
 
 void main() async {
-  final googleVision = await GoogleVision.withJwt(
-      'example/skc-live-decbd0969cbb.json',
-      'https://www.googleapis.com/auth/cloud-vision');
+  final googleVision =
+      await GoogleVision.withJwt('example/skc-live-decbd0969cbb.json');
 
   final image =
       Image.fromFilePath('example/young-man-smiling-and-thumbs-up.jpg');
