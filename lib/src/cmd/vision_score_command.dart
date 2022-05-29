@@ -34,7 +34,7 @@ class VisionScoreCommand extends VisionHelper {
   void run() async {
     final annotatedResponses = await annotate();
 
-    final _scores = <double>[];
+    final scores = <double>[];
 
     if (argResults?['look-for'] != null) {
       for (var annotatedResponse in annotatedResponses.responses) {
@@ -43,16 +43,16 @@ class VisionScoreCommand extends VisionHelper {
                 localizedObjectAnnotation.name == argResults!['look-for'])
             .toList()
             .forEach((localizedObjectAnnotation) =>
-                _scores.add(localizedObjectAnnotation.score));
+                scores.add(localizedObjectAnnotation.score));
       }
     } else {
       for (var annotatedResponse in annotatedResponses.responses) {
-        _scores.addAll(annotatedResponse.faceAnnotations
+        scores.addAll(annotatedResponse.faceAnnotations
             .map((faceAnnotation) => faceAnnotation.detectionConfidence)
             .toList());
       }
     }
 
-    print(json.encode(_scores));
+    print(json.encode(scores));
   }
 }

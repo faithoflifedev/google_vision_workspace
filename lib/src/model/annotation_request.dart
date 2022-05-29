@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'image.dart';
+import 'image_context.dart';
 import 'feature.dart';
 
 part 'annotation_request.g.dart';
@@ -16,7 +17,11 @@ class AnnotationRequest {
   ///Requested features.
   final List<Feature> features;
 
-  AnnotationRequest({required this.image, required this.features});
+  ///Additional context that may accompany the image.
+  final ImageContext? imageContext;
+
+  AnnotationRequest(
+      {required this.image, required this.features, this.imageContext});
 
   factory AnnotationRequest.fromJson(Map<String, dynamic> json) =>
       _$AnnotationRequestFromJson(json);

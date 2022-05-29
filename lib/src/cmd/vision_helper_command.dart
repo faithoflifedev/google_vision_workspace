@@ -21,21 +21,21 @@ abstract class VisionHelper extends Command {
   }
 
   Future<AnnotatedResponses> annotate([String? features]) async {
-    final _googleVision = await GoogleVision.withJwt(
+    final googleVision = await GoogleVision.withJwt(
         globalResults!['credential-file'],
         'https://www.googleapis.com/auth/cloud-vision');
 
-    final _image = Image.fromFilePath(argResults!['image-file']);
+    final image = Image.fromFilePath(argResults!['image-file']);
 
-    final _features = (features ?? (argResults!['features'] as String))
+    final featureList = (features ?? (argResults!['features'] as String))
         .split(',')
         .map((element) => Feature(
             maxResults: int.parse(argResults!['max-results']), type: element))
         .toList();
 
-    final _requests = AnnotationRequests(
-        requests: [AnnotationRequest(image: _image, features: _features)]);
+    final requests = AnnotationRequests(
+        requests: [AnnotationRequest(image: image, features: featureList)]);
 
-    return await _googleVision.annotate(requests: _requests);
+    return await googleVision.annotate(requests: requests);
   }
 }

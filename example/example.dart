@@ -14,8 +14,8 @@ void main() async {
 
   final requests = AnnotationRequests(requests: [
     AnnotationRequest(image: cropped, features: [
-      Feature(maxResults: 10, type: DetectionType.FACE_DETECTION.value),
-      Feature(maxResults: 10, type: DetectionType.OBJECT_LOCALIZATION.value)
+      Feature(maxResults: 10, type: 'FACE_DETECTION'),
+      Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
     ])
   ]);
 

@@ -40,7 +40,7 @@ class JwtGenerator implements TokenGenerator {
 
     final signature = signer.sign('$header.$claim'.codeUnits);
 
-    final jwt = '$header.$claim.' + Util.base64GCloudList(signature.data);
+    final jwt = '$header.$claim.${Util.base64GCloudList(signature.data)}';
 
     final OAuthClient oAuthClient = OAuthClient(dio);
 
