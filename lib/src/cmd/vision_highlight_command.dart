@@ -38,18 +38,18 @@ class VisionHighlightCommand extends VisionHelper {
     try {
       final annotatedResponses = await annotate();
 
-      final _image = Image.fromFilePath(argResults!['image-file']);
+      final image = Image.fromFilePath(argResults!['image-file']);
 
       //check for faces
       for (var annotatedResponse in annotatedResponses.responses) {
         for (var faceAnnotation in annotatedResponse.faceAnnotations) {
           GoogleVision.drawText(
-              _image,
+              image,
               faceAnnotation.boundingPoly.vertices.first.x + 2,
-              faceAnnotation.boundingPoly.vertices.first.y * _image.height + 2,
+              faceAnnotation.boundingPoly.vertices.first.y * image.height + 2,
               'Face - ${faceAnnotation.detectionConfidence}');
           GoogleVision.drawAnnotations(
-              _image, faceAnnotation.boundingPoly.vertices);
+              image, faceAnnotation.boundingPoly.vertices);
         }
       }
 
@@ -58,23 +58,23 @@ class VisionHighlightCommand extends VisionHelper {
         for (var localizedObjectAnnotation
             in annotatedResponse.localizedObjectAnnotations) {
           GoogleVision.drawText(
-              _image,
+              image,
               (localizedObjectAnnotation
                           .boundingPoly.normalizedVertices.first.x *
-                      _image.width)
+                      image.width)
                   .toInt(),
               (localizedObjectAnnotation
                               .boundingPoly.normalizedVertices.first.y *
-                          _image.height)
+                          image.height)
                       .toInt() -
                   16,
               '${localizedObjectAnnotation.name} - ${localizedObjectAnnotation.score}');
 
-          GoogleVision.drawAnnotationsNormalized(_image,
-              localizedObjectAnnotation.boundingPoly.normalizedVertices);
+          GoogleVision.drawAnnotationsNormalized(
+              image, localizedObjectAnnotation.boundingPoly.normalizedVertices);
         }
       }
-      await _image.writeAsJpeg(argResults!['output-file']);
+      await image.writeAsJpeg(argResults!['output-file']);
     } on DioError catch (err) {
       throw UsageException('API usage error:', err.usage);
     }

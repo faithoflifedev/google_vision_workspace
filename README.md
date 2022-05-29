@@ -10,6 +10,10 @@ Native [Dart](https://dart.dev/) package that integrates Google Vision features,
 
 Please feel free to submit PRs for any addtional helper methods, or report an [issue](https://github.com/faithoflifedev/google_vision/issues) for a missing helper method and I'll add it if I have time available.
 
+## New for v1.0.3
+
+The package now includes `Product Search` functionality.  But be warned, it is completely experimental, there has been little to no testing done.
+
 ## Bonus Feature
 
 This package included a cli utility that can be used to return data for any API call currently supported by the package. If you want to get started quicky with the cli utility run these commands in a termainal session:
@@ -29,7 +33,7 @@ To use this package, add the dependency to your pubspec.yaml file:
 ```yaml
 dependencies:
   ...
-  google_vsion: ^1.0.0
+  google_vsion: ^1.0.3
 ```
 
 ## Obtaining Authorization Credentials
@@ -52,8 +56,8 @@ dependencies:
 
   final requests = AnnotationRequests(requests: [
     AnnotationRequest(image: cropped, features: [
-      Feature(maxResults: 10, type: DetectionType.FACE_DETECTION.value),
-      Feature(maxResults: 10, type: DetectionType.OBJECT_LOCALIZATION.value)
+      Feature(maxResults: 10, type: 'FACE_DETECTION'),
+      Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
     ])
   ]);
 
