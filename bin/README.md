@@ -5,7 +5,7 @@ A command line interface for making API requests to the Google Vision service wi
 To install:
 
 ```sh
-pub global activate google_vision
+dart pub global activate google_vision
 ```
 
 Usage:

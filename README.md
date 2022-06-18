@@ -19,7 +19,7 @@ The package now includes `Product Search` functionality.  But be warned, it is c
 This package included a cli utility that can be used to return data for any API call currently supported by the package. If you want to get started quicky with the cli utility run these commands in a termainal session:
 
 ```sh
-pub global activate vision
+dart pub global activate vision
 
 vision --help
 ```
