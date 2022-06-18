@@ -16,6 +16,7 @@ export 'src/model/annotation_requests.dart';
 export 'src/model/feature.dart';
 export 'src/model/image.dart';
 export 'src/model/jwt_credentials.dart';
+export 'src/model/label_annotation.dart';
 export 'src/model/normalized_vertex.dart';
 export 'src/model/token.dart';
 export 'src/model/vertex.dart';

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4
+
+- LabelAnnotation support added
+
 ## 1.0.3
 
 - experimental product search functionality
