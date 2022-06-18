@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'bounding_poly.dart';
-
 part 'label_annotation.g.dart';
 
 ///Set of detected labels
