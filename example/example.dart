@@ -8,7 +8,6 @@ void main() async {
       Image.fromFilePath('example/young-man-smiling-and-thumbs-up.jpg');
 
   final cropped = image.copyCrop(70, 30, 640, 480);
-  // final cropped = image.copyCrop(1060, 410, 460, 340);
 
   await cropped.writeAsJpeg('example/cropped.jpg');
 

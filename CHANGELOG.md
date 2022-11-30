@@ -2,6 +2,13 @@
 
 ## 1.0.4
 
+* updated build tool
+* updated docs
+* dependency bump
+* tweak some messaging
+
+## 1.0.4
+
 - LabelAnnotation support added
 
 ## 1.0.3

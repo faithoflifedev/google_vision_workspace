@@ -22,4 +22,4 @@ export 'src/model/token.dart';
 export 'src/model/vertex.dart';
 export 'src/provider/oauth.dart';
 export 'src/provider/vision.dart';
-export 'util/util.dart';
+export 'src/util/util.dart';

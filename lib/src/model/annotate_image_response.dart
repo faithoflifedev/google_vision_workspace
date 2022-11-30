@@ -33,7 +33,9 @@ class AnnotateImageResponse {
       labelAnnotationList ?? <LabelAnnotation>[];
 
   AnnotateImageResponse(
-      {this.faceAnnotationList, this.localizedObjectAnnotationList, this.labelAnnotationList});
+      {this.faceAnnotationList,
+      this.localizedObjectAnnotationList,
+      this.labelAnnotationList});
 
   factory AnnotateImageResponse.fromJson(Map<String, dynamic> json) =>
       _$AnnotateImageResponseFromJson(json);
