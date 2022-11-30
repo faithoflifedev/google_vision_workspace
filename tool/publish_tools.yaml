@@ -1,7 +1,7 @@
 github:
   repoUser: faithoflifedev
   repoName: google_vision
-  bearerToken: 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
+  bearerToken: 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
 
 meta: lib/src/util/meta.dart
 
@@ -11,9 +11,6 @@ templates:
   - name: CHANGELOG.md
     type: prepend
 
-commit: updated build tool
+commit: support for `publish_tools`
 changes: |
-  * updated build tool
-  * updated docs
-  * dependency bump
-  * tweak some messaging
+  * support for `publish_tools`

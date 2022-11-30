@@ -1,13 +1,14 @@
 # Changelog
 
-## 1.0.5
+## 1.0.5+2
 
-* updated build tool
-* updated docs
-* dependency bump
-* tweak some messaging
+* support for `publish_tools`
 
 ## 1.0.5+1
+
+* updated build tool
+  
+## 1.0.5
 
 * updated build tool
 * updated docs
