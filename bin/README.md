@@ -2,45 +2,63 @@
 
 A command line interface for making API requests to the Google Vision service with cli commands.
 
-To install:
+
+## Installation
+
+Install using `dart pub`:
 
 ```sh
 dart pub global activate google_vision
 ```
 
-Usage:
+Install using `brew`:
 
 ```sh
-prompt>vision--help
+brew tap faithoflifedev/google_vision
+brew install vision
+```
+
+Run the following command to see help:
+
+```sh
+vision --help
+```
+
+Result,
+
+```text
 A command line interface for making API requests to the Google Vision service with cli commands.
 
 Usage: vision <command> [arguments]
 
 Global options:
 -h, --help                                       Print this usage information.
-    --credential-file=<credentials file path>    (defaults to "$HOME/.vision/credentials.json")
+    --credential-file=<credentials file path>    (defaults to "/Users/chris/.vision/credentials.json")
 
 Available commands:
-  detect      Run image detection and annotation for an image.
+  detect      Run image detection and annotation for images.
   highlight   Draw a box to highlight any objects detected.
   score       For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for".
 ```
 
 | command   | description |
 | --------- | ----------- |
-| detect    | Run image detection and annotation for an image. |
+| detect    | Run image detection and annotation for images. |
 | highlight | Draw a box to highlight any objects detected. |
 | score     | For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for". |
+
+Just like the main library, any responses provided by the above commands will be given in the JSON format.  So ideally you will want to use a command line json parser to interpret the results.  The recommended json parser for this purpose is [_jq_](https://stedolan.github.io/jq/).  With _jq_ you can process the results of a command as follows:
+
 
 Just like the main library, any responses provided by the above commands will be given in the JSON format.  So ideally, you will want to use a command line json parser to interpret the results.  The recommended json parser for this purpose is [_jq_](https://stedolan.github.io/jq/).  With _jq_ you can process the results of a command as follows:
 
 ## Quick start
 
 ```sh
-#step 1 - setup default default JWT credentials
-cp my_creds.json ~/.vision/cfredentials.json
+# step 1 - setup default default JWT credentials
+cp my_credentials.json ~/.vision/credentials.json
 
-#step 2
+# step 2
 vision highlight --features OBJECT_LOCALIZATION --image-file my_source_image.jpg --output-file result.jpg
 ```
 

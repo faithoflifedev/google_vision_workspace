@@ -8,7 +8,7 @@ class VisionDetectCommand extends VisionHelper {
   String get name => 'detect';
 
   @override
-  String get description => 'Run image detection and annotation for an images.';
+  String get description => 'Run image detection and annotation for images.';
 
   VisionDetectCommand() {
     argParser

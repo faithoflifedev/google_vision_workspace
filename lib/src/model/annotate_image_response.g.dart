@@ -18,8 +18,7 @@ AnnotateImageResponse _$AnnotateImageResponseFromJson(
                   LocalizedObjectAnnotation.fromJson(e as Map<String, dynamic>))
               .toList(),
       labelAnnotationList: (json['labelAnnotations'] as List<dynamic>?)
-          ?.map((e) =>
-          LabelAnnotation.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => LabelAnnotation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -31,7 +30,6 @@ Map<String, dynamic> _$AnnotateImageResponseToJson(
       'localizedObjectAnnotations': instance.localizedObjectAnnotationList
           ?.map((e) => e.toJson())
           .toList(),
-      'labelAnnotation': instance.labelAnnotationList
-          ?.map((e) => e.toJson())
-          .toList(),
+      'labelAnnotation':
+          instance.labelAnnotationList?.map((e) => e.toJson()).toList(),
     };

@@ -1,0 +1,19 @@
+github:
+  repoUser: faithoflifedev
+  repoName: google_vision
+  bearerToken: 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
+
+meta: lib/src/util/meta.dart
+
+templates:
+  - name: README.md
+    type: overwrite
+  - name: CHANGELOG.md
+    type: prepend
+
+commit: updated build tool
+changes: |
+  * updated build tool
+  * updated docs
+  * dependency bump
+  * tweak some messaging
