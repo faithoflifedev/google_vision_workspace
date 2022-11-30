@@ -1,6 +1,13 @@
 # Changelog
 
-## 1.0.4
+## 1.0.5
+
+* updated build tool
+* updated docs
+* dependency bump
+* tweak some messaging
+
+## 1.0.5+1
 
 * updated build tool
 * updated docs
