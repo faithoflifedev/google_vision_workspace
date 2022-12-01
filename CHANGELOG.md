@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.5+3
+
+* support for `publish_tools`
+
 ## 1.0.5+2
 
 * support for `publish_tools`
