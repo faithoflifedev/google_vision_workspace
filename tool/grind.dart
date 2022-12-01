@@ -7,6 +7,12 @@ main(args) async {
   grind(args);
 }
 
+// @Task('Test stuff.')
+// @Depends('pt-release')
+// check() {
+//   log('checked');
+// }
+
 @DefaultTask('Just keeping it real')
 @Depends('pt-commit', 'pt-publish', 'pt-homebrew')
 done() {
