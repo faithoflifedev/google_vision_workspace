@@ -33,7 +33,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision: ^1.0.5+4
+  google_vision: ^1.0.5+5
 ```
 
 ### Obtaining Authorization Credentials

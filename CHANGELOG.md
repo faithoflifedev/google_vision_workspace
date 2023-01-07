@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.5+5
+
+* updated README
+
 ## 1.0.5+4
 
 * added flutter example
