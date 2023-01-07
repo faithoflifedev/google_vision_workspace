@@ -17,3 +17,4 @@ tool/publish_tools.yaml
 doc/
 
 .idea
+.pt-build/
