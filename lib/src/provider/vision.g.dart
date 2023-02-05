@@ -6,10 +6,13 @@ part of 'vision.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _VisionClient implements VisionClient {
-  _VisionClient(this._dio, {this.baseUrl}) {
+  _VisionClient(
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??= 'https://vision.googleapis.com/v1';
   }
 
@@ -19,24 +22,32 @@ class _VisionClient implements VisionClient {
 
   @override
   Future<AnnotatedResponses> annotate(
-      authorization, contentType, params) async {
+    authorization,
+    contentType,
+    params,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{
       r'Authorization': authorization,
-      r'Content-Type': contentType
+      r'Content-Type': contentType,
     };
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(params);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AnnotatedResponses>(Options(
-                method: 'POST',
-                headers: _headers,
-                extra: _extra,
-                contentType: contentType)
-            .compose(_dio.options, '/images:annotate',
-                queryParameters: queryParameters, data: _data)
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AnnotatedResponses>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: contentType,
+    )
+            .compose(
+              _dio.options,
+              '/images:annotate',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = AnnotatedResponses.fromJson(_result.data!);
     return value;

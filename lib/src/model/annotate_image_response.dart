@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:google_vision/src/model/safe_search_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'face_annotation.dart';
@@ -20,6 +21,8 @@ class AnnotateImageResponse {
   @JsonKey(name: 'labelAnnotations')
   final List<LabelAnnotation>? labelAnnotationList;
 
+  final SafeSearchAnnotation? safeSearchAnnotation;
+
   ///If present, face detection has completed successfully.
   List<FaceAnnotation> get faceAnnotations =>
       faceAnnotationList ?? <FaceAnnotation>[];
@@ -35,7 +38,8 @@ class AnnotateImageResponse {
   AnnotateImageResponse(
       {this.faceAnnotationList,
       this.localizedObjectAnnotationList,
-      this.labelAnnotationList});
+      this.labelAnnotationList,
+      this.safeSearchAnnotation});
 
   factory AnnotateImageResponse.fromJson(Map<String, dynamic> json) =>
       _$AnnotateImageResponseFromJson(json);
