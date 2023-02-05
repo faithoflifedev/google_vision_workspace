@@ -9,7 +9,7 @@ import 'label_annotation.dart';
 
 part 'annotate_image_response.g.dart';
 
-///Individual responses to image annotation requests within the batch.
+/// Individual responses to image annotation requests within the batch.
 @JsonSerializable(explicitToJson: true)
 class AnnotateImageResponse {
   @JsonKey(name: 'faceAnnotations')
@@ -23,15 +23,15 @@ class AnnotateImageResponse {
 
   final SafeSearchAnnotation? safeSearchAnnotation;
 
-  ///If present, face detection has completed successfully.
+  /// If present, face detection has completed successfully.
   List<FaceAnnotation> get faceAnnotations =>
       faceAnnotationList ?? <FaceAnnotation>[];
 
-  ///If present, landmark detection has completed successfully.
+  /// If present, landmark detection has completed successfully.
   List<LocalizedObjectAnnotation> get localizedObjectAnnotations =>
       localizedObjectAnnotationList ?? <LocalizedObjectAnnotation>[];
 
-  ///If present, label  detection has completed successfully.
+  /// If present, label  detection has completed successfully.
   List<LabelAnnotation> get labelAnnotations =>
       labelAnnotationList ?? <LabelAnnotation>[];
 

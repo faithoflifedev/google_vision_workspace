@@ -13,12 +13,12 @@ part 'feature.g.dart';
 class Feature {
   ///Maximum number of results of this type. Does not apply to TEXT_DETECTION,
   ///DOCUMENT_TEXT_DETECTION, or CROP_HINTS.
-  final int maxResults;
+  final int? maxResults;
 
   ///The feature type.
   final String type;
 
-  Feature({required this.maxResults, required this.type});
+  Feature({this.maxResults, required this.type});
 
   factory Feature.fromJson(Map<String, dynamic> json) =>
       _$FeatureFromJson(json);

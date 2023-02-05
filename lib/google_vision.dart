@@ -8,6 +8,7 @@ export 'src/token_generator.dart';
 export 'src/cmd/vision_detect_command.dart';
 export 'src/cmd/vision_helper_command.dart';
 export 'src/cmd/vision_highlight_command.dart';
+export 'src/cmd/vision_safe_search_command.dart';
 export 'src/cmd/vision_score_command.dart';
 export 'src/model/annotate_image_response.dart';
 export 'src/model/annotated_responses.dart';

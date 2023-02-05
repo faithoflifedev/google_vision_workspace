@@ -41,11 +41,12 @@ Available commands:
   score       For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for".
 ```
 
-| command   | description |
-| --------- | ----------- |
-| detect    | Run image detection and annotation for images. |
-| highlight | Draw a box to highlight any objects detected. |
-| score     | For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for". |
+| command     | description |
+| ----------- | ----------- |
+| detect      | Run image detection and annotation for images. |
+| highlight   | Draw a box to highlight any objects detected. |
+| safe_search |  SafeSearch Detection detects explicit content such as adult content or violent content within an image. |
+| score       | For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for". |
 
 Just like the main library, any responses provided by the above commands will be given in the JSON format.  So ideally you will want to use a command line json parser to interpret the results.  The recommended json parser for this purpose is [_jq_](https://stedolan.github.io/jq/).  With _jq_ you can process the results of a command as follows:
 
@@ -90,6 +91,17 @@ Usage: vision highlight [arguments]
     --look-for                                     Comma separated list of Objects to provide a core for
     --max-results=<int>                            The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive. The default value is 10.
                                                    (defaults to "10")
+```
+
+## safe_search
+
+```sh
+prompt>vision safe_search --help
+SafeSearch Detection detects explicit content such as adult content or violent content within an image.
+
+Usage: vision safe_search [arguments]
+-h, --help                                        Print this usage information.
+    --image-file=<image file path> (mandatory)    The path to the file that will be processed.
 ```
 
 ## score

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6
+
+* detect explicit content
+
 ## 1.0.5+6
 
 * contributing section in README
