@@ -9,8 +9,9 @@ void main(List<String> arguments) async {
         defaultsTo: '${Util.userHome}/.vision/credentials.json',
         valueHelp: 'credentials file path')
     ..addCommand(VisionDetectCommand())
-    ..addCommand(VisionScoreCommand())
     ..addCommand(VisionHighlightCommand())
+    ..addCommand(VisionSafeSearchCommand())
+    ..addCommand(VisionScoreCommand())
     ..run(arguments).catchError((error) {
       if (error is! UsageException) throw error;
 

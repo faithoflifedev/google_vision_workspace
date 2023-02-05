@@ -4,19 +4,19 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'label_annotation.g.dart';
 
-///Set of detected labels
+/// Set of detected labels
 @JsonSerializable(explicitToJson: true)
 class LabelAnnotation {
-  ///Object ID that should align with EntityAnnotation mid.
-  final String mid;
+  /// If present, contains a machine-generated identifier (MID) corresponding to the entity's [Google Knowledge Graph entry](https://developers.google.com/knowledge-graph/reference/rest/v1/). Note that mid values remain unique across different languages, so you can use these values to tie entities together from different languages. To inspect MID values, refer to the Google Knowledge Graph API documentation.
+  final String? mid;
 
-  ///The label itself
+  /// The label itself
   final String description;
 
-  ///Score of the result. Range [0, 1].
+  /// Score of the result. Range [0, 1].
   final double score;
 
-  ///Topicality of the result. Range [0, 1].
+  /// Topicality of the result. Range [0, 1].
   final double topicality;
 
   LabelAnnotation(

@@ -11,18 +11,26 @@ Native [Dart](https://dart.dev/) package that integrates Google Vision features,
 Please feel free to submit PRs for any additional helper methods, or report an [issue](https://github.com/faithoflifedev/google_vision/issues) for a missing helper method and I'll add it if I have time available.
 
 ## Table of Contents
-
-- [Table of Contents](#table-of-contents)
-- [New for v1.0.3](#new-for-v103)
+- [Recent Changes](#recent-changes)
+  - [New for v1.0.6](#new-for-v106)
+  - [New for v1.0.3](#new-for-v103)
 - [Getting Started](#getting-started)
   - [pubspec.yaml](#pubspecyaml)
   - [Obtaining Authorization Credentials](#obtaining-authorization-credentials)
   - [Usage of the Cloud Vision API](#usage-of-the-cloud-vision-api)
 - [vision cli (google\_vision at the command prompt)](#vision-cli-google_vision-at-the-command-prompt)
+- [Contributors](#contributors)
+- [Contributing](#contributing)
 
-## New for v1.0.3
+## Recent Changes
 
-The package now includes `Product Search` functionality.  But be warned, it is completely experimental, there has been little to no testing done.
+### New for v1.0.6
+
+[imhafeez](https://github.com/imhafeez) has provided code for `Safe Search` functionality.
+
+### New for v1.0.3
+
+[4ctobias](https://github.com/4ctobias) has provided code for `Label Detection` functionality.
 
 ## Getting Started
 
@@ -33,7 +41,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision: ^1.0.5+6
+  google_vision: ^1.0.6
 ```
 
 ### Obtaining Authorization Credentials
@@ -146,3 +154,30 @@ Available commands:
 ```
 
 Please see the cli documentation [README.md](https://github.com/faithoflifedev/google_vision/tree/main/bin) for more detailed usage information.
+
+## Contributors
+
+- [imhafeez](https://github.com/imhafeez)
+- [4ctobias](https://github.com/4ctobias)
+
+## Contributing
+
+Any help from the open-source community is always welcome and needed:
+- Found an issue?
+    - Please fill a bug report with details.
+- Need a feature?
+    - Open a feature request with use cases.
+- Are you using and liking the project?
+    - Promote the project: create an article or post about it
+    - Make a donation
+- Do you have a project that uses this package
+    - let's cross promote, let me know and I'll add a link to your project
+- Are you a developer?
+    - Fix a bug and send a pull request.
+    - Implement a new feature.
+    - Improve the Unit Tests.
+- Have you already helped in any way?
+    - **Many thanks from me, the contributors and everybody that uses this project!**
+
+*If you donate 1 hour of your time, you can contribute a lot,
+because others will do the same, just be part and start with your 1 hour.*

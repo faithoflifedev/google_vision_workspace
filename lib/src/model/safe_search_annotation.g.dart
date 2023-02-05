@@ -9,40 +9,42 @@ part of 'safe_search_annotation.dart';
 SafeSearchAnnotation _$SafeSearchAnnotationFromJson(
         Map<String, dynamic> json) =>
     SafeSearchAnnotation(
-      adult: $enumDecodeNullable(_$SafeSearchDectionTypeEnumMap, json['adult'],
-              unknownValue: SafeSearchDectionType.UNKNOWN) ??
-          SafeSearchDectionType.UNKNOWN,
+      adult: $enumDecodeNullable(
+              _$SafeSearchDetectionTypeEnumMap, json['adult'],
+              unknownValue: SafeSearchDetectionType.UNKNOWN) ??
+          SafeSearchDetectionType.UNKNOWN,
       medical: $enumDecodeNullable(
-              _$SafeSearchDectionTypeEnumMap, json['medical'],
-              unknownValue: SafeSearchDectionType.UNKNOWN) ??
-          SafeSearchDectionType.UNKNOWN,
-      rancy: $enumDecodeNullable(_$SafeSearchDectionTypeEnumMap, json['rancy'],
-              unknownValue: SafeSearchDectionType.UNKNOWN) ??
-          SafeSearchDectionType.UNKNOWN,
-      spoof: $enumDecodeNullable(_$SafeSearchDectionTypeEnumMap, json['spoof'],
-              unknownValue: SafeSearchDectionType.UNKNOWN) ??
-          SafeSearchDectionType.UNKNOWN,
+              _$SafeSearchDetectionTypeEnumMap, json['medical'],
+              unknownValue: SafeSearchDetectionType.UNKNOWN) ??
+          SafeSearchDetectionType.UNKNOWN,
+      racy: $enumDecodeNullable(_$SafeSearchDetectionTypeEnumMap, json['racy'],
+              unknownValue: SafeSearchDetectionType.UNKNOWN) ??
+          SafeSearchDetectionType.UNKNOWN,
+      spoof: $enumDecodeNullable(
+              _$SafeSearchDetectionTypeEnumMap, json['spoof'],
+              unknownValue: SafeSearchDetectionType.UNKNOWN) ??
+          SafeSearchDetectionType.UNKNOWN,
       violence: $enumDecodeNullable(
-              _$SafeSearchDectionTypeEnumMap, json['violence'],
-              unknownValue: SafeSearchDectionType.UNKNOWN) ??
-          SafeSearchDectionType.UNKNOWN,
+              _$SafeSearchDetectionTypeEnumMap, json['violence'],
+              unknownValue: SafeSearchDetectionType.UNKNOWN) ??
+          SafeSearchDetectionType.UNKNOWN,
     );
 
 Map<String, dynamic> _$SafeSearchAnnotationToJson(
         SafeSearchAnnotation instance) =>
     <String, dynamic>{
-      'adult': _$SafeSearchDectionTypeEnumMap[instance.adult]!,
-      'spoof': _$SafeSearchDectionTypeEnumMap[instance.spoof]!,
-      'medical': _$SafeSearchDectionTypeEnumMap[instance.medical]!,
-      'violence': _$SafeSearchDectionTypeEnumMap[instance.violence]!,
-      'rancy': _$SafeSearchDectionTypeEnumMap[instance.rancy]!,
+      'adult': _$SafeSearchDetectionTypeEnumMap[instance.adult]!,
+      'spoof': _$SafeSearchDetectionTypeEnumMap[instance.spoof]!,
+      'medical': _$SafeSearchDetectionTypeEnumMap[instance.medical]!,
+      'violence': _$SafeSearchDetectionTypeEnumMap[instance.violence]!,
+      'racy': _$SafeSearchDetectionTypeEnumMap[instance.racy]!,
     };
 
-const _$SafeSearchDectionTypeEnumMap = {
-  SafeSearchDectionType.VERY_LIKELY: 'VERY_LIKELY',
-  SafeSearchDectionType.LIKELY: 'LIKELY',
-  SafeSearchDectionType.UNLIKELY: 'UNLIKELY',
-  SafeSearchDectionType.VERY_UNLIKELY: 'VERY_UNLIKELY',
-  SafeSearchDectionType.POSSIBLE: 'POSSIBLE',
-  SafeSearchDectionType.UNKNOWN: 'UNKNOWN',
+const _$SafeSearchDetectionTypeEnumMap = {
+  SafeSearchDetectionType.VERY_LIKELY: 'VERY_LIKELY',
+  SafeSearchDetectionType.LIKELY: 'LIKELY',
+  SafeSearchDetectionType.UNLIKELY: 'UNLIKELY',
+  SafeSearchDetectionType.VERY_UNLIKELY: 'VERY_UNLIKELY',
+  SafeSearchDetectionType.POSSIBLE: 'POSSIBLE',
+  SafeSearchDetectionType.UNKNOWN: 'UNKNOWN',
 };
