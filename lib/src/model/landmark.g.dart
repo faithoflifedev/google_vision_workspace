@@ -13,7 +13,7 @@ Landmark _$LandmarkFromJson(Map<String, dynamic> json) => Landmark(
     );
 
 Map<String, dynamic> _$LandmarkToJson(Landmark instance) => <String, dynamic>{
-      'type': _$LandmarkTypeEnumMap[instance.type],
+      'type': _$LandmarkTypeEnumMap[instance.type]!,
       'position': instance.position.toJson(),
     };
 
