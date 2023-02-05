@@ -52,16 +52,16 @@ Map<String, dynamic> _$FaceAnnotationToJson(FaceAnnotation instance) =>
       'tiltAngle': instance.tiltAngle,
       'detectionConfidence': instance.detectionConfidence,
       'landmarkingConfidence': instance.landmarkingConfidence,
-      'joyLikelihood': _$LikelihoodEnumMap[instance.enumJoyLikelihood],
-      'sorrowLikelihood': _$LikelihoodEnumMap[instance.enumSorrowLikelihood],
-      'angerLikelihood': _$LikelihoodEnumMap[instance.enumAngerLikelihood],
+      'joyLikelihood': _$LikelihoodEnumMap[instance.enumJoyLikelihood]!,
+      'sorrowLikelihood': _$LikelihoodEnumMap[instance.enumSorrowLikelihood]!,
+      'angerLikelihood': _$LikelihoodEnumMap[instance.enumAngerLikelihood]!,
       'surpriseLikelihood':
-          _$LikelihoodEnumMap[instance.enumSurpriseLikelihood],
+          _$LikelihoodEnumMap[instance.enumSurpriseLikelihood]!,
       'underExposedLikelihood':
-          _$LikelihoodEnumMap[instance.enumUnderExposedLikelihood],
-      'blurredLikelihood': _$LikelihoodEnumMap[instance.enumBlurredLikelihood],
+          _$LikelihoodEnumMap[instance.enumUnderExposedLikelihood]!,
+      'blurredLikelihood': _$LikelihoodEnumMap[instance.enumBlurredLikelihood]!,
       'headwearLikelihood':
-          _$LikelihoodEnumMap[instance.enumHeadwearLikelihood],
+          _$LikelihoodEnumMap[instance.enumHeadwearLikelihood]!,
     };
 
 const _$LikelihoodEnumMap = {

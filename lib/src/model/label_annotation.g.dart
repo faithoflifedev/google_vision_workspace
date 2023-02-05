@@ -8,10 +8,11 @@ part of 'label_annotation.dart';
 
 LabelAnnotation _$LabelAnnotationFromJson(Map<String, dynamic> json) =>
     LabelAnnotation(
-        mid: json['mid'] as String,
-        description: json['description'] as String,
-        score: (json['score'] as num).toDouble(),
-        topicality: (json['topicality'] as num).toDouble());
+      mid: json['mid'] as String,
+      description: json['description'] as String,
+      score: (json['score'] as num).toDouble(),
+      topicality: (json['topicality'] as num).toDouble(),
+    );
 
 Map<String, dynamic> _$LabelAnnotationToJson(LabelAnnotation instance) =>
     <String, dynamic>{
