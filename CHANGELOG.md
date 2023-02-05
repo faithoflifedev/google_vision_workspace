@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6+1
+
+* added Flutter tips to README
+
 ## 1.0.6
 
 * detect explicit content

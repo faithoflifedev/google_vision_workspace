@@ -47,8 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final fileName = temporaryFileName ?? assetFileName;
 
-    final filePath =
-        '${tempDir.path}${Platform.pathSeparator}$fileName'; // file_01.tmp is dump file, can be anything
+    final filePath = '${tempDir.path}${Platform.pathSeparator}$fileName';
 
     await File(filePath).delete();
 
