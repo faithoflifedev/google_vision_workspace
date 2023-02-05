@@ -1,4 +1,4 @@
-# Google Vision images REST API Client
+# Google Vision Images REST API Client
 
 [![pub package](https://img.shields.io/pub/v/google_vision.svg)](https://pub.dartlang.org/packages/google_vision)
 
@@ -18,7 +18,8 @@ Please feel free to submit PRs for any additional helper methods, or report an [
   - [pubspec.yaml](#pubspecyaml)
   - [Obtaining Authorization Credentials](#obtaining-authorization-credentials)
   - [Usage of the Cloud Vision API](#usage-of-the-cloud-vision-api)
-- [vision cli (google\_vision at the command prompt)](#vision-cli-google_vision-at-the-command-prompt)
+- [Usage with Flutter](#usage-with-flutter)
+- [Vision cli (google\_vision at the command prompt)](#vision-cli-google_vision-at-the-command-prompt)
 - [Contributors](#contributors)
 - [Contributing](#contributing)
 
@@ -41,7 +42,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision: ^1.0.6
+  google_vision: ^1.0.6+1
 ```
 
 ### Obtaining Authorization Credentials
@@ -113,7 +114,13 @@ dependencies:
 await cropped.writeAsJpeg('resulting_image.jpg');
 ```
 
-## vision cli (google_vision at the command prompt)
+## Usage with Flutter
+
+For a quick intro into the use of this package in a Flutter app see take a look at the `vision_demo` sample app in the [`example`](https://github.com/faithoflifedev/google_vision/tree/main/example/vision_demo) folder of the project's GitHub repository.
+
+In getting the package to work with Flutter it's usually necessary to convert an object that is presented as an `Asset` or a `Stream` into a `File` for use by the `google_vision` package.  The `vision_demo` app gives sample code that shows how to convert an `Asset` into a  `File`.  A similar process can be used for any `Stream` of data that represents an image supported by `google_vision`.
+
+## Vision cli (google_vision at the command prompt)
 
 This package included a cli utility that can be used to return data for any API call currently supported by the package. If you want to get started quickly with the cli utility run these commands in a terminal session:
 
@@ -150,6 +157,7 @@ Global options:
 Available commands:
   detect      Run image detection and annotation for an images.
   highlight   Draw a box to highlight any objects detected.
+  safe_search SafeSearch Detection detects explicit content such as adult content or violent content within an image.
   score       For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for".
 ```
 
