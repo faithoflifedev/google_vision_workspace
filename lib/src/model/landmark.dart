@@ -8,9 +8,9 @@ import 'position.dart';
 
 part 'landmark.g.dart';
 
-///Face landmark (feature) type. Left and right are defined from the vantage of
-///the viewer of the image without considering mirror projections typical of
-///photos. So, LEFT_EYE, typically, is the person's right eye.
+/// Face landmark (feature) type. Left and right are defined from the vantage of
+/// the viewer of the image without considering mirror projections typical of
+/// photos. So, LEFT_EYE, typically, is the person's right eye.
 @JsonEnum()
 enum LandmarkType {
   @JsonValue('Unknown')
@@ -89,20 +89,20 @@ enum LandmarkType {
   RIGHT_CHEEK_CENTER
 }
 
-///Face landmark (feature) type. Left and right are defined from the vantage of
-///the viewer of the image without considering mirror projections typical of
-///photos. So, LEFT_EYE, typically, is the person's right eye.
+/// Face landmark (feature) type. Left and right are defined from the vantage of
+/// the viewer of the image without considering mirror projections typical of
+/// photos. So, LEFT_EYE, typically, is the person's right eye.
 @JsonSerializable(explicitToJson: true)
 class Landmark {
-  ///Face landmark (feature) type. Left and right are defined from the vantage
-  ///of the viewer of the image without considering mirror projections typical
-  ///of photos. So, LEFT_EYE, typically, is the person's right eye.
+  /// Face landmark (feature) type. Left and right are defined from the vantage
+  /// of the viewer of the image without considering mirror projections typical
+  /// of photos. So, LEFT_EYE, typically, is the person's right eye.
   @JsonKey(unknownEnumValue: LandmarkType.UNKNOWN_LANDMARK)
   final LandmarkType type;
 
-  ///A 3D position in the image, used primarily for Face detection landmarks. A
-  ///valid Position must have both x and y coordinates. The position coordinates
-  ///are in the same scale as the original image.
+  /// A 3D position in the image, used primarily for Face detection landmarks. A
+  /// valid Position must have both x and y coordinates. The position
+  /// coordinates are in the same scale as the original image.
   final Position position;
 
   Landmark({required this.type, required this.position});

@@ -4,10 +4,10 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'web_detection_params.g.dart';
 
-///Parameters for web detection.
+/// Parameters for web detection.
 @JsonSerializable()
 class WebDetectionParams {
-  ///Whether to include results derived from the geo information in the image.
+  /// Whether to include results derived from the geo information in the image.
   final bool includeGeoResults;
 
   WebDetectionParams({required this.includeGeoResults});

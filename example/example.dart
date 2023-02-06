@@ -4,15 +4,15 @@ void main() async {
   final googleVision =
       await GoogleVision.withJwt('example/skc-live-decbd0969cbb.json');
 
-  final image =
-      Image.fromFilePath('example/young-man-smiling-and-thumbs-up.jpg');
+  final painter =
+      Painter.fromFilePath('example/young-man-smiling-and-thumbs-up.jpg');
 
-  final cropped = image.copyCrop(70, 30, 640, 480);
+  final cropped = painter.copyCrop(70, 30, 640, 480);
 
   await cropped.writeAsJpeg('example/cropped.jpg');
 
   final requests = AnnotationRequests(requests: [
-    AnnotationRequest(image: cropped, features: [
+    AnnotationRequest(painter: cropped, features: [
       Feature(maxResults: 10, type: 'FACE_DETECTION'),
       Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
     ])

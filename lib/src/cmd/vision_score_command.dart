@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:google_vision/src/cmd/vision_helper_command.dart';
 
+/// For OBJECT_LOCALIZATION, get the score(s) for the object specified with
+/// "look-for".
 class VisionScoreCommand extends VisionHelper {
   @override
   String get name => 'score';
@@ -10,6 +12,8 @@ class VisionScoreCommand extends VisionHelper {
   String get description =>
       'For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for".';
 
+  /// For OBJECT_LOCALIZATION, get the score(s) for the object specified with
+  /// "look-for".
   VisionScoreCommand() {
     argParser
       ..addOption('image-file',

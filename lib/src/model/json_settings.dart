@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'json_settings.g.dart';
 
+/// Model of the Json/authentication file provided by Google
 @JsonSerializable()
 class JsonSettings {
   final String type;

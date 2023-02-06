@@ -10,6 +10,7 @@ class VisionDetectCommand extends VisionHelper {
   @override
   String get description => 'Run image detection and annotation for images.';
 
+  /// Run image detection and annotation for images.
   VisionDetectCommand() {
     argParser
       ..addOption('image-file',
