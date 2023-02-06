@@ -13,10 +13,10 @@ class LabelAnnotation {
   /// The label itself
   final String description;
 
-  /// Score of the result. Range [0, 1].
+  /// Score of the result. Range \[0, 1\].
   final double score;
 
-  /// Topicality of the result. Range [0, 1].
+  /// Topicality of the result. Range \[0, 1\].
   final double topicality;
 
   LabelAnnotation(

@@ -2,9 +2,9 @@ import 'package:color/color.dart';
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
 
-///Integrates Google Vision features, including image labeling, face, logo, and
-///landmark detection, optical character recognition (OCR), and detection of
-///explicit content, into applications.
+/// Integrates Google Vision features, including painter labeling, face, logo,
+/// and landmark detection, optical character recognition (OCR), and detection
+/// of explicit content, into applications.
 class GoogleVision {
   final VisionClient _rest;
 
@@ -30,7 +30,7 @@ class GoogleVision {
     return yt;
   }
 
-  ///authenticated with JWT
+  /// Authenticated with JWT.
   static Future<GoogleVision> withJwt(String credentialsFile,
       [String scope = 'https://www.googleapis.com/auth/cloud-vision']) async {
     GoogleVision yt = GoogleVision();
@@ -57,57 +57,58 @@ class GoogleVision {
     }
   }
 
-  ///Run image detection and annotation for a batch of images.
-  Future<AnnotatedResponses> annotate({required AnnotationRequests requests}) {
-    return _rest.annotate(_authHeader, contentType, requests.toJson());
-  }
+  /// Run painter detection and annotation for a batch of painters.
+  Future<AnnotatedResponses> annotate({required AnnotationRequests requests}) =>
+      _rest.annotate(_authHeader, contentType, requests.toJson());
 
-  ///draw a box on the supplied [Image] around detected object using [NormalizedVertex] values
+  /// Draw a box on the supplied [Painter] around detected object using
+  /// [NormalizedVertex] values.
   static void drawAnnotationsNormalized(
-      Image image, List<NormalizedVertex> vertices,
+      Painter painter, List<NormalizedVertex> vertices,
       {String color = 'red', int thickness = 3}) {
     for (var index = 0; index < vertices.length - 1; index++) {
       final vStart = vertices[index];
 
       final vStop = vertices[index + 1];
 
-      image.drawLine(
-          (vStart.x * image.width).toInt(),
-          (vStart.y * image.height).toInt(),
-          (vStop.x * image.width).toInt(),
-          (vStop.y * image.height).toInt(),
+      painter.drawLine(
+          (vStart.x * painter.width).toInt(),
+          (vStart.y * painter.height).toInt(),
+          (vStop.x * painter.width).toInt(),
+          (vStop.y * painter.height).toInt(),
           RgbColor.name(color),
           thickness: thickness);
     }
 
-    image.drawLine(
-        (vertices.last.x * image.width).toInt(),
-        (vertices.last.y * image.height).toInt(),
-        (vertices.first.x * image.width).toInt(),
-        (vertices.first.y * image.height).toInt(),
+    painter.drawLine(
+        (vertices.last.x * painter.width).toInt(),
+        (vertices.last.y * painter.height).toInt(),
+        (vertices.first.x * painter.width).toInt(),
+        (vertices.first.y * painter.height).toInt(),
         RgbColor.name(color),
         thickness: thickness);
   }
 
-  ///draw a box on the supplied [Image] around the detected object using [Vertex] values
-  static void drawAnnotations(Image image, List<Vertex> vertices,
+  /// Draw a box on the supplied [Painter] around the detected object using
+  /// [Vertex] values.
+  static void drawAnnotations(Painter painter, List<Vertex> vertices,
       {String color = 'red', int thickness = 3}) {
     for (var index = 0; index < vertices.length - 1; index++) {
       final vStart = vertices[index];
 
       final vStop = vertices[index + 1];
 
-      image.drawLine(vStart.x, vStart.y, vStop.x, vStop.y, RgbColor.name(color),
+      painter.drawLine(
+          vStart.x, vStart.y, vStop.x, vStop.y, RgbColor.name(color),
           thickness: thickness);
     }
 
-    image.drawLine(vertices.last.x, vertices.last.y, vertices.first.x,
+    painter.drawLine(vertices.last.x, vertices.last.y, vertices.first.x,
         vertices.first.y, RgbColor.name(color),
         thickness: thickness);
   }
 
-  ///draw [text] on the [Image] at the [x] and [y] position
-  static void drawText(Image image, int x, int y, String text) {
-    image.drawString(x, y, text);
-  }
+  /// Draw [text] on the [Painter] at the [x] and [y] position.
+  static void drawText(Painter painter, int x, int y, String text) =>
+      painter.drawString(x, y, text);
 }

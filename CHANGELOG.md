@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6+2
+
+* updated API documentation
+
 ## 1.0.6+1
 
 * added Flutter tips to README

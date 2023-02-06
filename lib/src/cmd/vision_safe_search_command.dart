@@ -1,5 +1,7 @@
 import 'package:google_vision/google_vision.dart';
 
+/// SafeSearch Detection detects explicit content such as adult content or
+/// violent content within an image.
 class VisionSafeSearchCommand extends VisionHelper {
   @override
   String get name => 'safe_search';
@@ -8,6 +10,8 @@ class VisionSafeSearchCommand extends VisionHelper {
   String get description =>
       'SafeSearch Detection detects explicit content such as adult content or violent content within an image.';
 
+  /// SafeSearch Detection detects explicit content such as adult content or
+  /// violent content within an image.
   VisionSafeSearchCommand() {
     argParser.addOption('image-file',
         mandatory: true,
@@ -21,11 +25,11 @@ class VisionSafeSearchCommand extends VisionHelper {
         globalResults!['credential-file'],
         'https://www.googleapis.com/auth/cloud-vision');
 
-    final image = Image.fromFilePath(argResults!['image-file']);
+    final painter = Painter.fromFilePath(argResults!['image-file']);
 
     final requests = AnnotationRequests(requests: [
       AnnotationRequest(
-        image: image,
+        painter: painter,
         features: [Feature(type: 'SAFE_SEARCH_DETECTION')],
       )
     ]);

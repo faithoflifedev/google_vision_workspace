@@ -2,6 +2,7 @@ import 'package:args/command_runner.dart';
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
 
+/// Helper method to that retrieves error message string.
 extension UsageExtension on DioError {
   String get usage {
     return response?.data['error']['errors'] == null
@@ -10,6 +11,7 @@ extension UsageExtension on DioError {
   }
 }
 
+/// Helper methods used by most of the cli commands.
 abstract class VisionHelper extends Command {
   GoogleVision? _googleVision;
 
@@ -20,12 +22,13 @@ abstract class VisionHelper extends Command {
         await GoogleVision.withJwt(globalResults!['credential-file']);
   }
 
+  /// Helper methods used by most of the cli commands.
   Future<AnnotatedResponses> annotate([String? features]) async {
     final googleVision = await GoogleVision.withJwt(
         globalResults!['credential-file'],
         'https://www.googleapis.com/auth/cloud-vision');
 
-    final image = Image.fromFilePath(argResults!['image-file']);
+    final painter = Painter.fromFilePath(argResults!['image-file']);
 
     final featureList = (features ?? (argResults!['features'] as String))
         .split(',')
@@ -34,7 +37,7 @@ abstract class VisionHelper extends Command {
         .toList();
 
     final requests = AnnotationRequests(
-        requests: [AnnotationRequest(image: image, features: featureList)]);
+        requests: [AnnotationRequest(painter: painter, features: featureList)]);
 
     return await googleVision.annotate(requests: requests);
   }

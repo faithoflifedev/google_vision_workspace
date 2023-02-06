@@ -6,7 +6,7 @@ import 'annotate_image_response.dart';
 
 part 'annotated_responses.g.dart';
 
-///Response to a batch image annotation request.
+/// Response to a batch image annotation request.
 @JsonSerializable(explicitToJson: true)
 class AnnotatedResponses {
   final List<AnnotateImageResponse> responses;

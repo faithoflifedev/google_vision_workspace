@@ -2,6 +2,7 @@ import 'package:args/command_runner.dart';
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
 
+/// Draw a box to highlight any objects detected.
 class VisionHighlightCommand extends VisionHelper {
   @override
   String get name => 'highlight';
@@ -9,6 +10,7 @@ class VisionHighlightCommand extends VisionHelper {
   @override
   String get description => 'Draw a box to highlight any objects detected.';
 
+  /// Draw a box to highlight any objects detected.
   VisionHighlightCommand() {
     argParser
       ..addOption('image-file',
@@ -38,7 +40,7 @@ class VisionHighlightCommand extends VisionHelper {
     try {
       final annotatedResponses = await annotate();
 
-      final image = Image.fromFilePath(argResults!['image-file']);
+      final image = Painter.fromFilePath(argResults!['image-file']);
 
       //check for faces
       for (var annotatedResponse in annotatedResponses.responses) {

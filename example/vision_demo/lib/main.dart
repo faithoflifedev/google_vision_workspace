@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_vision/google_vision.dart' as gv;
+import 'package:google_vision/google_vision.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() {
@@ -60,18 +60,18 @@ class _MyHomePageState extends State<MyHomePage> {
   void _processImage() async {
     final jwtFromAsset = await getFileFromAsset('service_credentials.json');
 
-    final googleVision = await gv.GoogleVision.withJwt(jwtFromAsset);
+    final googleVision = await GoogleVision.withJwt(jwtFromAsset);
 
     final imageFile = await getFileFromAsset(
         'young-man-smiling-and-thumbs-up.jpg',
         temporaryFileName: 'young-man-smiling-and-thumbs-up.jpg');
 
-    final image = gv.Image.fromFilePath(imageFile);
+    final image = Painter.fromFilePath(imageFile);
 
-    final requests = gv.AnnotationRequests(requests: [
-      gv.AnnotationRequest(image: image, features: [
-        gv.Feature(maxResults: 10, type: 'FACE_DETECTION'),
-        gv.Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
+    final requests = AnnotationRequests(requests: [
+      AnnotationRequest(painter: image, features: [
+        Feature(maxResults: 10, type: 'FACE_DETECTION'),
+        Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
       ])
     ]);
 
@@ -79,13 +79,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
     for (var annotatedResponse in annotatedResponses.responses) {
       for (var faceAnnotation in annotatedResponse.faceAnnotations) {
-        gv.GoogleVision.drawText(
+        GoogleVision.drawText(
             image,
             faceAnnotation.boundingPoly.vertices.first.x + 2,
             faceAnnotation.boundingPoly.vertices.first.y + 2,
             'Face - ${faceAnnotation.detectionConfidence}');
 
-        gv.GoogleVision.drawAnnotations(
+        GoogleVision.drawAnnotations(
             image, faceAnnotation.boundingPoly.vertices);
       }
     }
@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
               localizedObjectAnnotation.name == 'Person')
           .toList()
           .forEach((localizedObjectAnnotation) {
-        gv.GoogleVision.drawText(
+        GoogleVision.drawText(
             image,
             (localizedObjectAnnotation.boundingPoly.normalizedVertices.first.x *
                     image.width)
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 16,
             'Person - ${localizedObjectAnnotation.score}');
 
-        gv.GoogleVision.drawAnnotationsNormalized(
+        GoogleVision.drawAnnotationsNormalized(
             image, localizedObjectAnnotation.boundingPoly.normalizedVertices);
       });
     }

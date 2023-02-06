@@ -4,15 +4,15 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'vertex.g.dart';
 
-///A vertex represents a 2D point in the image. NOTE: the vertex coordinates are
-///in the same scale as the original image.
+/// A vertex represents a 2D point in the image. NOTE: the vertex coordinates
+/// are in the same scale as the original image.
 @JsonSerializable()
 class Vertex {
-  ///X coordinate.
+  /// X coordinate.
   @JsonKey(defaultValue: 0)
   final int x;
 
-  ///Y coordinate.
+  /// Y coordinate.
   @JsonKey(defaultValue: 0)
   final int y;
 

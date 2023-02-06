@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:universal_io/io.dart';
 
+/// Utility methods
 class Util {
   static String base64GCloudString(String data) =>
       Util.base64GCloudList(utf8.encode(data));
@@ -12,6 +13,7 @@ class Util {
       .replaceAll('+', '-')
       .replaceAll('=', '');
 
+  /// Convert a [DateTime] to a Unix Timestamp.
   static int unixTimeStamp(DateTime dt) =>
       dt.toUtc().millisecondsSinceEpoch ~/ 1000;
 
@@ -27,6 +29,7 @@ class Util {
     return locationUri.queryParameters['upload_id']!;
   }
 
+  /// Attempt to retrieve the 'home' folder of the user if running on a desktop.
   static String? get userHome =>
       Platform.environment['HOME'] ?? Platform.environment['USERPROFILE'];
 }

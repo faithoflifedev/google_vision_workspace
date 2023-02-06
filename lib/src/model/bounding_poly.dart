@@ -7,12 +7,12 @@ import 'vertex.dart';
 
 part 'bounding_poly.g.dart';
 
-///The bounding polygon around the face. The coordinates of the bounding box are
-///in the original image's scale. The bounding box is computed to "frame" the
-///face in accordance with human expectations. It is based on the landmarker
-///results. Note that one or more x and/or y coordinates may not be generated in
-///the BoundingPoly (the polygon will be unbounded) if only a partial face
-///appears in the image to be annotated.
+/// The bounding polygon around the face. The coordinates of the bounding box
+/// are in the original image's scale. The bounding box is computed to "frame"
+/// the face in accordance with human expectations. It is based on the
+/// landmarker results. Note that one or more x and/or y coordinates may not be
+/// generated in the BoundingPoly (the polygon will be unbounded) if only a
+/// partial face appears in the image to be annotated.
 @JsonSerializable(explicitToJson: true)
 class BoundingPoly {
   ///The bounding polygon normalized vertices.

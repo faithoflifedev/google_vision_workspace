@@ -24,7 +24,7 @@ class JwtGenerator implements TokenGenerator {
           'scope': scope
         });
 
-  ///generate a OAuth2 refresh token from JWT credentials
+  /// generate a OAuth2 refresh token from JWT credentials
   @override
   Future<Token> generate() async {
     final key = JsonWebKey.fromPem(jwtCredentials.settings.privateKey);
