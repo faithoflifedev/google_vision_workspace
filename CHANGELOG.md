@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6+3
+
+* shields.io fix
+
 ## 1.0.6+2
 
 * updated API documentation
