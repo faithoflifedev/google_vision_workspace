@@ -8,7 +8,7 @@ part of 'annotation_request.dart';
 
 AnnotationRequest _$AnnotationRequestFromJson(Map<String, dynamic> json) =>
     AnnotationRequest(
-      painter: Painter.fromJson(json['painter'] as Map<String, dynamic>),
+      image: Painter.fromJson(json['image'] as Map<String, dynamic>),
       features: (json['features'] as List<dynamic>)
           .map((e) => Feature.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -19,7 +19,7 @@ AnnotationRequest _$AnnotationRequestFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AnnotationRequestToJson(AnnotationRequest instance) =>
     <String, dynamic>{
-      'painter': instance.painter.toJson(),
+      'image': instance.image.toJson(),
       'features': instance.features.map((e) => e.toJson()).toList(),
       'imageContext': instance.imageContext?.toJson(),
     };

@@ -6,7 +6,7 @@ import 'package:google_vision/google_vision.dart';
 extension UsageExtension on DioError {
   String get usage {
     return response?.data['error']['errors'] == null
-        ? message
+        ? message!
         : response!.data['error']['errors'].toString();
   }
 }
@@ -37,7 +37,7 @@ abstract class VisionHelper extends Command {
         .toList();
 
     final requests = AnnotationRequests(
-        requests: [AnnotationRequest(painter: painter, features: featureList)]);
+        requests: [AnnotationRequest(image: painter, features: featureList)]);
 
     return await googleVision.annotate(requests: requests);
   }
