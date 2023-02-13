@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.6+4
+
+* updated vision_demo example
+* example.md documentation
+* dependency bump
+
 ## 1.0.6+3
 
 * shields.io fix

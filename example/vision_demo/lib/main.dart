@@ -43,11 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final buffer = byteData.buffer;
 
-    final tempDir = await getTemporaryDirectory();
-
     final fileName = temporaryFileName ?? assetFileName;
 
-    final filePath = '${tempDir.path}${Platform.pathSeparator}$fileName';
+    final filePath = await getTempFile(fileName);
 
     await File(filePath).delete();
 
@@ -55,6 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
         buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
 
     return filePath;
+  }
+
+  Future<String> getTempFile([String? fileName]) async {
+    final tempDir = await getTemporaryDirectory();
+
+    return '${tempDir.path}${Platform.pathSeparator}${fileName ?? UniqueKey().toString()}';
   }
 
   void _processImage() async {
@@ -68,8 +72,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final image = Painter.fromFilePath(imageFile);
 
+    final cropped = image.copyCrop(70, 30, 640, 480);
+
+    final filePath = await getTempFile();
+
+    await cropped.writeAsJpeg(filePath);
+
     final requests = AnnotationRequests(requests: [
-      AnnotationRequest(painter: image, features: [
+      AnnotationRequest(image: image, features: [
         Feature(maxResults: 10, type: 'FACE_DETECTION'),
         Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
       ])
@@ -112,10 +122,10 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     }
 
-    await image.writeAsJpeg(imageFile);
+    await image.writeAsJpeg(filePath);
 
     setState(() {
-      _image = imageFile;
+      _image = filePath;
     });
   }
 
