@@ -2,6 +2,10 @@
 
 ## 1.0.6+5
 
+* readme improvements
+
+## 1.0.6+5
+
 * support for latest [image](https:&#x2F;&#x2F;pub.dev&#x2F;packages&#x2F;image&#x2F;versions&#x2F;4.0.15) package
 
 ## 1.0.6+4
