@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6+7
+
+* example readme improvements
+
 ## 1.0.6+6
 
 * readme improvements
