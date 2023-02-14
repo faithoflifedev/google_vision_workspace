@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_vision/google_vision.dart';
+import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 
 void main() {
@@ -59,6 +60,23 @@ class _MyHomePageState extends State<MyHomePage> {
     final tempDir = await getTemporaryDirectory();
 
     return '${tempDir.path}${Platform.pathSeparator}${fileName ?? UniqueKey().toString()}';
+  }
+
+  void drawHello(String outFile) async {
+    final fontZipFile = await getFileFromAsset('arial_unicode.ttf.zip');
+
+    final fontFile = await File(fontZipFile).readAsBytes();
+
+    final font = img.BitmapFont.fromZip(fontFile);
+
+    final image = img.Image(width: 320, height: 200);
+
+    img.drawString(image, 'Hello',
+        font: font, x: 10, y: 100, color: img.ColorInt8.rgb(0, 0, 0));
+
+    // final testFile = await getTempFile();
+
+    await img.encodePngFile(outFile, image);
   }
 
   void _processImage() async {
@@ -122,7 +140,9 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     }
 
-    await image.writeAsJpeg(filePath);
+    drawHello(filePath);
+
+    // await image.writeAsJpeg(filePath);
 
     setState(() {
       _image = filePath;

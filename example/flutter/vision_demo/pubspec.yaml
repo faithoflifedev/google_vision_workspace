@@ -1,16 +1,17 @@
 name: vision_demo
-description: A new Flutter project.
+description: A simple app to test the google_vision package
 
 publish_to: none
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.18.6 <3.0.0"
 
 dependencies:
   google_vision:
-    path: ../../
+    path: ../../../
+  image: ^4.0.15
   path_provider: ^2.0.11
 
   flutter:

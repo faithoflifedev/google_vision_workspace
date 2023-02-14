@@ -66,49 +66,43 @@ class GoogleVision {
   static void drawAnnotationsNormalized(
       Painter painter, List<NormalizedVertex> vertices,
       {String color = 'red', int thickness = 3}) {
-    for (var index = 0; index < vertices.length - 1; index++) {
-      final vStart = vertices[index];
+    final topLeft = vertices.first;
 
-      final vStop = vertices[index + 1];
+    final bottomRight = vertices[2];
 
-      painter.drawLine(
-          (vStart.x * painter.width).toInt(),
-          (vStart.y * painter.height).toInt(),
-          (vStop.x * painter.width).toInt(),
-          (vStop.y * painter.height).toInt(),
-          RgbColor.name(color),
-          thickness: thickness);
-    }
-
-    painter.drawLine(
-        (vertices.last.x * painter.width).toInt(),
-        (vertices.last.y * painter.height).toInt(),
-        (vertices.first.x * painter.width).toInt(),
-        (vertices.first.y * painter.height).toInt(),
-        RgbColor.name(color),
-        thickness: thickness);
+    painter.drawRectangle(
+      (topLeft.x * painter.width).toInt(),
+      (topLeft.y * painter.height).toInt(),
+      (bottomRight.x * painter.width).toInt(),
+      (bottomRight.y * painter.height).toInt(),
+      RgbColor.name(color),
+    );
   }
 
   /// Draw a box on the supplied [Painter] around the detected object using
   /// [Vertex] values.
   static void drawAnnotations(Painter painter, List<Vertex> vertices,
       {String color = 'red', int thickness = 3}) {
-    for (var index = 0; index < vertices.length - 1; index++) {
-      final vStart = vertices[index];
+    final topLeft = vertices.first;
 
-      final vStop = vertices[index + 1];
+    final bottomRight = vertices[2];
 
-      painter.drawLine(
-          vStart.x, vStart.y, vStop.x, vStop.y, RgbColor.name(color),
-          thickness: thickness);
-    }
-
-    painter.drawLine(vertices.last.x, vertices.last.y, vertices.first.x,
-        vertices.first.y, RgbColor.name(color),
-        thickness: thickness);
+    painter.drawRectangle(
+      topLeft.x.toInt(),
+      topLeft.y.toInt(),
+      bottomRight.x.toInt(),
+      bottomRight.y.toInt(),
+      RgbColor.name(color),
+    );
   }
 
   /// Draw [text] on the [Painter] at the [x] and [y] position.
-  static void drawText(Painter painter, int x, int y, String text) =>
-      painter.drawString(x, y, text);
+  static void drawText(Painter painter, int x, int y, String text,
+          {String color = 'red'}) =>
+      painter.drawString(
+        x,
+        y,
+        text,
+        RgbColor.name(color),
+      );
 }
