@@ -52,63 +52,62 @@ dependencies:
 ### Usage of the Cloud Vision API
 
 ```dart
-  final googleVision =
-      await GoogleVision.withJwt('my_jwt_credentials.json');
+final googleVision =
+    await GoogleVision.withJwt('my_jwt_credentials.json');
 
-  final image =
-      Image.fromFilePath('example/young-man-smiling-and-thumbs-up.jpg');
+final image =
+    Image.fromFilePath('example/young-man-smiling-and-thumbs-up.jpg');
 
-  // cropping an image can save time uploading the image to Google
-  final cropped = image.copyCrop(70, 30, 640, 480);
+// cropping an image can save time uploading the image to Google
+final cropped = painter.copyCrop(70, 30, 640, 480);
 
-  // to see the cropped image
-  await cropped.writeAsJpeg('example/cropped.jpg');
+// to see the cropped image
+await cropped.writeAsJpeg('example/cropped.jpg');
 
-  final requests = AnnotationRequests(requests: [
-    AnnotationRequest(image: cropped, features: [
-      Feature(maxResults: 10, type: 'FACE_DETECTION'),
-      Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
-    ])
-  ]);
+final requests = AnnotationRequests(requests: [
+  AnnotationRequest(image: cropped, features: [
+    Feature(maxResults: 10, type: 'FACE_DETECTION'),
+    Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
+  ])
+]);
 
-  final annotatedResponses =
-      await googleVision.annotate(requests: requests);
+final annotatedResponses =
+    await googleVision.annotate(requests: requests);
 
-  for (var annotatedResponse in annotatedResponses.responses) {
-    for (var faceAnnotation in annotatedResponse.faceAnnotations) {
-      GoogleVision.drawText(
-          cropped,
-          faceAnnotation.boundingPoly.vertices.first.x + 2,
-          faceAnnotation.boundingPoly.vertices.first.y + 2,
-          'Face - ${faceAnnotation.detectionConfidence}');
+for (var annotatedResponse in annotatedResponses.responses) {
+  for (var faceAnnotation in annotatedResponse.faceAnnotations) {
+    GoogleVision.drawText(
+        cropped,
+        faceAnnotation.boundingPoly.vertices.first.x + 2,
+        faceAnnotation.boundingPoly.vertices.first.y + 2,
+        'Face - ${faceAnnotation.detectionConfidence}');
 
-      GoogleVision.drawAnnotations(
-          cropped, faceAnnotation.boundingPoly.vertices);
-    }
+    GoogleVision.drawAnnotations(
+        cropped, faceAnnotation.boundingPoly.vertices);
   }
+}
 
-  for (var annotatedResponse in annotatedResponses.responses) {
-    //look only for Person annotations
-    annotatedResponse.localizedObjectAnnotations
-        .where((localizedObjectAnnotation) =>
-            localizedObjectAnnotation.name == 'Person')
-        .toList()
-        .forEach((localizedObjectAnnotation) {
-      GoogleVision.drawText(
-          cropped,
-          (localizedObjectAnnotation.boundingPoly.normalizedVertices.first.x *
-                  cropped.width)
-              .toInt(),
-          (localizedObjectAnnotation.boundingPoly.normalizedVertices.first.y *
-                      cropped.height)
-                  .toInt() -
-              16,
-          'Person - ${localizedObjectAnnotation.score}');
+for (var annotatedResponse in annotatedResponses.responses) {
+  annotatedResponse.localizedObjectAnnotations
+      .where((localizedObjectAnnotation) =>
+          localizedObjectAnnotation.name == 'Person')
+      .toList()
+      .forEach((localizedObjectAnnotation) {
+    GoogleVision.drawText(
+        cropped,
+        (localizedObjectAnnotation.boundingPoly.normalizedVertices.first.x *
+                cropped.width)
+            .toInt(),
+        (localizedObjectAnnotation.boundingPoly.normalizedVertices.first.y *
+                    cropped.height)
+                .toInt() -
+            16,
+        'Person - ${localizedObjectAnnotation.score}');
 
-      GoogleVision.drawAnnotationsNormalized(
-          cropped, localizedObjectAnnotation.boundingPoly.normalizedVertices);
-    });
-  }
+    GoogleVision.drawAnnotationsNormalized(
+        cropped, localizedObjectAnnotation.boundingPoly.normalizedVertices);
+  });
+}
 
 // output the results as a new image file
 await cropped.writeAsJpeg('resulting_image.jpg');
@@ -116,7 +115,7 @@ await cropped.writeAsJpeg('resulting_image.jpg');
 
 ## Usage with Flutter
 
-For a quick intro into the use of this package in a Flutter app see take a look at the `vision_demo` sample app in the [`example`](https://github.com/faithoflifedev/google_vision/tree/main/example/vision_demo) folder of the project's GitHub repository.
+For a quick intro into the use of this package in a Flutter app see take a look at the `vision_demo` sample app in the [`example/flutter`](https://github.com/faithoflifedev/google_vision/tree/main/example/flutter/vision_demo) folder of the project's GitHub repository.
 
 In getting the package to work with Flutter it's usually necessary to convert an object that is presented as an `Asset` or a `Stream` into a `File` for use by the `google_vision` package.  The `vision_demo` app gives sample code that shows how to convert an `Asset` into a  `File`.  A similar process can be used for any `Stream` of data that represents an image supported by `google_vision`.
 
