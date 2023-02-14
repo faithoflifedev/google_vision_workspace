@@ -2,14 +2,14 @@ import 'package:google_vision/google_vision.dart';
 
 void main() async {
   final googleVision =
-      await GoogleVision.withJwt('example/cli/skc-live-decbd0969cbb.json');
+      await GoogleVision.withJwt('example/skc-live-decbd0969cbb.json');
 
   final painter =
-      Painter.fromFilePath('example/cli/young-man-smiling-and-thumbs-up.jpg');
+      Painter.fromFilePath('example/young-man-smiling-and-thumbs-up.jpg');
 
   final cropped = painter.copyCrop(70, 30, 640, 480);
 
-  await cropped.writeAsJpeg('example/cli/cropped.jpg');
+  await cropped.writeAsJpeg('example/cropped.jpg');
 
   final requests = AnnotationRequests(requests: [
     AnnotationRequest(image: cropped, features: [
@@ -60,5 +60,5 @@ void main() async {
     });
   }
 
-  await cropped.writeAsJpeg('example/cli/debugImage.jpg');
+  await cropped.writeAsJpeg('example/debugImage.jpg');
 }

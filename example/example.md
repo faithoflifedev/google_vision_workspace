@@ -3,7 +3,7 @@
 Provides a basic example of how the package can be used to perform image processing from the command line
 
 ```sh
-dart run example/cli/example.dart
+dart run example/example.dart
 ```
 
 # Google Vision Flutter example
@@ -11,7 +11,7 @@ dart run example/cli/example.dart
 Provides a basic example of how the package can be used to perform image processing from within a Flutter app
 
 ```sh
-cd example/vision_demo/
+cd example/flutter/vision_demo/
 flutter emulators
 flutter emulators --launch apple_ios_simulator
 flutter devices
