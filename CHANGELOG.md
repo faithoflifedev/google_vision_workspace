@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.6+5
+## 1.0.6+6
 
 * readme improvements
 
