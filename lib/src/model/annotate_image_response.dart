@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:google_vision/src/model/full_text_annotation.dart';
 import 'package:google_vision/src/model/safe_search_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -27,6 +28,9 @@ class AnnotateImageResponse {
 
   final SafeSearchAnnotation? safeSearchAnnotation;
 
+  /// If present, text (OCR) detection or document (OCR) text detection has completed successfully.
+  final FullTextAnnotation? fullTextAnnotation;
+
   /// If present, face detection has completed successfully.
   List<FaceAnnotation> get faceAnnotations =>
       faceAnnotationList ?? <FaceAnnotation>[];
@@ -48,7 +52,8 @@ class AnnotateImageResponse {
       this.localizedObjectAnnotationList,
       this.labelAnnotationList,
       this.textAnnotationsList,
-      this.safeSearchAnnotation});
+      this.safeSearchAnnotation,
+      this.fullTextAnnotation});
 
   factory AnnotateImageResponse.fromJson(Map<String, dynamic> json) =>
       _$AnnotateImageResponseFromJson(json);
