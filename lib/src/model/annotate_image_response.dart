@@ -6,6 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'face_annotation.dart';
 import 'localized_object_annotation.dart';
 import 'label_annotation.dart';
+import 'text_annotation.dart';
 
 part 'annotate_image_response.g.dart';
 
@@ -21,6 +22,9 @@ class AnnotateImageResponse {
   @JsonKey(name: 'labelAnnotations')
   final List<LabelAnnotation>? labelAnnotationList;
 
+  @JsonKey(name: 'textAnnotations')
+  final List<TextAnnotation>? textAnnotationsList;
+
   final SafeSearchAnnotation? safeSearchAnnotation;
 
   /// If present, face detection has completed successfully.
@@ -31,6 +35,10 @@ class AnnotateImageResponse {
   List<LocalizedObjectAnnotation> get localizedObjectAnnotations =>
       localizedObjectAnnotationList ?? <LocalizedObjectAnnotation>[];
 
+  /// If present, text detection has completed successfully.
+  List<TextAnnotation> get textAnnotations =>
+      textAnnotationsList ?? <TextAnnotation>[];
+
   /// If present, label  detection has completed successfully.
   List<LabelAnnotation> get labelAnnotations =>
       labelAnnotationList ?? <LabelAnnotation>[];
@@ -39,6 +47,7 @@ class AnnotateImageResponse {
       {this.faceAnnotationList,
       this.localizedObjectAnnotationList,
       this.labelAnnotationList,
+      this.textAnnotationsList,
       this.safeSearchAnnotation});
 
   factory AnnotateImageResponse.fromJson(Map<String, dynamic> json) =>

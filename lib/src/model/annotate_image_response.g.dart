@@ -20,6 +20,9 @@ AnnotateImageResponse _$AnnotateImageResponseFromJson(
       labelAnnotationList: (json['labelAnnotations'] as List<dynamic>?)
           ?.map((e) => LabelAnnotation.fromJson(e as Map<String, dynamic>))
           .toList(),
+      textAnnotationsList: (json['textAnnotations'] as List<dynamic>?)
+          ?.map((e) => TextAnnotation.fromJson(e as Map<String, dynamic>))
+          .toList(),
       safeSearchAnnotation: json['safeSearchAnnotation'] == null
           ? null
           : SafeSearchAnnotation.fromJson(
@@ -36,5 +39,7 @@ Map<String, dynamic> _$AnnotateImageResponseToJson(
           .toList(),
       'labelAnnotations':
           instance.labelAnnotationList?.map((e) => e.toJson()).toList(),
+      'textAnnotations':
+          instance.textAnnotationsList?.map((e) => e.toJson()).toList(),
       'safeSearchAnnotation': instance.safeSearchAnnotation?.toJson(),
     };
