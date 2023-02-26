@@ -9,6 +9,15 @@
 * support for `error` responses
 * support for contextual information
 
+## 1.0.7
+
+* support for landmark detection
+* support for logo detection
+* support for text and full-text detection
+* support for image properties detection
+* support for `error` responses
+* support for contextual information
+
 ## 1.0.6+7
 
 * example readme improvements
