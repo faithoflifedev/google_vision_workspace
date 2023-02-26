@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.7+2
+
+* api doc correction
+
 ## 1.0.7+1
 
 * tweaks
