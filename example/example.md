@@ -1,9 +1,11 @@
 # Google Vision command line example
 
-Provides a basic [example](https://github.com/faithoflifedev/google_vision/tree/main/example) of how the package can be used to perform image processing from the command line
+Provides a basic [examples](https://github.com/faithoflifedev/google_vision/tree/main/example) of how the package can be used to perform image processing.
+
+## Google Vision object and face detection example
 
 ```sh
-dart run example/example.dart
+dart run example/object_and_face_detection.dart
 ```
 
 ```dart
@@ -11,7 +13,7 @@ import 'package:google_vision/google_vision.dart';
 
 void main() async {
   final googleVision =
-      await GoogleVision.withJwt('example/skc-live-decbd0969cbb.json');
+      await GoogleVision.withJwt('example/auth.json');
 
   final painter =
       Painter.fromFilePath('example/young-man-smiling-and-thumbs-up.jpg');
@@ -73,7 +75,49 @@ void main() async {
 }
 ```
 
-# Google Vision Flutter example
+## Google Vision text detection example
+
+```sh
+dart run example/text_detection.dart
+```
+
+```dart
+final googleVision =
+    await GoogleVision.withJwt('example/auth.json');
+
+final painter = Painter.fromFilePath(
+    'example/phospholipids_aqueous_solution_structures.png');
+
+final requests = AnnotationRequests(requests: [
+  AnnotationRequest(image: painter, features: [
+    Feature(maxResults: 10, type: 'TEXT_DETECTION')
+  ])
+]);
+
+print('checking...');
+
+AnnotatedResponses annotatedResponses =
+    await googleVision.annotate(requests: requests);
+
+print('done.\n');
+
+for (var annotatedResponse in annotatedResponses.responses) {
+  for (var textAnnotation in annotatedResponse.textAnnotations) {
+    GoogleVision.drawText(
+        painter,
+        textAnnotation.boundingPoly!.vertices.first.x + 2,
+        textAnnotation.boundingPoly!.vertices.first.y + 2,
+        textAnnotation.description);
+
+    GoogleVision.drawAnnotations(
+        painter, textAnnotation.boundingPoly!.vertices);
+  }
+}
+
+await painter.writeAsJpeg('example/debugImage.jpg');
+```
+
+## Google Vision Flutter example
 
 Provides a basic example of how the package can be used to perform image processing from within as a [Flutter app](https://github.com/faithoflifedev/google_vision/tree/main/example/flutter/vision_demo)
 

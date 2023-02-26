@@ -13,15 +13,16 @@ class TextAnnotation {
   final String? locale;
 
   /// Entity textual description, expressed in its locale language.
-  final String description;
+  final String? description;
 
   /// Image region to which this text belongs. This must be populated.
-  final BoundingPoly boundingPoly;
+  final BoundingPoly? boundingPoly;
 
-  TextAnnotation(
-      {required this.locale,
-      required this.description,
-      required this.boundingPoly});
+  TextAnnotation({
+    required this.locale,
+    this.description,
+    this.boundingPoly,
+  });
 
   factory TextAnnotation.fromJson(Map<String, dynamic> json) =>
       _$TextAnnotationFromJson(json);

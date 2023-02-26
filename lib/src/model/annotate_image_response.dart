@@ -4,56 +4,116 @@ import 'package:google_vision/src/model/full_text_annotation.dart';
 import 'package:google_vision/src/model/safe_search_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'crop_hints_annotation.dart';
 import 'face_annotation.dart';
+import 'image_annotation_context.dart';
+import 'image_properties_annotation.dart';
+import 'entity_annotation.dart';
 import 'localized_object_annotation.dart';
-import 'label_annotation.dart';
+import 'status.dart';
 import 'text_annotation.dart';
 
 part 'annotate_image_response.g.dart';
 
 /// Individual responses to image annotation requests within the batch.
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class AnnotateImageResponse {
+  /// If present, face detection has completed successfully.
   @JsonKey(name: 'faceAnnotations')
   final List<FaceAnnotation>? faceAnnotationList;
 
+  /// If present, landmark detection has completed successfully.
+  @JsonKey(name: 'landmarkAnnotations')
+  final List<EntityAnnotation>? landmarkAnnotationList;
+
+  /// If present, logo detection has completed successfully.
+  @JsonKey(name: 'logoAnnotations')
+  final List<EntityAnnotation>? logoAnnotationList;
+
+  /// If present, label detection has completed successfully.
+  @JsonKey(name: 'labelAnnotations')
+  final List<EntityAnnotation>? labelAnnotationList;
+
+  /// If present, localized object detection has completed successfully. This
+  /// will be sorted descending by confidence score.
   @JsonKey(name: 'localizedObjectAnnotations')
   final List<LocalizedObjectAnnotation>? localizedObjectAnnotationList;
 
-  @JsonKey(name: 'labelAnnotations')
-  final List<LabelAnnotation>? labelAnnotationList;
-
+  /// If present, text (OCR) detection has completed successfully.
   @JsonKey(name: 'textAnnotations')
-  final List<TextAnnotation>? textAnnotationsList;
+  final List<EntityAnnotation>? textAnnotationsList;
 
+  /// If present, text (OCR) detection or document (OCR) text detection has
+  /// completed successfully. This annotation provides the structural hierarchy
+  /// for the OCR detected text.
+  @JsonKey(name: 'fullTextAnnotation')
+  final TextAnnotation? fullTextAnnotation;
+
+  /// If present, safe-search annotation has completed successfully.
+  @JsonKey(name: 'safeSearchAnnotations')
   final SafeSearchAnnotation? safeSearchAnnotation;
 
-  /// If present, text (OCR) detection or document (OCR) text detection has completed successfully.
-  final FullTextAnnotation? fullTextAnnotation;
+  /// If present, image properties were extracted successfully.
+  @JsonKey(name: 'imagePropertiesAnnotation')
+  final ImagePropertiesAnnotation? imagePropertiesAnnotation;
+
+  /// If present, crop hints have completed successfully.
+  @JsonKey(name: 'cropHintsAnnotation')
+  final CropHintsAnnotation? cropHintsAnnotation;
+
+  // TODO: webDetection
+
+  // TODO: productSearchResults
+
+  /// If set, represents the error message for the operation. Note that
+  /// filled-in image annotations are guaranteed to be correct, even when error
+  /// is set.
+  @JsonKey(name: 'error')
+  final Status? error;
+
+  /// If present, contextual information is needed to understand where this image comes from.
+  @JsonKey(name: 'context')
+  final ImageAnnotationContext? context;
 
   /// If present, face detection has completed successfully.
   List<FaceAnnotation> get faceAnnotations =>
       faceAnnotationList ?? <FaceAnnotation>[];
 
-  /// If present, landmark detection has completed successfully.
+  /// If present, face detection has completed successfully.
+  List<EntityAnnotation> get landmarkAnnotations =>
+      landmarkAnnotationList ?? <EntityAnnotation>[];
+
+  /// If present, label  detection has completed successfully.
+  List<EntityAnnotation> get labelAnnotations =>
+      labelAnnotationList ?? <EntityAnnotation>[];
+
+  /// If present, logo detection has completed successfully.
+  List<EntityAnnotation> get logoAnnotations =>
+      logoAnnotationList ?? <EntityAnnotation>[];
+
+  /// If present, localized object detection has completed successfully. This
+  /// will be sorted descending by confidence score.
   List<LocalizedObjectAnnotation> get localizedObjectAnnotations =>
       localizedObjectAnnotationList ?? <LocalizedObjectAnnotation>[];
 
-  /// If present, text detection has completed successfully.
-  List<TextAnnotation> get textAnnotations =>
-      textAnnotationsList ?? <TextAnnotation>[];
+  /// If present, full text detection has completed successfully.
+  List<EntityAnnotation> get textAnnotations =>
+      textAnnotationsList ?? <EntityAnnotation>[];
 
-  /// If present, label  detection has completed successfully.
-  List<LabelAnnotation> get labelAnnotations =>
-      labelAnnotationList ?? <LabelAnnotation>[];
-
-  AnnotateImageResponse(
-      {this.faceAnnotationList,
-      this.localizedObjectAnnotationList,
-      this.labelAnnotationList,
-      this.textAnnotationsList,
-      this.safeSearchAnnotation,
-      this.fullTextAnnotation});
+  AnnotateImageResponse({
+    this.faceAnnotationList,
+    this.landmarkAnnotationList,
+    this.labelAnnotationList,
+    this.localizedObjectAnnotationList,
+    this.logoAnnotationList,
+    this.textAnnotationsList,
+    this.fullTextAnnotation,
+    this.safeSearchAnnotation,
+    this.imagePropertiesAnnotation,
+    this.cropHintsAnnotation,
+    this.error,
+    this.context,
+  });
 
   factory AnnotateImageResponse.fromJson(Map<String, dynamic> json) =>
       _$AnnotateImageResponseFromJson(json);

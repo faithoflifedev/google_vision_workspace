@@ -12,6 +12,7 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 
 ## Table of Contents
 - [Recent Changes](#recent-changes)
+  - [New for v1.0.7](#new-for-v107)
   - [New for v1.0.6](#new-for-v106)
   - [New for v1.0.3](#new-for-v103)
 - [Getting Started](#getting-started)
@@ -24,6 +25,18 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 - [Contributing](#contributing)
 
 ## Recent Changes
+
+### New for v1.0.7
+
+[JLuisRojas](https://github.com/JLuisRojas) has provided code for:
+- detect text in images
+- detect handwriting in images
+
+In addition support for the following has also been added:
+- detect crop hints
+- detect image properties
+- detect landmarks
+- detect logos
 
 ### New for v1.0.6
 
@@ -166,6 +179,7 @@ Please see the cli documentation [README.md](https://github.com/faithoflifedev/g
 
 - [imhafeez](https://github.com/imhafeez)
 - [4ctobias](https://github.com/4ctobias)
+- [JLuisRojas](https://github.com/JLuisRojas)
 
 ## Contributing
 

@@ -8,6 +8,7 @@ void main(List<String> arguments) async {
     ..argParser.addOption('credential-file',
         defaultsTo: '${Util.userHome}/.vision/credentials.json',
         valueHelp: 'credentials file path')
+    ..addCommand(VisionCropHintCommand())
     ..addCommand(VisionDetectCommand())
     ..addCommand(VisionHighlightCommand())
     ..addCommand(VisionSafeSearchCommand())
