@@ -29,7 +29,7 @@ class EntityAnnotation {
   /// For example, the relevancy of "tower" is likely higher to an image
   /// containing the detected "Eiffel Tower" than to an image containing a
   /// detected distant towering building, even though the confidence that there
-  /// is a tower in each image may be the same. Range [0, 1].
+  /// is a tower in each image may be the same. Range \[0, 1\].
   final double? topicality;
 
   /// Image region to which this entity belongs. Not produced for
