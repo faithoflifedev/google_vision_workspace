@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.7+1
+
+* tweaks
+
 ## 1.0.7
 
 * support for landmark detection

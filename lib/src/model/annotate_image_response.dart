@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:google_vision/src/model/full_text_annotation.dart';
 import 'package:google_vision/src/model/safe_search_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 

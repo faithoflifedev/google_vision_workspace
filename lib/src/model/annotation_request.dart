@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:google_vision/google_vision.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'image_context.dart';
-
 part 'annotation_request.g.dart';
 
 /// Individual image annotation requests for this batch.
