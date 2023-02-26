@@ -167,6 +167,7 @@ Global options:
     --credential-file=<credentials file path>    (defaults to "/Users/chris/.vision/credentials.json")
 
 Available commands:
+  crop_hints  Set of crop hints that are used to generate new crops when serving images.
   detect      Run image detection and annotation for an images.
   highlight   Draw a box to highlight any objects detected.
   safe_search SafeSearch Detection detects explicit content such as adult content or violent content within an image.
