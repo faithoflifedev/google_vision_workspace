@@ -10,7 +10,7 @@ import 'image_properties_annotation.dart';
 import 'entity_annotation.dart';
 import 'localized_object_annotation.dart';
 import 'status.dart';
-import 'text_annotation.dart';
+import 'full_text_annotation.dart';
 
 part 'annotate_image_response.g.dart';
 
@@ -46,7 +46,7 @@ class AnnotateImageResponse {
   /// completed successfully. This annotation provides the structural hierarchy
   /// for the OCR detected text.
   @JsonKey(name: 'fullTextAnnotation')
-  final TextAnnotation? fullTextAnnotation;
+  final FullTextAnnotation? fullTextAnnotation;
 
   /// If present, safe-search annotation has completed successfully.
   @JsonKey(name: 'safeSearchAnnotations')
