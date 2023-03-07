@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.7+4
+
+* fix for full-text annotation
+
 ## 1.0.7+3
 
 * readme tweak
