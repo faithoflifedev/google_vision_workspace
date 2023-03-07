@@ -31,7 +31,7 @@ AnnotateImageResponse _$AnnotateImageResponseFromJson(
           .toList(),
       fullTextAnnotation: json['fullTextAnnotation'] == null
           ? null
-          : TextAnnotation.fromJson(
+          : FullTextAnnotation.fromJson(
               json['fullTextAnnotation'] as Map<String, dynamic>),
       safeSearchAnnotation: json['safeSearchAnnotations'] == null
           ? null
