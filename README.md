@@ -55,7 +55,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision: ^1.0.7+3
+  google_vision: ^1.0.7+4
 ```
 
 ### Obtaining Authorization Credentials
@@ -181,6 +181,7 @@ Please see the cli documentation [README.md](https://github.com/faithoflifedev/g
 - [imhafeez](https://github.com/imhafeez)
 - [4ctobias](https://github.com/4ctobias)
 - [JLuisRojas](https://github.com/JLuisRojas)
+- [DeadBryam](https://github.com/DeadBryam)
 
 ## Contributing
 
