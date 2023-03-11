@@ -22,16 +22,16 @@ part 'color.g.dart';
 /// alpha values each differ by at most 1e-5.
 @JsonSerializable()
 class Color {
-  /// The amount of red in the color as a value in the interval [0, 1].
+  /// The amount of red in the color as a value in the interval [0, 1\].
   final double red;
 
-  /// The amount of green in the color as a value in the interval [0, 1].
+  /// The amount of green in the color as a value in the interval [0, 1\].
   final double green;
 
-  /// The amount of blue in the color as a value in the interval [0, 1].
+  /// The amount of blue in the color as a value in the interval [0, 1\].
   final double blue;
 
-  /// The amount of alpha in the color as a value in the interval [0, 1].
+  /// The amount of alpha in the color as a value in the interval [0, 1\].
   final double? alpha;
 
   Color({

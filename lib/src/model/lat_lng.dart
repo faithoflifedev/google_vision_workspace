@@ -10,10 +10,10 @@ part 'lat_lng.g.dart';
 /// must be within normalized ranges.
 @JsonSerializable()
 class LatLng {
-  /// The latitude in degrees. It must be in the range [-90.0, +90.0].
+  /// The latitude in degrees. It must be in the range [-90.0, +90.0\].
   final double latitude;
 
-  /// The longitude in degrees. It must be in the range [-180.0, +180.0].
+  /// The longitude in degrees. It must be in the range [-180.0, +180.0\].
   final double longitude;
 
   LatLng({

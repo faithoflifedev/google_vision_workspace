@@ -15,7 +15,7 @@ class LocalizedObjectAnnotation {
   /// Object name, expressed in its languageCode language.
   final String name;
 
-  /// Score of the result. Range [0, 1].
+  /// Score of the result. Range [0, 1\].
   final double score;
 
   /// Image region to which this object belongs. This must be populated.
