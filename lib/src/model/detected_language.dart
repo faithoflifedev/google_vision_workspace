@@ -10,7 +10,7 @@ class DetectedLanguage {
   /// The BCP-47 language code, such as "en-US" or "sr-Latn".
   final String languageCode;
 
-  /// Confidence of detected language. Range [0, 1].
+  /// Confidence of detected language. Range [0, 1\].
   final double? confidence;
 
   DetectedLanguage({required this.languageCode, required this.confidence});

@@ -50,22 +50,22 @@ class FaceAnnotation {
 
   /// Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
   /// of the face relative to the image vertical about the axis perpendicular to
-  /// the face. Range [-180,180].
+  /// the face. Range [-180,180\].
   final double rollAngle;
 
   /// Yaw angle, which indicates the leftward/rightward angle that the face is
   /// pointing relative to the vertical plane perpendicular to the image. Range
-  /// [-180,180].
+  /// [-180,180\].
   final double panAngle;
 
   /// Pitch angle, which indicates the upwards/downwards angle that the face is
-  /// pointing relative to the image's horizontal plane. Range [-180,180].
+  /// pointing relative to the image's horizontal plane. Range [-180,180\].
   final double tiltAngle;
 
-  /// Detection confidence. Range [0, 1].
+  /// Detection confidence. Range [0, 1\].
   final double detectionConfidence;
 
-  /// Face landmarking confidence. Range [0, 1].
+  /// Face landmarking confidence. Range [0, 1\].
   final double landmarkingConfidence;
 
   /// Joy likelihood.

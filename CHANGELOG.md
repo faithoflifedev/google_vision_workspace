@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.7+6
+
+* API doc fixes
+
 ## 1.0.7+5
 
 * issue #7

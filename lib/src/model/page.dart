@@ -18,7 +18,7 @@ class Page {
   /// Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
   final int height;
 
-  /// Confidence of the OCR results on the page. Range [0, 1].
+  /// Confidence of the OCR results on the page. Range [0, 1\].
   final double? confidence;
 
   Page({
