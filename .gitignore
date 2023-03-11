@@ -11,10 +11,12 @@ pubspec.lock
 example/skc-live-decbd0969cbb.json
 example/cropped.jpg
 example/debugImage.jpg
+example/face_detection.dart
 
 tool/publish_tools.yaml
 
 doc/
+scratch/
 
 .idea
 .pt-build/

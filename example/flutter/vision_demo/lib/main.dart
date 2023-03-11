@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as mat show Image;
+import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/services.dart';
 import 'package:google_vision/google_vision.dart';
 import 'package:image/image.dart' as img;
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await cropped.writeAsJpeg(filePath);
 
     final requests = AnnotationRequests(requests: [
-      AnnotationRequest(image: image, features: [
+      AnnotationRequest(image: Image(painter: image), features: [
         Feature(maxResults: 10, type: 'FACE_DETECTION'),
         Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
       ])
@@ -164,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             _image == ''
                 ? const CircularProgressIndicator()
-                : Image.file(
+                : mat.Image.file(
                     File(_image),
                     errorBuilder: (context, error, stackTrace) => Container(
                       color: Colors.grey,

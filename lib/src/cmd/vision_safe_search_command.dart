@@ -29,7 +29,7 @@ class VisionSafeSearchCommand extends VisionHelper {
 
     final requests = AnnotationRequests(requests: [
       AnnotationRequest(
-        image: painter,
+        image: Image(painter: painter),
         features: [Feature(type: 'SAFE_SEARCH_DETECTION')],
       )
     ]);

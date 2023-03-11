@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:convert' show json;
 
 import 'package:json_annotation/json_annotation.dart';
 
@@ -21,5 +21,5 @@ class AnnotatedResponses {
   Map<String, dynamic> toJson() => _$AnnotatedResponsesToJson(this);
 
   @override
-  String toString() => jsonEncode(toJson());
+  String toString() => json.encode(toJson());
 }

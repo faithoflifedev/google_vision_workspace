@@ -18,12 +18,12 @@ class Status {
   /// google.rpc.Status.details field, or localized by the client.
   final String message;
 
-  final List<dynamic> details;
+  final List<dynamic>? details;
 
   Status({
     required this.code,
     required this.message,
-    required this.details,
+    this.details,
   });
 
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);

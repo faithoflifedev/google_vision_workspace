@@ -40,7 +40,7 @@ class VisionCropHintCommand extends VisionHelper {
 
     final requests = AnnotationRequests(requests: [
       AnnotationRequest(
-        image: painter,
+        image: Image(painter: painter),
         features: [Feature(type: 'CROP_HINTS')],
         imageContext: aspectRatios != null
             ? ImageContext(

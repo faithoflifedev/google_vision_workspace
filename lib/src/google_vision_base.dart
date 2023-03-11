@@ -11,7 +11,7 @@ class GoogleVision {
   static final dio = Dio();
   static final DateTime tokenExpiry = DateTime(2010, 0, 0);
   static final accept = 'application/json';
-  static final contentType = 'application/json';
+  static final contentType = 'application/json; charset=UTF-8';
 
   static TokenGenerator? tokenGenerator;
   static String? _token;
@@ -32,7 +32,7 @@ class GoogleVision {
 
   /// Authenticated with JWT.
   static Future<GoogleVision> withJwt(String credentialsFile,
-      [String scope = 'https://www.googleapis.com/auth/cloud-vision']) async {
+      [String scope = 'https://www.googleapis.com/auth/cloud-platform']) async {
     GoogleVision yt = GoogleVision();
 
     tokenGenerator =
@@ -57,9 +57,13 @@ class GoogleVision {
     }
   }
 
-  /// Run painter detection and annotation for a batch of painters.
+  /// Run detection and annotation for a batch of requests.
   Future<AnnotatedResponses> annotate({required AnnotationRequests requests}) =>
-      _rest.annotate(_authHeader, contentType, requests.toJson());
+      _rest.annotate(
+        _authHeader,
+        contentType,
+        requests.toJson(),
+      );
 
   /// Draw a box on the supplied [Painter] around detected object using
   /// [NormalizedVertex] values.

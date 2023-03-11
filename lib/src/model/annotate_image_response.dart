@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:convert' show json;
 
 import 'package:google_vision/src/model/safe_search_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -120,5 +120,5 @@ class AnnotateImageResponse {
   Map<String, dynamic> toJson() => _$AnnotateImageResponseToJson(this);
 
   @override
-  String toString() => jsonEncode(toJson());
+  String toString() => json.encode(toJson());
 }

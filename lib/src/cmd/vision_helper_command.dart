@@ -36,8 +36,9 @@ abstract class VisionHelper extends Command {
             maxResults: int.parse(argResults!['max-results']), type: element))
         .toList();
 
-    final requests = AnnotationRequests(
-        requests: [AnnotationRequest(image: painter, features: featureList)]);
+    final requests = AnnotationRequests(requests: [
+      AnnotationRequest(image: Image(painter: painter), features: featureList)
+    ]);
 
     return await googleVision.annotate(requests: requests);
   }

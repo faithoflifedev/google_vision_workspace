@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'latlng.dart';
+import 'lat_lng.dart';
 
 part 'location_info.g.dart';
 

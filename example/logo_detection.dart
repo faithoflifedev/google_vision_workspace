@@ -8,7 +8,7 @@ void main() async {
 
   final requests = AnnotationRequests(requests: [
     AnnotationRequest(
-        image: painter,
+        image: Image(painter: painter),
         features: [Feature(maxResults: 10, type: 'LOGO_DETECTION')])
   ]);
 
