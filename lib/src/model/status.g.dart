@@ -9,7 +9,7 @@ part of 'status.dart';
 Status _$StatusFromJson(Map<String, dynamic> json) => Status(
       code: json['code'] as int,
       message: json['message'] as String,
-      details: json['details'] as List<dynamic>,
+      details: json['details'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$StatusToJson(Status instance) => <String, dynamic>{

@@ -16,5 +16,6 @@ abstract class VisionClient {
   Future<AnnotatedResponses> annotate(
       @Header('Authorization') String authorization,
       @Header('Content-Type') String contentType,
+      // @Header('x-goog-user-project') String? projectId,
       @Body() Map<String, dynamic> params);
 }

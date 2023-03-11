@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'crop_hints_params.dart';
+import 'face_recognition_params.dart';
 import 'product_search_params.dart';
 import 'web_detection_params.dart';
 import 'text_detection_params.dart';
@@ -31,12 +32,16 @@ class ImageContext {
   /// Parameters for text detection and document text detection.
   final TextDetectionParams? textDetectionParams;
 
-  ImageContext(
-      {this.languageHints,
-      this.cropHintsParams,
-      this.productSearchParams,
-      this.webDetectionParams,
-      this.textDetectionParams});
+  final FaceRecognitionParams? faceRecognitionParams;
+
+  ImageContext({
+    this.languageHints,
+    this.cropHintsParams,
+    this.productSearchParams,
+    this.webDetectionParams,
+    this.textDetectionParams,
+    this.faceRecognitionParams,
+  });
 
   factory ImageContext.fromJson(Map<String, dynamic> json) =>
       _$ImageContextFromJson(json);

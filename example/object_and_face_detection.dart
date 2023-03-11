@@ -12,7 +12,7 @@ void main() async {
   await cropped.writeAsJpeg('example/cropped.jpg');
 
   final requests = AnnotationRequests(requests: [
-    AnnotationRequest(image: cropped, features: [
+    AnnotationRequest(image: Image(painter: cropped), features: [
       Feature(maxResults: 10, type: 'FACE_DETECTION'),
       Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
     ])

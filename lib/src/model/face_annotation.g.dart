@@ -65,10 +65,10 @@ Map<String, dynamic> _$FaceAnnotationToJson(FaceAnnotation instance) =>
     };
 
 const _$LikelihoodEnumMap = {
-  Likelihood.UNKNOWN: 'Unknown likelihood',
-  Likelihood.VERY_UNLIKELY: 'It is very unlikely',
-  Likelihood.UNLIKELY: 'It is unlikely',
-  Likelihood.POSSIBLE: 'It is possible',
-  Likelihood.LIKELY: 'It is likely',
-  Likelihood.VERY_LIKELY: 'It is very likely',
+  Likelihood.UNKNOWN: 'UNKNOWN',
+  Likelihood.VERY_UNLIKELY: 'VERY_UNLIKELY',
+  Likelihood.UNLIKELY: 'UNLIKELY',
+  Likelihood.POSSIBLE: 'POSSIBLE',
+  Likelihood.LIKELY: 'LIKELY',
+  Likelihood.VERY_LIKELY: 'VERY_LIKELY',
 };

@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:color/color.dart';
+import 'package:google_vision/google_vision.dart' show SerializableImage;
 import 'package:image/image.dart' as img;
 import 'package:universal_io/io.dart';
 
 /// The Painter class represents the space by which a supplied image can be
 /// modified.
-class Painter {
+class Painter extends SerializableImage {
   final Uint8List encodedBytes;
 
   final String content;
@@ -37,6 +38,7 @@ class Painter {
   factory Painter.fromJson(Map<String, dynamic> json) =>
       Painter.fromBase64(json['content'] as String);
 
+  @override
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'content': base64Encode(encodedBytes)};
 

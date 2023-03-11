@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'latlng.dart';
+part of 'lat_lng.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

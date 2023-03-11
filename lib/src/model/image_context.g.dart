@@ -26,6 +26,10 @@ ImageContext _$ImageContextFromJson(Map<String, dynamic> json) => ImageContext(
           ? null
           : TextDetectionParams.fromJson(
               json['textDetectionParams'] as Map<String, dynamic>),
+      faceRecognitionParams: json['faceRecognitionParams'] == null
+          ? null
+          : FaceRecognitionParams.fromJson(
+              json['faceRecognitionParams'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ImageContextToJson(ImageContext instance) =>
@@ -35,4 +39,5 @@ Map<String, dynamic> _$ImageContextToJson(ImageContext instance) =>
       'productSearchParams': instance.productSearchParams?.toJson(),
       'webDetectionParams': instance.webDetectionParams?.toJson(),
       'textDetectionParams': instance.textDetectionParams?.toJson(),
+      'faceRecognitionParams': instance.faceRecognitionParams?.toJson(),
     };

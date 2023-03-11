@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.7+5
+
+* issue #7
+* initial framework for supporting google cloud storage uris
+
 ## 1.0.7+4
 
 * fix for full-text annotation

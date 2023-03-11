@@ -13,17 +13,17 @@ part 'face_annotation.g.dart';
 /// highly stable results across model upgrades.
 @JsonEnum()
 enum Likelihood {
-  @JsonValue('Unknown likelihood')
+  @JsonValue('UNKNOWN')
   UNKNOWN,
-  @JsonValue('It is very unlikely')
+  @JsonValue('VERY_UNLIKELY')
   VERY_UNLIKELY,
-  @JsonValue('It is unlikely')
+  @JsonValue('UNLIKELY')
   UNLIKELY,
-  @JsonValue('It is possible')
+  @JsonValue('POSSIBLE')
   POSSIBLE,
-  @JsonValue('It is likely')
+  @JsonValue('LIKELY')
   LIKELY,
-  @JsonValue('It is very likely')
+  @JsonValue('VERY_LIKELY')
   VERY_LIKELY
 }
 
