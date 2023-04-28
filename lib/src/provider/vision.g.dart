@@ -22,9 +22,9 @@ class _VisionClient implements VisionClient {
 
   @override
   Future<AnnotatedResponses> annotate(
-    authorization,
-    contentType,
-    params,
+    String authorization,
+    String contentType,
+    Map<String, dynamic> params,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

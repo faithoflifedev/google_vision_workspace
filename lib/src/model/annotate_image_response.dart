@@ -49,7 +49,7 @@ class AnnotateImageResponse {
   final FullTextAnnotation? fullTextAnnotation;
 
   /// If present, safe-search annotation has completed successfully.
-  @JsonKey(name: 'safeSearchAnnotations')
+  @JsonKey(name: 'safeSearchAnnotation')
   final SafeSearchAnnotation? safeSearchAnnotation;
 
   /// If present, image properties were extracted successfully.
