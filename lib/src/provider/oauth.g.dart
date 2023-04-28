@@ -21,7 +21,7 @@ class _OAuthClient implements OAuthClient {
   String? baseUrl;
 
   @override
-  Future<Token> getToken(params) async {
+  Future<Token> getToken(Map<String, dynamic> params) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{

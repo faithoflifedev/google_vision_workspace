@@ -33,10 +33,10 @@ AnnotateImageResponse _$AnnotateImageResponseFromJson(
           ? null
           : FullTextAnnotation.fromJson(
               json['fullTextAnnotation'] as Map<String, dynamic>),
-      safeSearchAnnotation: json['safeSearchAnnotations'] == null
+      safeSearchAnnotation: json['safeSearchAnnotation'] == null
           ? null
           : SafeSearchAnnotation.fromJson(
-              json['safeSearchAnnotations'] as Map<String, dynamic>),
+              json['safeSearchAnnotation'] as Map<String, dynamic>),
       imagePropertiesAnnotation: json['imagePropertiesAnnotation'] == null
           ? null
           : ImagePropertiesAnnotation.fromJson(
@@ -64,7 +64,7 @@ Map<String, dynamic> _$AnnotateImageResponseToJson(
       'localizedObjectAnnotations': instance.localizedObjectAnnotationList,
       'textAnnotations': instance.textAnnotationsList,
       'fullTextAnnotation': instance.fullTextAnnotation,
-      'safeSearchAnnotations': instance.safeSearchAnnotation,
+      'safeSearchAnnotation': instance.safeSearchAnnotation,
       'imagePropertiesAnnotation': instance.imagePropertiesAnnotation,
       'cropHintsAnnotation': instance.cropHintsAnnotation,
       'error': instance.error,

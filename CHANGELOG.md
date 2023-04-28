@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.7+7
+
+* https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision&#x2F;issues&#x2F;8
+
 ## 1.0.7+6
 
 * API doc fixes
