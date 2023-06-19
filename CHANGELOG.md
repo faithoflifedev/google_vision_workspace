@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.8+2
+
+* add &quot;version&quot; to cli commands
+
 ## 1.0.8+1
 
 * web entities and pages

@@ -13,6 +13,7 @@ void main(List<String> arguments) async {
     ..addCommand(VisionHighlightCommand())
     ..addCommand(VisionSafeSearchCommand())
     ..addCommand(VisionScoreCommand())
+    ..addCommand(VisionVersionCommand())
     ..run(arguments).catchError((error) {
       if (error is! UsageException) throw error;
 
