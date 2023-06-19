@@ -12,6 +12,7 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 
 ## Table of Contents
 - [Recent Changes](#recent-changes)
+  - [New for v1.0.8](#new-for-v108)
   - [New for v1.0.7](#new-for-v107)
   - [New for v1.0.6](#new-for-v106)
   - [New for v1.0.3](#new-for-v103)
