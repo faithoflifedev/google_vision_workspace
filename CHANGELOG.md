@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.8+1
+
+* web entities and pages
+* dependency bump
+
 ## 1.0.8
 
 * web entities and pages
