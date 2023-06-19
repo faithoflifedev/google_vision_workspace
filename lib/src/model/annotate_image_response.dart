@@ -1,6 +1,5 @@
 import 'dart:convert' show json;
 
-import 'package:google_vision/src/model/safe_search_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'crop_hints_annotation.dart';
@@ -9,8 +8,10 @@ import 'image_annotation_context.dart';
 import 'image_properties_annotation.dart';
 import 'entity_annotation.dart';
 import 'localized_object_annotation.dart';
+import 'safe_search_annotation.dart';
 import 'status.dart';
 import 'full_text_annotation.dart';
+import 'web_detection.dart';
 
 part 'annotate_image_response.g.dart';
 
@@ -60,7 +61,9 @@ class AnnotateImageResponse {
   @JsonKey(name: 'cropHintsAnnotation')
   final CropHintsAnnotation? cropHintsAnnotation;
 
-  // TODO: webDetection
+  /// Relevant information for the image from the Internet.
+  @JsonKey(name: 'webDetection')
+  final WebDetection? webDetection;
 
   // TODO: productSearchResults
 
@@ -110,6 +113,7 @@ class AnnotateImageResponse {
     this.safeSearchAnnotation,
     this.imagePropertiesAnnotation,
     this.cropHintsAnnotation,
+    this.webDetection,
     this.error,
     this.context,
   });

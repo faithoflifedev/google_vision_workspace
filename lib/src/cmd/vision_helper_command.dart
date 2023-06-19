@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
 
 /// Helper method to that retrieves error message string.
-extension UsageExtension on DioError {
+extension UsageExtension on DioException {
   String get usage {
     return response?.data['error']['errors'] == null
         ? message!

@@ -45,6 +45,9 @@ AnnotateImageResponse _$AnnotateImageResponseFromJson(
           ? null
           : CropHintsAnnotation.fromJson(
               json['cropHintsAnnotation'] as Map<String, dynamic>),
+      webDetection: json['webDetection'] == null
+          ? null
+          : WebDetection.fromJson(json['webDetection'] as Map<String, dynamic>),
       error: json['error'] == null
           ? null
           : Status.fromJson(json['error'] as Map<String, dynamic>),
@@ -67,6 +70,7 @@ Map<String, dynamic> _$AnnotateImageResponseToJson(
       'safeSearchAnnotation': instance.safeSearchAnnotation,
       'imagePropertiesAnnotation': instance.imagePropertiesAnnotation,
       'cropHintsAnnotation': instance.cropHintsAnnotation,
+      'webDetection': instance.webDetection,
       'error': instance.error,
       'context': instance.context,
     };
