@@ -26,6 +26,9 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 
 ## Recent Changes
 
+### New for v1.0.8
+  - web entities and pages detection [https://cloud.google.com/vision/docs/detecting-web](https://cloud.google.com/vision/docs/detecting-web), provides urls of web pages that match the specified image
+
 ### New for v1.0.7
 
 [JLuisRojas](https://github.com/JLuisRojas) has provided code for:
@@ -55,7 +58,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision: ^1.0.8
+  google_vision: ^1.0.8+1
 ```
 
 ### Obtaining Authorization Credentials
