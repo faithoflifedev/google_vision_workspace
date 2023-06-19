@@ -77,7 +77,7 @@ class VisionHighlightCommand extends VisionHelper {
         }
       }
       await image.writeAsJpeg(argResults!['output-file']);
-    } on DioError catch (err) {
+    } on DioException catch (err) {
       throw UsageException('API usage error:', err.usage);
     }
   }
