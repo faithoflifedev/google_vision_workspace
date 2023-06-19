@@ -40,6 +40,7 @@ Available commands:
   detect      Run image detection and annotation for images.
   highlight   Draw a box to highlight any objects detected.
   score       For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for".
+  version     Display the package name and version |
 ```
 
 | command     | description |
@@ -49,6 +50,7 @@ Available commands:
 | highlight   | Draw a box to highlight any objects detected. |
 | safe_search | SafeSearch Detection detects explicit content such as adult content or violent content within an image. |
 | score       | For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for". |
+| version     | Display the package name and version. |
 
 Just like the main library, any responses provided by the above commands will be given in the JSON format.  So ideally you will want to use a command line json parser to interpret the results.  The recommended json parser for this purpose is [_jq_](https://stedolan.github.io/jq/).  With _jq_ you can process the results of a command as follows:
 
@@ -59,7 +61,7 @@ Just like the main library, any responses provided by the above commands will be
 
 ```sh
 # step 1 - setup default default JWT credentials
-cp my_credentials.json ~/.vision/credentials.json
+mkdir -p ~/.vision; cp my_credentials.json ~/.vision/credentials.json
 
 # step 2
 vision highlight --features OBJECT_LOCALIZATION --image-file my_source_image.jpg --output-file result.jpg
@@ -68,7 +70,10 @@ vision highlight --features OBJECT_LOCALIZATION --image-file my_source_image.jpg
 ## crop_hints
 
 ```sh
-prompt>vision crop_hints --help
+vision crop_hints --help
+```
+
+```text
 Set of crop hints that are used to generate new crops when serving images.
 
 Usage: vision crop_hints [arguments]
@@ -80,7 +85,10 @@ Usage: vision crop_hints [arguments]
 ## detect
 
 ```sh
-prompt>vision detect --help
+vision detect --help
+```
+
+```text
 Run image detection and annotation for an images.
 
 Usage: vision detect [arguments]
@@ -94,7 +102,10 @@ Usage: vision detect [arguments]
 ## highlight
 
 ```sh
-prompt>vision highlight --help
+vision highlight --help
+```
+
+```text
 Draw a box to highlight any objects detected.
 
 Usage: vision highlight [arguments]
@@ -110,7 +121,10 @@ Usage: vision highlight [arguments]
 ## safe_search
 
 ```sh
-prompt>vision safe_search --help
+vision safe_search --help
+```
+
+```text
 SafeSearch Detection detects explicit content such as adult content or violent content within an image.
 
 Usage: vision safe_search [arguments]
@@ -121,7 +135,10 @@ Usage: vision safe_search [arguments]
 ## score
 
 ```sh
-prompt>vision score --help
+vision score --help
+```
+
+```text
 For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for".
 
 Usage: vision score [arguments]
@@ -131,4 +148,17 @@ Usage: vision score [arguments]
     --look-for                                    Comma separated list of Objects to provide a score for
     --max-results=<int>                           The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive. The default value is 10.
                                                   (defaults to "10")
+```
+
+## version
+
+```sh
+vision version --help
+```
+
+```text
+Display the package name and version
+
+Usage: vision version [arguments]
+-h, --help    Print this usage information.
 ```
