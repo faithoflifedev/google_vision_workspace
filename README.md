@@ -12,6 +12,7 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 
 ## Table of Contents
 - [Recent Changes](#recent-changes)
+  - [New for v1.0.8](#new-for-v108)
   - [New for v1.0.7](#new-for-v107)
   - [New for v1.0.6](#new-for-v106)
   - [New for v1.0.3](#new-for-v103)
@@ -58,7 +59,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision: ^1.0.8+2
+  google_vision: ^1.0.8+3
 ```
 
 ### Obtaining Authorization Credentials
