@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.8+4
+
+* fix for flutter example
+* retrofit_generator dependency bump
+
 ## 1.0.8+3
 
 * readme

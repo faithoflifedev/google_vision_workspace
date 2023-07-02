@@ -43,7 +43,7 @@ class Painter extends SerializableImage {
       <String, dynamic>{'content': base64Encode(encodedBytes)};
 
   /// Draw a rectangle on the underlying image.
-  void drawRectangle(int x1, int y1, int x2, int y2, Color color,
+  void drawRectangle(int x1, int y1, int x2, int y2, String color,
       {num thickness = 1}) {
     img.drawRect(
       _decodedBytes!,
@@ -51,16 +51,12 @@ class Painter extends SerializableImage {
       y1: y1,
       x2: x2,
       y2: y2,
-      color: img.ColorRgb8(
-        color.toRgbColor().r as int,
-        color.toRgbColor().g as int,
-        color.toRgbColor().b as int,
-      ),
+      color: _toRgbColor(RgbColor.name(color)),
     );
   }
 
   /// Draw a line on the underlying image.
-  void drawLine(int x1, int y1, int x2, int y2, Color color,
+  void drawLine(int x1, int y1, int x2, int y2, String color,
       {bool antialias = false, num thickness = 1}) {
     img.drawLine(
       _decodedBytes!,
@@ -68,27 +64,19 @@ class Painter extends SerializableImage {
       y1: y1,
       x2: x2,
       y2: x2,
-      color: img.ColorRgb8(
-        color.toRgbColor().r as int,
-        color.toRgbColor().g as int,
-        color.toRgbColor().b as int,
-      ),
+      color: _toRgbColor(RgbColor.name(color)),
     );
   }
 
   /// Draw text on the underlying image.
-  void drawString(int x, int y, String text, Color color) {
+  void drawString(int x, int y, String text, String color) {
     img.drawString(
       _decodedBytes!,
       text,
       font: img.arial14,
       x: x,
       y: y,
-      color: img.ColorRgb8(
-        color.toRgbColor().r as int,
-        color.toRgbColor().g as int,
-        color.toRgbColor().b as int,
-      ),
+      color: _toRgbColor(RgbColor.name(color)),
     );
   }
 
@@ -109,4 +97,10 @@ class Painter extends SerializableImage {
 
   @override
   String toString() => jsonEncode(toJson());
+
+  img.ColorRgb8 _toRgbColor(Color color) => img.ColorRgb8(
+        color.toRgbColor().r as int,
+        color.toRgbColor().g as int,
+        color.toRgbColor().b as int,
+      );
 }
