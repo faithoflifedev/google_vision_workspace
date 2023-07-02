@@ -1,4 +1,3 @@
-import 'package:color/color.dart';
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
 
@@ -79,7 +78,7 @@ class GoogleVision {
       (topLeft.y * painter.height).toInt(),
       (bottomRight.x * painter.width).toInt(),
       (bottomRight.y * painter.height).toInt(),
-      RgbColor.name(color),
+      color,
     );
   }
 
@@ -96,7 +95,7 @@ class GoogleVision {
       topLeft.y.toInt(),
       bottomRight.x.toInt(),
       bottomRight.y.toInt(),
-      RgbColor.name(color),
+      color,
     );
   }
 
@@ -107,6 +106,6 @@ class GoogleVision {
         x,
         y,
         text,
-        RgbColor.name(color),
+        color,
       );
 }

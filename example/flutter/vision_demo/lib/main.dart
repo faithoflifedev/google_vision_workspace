@@ -4,8 +4,8 @@ import 'package:flutter/material.dart' as mat show Image;
 import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/services.dart';
 import 'package:google_vision/google_vision.dart';
-import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,7 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final filePath = await getTempFile(fileName);
 
-    await File(filePath).delete();
+    try {
+      await File(filePath).delete();
+    } catch (e) {
+      // ignore
+    }
 
     await File(filePath).writeAsBytes(
         buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
@@ -60,24 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<String> getTempFile([String? fileName]) async {
     final tempDir = await getTemporaryDirectory();
 
-    return '${tempDir.path}${Platform.pathSeparator}${fileName ?? UniqueKey().toString()}';
-  }
-
-  void drawHello(String outFile) async {
-    final fontZipFile = await getFileFromAsset('arial_unicode.ttf.zip');
-
-    final fontFile = await File(fontZipFile).readAsBytes();
-
-    final font = img.BitmapFont.fromZip(fontFile);
-
-    final image = img.Image(width: 320, height: 200);
-
-    img.drawString(image, 'Hello',
-        font: font, x: 10, y: 100, color: img.ColorInt8.rgb(0, 0, 0));
-
-    // final testFile = await getTempFile();
-
-    await img.encodePngFile(outFile, image);
+    return '${tempDir.path}${Platform.pathSeparator}${fileName ?? const Uuid().v4()}';
   }
 
   void _processImage() async {
@@ -93,9 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final cropped = image.copyCrop(70, 30, 640, 480);
 
-    final filePath = await getTempFile();
-
-    await cropped.writeAsJpeg(filePath);
+    final filePath =
+        await getTempFile('young-man-smiling-and-thumbs-up_cropped.jpg');
 
     final requests = AnnotationRequests(requests: [
       AnnotationRequest(image: Image(painter: image), features: [
@@ -109,13 +95,13 @@ class _MyHomePageState extends State<MyHomePage> {
     for (var annotatedResponse in annotatedResponses.responses) {
       for (var faceAnnotation in annotatedResponse.faceAnnotations) {
         GoogleVision.drawText(
-            image,
+            cropped,
             faceAnnotation.boundingPoly.vertices.first.x + 2,
             faceAnnotation.boundingPoly.vertices.first.y + 2,
             'Face - ${faceAnnotation.detectionConfidence}');
 
         GoogleVision.drawAnnotations(
-            image, faceAnnotation.boundingPoly.vertices);
+            cropped, faceAnnotation.boundingPoly.vertices);
       }
     }
 
@@ -126,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
           .toList()
           .forEach((localizedObjectAnnotation) {
         GoogleVision.drawText(
-            image,
+            cropped,
             (localizedObjectAnnotation.boundingPoly.normalizedVertices.first.x *
                     image.width)
                 .toInt(),
@@ -137,13 +123,11 @@ class _MyHomePageState extends State<MyHomePage> {
             'Person - ${localizedObjectAnnotation.score}');
 
         GoogleVision.drawAnnotationsNormalized(
-            image, localizedObjectAnnotation.boundingPoly.normalizedVertices);
+            cropped, localizedObjectAnnotation.boundingPoly.normalizedVertices);
       });
     }
 
-    drawHello(filePath);
-
-    // await image.writeAsJpeg(filePath);
+    await cropped.writeAsJpeg(filePath);
 
     setState(() {
       _image = filePath;

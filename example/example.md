@@ -123,6 +123,7 @@ Provides a basic example of how the package can be used to perform image process
 
 ```sh
 cd example/flutter/vision_demo/
+flutter create --platforms ios .
 flutter emulators
 flutter emulators --launch apple_ios_simulator
 flutter devices
