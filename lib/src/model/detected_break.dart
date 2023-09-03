@@ -23,7 +23,7 @@ class DetectedBreak {
   BreakType type;
 
   /// True if break prepends the element.
-  final bool isPrefix;
+  final bool? isPrefix;
 
   DetectedBreak({
     this.type = BreakType.UNKNOWN,

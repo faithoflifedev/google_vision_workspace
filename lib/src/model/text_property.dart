@@ -11,7 +11,7 @@ part 'text_property.g.dart';
 @JsonSerializable(explicitToJson: true)
 class TextProperty {
   /// A list of detected languages together with confidence.
-  final List<DetectedLanguage> detectedLanguages;
+  final List<DetectedLanguage>? detectedLanguages;
 
   /// Detected start or end of a text segment.
   final DetectedBreak? detectedBreak;
