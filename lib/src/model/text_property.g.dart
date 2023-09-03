@@ -7,8 +7,8 @@ part of 'text_property.dart';
 // **************************************************************************
 
 TextProperty _$TextPropertyFromJson(Map<String, dynamic> json) => TextProperty(
-      detectedLanguages: (json['detectedLanguages'] as List<dynamic>)
-          .map((e) => DetectedLanguage.fromJson(e as Map<String, dynamic>))
+      detectedLanguages: (json['detectedLanguages'] as List<dynamic>?)
+          ?.map((e) => DetectedLanguage.fromJson(e as Map<String, dynamic>))
           .toList(),
       detectedBreak: json['detectedBreak'] == null
           ? null
@@ -19,6 +19,6 @@ TextProperty _$TextPropertyFromJson(Map<String, dynamic> json) => TextProperty(
 Map<String, dynamic> _$TextPropertyToJson(TextProperty instance) =>
     <String, dynamic>{
       'detectedLanguages':
-          instance.detectedLanguages.map((e) => e.toJson()).toList(),
+          instance.detectedLanguages?.map((e) => e.toJson()).toList(),
       'detectedBreak': instance.detectedBreak?.toJson(),
     };

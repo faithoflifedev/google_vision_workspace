@@ -11,7 +11,7 @@ DetectedBreak _$DetectedBreakFromJson(Map<String, dynamic> json) =>
       type: $enumDecodeNullable(_$BreakTypeEnumMap, json['type'],
               unknownValue: BreakType.UNKNOWN) ??
           BreakType.UNKNOWN,
-      isPrefix: json['isPrefix'] as bool,
+      isPrefix: json['isPrefix'] as bool?,
     );
 
 Map<String, dynamic> _$DetectedBreakToJson(DetectedBreak instance) =>
