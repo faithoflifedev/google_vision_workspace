@@ -6,7 +6,7 @@ import 'text_property.dart';
 
 part 'page.g.dart';
 
-/// Additional information detected on the structural component.
+/// Detected page from OCR.
 @JsonSerializable(explicitToJson: true)
 class Page {
   /// Additional information detected on the page.
