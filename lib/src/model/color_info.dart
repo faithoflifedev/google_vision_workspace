@@ -13,11 +13,11 @@ class ColorInfo {
   /// RGB components of the color.
   final Color color;
 
-  /// Image-specific score for this color. Value in range [0, 1\].
+  /// Image-specific score for this color. Value in range \[0, 1\].
   final double score;
 
   /// The fraction of pixels the color occupies in the image. Value in range
-  /// [0, 1\].
+  /// \[0, 1\].
   final double pixelFraction;
 
   ColorInfo({

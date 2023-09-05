@@ -13,7 +13,11 @@ class CropHint {
   /// box are in the original image's scale.
   final BoundingPoly boundingPoly;
 
+<<<<<<< HEAD
   /// Confidence of this being a salient region. Range [0, 1\].
+=======
+  /// Confidence of this being a salient region. Range \[0, 1\].
+>>>>>>> 41a3014 ('added support for more detection methods')
   final double confidence;
 
   /// Fraction of importance of this salient region with respect to the original
