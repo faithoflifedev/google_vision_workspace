@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'block.dart';
 import 'text_property.dart';
 
 part 'page.g.dart';
 
-/// Additional information detected on the structural component.
+/// Detected page from OCR.
 @JsonSerializable(explicitToJson: true)
 class Page {
   /// Additional information detected on the page.
@@ -18,6 +19,9 @@ class Page {
   /// Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
   final int height;
 
+  /// List of blocks of text, images etc on this page.
+  final List<Block>? blocks;
+
   /// Confidence of the OCR results on the page. Range [0, 1\].
   final double? confidence;
 
@@ -25,6 +29,7 @@ class Page {
     required this.property,
     required this.width,
     required this.height,
+    required this.blocks,
     required this.confidence,
   });
 

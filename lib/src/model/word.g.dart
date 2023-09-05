@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'page.dart';
+part of 'word.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Page _$PageFromJson(Map<String, dynamic> json) => Page(
+Word _$WordFromJson(Map<String, dynamic> json) => Word(
       property: json['property'] == null
           ? null
           : TextProperty.fromJson(json['property'] as Map<String, dynamic>),
-      width: json['width'] as int,
-      height: json['height'] as int,
-      blocks: (json['blocks'] as List<dynamic>?)
-          ?.map((e) => Block.fromJson(e as Map<String, dynamic>))
+      boundingBox: json['boundingBox'] == null
+          ? null
+          : BoundingPoly.fromJson(json['boundingBox'] as Map<String, dynamic>),
+      symbols: (json['symbols'] as List<dynamic>?)
+          ?.map((e) => Symbol.fromJson(e as Map<String, dynamic>))
           .toList(),
       confidence: (json['confidence'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$PageToJson(Page instance) => <String, dynamic>{
+Map<String, dynamic> _$WordToJson(Word instance) => <String, dynamic>{
       'property': instance.property?.toJson(),
-      'width': instance.width,
-      'height': instance.height,
-      'blocks': instance.blocks?.map((e) => e.toJson()).toList(),
+      'boundingBox': instance.boundingBox?.toJson(),
+      'symbols': instance.symbols?.map((e) => e.toJson()).toList(),
       'confidence': instance.confidence,
     };
