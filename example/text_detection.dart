@@ -2,7 +2,7 @@ import 'package:google_vision/google_vision.dart';
 
 void main() async {
   final googleVision =
-      await GoogleVision.withJwt('example/skc-live-decbd0969cbb.json');
+      await GoogleVision.withJwtFile('example/skc-live-decbd0969cbb.json');
 
   final painter = Painter.fromFilePath('example/structures.png');
 

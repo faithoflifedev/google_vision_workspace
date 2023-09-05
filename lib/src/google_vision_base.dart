@@ -30,7 +30,20 @@ class GoogleVision {
   }
 
   /// Authenticated with JWT.
-  static Future<GoogleVision> withJwt(String credentialsFile,
+  static Future<GoogleVision> withJwt(String credentials,
+      [String scope = 'https://www.googleapis.com/auth/cloud-platform']) async {
+    GoogleVision yt = GoogleVision();
+
+    tokenGenerator =
+        JwtGenerator(credentials: credentials, scope: scope, dio: dio);
+
+    await _confirmToken();
+
+    return yt;
+  }
+
+  /// Authenticated with JWT.
+  static Future<GoogleVision> withJwtFile(String credentialsFile,
       [String scope = 'https://www.googleapis.com/auth/cloud-platform']) async {
     GoogleVision yt = GoogleVision();
 

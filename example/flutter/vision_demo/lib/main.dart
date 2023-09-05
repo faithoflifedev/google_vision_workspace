@@ -68,9 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _processImage() async {
-    final jwtFromAsset = await getFileFromAsset('service_credentials.json');
+    final credentials =
+        await rootBundle.loadString('assets/service_credentials.json');
 
-    final googleVision = await GoogleVision.withJwt(jwtFromAsset);
+    final googleVision = await GoogleVision.withJwt(credentials);
 
     final imageFile = await getFileFromAsset(
         'young-man-smiling-and-thumbs-up.jpg',

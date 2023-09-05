@@ -19,12 +19,12 @@ abstract class VisionHelper extends Command {
 
   Future<void> initializeGoogleVision() async {
     _googleVision =
-        await GoogleVision.withJwt(globalResults!['credential-file']);
+        await GoogleVision.withJwtFile(globalResults!['credential-file']);
   }
 
   /// Helper methods used by most of the cli commands.
   Future<AnnotatedResponses> annotate([String? features]) async {
-    final googleVision = await GoogleVision.withJwt(
+    final googleVision = await GoogleVision.withJwtFile(
         globalResults!['credential-file'],
         'https://www.googleapis.com/auth/cloud-vision');
 

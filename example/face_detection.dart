@@ -4,7 +4,7 @@ import 'package:google_vision/google_vision.dart';
 
 void main() async {
   final googleVision =
-      await GoogleVision.withJwt('example/skc-live-decbd0969cbb.json');
+      await GoogleVision.withJwtFile('example/skc-live-decbd0969cbb.json');
 
   // google cloud storage uris don't work yet
   final request = AnnotationRequests(requests: [
