@@ -15,8 +15,8 @@ example/face_detection.dart
 
 tool/publish_tools.yaml
 
-doc/
-scratch/*
+doc
+scratch
 
 .idea
 .pt-build/
