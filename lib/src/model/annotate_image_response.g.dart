@@ -31,12 +31,19 @@ AnnotateImageResponse _$AnnotateImageResponseFromJson(
           .toList(),
       fullTextAnnotation: json['fullTextAnnotation'] == null
           ? null
-          : FullTextAnnotation.fromJson(
+          : TextAnnotation.fromJson(
               json['fullTextAnnotation'] as Map<String, dynamic>),
+<<<<<<< HEAD
       safeSearchAnnotation: json['safeSearchAnnotation'] == null
           ? null
           : SafeSearchAnnotation.fromJson(
               json['safeSearchAnnotation'] as Map<String, dynamic>),
+=======
+      safeSearchAnnotation: json['safeSearchAnnotations'] == null
+          ? null
+          : SafeSearchAnnotation.fromJson(
+              json['safeSearchAnnotations'] as Map<String, dynamic>),
+>>>>>>> fdaccb1 ('added support for more detection methods')
       imagePropertiesAnnotation: json['imagePropertiesAnnotation'] == null
           ? null
           : ImagePropertiesAnnotation.fromJson(
@@ -45,9 +52,12 @@ AnnotateImageResponse _$AnnotateImageResponseFromJson(
           ? null
           : CropHintsAnnotation.fromJson(
               json['cropHintsAnnotation'] as Map<String, dynamic>),
+<<<<<<< HEAD
       webDetection: json['webDetection'] == null
           ? null
           : WebDetection.fromJson(json['webDetection'] as Map<String, dynamic>),
+=======
+>>>>>>> fdaccb1 ('added support for more detection methods')
       error: json['error'] == null
           ? null
           : Status.fromJson(json['error'] as Map<String, dynamic>),
@@ -67,10 +77,16 @@ Map<String, dynamic> _$AnnotateImageResponseToJson(
       'localizedObjectAnnotations': instance.localizedObjectAnnotationList,
       'textAnnotations': instance.textAnnotationsList,
       'fullTextAnnotation': instance.fullTextAnnotation,
+<<<<<<< HEAD
       'safeSearchAnnotation': instance.safeSearchAnnotation,
       'imagePropertiesAnnotation': instance.imagePropertiesAnnotation,
       'cropHintsAnnotation': instance.cropHintsAnnotation,
       'webDetection': instance.webDetection,
+=======
+      'safeSearchAnnotations': instance.safeSearchAnnotation,
+      'imagePropertiesAnnotation': instance.imagePropertiesAnnotation,
+      'cropHintsAnnotation': instance.cropHintsAnnotation,
+>>>>>>> fdaccb1 ('added support for more detection methods')
       'error': instance.error,
       'context': instance.context,
     };

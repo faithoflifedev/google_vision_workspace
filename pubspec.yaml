@@ -5,14 +5,14 @@ repository: https://github.com/faithoflifedev/google_vision
 homepage: https://github.com/faithoflifedev/google_vision
 
 environment:
-  sdk: ">=2.17.0 <4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   args: ^2.4.2
   color: ^3.0.0
   crypto_keys: ^0.3.0+1
   dio: ^5.2.1+1
-  http: ^0.13.6
+  http: ^1.1.0
   image: ^4.0.17
   jose: ^0.3.3
   json_annotation: ^4.8.1
@@ -24,7 +24,7 @@ dev_dependencies:
   grinder: ^0.9.4
   json_serializable: ^6.7.0
   lints: ^2.1.1
-  publish_tools: ^0.1.0+10
+  publish_tools: ^0.1.0+11
   retrofit_generator: ^7.0.7
   test: ^1.24.3
 

@@ -27,9 +27,12 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 
 ## Recent Changes
 
+<<<<<<< HEAD
 ### New for v1.0.8
   - web entities and pages detection [https://cloud.google.com/vision/docs/detecting-web](https://cloud.google.com/vision/docs/detecting-web), provides urls of web pages that match the specified image
 
+=======
+>>>>>>> fdaccb1 ('added support for more detection methods')
 ### New for v1.0.7
 
 [JLuisRojas](https://github.com/JLuisRojas) has provided code for:
@@ -59,7 +62,11 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
+<<<<<<< HEAD
   google_vision: ^1.0.8+4
+=======
+  google_vision: ^1.0.7
+>>>>>>> fdaccb1 ('added support for more detection methods')
 ```
 
 ### Obtaining Authorization Credentials
@@ -185,8 +192,11 @@ Please see the cli documentation [README.md](https://github.com/faithoflifedev/g
 - [imhafeez](https://github.com/imhafeez)
 - [4ctobias](https://github.com/4ctobias)
 - [JLuisRojas](https://github.com/JLuisRojas)
+<<<<<<< HEAD
 - [DeadBryam](https://github.com/DeadBryam)
 - [husitawi](https://github.com/husitawi)
+=======
+>>>>>>> fdaccb1 ('added support for more detection methods')
 
 ## Contributing
 
