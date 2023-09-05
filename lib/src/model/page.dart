@@ -19,14 +19,10 @@ class Page {
   /// Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
   final int height;
 
-<<<<<<< HEAD
   /// List of blocks of text, images etc on this page.
   final List<Block>? blocks;
 
-  /// Confidence of the OCR results on the page. Range [0, 1\].
-=======
   /// Confidence of the OCR results on the page. Range \[0, 1\].
->>>>>>> 41a3014 ('added support for more detection methods')
   final double? confidence;
 
   Page({

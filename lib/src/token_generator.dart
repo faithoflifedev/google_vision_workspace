@@ -11,18 +11,28 @@ abstract class TokenGenerator {
 }
 
 class JwtGenerator implements TokenGenerator {
-  final String credentialsFile;
-  final String scope;
+  // final String credentials;
+  // final String scope;
   final Dio dio;
 
   final JwtCredentials jwtCredentials;
 
-  JwtGenerator(
-      {required this.credentialsFile, required this.scope, required this.dio})
-      : jwtCredentials = JwtCredentials.fromJson({
-          'settings': jsonDecode(File(credentialsFile).readAsStringSync()),
-          'scope': scope
-        });
+  JwtGenerator({
+    required String credentials,
+    required String scope,
+    required this.dio,
+  }) : jwtCredentials = JwtCredentials.fromJson(
+            {'settings': jsonDecode(credentials), 'scope': scope});
+
+  factory JwtGenerator.fromFile({
+    required String credentialsFile,
+    required String scope,
+    required Dio dio,
+  }) =>
+      JwtGenerator(
+          credentials: File(credentialsFile).readAsStringSync(),
+          scope: scope,
+          dio: dio);
 
   /// generate a OAuth2 refresh token from JWT credentials
   @override

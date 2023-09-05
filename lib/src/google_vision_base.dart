@@ -34,8 +34,8 @@ class GoogleVision {
       [String scope = 'https://www.googleapis.com/auth/cloud-platform']) async {
     GoogleVision yt = GoogleVision();
 
-    tokenGenerator =
-        JwtGenerator(credentialsFile: credentialsFile, scope: scope, dio: dio);
+    tokenGenerator = JwtGenerator.fromFile(
+        credentialsFile: credentialsFile, scope: scope, dio: dio);
 
     await _confirmToken();
 
