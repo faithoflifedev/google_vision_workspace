@@ -27,12 +27,23 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 
 ## Recent Changes
 
-<<<<<<< HEAD
+### New for v1.1.0
+  - [HighLiuk](https://github.com/HighLiuk) has contributed code that fills out some of the overall functionality
+  - **Breaking Change:** The `GoogleVision` api has changed.  To generate an auth token from a `String` the constructor `GoogleVision.withJwt(String credentialsJsonAsString)` should now be used, and for a file `GoogleVision.withJwtFile(String credentialsFilename)`
+  
+  ```dart
+    // In your Flutter app
+    final credentialsJsonAsString =
+        await rootBundle.loadString('assets/service_credentials.json');
+
+    final googleVision = await GoogleVision.withJwt(credentialsJsonAsString);
+  ```
+
+  This change reflects the fact that the more common use case of the package is with `Flutter`
+
 ### New for v1.0.8
   - web entities and pages detection [https://cloud.google.com/vision/docs/detecting-web](https://cloud.google.com/vision/docs/detecting-web), provides urls of web pages that match the specified image
 
-=======
->>>>>>> fdaccb1 ('added support for more detection methods')
 ### New for v1.0.7
 
 [JLuisRojas](https://github.com/JLuisRojas) has provided code for:
@@ -49,10 +60,6 @@ In addition support for the following has also been added:
 
 [imhafeez](https://github.com/imhafeez) has provided code for `Safe Search` functionality.
 
-### New for v1.0.3
-
-[4ctobias](https://github.com/4ctobias) has provided code for `Label Detection` functionality.
-
 ## Getting Started
 
 ### pubspec.yaml
@@ -62,11 +69,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-<<<<<<< HEAD
-  google_vision: ^1.0.8+4
-=======
-  google_vision: ^1.0.7
->>>>>>> fdaccb1 ('added support for more detection methods')
+  google_vision: ^1.1.0
 ```
 
 ### Obtaining Authorization Credentials
@@ -192,11 +195,11 @@ Please see the cli documentation [README.md](https://github.com/faithoflifedev/g
 - [imhafeez](https://github.com/imhafeez)
 - [4ctobias](https://github.com/4ctobias)
 - [JLuisRojas](https://github.com/JLuisRojas)
-<<<<<<< HEAD
 - [DeadBryam](https://github.com/DeadBryam)
 - [husitawi](https://github.com/husitawi)
-=======
->>>>>>> fdaccb1 ('added support for more detection methods')
+- [DeadBryam](https://github.com/DeadBryam)
+- [husitawi](https://github.com/husitawi)
+- [HighLiuk](https://github.com/HighLiuk)
 
 ## Contributing
 

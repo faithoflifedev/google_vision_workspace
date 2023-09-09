@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0
+
+* better `Flutter` support
+* dependency bumps
+
 ## 1.0.8+4
 
 * fix for flutter example
