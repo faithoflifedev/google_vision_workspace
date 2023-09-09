@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0+1
+
+* fix to README TOC
+
 ## 1.1.0
 
 * better `Flutter` support
