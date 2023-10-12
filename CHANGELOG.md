@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.1.0+4
+
+* adjust ignore
+
+## 1.1.0+3
+
+* adjust gitignore
+
+## 1.1.0+2
+
+* change dependency from crypto_keys to crypto_keys_plus and jose to jose_plus
+* the updated dependencies remove warnings that displayed at runtime
+
+## 1.1.0+2
+
+* change dependency from crypto_keys to crypto_keys_plus and jose to jose_plus
+* the updated dependencies remove warnings that displayed at runtime
+
+## 1.1.0+1
+
+* fix to README TOC
+
+## 1.1.0
+
+* better `Flutter` support
+* dependency bumps
+
 ## 1.0.8+4
 
 * fix for flutter example
@@ -51,6 +78,15 @@
 ## 1.0.7+1
 
 * tweaks
+
+## 1.0.7
+
+* support for landmark detection
+* support for logo detection
+* support for text and full-text detection
+* support for image properties detection
+* support for `error` responses
+* support for contextual information
 
 ## 1.0.7
 

@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:crypto_keys/crypto_keys.dart';
+import 'package:crypto_keys_plus/crypto_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
-import 'package:jose/jose.dart';
+import 'package:jose_plus/jose.dart';
+
 import 'package:universal_io/io.dart';
 
 abstract class TokenGenerator {
@@ -11,27 +12,39 @@ abstract class TokenGenerator {
 }
 
 class JwtGenerator implements TokenGenerator {
-  final String credentialsFile;
-  final String scope;
+  // final String credentials;
+  // final String scope;
   final Dio dio;
 
   final JwtCredentials jwtCredentials;
 
-  JwtGenerator(
-      {required this.credentialsFile, required this.scope, required this.dio})
-      : jwtCredentials = JwtCredentials.fromJson({
-          'settings': jsonDecode(File(credentialsFile).readAsStringSync()),
-          'scope': scope
-        });
+  JwtGenerator({
+    required String credentials,
+    required String scope,
+    required this.dio,
+  }) : jwtCredentials = JwtCredentials.fromJson(
+            {'settings': jsonDecode(credentials), 'scope': scope});
+
+  factory JwtGenerator.fromFile({
+    required String credentialsFile,
+    required String scope,
+    required Dio dio,
+  }) =>
+      JwtGenerator(
+          credentials: File(credentialsFile).readAsStringSync(),
+          scope: scope,
+          dio: dio);
 
   /// generate a OAuth2 refresh token from JWT credentials
   @override
   Future<Token> generate() async {
-    final key = JsonWebKey.fromPem(jwtCredentials.settings.privateKey);
+    final jsonWebKey = JsonWebKey.fromPem(jwtCredentials.settings.privateKey);
 
-    final privateKey = key.cryptoKeyPair;
+    final keyPair = jsonWebKey.cryptoKeyPair;
 
-    final signer = privateKey.createSigner(algorithms.signing.rsa.sha256);
+    final privateKey = keyPair.privateKey!;
+
+    var signer = privateKey.createSigner(algorithms.signing.rsa.sha256);
 
     final header = Util.base64GCloudString('{"alg":"RS256","typ":"JWT"}');
 

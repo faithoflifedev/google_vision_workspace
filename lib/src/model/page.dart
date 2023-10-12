@@ -22,7 +22,7 @@ class Page {
   /// List of blocks of text, images etc on this page.
   final List<Block>? blocks;
 
-  /// Confidence of the OCR results on the page. Range [0, 1\].
+  /// Confidence of the OCR results on the page. Range \[0, 1\].
   final double? confidence;
 
   Page({

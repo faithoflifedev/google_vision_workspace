@@ -62,10 +62,10 @@ class FaceAnnotation {
   /// pointing relative to the image's horizontal plane. Range [-180,180\].
   final double tiltAngle;
 
-  /// Detection confidence. Range [0, 1\].
+  /// Detection confidence. Range [\0, 1\].
   final double detectionConfidence;
 
-  /// Face landmarking confidence. Range [0, 1\].
+  /// Face landmarking confidence. Range \[0, 1\].
   final double landmarkingConfidence;
 
   /// Joy likelihood.

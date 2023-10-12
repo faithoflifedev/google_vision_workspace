@@ -68,23 +68,24 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _processImage() async {
-    final jwtFromAsset = await getFileFromAsset('service_credentials.json');
+    final credentials =
+        await rootBundle.loadString('assets/service_credentials.json');
 
-    final googleVision = await GoogleVision.withJwt(jwtFromAsset);
+    final googleVision = await GoogleVision.withJwt(credentials);
 
     final imageFile = await getFileFromAsset(
         'young-man-smiling-and-thumbs-up.jpg',
         temporaryFileName: 'young-man-smiling-and-thumbs-up.jpg');
 
-    final image = Painter.fromFilePath(imageFile);
+    final painter = Painter.fromFilePath(imageFile);
 
-    final cropped = image.copyCrop(70, 30, 640, 480);
+    final cropped = painter.copyCrop(70, 30, 640, 480);
 
     final filePath =
         await getTempFile('young-man-smiling-and-thumbs-up_cropped.jpg');
 
     final requests = AnnotationRequests(requests: [
-      AnnotationRequest(image: Image(painter: image), features: [
+      AnnotationRequest(image: Image(painter: painter), features: [
         Feature(maxResults: 10, type: 'FACE_DETECTION'),
         Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
       ])
@@ -114,10 +115,10 @@ class _MyHomePageState extends State<MyHomePage> {
         GoogleVision.drawText(
             cropped,
             (localizedObjectAnnotation.boundingPoly.normalizedVertices.first.x *
-                    image.width)
+                    painter.width)
                 .toInt(),
             (localizedObjectAnnotation.boundingPoly.normalizedVertices.first.y *
-                        image.height)
+                        painter.height)
                     .toInt() -
                 16,
             'Person - ${localizedObjectAnnotation.score}');
@@ -144,8 +145,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Processed image will appear below:',
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'Processed image will appear below:',
+              ),
             ),
             _image == ''
                 ? const CircularProgressIndicator()
