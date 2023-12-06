@@ -1,0 +1,14 @@
+name: google_vision
+
+packages:
+  - packages/*
+
+scripts:
+  postbootstrap: |
+    cd MELOS_ROOT_PATH/packages/google_vision && 
+    flutter pub get && 
+    cd MELOS_ROOT_PATH/packages/google_vision_flutter && 
+    flutter pub get &&
+  generate:
+    run: melos exec --depends-on=build_runner -- "dart run build_runner build -d"
+    description: Build all generated files for Dart & Flutter packages in this project.

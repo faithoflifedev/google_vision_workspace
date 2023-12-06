@@ -1,0 +1,32 @@
+name: vision_demo
+description: A simple app to test the google_vision_flutter package
+
+publish_to: none
+
+version: 1.0.0+2
+
+environment:
+  sdk: ">=3.2.0 <4.0.0"
+
+dependencies:
+  google_vision_flutter:
+    path: ../../google_vision_flutter
+
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/service_credentials.json
+    - assets/cn_tower.jpg
+    - assets/logo.png
+    - assets/structures.png
+    - assets/young-man-smiling.jpg

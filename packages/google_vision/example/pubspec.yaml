@@ -1,0 +1,16 @@
+name: google_vision_example
+description: examples for google_vision
+version: 0.0.1
+repository: https://github.com/faithoflifedev/google_vision
+homepage: https://github.com/faithoflifedev/google_vision
+
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  pcanvas: ^1.1.0
+  universal_io: ^2.2.2
+  google_vision:
+    path: ../
