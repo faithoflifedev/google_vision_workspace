@@ -11,8 +11,7 @@ environment:
 
 dependencies:
   color: ^3.0.0
-  google_vision:
-    path: ../google_vision
+  google_vision: ^1.1.1
   pcanvas: ^1.1.0
 
   flutter:
@@ -21,9 +20,6 @@ dependencies:
 dev_dependencies:
   flutter_lints: ^3.0.1
   grinder: ^0.9.5
-  publish_tools: ^0.1.0+12
-
-  flutter_test:
-    sdk: flutter
+  publish_tools: ^0.1.0+14
 
 flutter:
