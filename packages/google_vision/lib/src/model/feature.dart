@@ -49,6 +49,9 @@ enum AnnotationType {
   /// Text detection / Optical Character Recognition (OCR)
   textDetection('TEXT_DETECTION'),
 
+  /// Document Text detection / Optical Character Recognition (OCR)
+  documentTextDetection('DOCUMENT_TEXT_DETECTION'),
+
   /// Safe Search detection
   safeSearchDetection('SAFE_SEARCH_DETECTION'),
 
