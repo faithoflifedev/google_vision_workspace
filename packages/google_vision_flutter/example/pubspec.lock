@@ -134,10 +134,11 @@ packages:
   google_vision:
     dependency: transitive
     description:
-      path: "../../google_vision"
-      relative: true
-    source: path
-    version: "1.1.1"
+      name: google_vision
+      sha256: "06bf3851216baf7bc2d3b1319b022116b8f3ac3ef745e82ffb77a2fd27692e71"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1+2"
   google_vision_flutter:
     dependency: "direct main"
     description:

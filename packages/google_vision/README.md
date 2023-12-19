@@ -187,6 +187,7 @@ Please see the cli documentation [README.md](https://github.com/faithoflifedev/g
 - [JLuisRojas](https://github.com/JLuisRojas)
 - [DeadBryam](https://github.com/DeadBryam)
 - [husitawi](https://github.com/husitawi)
+- [HighLiuk](https://github.com/HighLiuk)
 
 ## Contributing
 

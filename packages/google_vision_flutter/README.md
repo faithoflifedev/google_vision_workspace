@@ -9,8 +9,12 @@ Native [Dart](https://dart.dev/) package that integrates Google Vision features,
 Please feel free to submit PRs for any additional helper methods, or report an [issue](https://github.com/faithoflifedev/google_vision/issues) for a missing helper method and I'll add it if I have time available.
 
 ## Table of Contents
-
-
+- [Getting Started](#getting-started)
+  - [pubspec.yaml](#pubspecyaml)
+  - [Obtaining Authorization Credentials](#obtaining-authorization-credentials)
+  - [Usage of the GoogleVisionBuilder Widget](#usage-of-the-googlevisionbuilder-widget)
+- [Contributors](#contributors)
+- [Contributing](#contributing)
 
 ## Getting Started
 
@@ -21,11 +25,8 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision_flutter: ^1.0.0
+  google_vision_flutter: ^1.0.0+1
 ```
-
-<!-- <img src="https://github.com/faithoflifedev/flip_card/blob/master/screenshots/young_man_smiling.png?raw=true&amp;v1" width="320"> -->
-
 
 ### Obtaining Authorization Credentials
 
@@ -34,6 +35,11 @@ dependencies:
 ### Usage of the GoogleVisionBuilder Widget
 
 ```dart
+final _processImage = Image.asset(
+  'assets/young-man-smiling.jpg', // 'assets/logo.png', // 'assets/young-man-smiling.jpg'
+  fit: BoxFit.fitWidth,
+);
+
 GoogleVisionBuilder(
   // use the underlying `google_vision` package to initialize and authenticate for future API calls
   googleVision: GoogleVision.withAsset(
@@ -77,6 +83,13 @@ GoogleVisionBuilder(
   },
 )
 ```
+
+<p align="center" width="100%">
+<img src="https://github.com/faithoflifedev/google_vision_workspace/blob/main/packages/google_vision_flutter/screenshot/young_man_smilling.png?raw=true&amp;v1" width="320">
+</p>
+
+## Contributors
+- [HighLiuk](https://github.com/HighLiuk)
 
 ## Contributing
 
