@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1+2
+
+* dependency bump
+  
 ## 1.1.1+1
 
 * adjust ignore
