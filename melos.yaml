@@ -18,16 +18,20 @@ scripts:
     run: melos run analyze && melos run format
     description: Run all static analysis checks.
 
-  publish:all:
-    run: melos run publish:dart && melos run publish:flutter
-    description: Run publish for all packages.
+  # publish:all:
+  #   run: melos run publish:dart && melos run publish:flutter
+  #   description: Run publish for all packages.
 
-  publish:dart:
-    run: melos run meta && melos run analyze && melos run format && melos run markdown && melos run dryrun:dart
+  prep:dart:
+    run: melos run meta && melos run markdown && melos run analyze && melos run format && melos run commit:dart
     description: Run `dart publish` for all packages.
 
-  publish:grind:dart:
-    run: melos exec --ignore="google_vision_flutter" grind
+  commit:dart:
+    run: melos exec git add .; git commit -m "chore(release); git push origin main"
+    description: Commit changes for Dart package.
+
+  publish:real:dart:
+    run: melos exec --ignore="google_vision_flutter" dart pub publish --dry-run
     description: Real publish for Google_Vision Package.
 
   publish:flutter:
@@ -75,10 +79,10 @@ scripts:
     run: melos exec pana --no-dartdoc .
     description: Run pana checks for all packages.
 
-  homebrew:
-    run: melos exec --ignore="google_vision_flutter" grind 'pt-homebrew'
-    # run: melos exec echo "path - MELOS_PACKAGE_PATH"
-    description: Run homebrew tap generator for specified packages.
+  # homebrew:
+  #   run: melos exec --ignore="google_vision_flutter" grind 'pt-homebrew'
+  #   # run: melos exec echo "path - MELOS_PACKAGE_PATH"
+  #   description: Run homebrew tap generator for specified packages.
 
   clean:deep:
     run: git clean -x -d -f -q
