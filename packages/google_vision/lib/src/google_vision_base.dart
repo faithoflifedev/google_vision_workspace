@@ -95,7 +95,7 @@ class GoogleVision {
     return annotatedResponses.responses.first;
   }
 
-  /// Run crop hints.
+  /// Crop Hints suggests vertices for a crop region on an image.
   Future<CropHintsAnnotation?> cropHints(
     JsonImage jsonImage, {
     int maxResults = 10,
@@ -109,8 +109,10 @@ class GoogleVision {
     return annotatedResponses.cropHintsAnnotation;
   }
 
-  /// Run dense text document OCR. Takes precedence when both
-  /// DOCUMENT_TEXT_DETECTION and TEXT_DETECTION are present.
+  /// Extracts text from an image (or file); the response is optimized for dense
+  /// text and documents. The JSON includes page, block, paragraph, word, and
+  /// break information.  A specific use of [documentTextDetection] is to detect
+  /// handwriting in an image.
   Future<FullTextAnnotation?> documentTextDetection(
     JsonImage jsonImage, {
     int maxResults = 10,
@@ -124,7 +126,9 @@ class GoogleVision {
     return annotatedResponses.fullTextAnnotation;
   }
 
-  /// Run face detection.
+  /// Face Detection detects multiple faces within an image along with the
+  /// associated key facial attributes such as emotional state or wearing
+  /// headwear.
   Future<List<FaceAnnotation>> faceDetection(
     JsonImage jsonImage, {
     int maxResults = 10,
@@ -138,7 +142,8 @@ class GoogleVision {
     return annotatedResponses.faceAnnotations;
   }
 
-  /// Compute a set of image properties, such as the image's dominant colors.
+  /// The Image Properties feature detects general attributes of the image, such
+  /// as dominant color.
   Future<ImagePropertiesAnnotation?> imageProperties(
     JsonImage jsonImage, {
     int maxResults = 10,
@@ -152,7 +157,8 @@ class GoogleVision {
     return annotatedResponses.imagePropertiesAnnotation;
   }
 
-  /// Run label detection.
+  /// Labels can identify general objects, locations, activities, animal
+  /// species, products, and more.  Labels are returned in English only.
   Future<List<EntityAnnotation>> labelDetection(
     JsonImage jsonImage, {
     int maxResults = 10,
@@ -166,7 +172,8 @@ class GoogleVision {
     return annotatedResponses.labelAnnotations;
   }
 
-  /// Run landmark detection.
+  /// Landmark Detection detects popular natural and human-made structures
+  /// within an image.
   Future<List<EntityAnnotation>> landmarkDetection(
     JsonImage jsonImage, {
     int maxResults = 10,
@@ -180,7 +187,7 @@ class GoogleVision {
     return annotatedResponses.landmarkAnnotations;
   }
 
-  /// Run logo detection.
+  /// Logo Detection detects popular product logos within an image.
   Future<List<EntityAnnotation>> logoDetection(
     JsonImage jsonImage, {
     int maxResults = 10,
@@ -194,7 +201,16 @@ class GoogleVision {
     return annotatedResponses.logoAnnotations;
   }
 
-  /// Run localizer for object detection.
+  /// The Vision API can detect and extract multiple objects in an image with
+  /// Object Localization.
+  ///
+  /// Object localization identifies multiple objects in an image and provides a
+  /// [LocalizedObjectAnnotation] for each object in the image. Each
+  /// [LocalizedObjectAnnotation] identifies information about the object, the
+  /// position of the object, and rectangular bounds for the region of the image
+  /// that contains the object.
+  ///
+  /// Object localization identifies both significant and less-prominent objects in an image.
   Future<List<LocalizedObjectAnnotation>> objectLocalization(
     JsonImage jsonImage, {
     int maxResults = 10,
@@ -222,7 +238,11 @@ class GoogleVision {
     return annotatedResponses.productSearchResults;
   }
 
-  /// Run Safe Search to detect potentially unsafe or undesirable content.
+  /// SafeSearch Detection detects explicit content such as adult content or
+  /// violent content within an image. This feature uses five categories (adult,
+  /// spoof, medical, violence, and racy) and returns the likelihood that each
+  /// is present in a given image. See the SafeSearchAnnotation page for details
+  /// on these fields.
   Future<SafeSearchAnnotation?> safeSearchDetection(
     JsonImage jsonImage, {
     int maxResults = 10,
@@ -236,9 +256,9 @@ class GoogleVision {
     return annotatedResponses.safeSearchAnnotation;
   }
 
-  /// Run text detection / optical character recognition (OCR). Text detection
-  /// is optimized for areas of text within a larger image; if the image is a
-  /// document, use DOCUMENT_TEXT_DETECTION instead.
+  /// Detects and extracts text from any image. For example, a photograph might
+  /// contain a street sign or traffic sign. The JSON includes the entire
+  /// extracted string, as well as individual words, and their bounding boxes.
   Future<List<EntityAnnotation>> textDetection(
     JsonImage jsonImage, {
     int maxResults = 10,
@@ -252,7 +272,7 @@ class GoogleVision {
     return annotatedResponses.textAnnotations;
   }
 
-  /// Run web detection.
+  /// Web Detection detects Web references to an image.
   Future<WebDetection?> webDetection(
     JsonImage jsonImage, {
     int maxResults = 10,
