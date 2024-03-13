@@ -25,8 +25,8 @@ class JsonImage {
   factory JsonImage.fromFile(File file) =>
       JsonImage(byteBuffer: file.readAsBytesSync().buffer);
 
-  factory JsonImage.fromfilePath(String fileNameandPath) =>
-      JsonImage(byteBuffer: File(fileNameandPath).readAsBytesSync().buffer);
+  factory JsonImage.fromFilePath(String fileNameAndPath) =>
+      JsonImage(byteBuffer: File(fileNameAndPath).readAsBytesSync().buffer);
 
   factory JsonImage.fromJson(Map<String, dynamic> json) => JsonImage(
         byteBuffer: json.containsKey('content')
