@@ -17,7 +17,7 @@ on:
       working_directory:
         required: false
         type: string
-        default: "./pacakges/google_vision_flutter"
+        default: "packages/google_vision_flutter"
 
 jobs:
   build:

@@ -17,7 +17,7 @@ on:
       working_directory:
         required: false
         type: string
-        default: "./pacakges/google_vision"
+        default: "packages/google_vision"
 
 jobs:
   build:
