@@ -1,0 +1,42 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Flutter
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - packages/google_vision/**
+  pull_request:
+    branches: [main]
+    paths:
+      - packages/google_vision/**
+
+jobs:
+  pana:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+
+      - uses: flutter-actions/setup-flutter@v2
+
+      - name: Install dependencies
+        working-directory: ./packages/google_vision_flutter
+        run: flutter pub get
+
+      - name: Verify formatting
+        working-directory: ./packages/google_vision_flutter
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze project source
+        working-directory: ./packages/google_vision_flutter
+        run: dart analyze .

@@ -23,6 +23,7 @@ const _$AnnotationTypeEnumMap = {
   AnnotationType.labelDetection: 'LABEL_DETECTION',
   AnnotationType.objectLocalization: 'OBJECT_LOCALIZATION',
   AnnotationType.textDetection: 'TEXT_DETECTION',
+  AnnotationType.documentTextDetection: 'DOCUMENT_TEXT_DETECTION',
   AnnotationType.safeSearchDetection: 'SAFE_SEARCH_DETECTION',
   AnnotationType.imageProperties: 'IMAGE_PROPERTIES',
   AnnotationType.cropHints: 'CROP_HINTS',

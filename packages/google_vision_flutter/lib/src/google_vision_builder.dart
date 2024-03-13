@@ -5,23 +5,30 @@ import 'package:google_vision/google_vision.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart'
     hide GoogleVision;
 
+/// A widget that builds a [GoogleVision] instance.
 class GoogleVisionBuilder extends StatelessWidget {
   final Future<GoogleVision> googleVision;
 
+  /// The [ImageProvider] to be used for the image annotation.
   final ImageProvider imageProvider;
 
+  /// The list of [Feature] to be used for the image annotation.
   final List<Feature> features;
 
+  /// The builder for the [GoogleVisionBuilder].
   final Widget Function(
     BuildContext context,
     AsyncSnapshot<AnnotatedResponses> snapshot,
     ImageDetail imageDetail,
   ) builder;
 
+  /// The error builder for the [GoogleVisionBuilder].
   final Widget Function(Object error)? onError;
 
+  /// The loading builder for the [GoogleVisionBuilder].
   final Widget Function()? onLoading;
 
+  /// Creates a new instance of [GoogleVisionBuilder].
   const GoogleVisionBuilder({
     super.key,
     required this.googleVision,
@@ -32,6 +39,7 @@ class GoogleVisionBuilder extends StatelessWidget {
     this.onLoading,
   });
 
+  /// Wait for two futures to complete concurrently.
   Future<(T1, T2)> waitConcurrently<T1, T2>(
     Future<T1> future1,
     Future<T2> future2,
@@ -47,6 +55,7 @@ class GoogleVisionBuilder extends StatelessWidget {
     return Future.value((result1, result2));
   }
 
+  /// Build the [GoogleVisionBuilder].
   @override
   Widget build(BuildContext context) =>
       FutureBuilder<(GoogleVision, ImageDetail)>(

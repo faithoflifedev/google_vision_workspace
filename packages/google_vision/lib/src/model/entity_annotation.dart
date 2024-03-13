@@ -60,6 +60,7 @@ class EntityAnnotation extends Annotation {
   factory EntityAnnotation.fromJson(Map<String, dynamic> json) =>
       _$EntityAnnotationFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$EntityAnnotationToJson(this);
 
   @override

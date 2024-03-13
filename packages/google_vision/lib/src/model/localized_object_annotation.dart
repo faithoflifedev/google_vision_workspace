@@ -29,6 +29,7 @@ class LocalizedObjectAnnotation extends Annotation {
   factory LocalizedObjectAnnotation.fromJson(Map<String, dynamic> json) =>
       _$LocalizedObjectAnnotationFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$LocalizedObjectAnnotationToJson(this);
 
   @override

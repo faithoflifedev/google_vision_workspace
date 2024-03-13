@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 import 'bounding_poly.dart';
@@ -26,4 +28,12 @@ class Annotation {
     this.isLocalized = false,
     this.score,
   });
+
+  factory Annotation.fromJson(Map<String, dynamic> json) =>
+      _$AnnotationFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AnnotationToJson(this);
+
+  @override
+  String toString() => jsonEncode(toJson());
 }

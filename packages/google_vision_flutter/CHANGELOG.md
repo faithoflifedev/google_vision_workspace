@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.0+2
+
+* dependency bump
+
+## 1.0.0+2
+
+* dependency bump
+
+## 1.0.0+2
+
+* dependency bump
+
+## 1.0.0+2
+
+* dependency bump
+
+## 1.0.0+2
+
+* dependency bump
+
 ## 1.0.0+1
 
 	* TEXT_DETECTION, DOCUMENT_TEXT_DETECTION, SAFE_SEARCH_DETECTION

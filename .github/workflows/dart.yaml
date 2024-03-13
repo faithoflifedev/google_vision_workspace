@@ -1,0 +1,50 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Dart
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - packages/google_vision/**
+  pull_request:
+    branches: [main]
+    paths:
+      - packages/google_vision/**
+
+jobs:
+  pana:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      #   - uses: hoang-rio/set-timezone@v1.4
+      #     with:
+      #       timezoneLinux: "America/Toronto"
+
+      # Note: This workflow uses the latest stable version of the Dart SDK.
+      # You can specify other versions if desired, see documentation here:
+      # https://github.com/dart-lang/setup-dart/blob/main/README.md
+      - uses: dart-lang/setup-dart@v1
+      # - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+
+      - name: Install dependencies
+        working-directory: ./packages/google_vision
+        run: dart pub get
+
+      # Uncomment this step to verify the use of 'dart format' on each commit.
+      - name: Verify formatting
+        working-directory: ./packages/google_vision
+        run: dart format --output=none --set-exit-if-changed .
+
+      # Consider passing '--fatal-infos' for slightly stricter analysis.
+      - name: Analyze project source
+        working-directory: ./packages/google_vision
+        run: dart analyze .

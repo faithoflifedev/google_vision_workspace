@@ -1,14 +1,81 @@
-name: google_vision
+name: google_vision_workspace
+repository: https://github.com/faithoflifedev/google_vision_workspace
 
 packages:
   - packages/*
 
+command:
+  version:
+    branch: main
+    message: "chore(release): publish %s"
+
+bootstrap:
+  runPubGetInParallel: false
+  usePubspecOverrides: true
+
 scripts:
-  postbootstrap: |
-    cd MELOS_ROOT_PATH/packages/google_vision && 
-    flutter pub get && 
-    cd MELOS_ROOT_PATH/packages/google_vision_flutter && 
-    flutter pub get &&
-  generate:
-    run: melos exec --depends-on=build_runner -- "dart run build_runner build -d"
-    description: Build all generated files for Dart & Flutter packages in this project.
+  lint:all:
+    run: melos run analyze && melos run format
+    description: Run all static analysis checks.
+
+  publish:all:
+    run: melos run publish:dart && melos run publish:flutter
+    description: Run publish for all packages.
+
+  publish:dart:
+    run: melos run meta && melos run analyze && melos run format && melos run markdown && melos run dryrun:dart
+    description: Run `dart publish` for all packages.
+
+  publish:flutter:
+    run: melos run meta && melos run analyze && melos run format && melos run markdown && melos run dryrun:flutter
+    description: Run `dart publish` for all packages.
+
+  dryrun:dart:
+    run: melos exec --ignore="google_vision_flutter" dart pub publish --dry-run
+    description: Run `dart publish` for Dart package.
+
+  dryrun:flutter:
+    run: melos exec --ignore="google_vision_flutter" flutter pub publish --dry-run
+    description: Run `flutter pub publish` for Flutter package.
+
+  build:
+    exec: dart run build_runner build --delete-conflicting-outputs
+    select-package:
+      depends-on: build_runner
+
+  analyze:
+    exec: dart analyze --fatal-infos .
+    description: Run `dart analyze` in all packages.
+
+  format:
+    run: melos exec dart format . --fix
+    description: Run `dart format` for all packages.
+
+  format-check:
+    run: melos exec dart format . --set-exit-if-changed
+    description: Run `dart format` checks for all packages.
+
+  dartdoc:
+    run: melos exec dart doc .
+    description: Run dartdoc checks for all packages.
+
+  markdown:
+    run: melos exec grind 'pt-markdown'
+    description: Run markdown generator for all packages.
+
+  meta:
+    run: melos exec grind 'pt-meta'
+    description: Run metadata generator for all packages.
+
+  pana:
+    run: melos exec pana --no-dartdoc .
+    description: Run pana checks for all packages.
+
+  homebrew:
+    run: melos exec --ignore="google_vision_flutter" grind 'pt-homebrew'
+    # run: melos exec echo "path - MELOS_PACKAGE_PATH"
+    description: Run homebrew tap generator for specified packages.
+
+  clean:deep:
+    run: git clean -x -d -f -q
+    description: Clean things very deeply, can be used to establish "pristine checkout" status.
