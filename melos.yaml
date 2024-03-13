@@ -26,6 +26,10 @@ scripts:
     run: melos run meta && melos run analyze && melos run format && melos run markdown && melos run dryrun:dart
     description: Run `dart publish` for all packages.
 
+  publish:grind:dart:
+    run: melos exec --ignore="google_vision_flutter" grind
+    description: Real publish for Google_Vision Package.
+
   publish:flutter:
     run: melos run meta && melos run analyze && melos run format && melos run markdown && melos run dryrun:flutter
     description: Run `dart publish` for all packages.
@@ -39,7 +43,7 @@ scripts:
     description: Run `flutter pub publish` for Flutter package.
 
   build:
-    exec: dart run build_runner build --delete-conflicting-outputs
+    run: melos exec --ignore="google_vision_flutter" dart run build_runner build --delete-conflicting-outputs
     select-package:
       depends-on: build_runner
 
