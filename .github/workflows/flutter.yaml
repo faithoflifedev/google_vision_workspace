@@ -9,11 +9,11 @@ on:
   push:
     branches: [main]
     paths:
-      - packages/google_vision/**
+      - packages/google_vision_flutter/**
   pull_request:
     branches: [main]
     paths:
-      - packages/google_vision/**
+      - packages/google_vision_flutter/**
 
 jobs:
   pana:
