@@ -1,31 +1,35 @@
 # Google Vision Images REST API Client
 
-[![pub package](https://img.shields.io/pub/v/google_vision.svg)](https://pub.dartlang.org/packages/google_vision)
-
 Native [Dart](https://dart.dev/) package that integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
 
-- [Cloud Vision API](https://cloud.google.com/vision/docs/reference/rest) - Documentation Reference
+- [Google Vision Images REST API Client](#google-vision-images-rest-api-client)
+  - [Project Status](#project-status)
+  - [Recent Changes](#recent-changes)
+    - [New for v1.2.0](#new-for-v120)
+    - [New for v1.0.8](#new-for-v108)
+    - [New for v1.0.7](#new-for-v107)
+  - [Getting Started](#getting-started)
+    - [pubspec.yaml](#pubspecyaml)
+    - [Obtaining Authorization Credentials](#obtaining-authorization-credentials)
+    - [Usage of the Cloud Vision API](#usage-of-the-cloud-vision-api)
+  - [Usage with Flutter](#usage-with-flutter)
+  - [Vision cli (google\_vision at the command prompt)](#vision-cli-google_vision-at-the-command-prompt)
+  - [Reference](#reference)
+  - [Contributors](#contributors)
+  - [Contributing](#contributing)
+
+## Project Status
+
+[![pub package](https://img.shields.io/pub/v/google_vision.svg)](https://pub.dartlang.org/packages/google_vision)
 
 [![Build Status](https://github.com/faithoflifedev/google_vision/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/google_vision/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/google_vision)](https://shields.io/github/last-commit/faithoflifedev/google_vision) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/google_vision/dart.yml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/google_vision/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/google_vision)](https://shields.io/github/issues/faithoflifedev/google_vision)
 
 Please feel free to submit PRs for any additional helper methods, or report an [issue](https://github.com/faithoflifedev/google_vision/issues) for a missing helper method and I'll add it if I have time available.
 
-## Table of Contents
-- [Recent Changes](#recent-changes)
-  - [New for v1.0.8](#new-for-v108)
-  - [New for v1.0.7](#new-for-v107)
-  - [New for v1.0.6](#new-for-v106)
-  - [New for v1.0.3](#new-for-v103)
-- [Getting Started](#getting-started)
-  - [pubspec.yaml](#pubspecyaml)
-  - [Obtaining Authorization Credentials](#obtaining-authorization-credentials)
-  - [Usage of the Cloud Vision API](#usage-of-the-cloud-vision-api)
-- [Usage with Flutter](#usage-with-flutter)
-- [Vision cli (google\_vision at the command prompt)](#vision-cli-google_vision-at-the-command-prompt)
-- [Contributors](#contributors)
-- [Contributing](#contributing)
-
 ## Recent Changes
+
+### New for v1.2.0
+  - helper methods that simplify any `single` detection so a simple face detection can be performed with the `faceDetection(String filePathOrGsUri)` method
 
 ### New for v1.0.8
   - web entities and pages detection [https://cloud.google.com/vision/docs/detecting-web](https://cloud.google.com/vision/docs/detecting-web), provides urls of web pages that match the specified image
@@ -41,14 +45,6 @@ In addition support for the following has also been added:
 - detect image properties
 - detect landmarks
 - detect logos
-
-### New for v1.0.6
-
-[imhafeez](https://github.com/imhafeez) has provided code for `Safe Search` functionality.
-
-### New for v1.0.3
-
-[4ctobias](https://github.com/4ctobias) has provided code for `Label Detection` functionality.
 
 ## Getting Started
 
@@ -69,72 +65,29 @@ dependencies:
 ### Usage of the Cloud Vision API
 
 ```dart
-final googleVision =
-    await GoogleVision.withJwtFile('my_jwt_credentials.json');
+  final googleVision =
+      await GoogleVision.withJwtFile('service_credentials.json');
 
-final painter =
-    Painter.fromFilePath('example/young-man-smiling-and-thumbs-up.jpg');
+  print('checking...');
 
-// cropping an image can save time uploading the image to Google
-final cropped = painter.copyCrop(70, 30, 640, 480);
+  final logoAnnotationsResponses =
+      await googleVision.logoDetection('sample_image/logo.png');
 
-// to see the cropped image
-await cropped.writeAsJpeg('example/cropped.jpg');
+  for (var logoAnnotation in logoAnnotationsResponses) {
+    print('Logo: ${logoAnnotation.description}');
 
-final requests = AnnotationRequests(requests: [
-  AnnotationRequest(image: cropped, features: [
-    Feature(maxResults: 10, type: 'FACE_DETECTION'),
-    Feature(maxResults: 10, type: 'OBJECT_LOCALIZATION')
-  ])
-]);
-
-final annotatedResponses =
-    await googleVision.annotate(requests: requests);
-
-for (var annotatedResponse in annotatedResponses.responses) {
-  for (var faceAnnotation in annotatedResponse.faceAnnotations) {
-    GoogleVision.drawText(
-        cropped,
-        faceAnnotation.boundingPoly.vertices.first.x + 2,
-        faceAnnotation.boundingPoly.vertices.first.y + 2,
-        'Face - ${faceAnnotation.detectionConfidence}');
-
-    GoogleVision.drawAnnotations(
-        cropped, faceAnnotation.boundingPoly.vertices);
+    print(logoAnnotation.boundingPoly?.vertices);
   }
+
+  print('done.');
 }
-
-for (var annotatedResponse in annotatedResponses.responses) {
-  annotatedResponse.localizedObjectAnnotations
-      .where((localizedObjectAnnotation) =>
-          localizedObjectAnnotation.name == 'Person')
-      .toList()
-      .forEach((localizedObjectAnnotation) {
-    GoogleVision.drawText(
-        cropped,
-        (localizedObjectAnnotation.boundingPoly.normalizedVertices.first.x *
-                cropped.width)
-            .toInt(),
-        (localizedObjectAnnotation.boundingPoly.normalizedVertices.first.y *
-                    cropped.height)
-                .toInt() -
-            16,
-        'Person - ${localizedObjectAnnotation.score}');
-
-    GoogleVision.drawAnnotationsNormalized(
-        cropped, localizedObjectAnnotation.boundingPoly.normalizedVertices);
-  });
-}
-
-// output the results as a new image file
-await cropped.writeAsJpeg('resulting_image.jpg');
 ```
 
 ## Usage with Flutter
 
-For a quick intro into the use of this package in a Flutter app see take a look at the `vision_demo` sample app in the [`example/flutter`](https://github.com/faithoflifedev/google_vision/tree/main/example/flutter/vision_demo) folder of the project's GitHub repository.
+For a quick intro into the sing Google Vision in a Flutter app take a look at the [`google_vision_flutter`](https://github.com/faithoflifedev/google_vision_workspace/tree/main/packages/google_vision_flutter) package and it's [example app](https://github.com/faithoflifedev/google_vision_workspace/tree/main/packages/google_vision_flutter/example) folder of the project's GitHub repository.
 
-In getting the package to work with Flutter it's usually necessary to convert an object that is presented as an `Asset` or a `Stream` into a `File` for use by the `google_vision` package.  The `vision_demo` app gives sample code that shows how to convert an `Asset` into a  `File`.  A similar process can be used for any `Stream` of data that represents an image supported by `google_vision`.
+If you for some reason need to get this package to work with Flutter it's usually necessary to convert an object that is presented as an `Asset` or a `Stream` into a `File` for use by the `google_vision` package.  This [stackoverflow](https://stackoverflow.com/questions/55295593/how-to-convert-asset-image-to-file) post gives an idea on how this can be accomplished.  A similar process can be used for any `Stream` of data that represents an image supported by `google_vision`.  Essentially, the Google Vision REST API needs to be able to convert the image data into its Base64 representation before submitting it to the Google server and having the `bytedata` available in the code makes this easier. 
 
 ## Vision cli (google_vision at the command prompt)
 
@@ -180,6 +133,10 @@ Available commands:
 
 Please see the cli documentation [README.md](https://github.com/faithoflifedev/google_vision/tree/main/bin) for more detailed usage information.
 
+## Reference
+
+[Cloud Vision API](https://cloud.google.com/vision/docs/reference/rest) - Documentation Reference
+
 ## Contributors
 
 - [imhafeez](https://github.com/imhafeez)
@@ -207,5 +164,4 @@ Any help from the open-source community is always welcome and needed:
 - Have you already helped in any way?
     - **Many thanks from me, the contributors and everybody that uses this project!**
 
-*If you donate 1 hour of your time, you can contribute a lot,
-because others will do the same, just be part and start with your 1 hour.*
+*If you donate 1 hour of your time, you can contribute a lot, because others will do the same, just be part and start with your 1 hour.*

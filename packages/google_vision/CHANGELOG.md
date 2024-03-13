@@ -41,11 +41,6 @@
 * change dependency from crypto_keys to crypto_keys_plus and jose to jose_plus
 * the updated dependencies remove warnings that displayed at runtime
 
-## 1.1.0+2
-
-* change dependency from crypto_keys to crypto_keys_plus and jose to jose_plus
-* the updated dependencies remove warnings that displayed at runtime
-
 ## 1.1.0+1
 
 * fix to README TOC

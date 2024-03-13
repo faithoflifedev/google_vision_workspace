@@ -48,6 +48,7 @@ export 'src/model/page.dart';
 export 'src/model/paragraph.dart';
 export 'src/model/position.dart';
 export 'src/model/product_search_params.dart';
+export 'src/model/product_search_results.dart';
 export 'src/model/property.dart';
 export 'src/model/safe_search_annotation.dart';
 export 'src/model/status.dart';
@@ -57,6 +58,7 @@ export 'src/model/text_detection_params.dart';
 export 'src/model/text_property.dart';
 export 'src/model/token.dart';
 export 'src/model/vertex.dart';
+export 'src/model/web_detection.dart';
 export 'src/model/web_detection_params.dart';
 export 'src/model/word.dart';
 

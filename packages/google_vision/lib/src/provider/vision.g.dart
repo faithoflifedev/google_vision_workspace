@@ -26,7 +26,7 @@ class _VisionClient implements VisionClient {
     String contentType,
     Map<String, dynamic> params,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{
       r'Authorization': authorization,

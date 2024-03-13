@@ -22,7 +22,7 @@ class _OAuthClient implements OAuthClient {
 
   @override
   Future<Token> getToken(Map<String, dynamic> params) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{
       r'Content-Type': 'application/x-www-form-urlencoded'

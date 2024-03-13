@@ -9,6 +9,7 @@ environment:
   sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
+  color: ^3.0.0
   google_vision_flutter:
     path: ../../google_vision_flutter
 
@@ -30,3 +31,5 @@ flutter:
     - assets/logo.png
     - assets/structures.png
     - assets/young-man-smiling.jpg
+    - assets/census2010.jpg
+    - assets/setagaya_small.jpg

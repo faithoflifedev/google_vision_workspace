@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:google_vision_flutter/google_vision_flutter.dart' hide Color;
+
+import 'crop_hints.dart';
+import 'document_text_detection.dart';
+import 'face_detection.dart';
+import 'image_properties.dart';
+import 'label_detection.dart';
+import 'landmark_detection.dart';
+import 'logo_detection.dart';
+import 'multiple_detections.dart';
+import 'object_localization.dart';
+import 'safe_search_detection.dart';
+import 'text_detection.dart';
+import 'web_detection.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,299 +20,116 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Google Vision Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Google Vision Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final _processImage = Image.asset(
-    'assets/young-man-smiling.jpg', // 'assets/logo.png', // 'assets/young-man-smiling.jpg'
-    fit: BoxFit.fitWidth,
-  );
-
-  @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(widget.title),
-          ),
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Image: assets/young-man-smiling'),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Operation: FACE_DETECTION and OBJECT_LOCALIZATION',
-                    textAlign: TextAlign.center,
-                  ),
-                ), // 'FACE_DETECTION' // LOGO_DETECTION
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: _processImage,
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Processed image will appear below:',
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GoogleVisionBuilder(
-                    googleVision: GoogleVision.withAsset(
-                        'assets/service_credentials.json'),
-                    imageProvider: _processImage.image,
-                    features: [
-                      Feature(
-                        maxResults: 10,
-                        type: AnnotationType
-                            .faceDetection, // 'LOGO_DETECTION', // 'FACE_DETECTION'
-                      ),
-                      Feature(
-                        maxResults: 10,
-                        type: AnnotationType
-                            .objectLocalization, // 'LOGO_DETECTION', // 'FACE_DETECTION'
-                      ),
-                    ],
-                    builder: (
-                      BuildContext context,
-                      AsyncSnapshot<AnnotatedResponses> snapshot,
-                      ImageDetail? imageDetail,
-                    ) {
-                      if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      }
-
-                      if (snapshot.hasData) {
-                        return CustomPaint(
-                          foregroundPainter: AnnotationPainter(
-                            annotatedResponses: snapshot.data!,
-                            imageDetail: imageDetail!,
-                          ),
-                          child: Image(image: _processImage.image),
-                        );
-                      }
-
-                      return const Center(child: CircularProgressIndicator());
-                    },
-                  ),
-                )
-              ],
+      routes: {
+        '/': (context) => const MenuScreen(),
+        '/multiple': (context) => const MultipleDetections(
+              title: 'Object and Face Detection',
             ),
-          ),
-        ),
-      );
+        '/crophints': (context) => const CropHints(
+              title: 'Crop Hints',
+            ),
+        '/documenttextdetection': (context) => const DocumentTextDetection(
+              title: 'Document Text Detection',
+            ),
+        '/facedetection': (context) => const FaceDetection(
+              title: 'Face Detection',
+            ),
+        '/imageproperties': (context) => const ImageProperties(
+              title: 'Image Properties',
+            ),
+        '/labeldetection': (context) => const LabelDetection(
+              title: 'Label Detection',
+            ),
+        '/landmarkdetection': (context) => const LandmarkDetection(
+              title: 'Landmark Detection',
+            ),
+        '/logodetection': (context) => const LogoDetection(
+              title: 'Logo Detection',
+            ),
+        '/objectlocalization': (context) => const ObjectLocalization(
+              title: 'Object Localization',
+            ),
+        '/safesearchdetection': (context) => const SafeSearchDetection(
+              title: 'Safe Search Detection',
+            ),
+        '/textdetection': (context) => const TextDetection(
+              title: 'Text Detection',
+            ),
+        '/webdetection': (context) => const WebDetection(
+              title: 'Web Detection',
+            ),
+      },
+    );
+  }
 }
 
-class AnnotationPainter extends CustomPainter {
-  final AnnotatedResponses annotatedResponses;
-
-  // a reference to the original image
-  final ImageDetail imageDetail;
-
-  AnnotationPainter({
-    required this.annotatedResponses,
-    required this.imageDetail,
-  });
-
-  // since the displayed image may be a different size than the original image,
-  // we need to adjust the offset to the size of the displayed image
-  // [imageDetail] holds the size of the original image
-  double _heightModifier(Size size) => size.height / imageDetail.height;
-
-  double _widthModifier(Size size) => size.width / imageDetail.width;
+class MenuScreen extends StatelessWidget {
+  const MenuScreen({super.key});
 
   @override
-  void paint(
-    Canvas canvas,
-    Size size,
-  ) {
-    final heightRatio = _heightModifier(size);
-
-    final widthRatio = _widthModifier(size);
-
-    // face detection
-    for (var faceAnnotation
-        in annotatedResponses.responses.first.faceAnnotations) {
-      drawAnnotationsRect(
-        vertices: faceAnnotation.boundingPoly.vertices,
-        canvas: canvas,
-        heightRatio: heightRatio,
-        widthRatio: widthRatio,
-      );
-
-      drawString(
-        text: 'Face - ${(faceAnnotation.detectionConfidence * 100).toInt()}%',
-        offset: faceAnnotation.boundingPoly.vertices.first.toResizedOffset(
-          heightRatio: heightRatio,
-          widthRatio: widthRatio,
-        ),
-        canvas: canvas,
-        size: size,
-      );
-    }
-
-    // landmark detection
-    for (var landmarkAnnotation
-        in annotatedResponses.responses.first.landmarkAnnotations) {
-      drawAnnotationsRect(
-        vertices: landmarkAnnotation.boundingPoly!.vertices,
-        canvas: canvas,
-        heightRatio: heightRatio,
-        widthRatio: widthRatio,
-      );
-
-      drawString(
-        text: 'Landmark - ${(landmarkAnnotation.score! * 100).toInt()}%',
-        offset: landmarkAnnotation.boundingPoly!.vertices.first.toResizedOffset(
-          heightRatio: heightRatio,
-          widthRatio: widthRatio,
-        ),
-        canvas: canvas,
-        size: size,
-      );
-    }
-
-    // object localization
-    for (var localizedObjectAnnotation
-        in annotatedResponses.responses.first.localizedObjectAnnotations) {
-      drawAnnotationsNormalized(
-          vertices: localizedObjectAnnotation.boundingPoly!.normalizedVertices,
-          canvas: canvas,
-          size: size);
-
-      drawString(
-          text:
-              '${localizedObjectAnnotation.name} - ${(localizedObjectAnnotation.score! * 100).toInt()}%',
-          offset: localizedObjectAnnotation
-              .boundingPoly!.normalizedVertices.first
-              .toResizedOffset(size),
-          canvas: canvas,
-          size: size);
-    }
-
-    // logo detection
-    for (var logoAnnotation
-        in annotatedResponses.responses.first.logoAnnotations) {
-      drawAnnotationsRect(
-        vertices: logoAnnotation.boundingPoly!.vertices,
-        canvas: canvas,
-        heightRatio: heightRatio,
-        widthRatio: widthRatio,
-      );
-
-      drawString(
-        text:
-            '${logoAnnotation.description} - ${(logoAnnotation.score! * 100).toInt()}%',
-        offset: logoAnnotation.boundingPoly!.vertices.first.toResizedOffset(
-          heightRatio: heightRatio,
-          widthRatio: widthRatio,
-        ),
-        canvas: canvas,
-        size: size,
-      );
-    }
-  }
-
-  void drawString({
-    required String text,
-    required Offset offset,
-    required Canvas canvas,
-    required Size size,
-    Color? color,
-  }) {
-    color ??= Colors.red.shade900;
-
-    final tp = TextPainter(
-      text: TextSpan(
-        text: text,
-        style: TextStyle(color: color),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Menu'),
       ),
-      textAlign: TextAlign.left,
-      textDirection: TextDirection.ltr,
-    );
-
-    tp.layout();
-
-    tp.paint(canvas, offset);
-  }
-
-  void drawAnnotationsRect({
-    required List<Vertex> vertices,
-    required Canvas canvas,
-    required double heightRatio,
-    required double widthRatio,
-    Color? color,
-    double strokeWidth = 1,
-  }) {
-    color ??= Colors.red.shade400;
-
-    final paint = Paint();
-
-    paint.style = PaintingStyle.stroke;
-    paint.strokeWidth = strokeWidth;
-    paint.color = color;
-
-    canvas.drawRect(
-      Rect.fromPoints(
-        vertices.first.toResizedOffset(
-          heightRatio: heightRatio,
-          widthRatio: widthRatio,
-        ),
-        vertices[2].toResizedOffset(
-          heightRatio: heightRatio,
-          widthRatio: widthRatio,
-        ),
+      body: Center(
+        child: Column(children: [
+          ElevatedButton(
+            child: const Text('Multiple Detections'),
+            onPressed: () => Navigator.pushNamed(context, '/multiple'),
+          ),
+          ElevatedButton(
+            child: const Text('Crop Hints'),
+            onPressed: () => Navigator.pushNamed(context, '/crophints'),
+          ),
+          ElevatedButton(
+            child: const Text('Document Text Detection'),
+            onPressed: () =>
+                Navigator.pushNamed(context, '/documenttextdetection'),
+          ),
+          ElevatedButton(
+            child: const Text('Face Detection'),
+            onPressed: () => Navigator.pushNamed(context, '/facedetection'),
+          ),
+          ElevatedButton(
+            child: const Text('Image Properties'),
+            onPressed: () => Navigator.pushNamed(context, '/imageproperties'),
+          ),
+          ElevatedButton(
+            child: const Text('Label Detection'),
+            onPressed: () => Navigator.pushNamed(context, '/labeldetection'),
+          ),
+          ElevatedButton(
+            child: const Text('Landmark Detection'),
+            onPressed: () => Navigator.pushNamed(context, '/landmarkdetection'),
+          ),
+          ElevatedButton(
+            child: const Text('Logo Detection'),
+            onPressed: () => Navigator.pushNamed(context, '/logodetection'),
+          ),
+          ElevatedButton(
+            child: const Text('Object Localization'),
+            onPressed: () =>
+                Navigator.pushNamed(context, '/objectlocalization'),
+          ),
+          ElevatedButton(
+            child: const Text('Safe Search Detection'),
+            onPressed: () =>
+                Navigator.pushNamed(context, '/safesearchdetection'),
+          ),
+          ElevatedButton(
+            child: const Text('Text Detection'),
+            onPressed: () => Navigator.pushNamed(context, '/textdetection'),
+          ),
+          ElevatedButton(
+            child: const Text('Web Detection'),
+            onPressed: () => Navigator.pushNamed(context, '/webdetection'),
+          ),
+        ]),
       ),
-      paint,
     );
   }
-
-  void drawAnnotationsNormalized({
-    required List<NormalizedVertex> vertices,
-    required Canvas canvas,
-    required Size size,
-    Color? color,
-    double strokeWidth = 1,
-  }) {
-    final paint = Paint();
-
-    paint.style = PaintingStyle.stroke;
-    paint.strokeWidth = strokeWidth;
-    paint.color = Colors.red;
-
-    canvas.drawRect(
-      Rect.fromPoints(
-        vertices[1].toResizedOffset(size),
-        vertices.last.toResizedOffset(size),
-      ),
-      paint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

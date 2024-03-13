@@ -6,23 +6,11 @@ void main() async {
 
   print('checking...');
 
-  final annotatedResponses = await googleVision.annotate(
-    requests: AnnotationRequests(
-      requests: [
-        AnnotationRequest(
-          jsonImage: JsonImage(
-              imageUri:
-                  'gs://gvision-demo/young-man-smiling-and-thumbs-up.jpg'),
-          features: [
-            Feature(maxResults: 10, type: AnnotationType.faceDetection),
-          ],
-        )
-      ],
-    ),
-  );
+  final faceAnnotationResponses = await googleVision.faceDetection(
+      JsonImage.fromGsUri(
+          'gs://gvision-demo/young-man-smiling-and-thumbs-up.jpg'));
 
-  for (var faceAnnotation
-      in annotatedResponses.responses.first.faceAnnotations) {
+  for (var faceAnnotation in faceAnnotationResponses) {
     print('Face - ${faceAnnotation.detectionConfidence}');
 
     print('Joy - ${faceAnnotation.enumJoyLikelihood}');
