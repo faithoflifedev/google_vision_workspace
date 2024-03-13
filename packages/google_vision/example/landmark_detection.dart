@@ -7,7 +7,7 @@ void main() async {
   print('checking...');
 
   final landmarkAnnotationsResponse = await googleVision
-      .labelDetection(JsonImage.fromfilePath('sample_image/cn_tower.jpg'));
+      .labelDetection(JsonImage.fromFilePath('sample_image/cn_tower.jpg'));
 
   for (var landmarkAnnotation in landmarkAnnotationsResponse) {
     print('score: ${landmarkAnnotation.score}');

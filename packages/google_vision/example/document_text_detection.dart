@@ -7,7 +7,7 @@ void main() async {
   print('checking...');
 
   final fullTextAnnotation = await googleVision.documentTextDetection(
-      JsonImage.fromfilePath('sample_image/census2010.jpg'));
+      JsonImage.fromFilePath('sample_image/census2010.jpg'));
 
   for (var page in fullTextAnnotation!.pages) {
     print('Page Language: ${page.property?.detectedLanguages}');

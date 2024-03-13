@@ -7,7 +7,7 @@ void main() async {
   print('checking...');
 
   final logoAnnotationsResponses = await googleVision
-      .logoDetection(JsonImage.fromfilePath('sample_image/logo.png'));
+      .logoDetection(JsonImage.fromFilePath('sample_image/logo.png'));
 
   for (var logoAnnotation in logoAnnotationsResponses) {
     print('Logo: ${logoAnnotation.description}');
