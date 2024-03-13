@@ -17,7 +17,7 @@ on:
 
 jobs:
   pana:
-    uses: ./.github/workflows/pana.yaml
+    uses: ./.github/workflows/pana-dart.yaml
 
   build:
     runs-on: ubuntu-latest
