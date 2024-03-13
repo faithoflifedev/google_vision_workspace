@@ -25,9 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/checkout@v4
-
-      - uses: flutter-actions/setup-flutter@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
 
       - name: Install dependencies
         working-directory: ./packages/google_vision_flutter
