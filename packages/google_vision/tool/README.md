@@ -65,29 +65,44 @@ dependencies:
 ### Usage of the Cloud Vision API
 
 ```dart
-  final googleVision =
-      await GoogleVision.withJwtFile('service_credentials.json');
+final googleVision =
+    await GoogleVision.withJwtFile('service_credentials.json');
 
-  print('checking...');
+print('checking...');
 
-  final logoAnnotationsResponses =
-      await googleVision.logoDetection('sample_image/logo.png');
+final faceAnnotationResponses = await googleVision.faceDetection(
+  JsonImage.fromFilePath('sample_image/young-man-smiling-and-thumbs-up.jpg'));
 
-  for (var logoAnnotation in logoAnnotationsResponses) {
-    print('Logo: ${logoAnnotation.description}');
+for (var faceAnnotation in faceAnnotationResponses) {
+  print('Face - ${faceAnnotation.detectionConfidence}');
 
-    print(logoAnnotation.boundingPoly?.vertices);
-  }
-
-  print('done.');
+  print('Joy - ${faceAnnotation.enumJoyLikelihood}');
 }
+
+print('done.');
 ```
+## New Helper Methods
+
+| **Method Signature** | **Description** |
+| -------------------- | --------------- |
+| Future\<AnnotateImageResponse> **detection**(JsonImage jsonImage, AnnotationType annotationType, {int maxResults = 10}) | Higher level method for a single detection type as specified by annotationType |
+| Future<CropHintsAnnotation?> cropHints(JsonImage jsonImage, { int maxResults = 10}) | Crop Hints suggests vertices for a crop region on an image. |
+| Future<FullTextAnnotation?> **documentTextDetection**(JsonImage jsonImage, {int maxResults = 10}) | Extracts text from an image (or file); the response is optimized for dense text and documents. The break information.  A specific use of documentTextDetection is to detect handwriting in an image. |
+| Future<List<FaceAnnotation>> **faceDetection**(JsonImage jsonImage, {int maxResults = 10}) | Face Detection detects multiple faces within an image along with the associated key facial attributes such as emotional state or wearing headwear. |
+| Future<ImagePropertiesAnnotation?> **imageProperties**(JsonImage jsonImage, {int maxResults = 10}) | The Image Properties feature detects general attributes of the image, such as dominant color. |
+| Future<List<EntityAnnotation>> **labelDetection**(JsonImage jsonImage, {int maxResults = 10}) | Labels can identify general objects, locations, activities, animal species, products, and more.  Labels are returned in English only. |
+| Future<List<EntityAnnotation>> **landmarkDetection**(JsonImage jsonImage, {int maxResults = 10}) | Landmark Detection detects popular natural and human-made structures within an image. |
+| Future<List<EntityAnnotation>> **logoDetection**(JsonImage jsonImage, {int maxResults = 10}) | Logo Detection detects popular product logos within an image. |
+| Future<List<LocalizedObjectAnnotation>> **objectLocalization**(JsonImage jsonImage, {int maxResults = 10}) | The Vision API can detect and extract multiple objects in an image with Object Localization.  Object localization identifies multiple objects in an image and provides a LocalizedObjectAnnotation for each object in the image. Each LocalizedObjectAnnotation identifies information about the object, the position of the object, and rectangular bounds for the region of the image that contains the object.  Object localization identifies both significant and less-prominent objects in an image. |
+| Future<SafeSearchAnnotation?> **safeSearchDetection**(JsonImage jsonImage, {int maxResults = 10}) | SafeSearch Detection detects explicit content such as adult content or violent content within an image. This feature uses five categories (adult, spoof, medical, violence, and racy) and returns the likelihood that each is present in a given image. See the SafeSearchAnnotation page for details on these fields. |
+| Future<List<EntityAnnotation>> **textDetection**(JsonImage jsonImage, {int maxResults = 10}) | Detects and extracts text from any image. For example, a photograph might contain a street sign or traffic sign. The JSON includes the entire extracted string, as well as individual words, and their bounding boxes. |
+| Future<WebDetection?> **webDetection**(JsonImage jsonImage, {int maxResults = 10}) | Web Detection detects Web references to an image. |
 
 ## Usage with Flutter
 
-For a quick intro into the sing Google Vision in a Flutter app take a look at the [`google_vision_flutter`](https://github.com/faithoflifedev/google_vision_workspace/tree/main/packages/google_vision_flutter) package and it's [example app](https://github.com/faithoflifedev/google_vision_workspace/tree/main/packages/google_vision_flutter/example) folder of the project's GitHub repository.
+For a quick intro into the use of Google Vision in a Flutter, take a look at the [`google_vision_flutter`](https://github.com/faithoflifedev/google_vision_workspace/tree/main/packages/google_vision_flutter) package and the [example](https://github.com/faithoflifedev/google_vision_workspace/tree/main/packages/google_vision_flutter/example) folder of the project's GitHub repository.
 
-If you for some reason need to get this package to work with Flutter it's usually necessary to convert an object that is presented as an `Asset` or a `Stream` into a `File` for use by the `google_vision` package.  This [stackoverflow](https://stackoverflow.com/questions/55295593/how-to-convert-asset-image-to-file) post gives an idea on how this can be accomplished.  A similar process can be used for any `Stream` of data that represents an image supported by `google_vision`.  Essentially, the Google Vision REST API needs to be able to convert the image data into its Base64 representation before submitting it to the Google server and having the `bytedata` available in the code makes this easier. 
+If Flutter specific Google Vision Widget doesn't suite your requirements, then to work with Flutter it's usually necessary to convert an object that is presented as an `Asset` or a `Stream` into a `File` for use by this `google_vision` package.  This [StackOverflow](https://stackoverflow.com/questions/55295593/how-to-convert-asset-image-to-file) post gives an idea on how this can be accomplished.  A similar process can be used for any `Stream` of data that represents an image supported by `google_vision`.  Essentially, the Google Vision REST API needs to be able to convert the image data into its Base64 representation before submitting it to the Google server and having the `bytedata` available in the code makes this easier. 
 
 ## Vision cli (google_vision at the command prompt)
 
