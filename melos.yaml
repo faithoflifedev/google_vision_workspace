@@ -23,7 +23,7 @@ scripts:
   #   description: Run publish for all packages.
 
   prep:dart:
-    run: melos run meta && melos run markdown && melos run analyze && melos run format && melos run commit:dart
+    run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format && melos run commit:dart
     description: Run `dart publish` for all packages.
 
   commit:dart:
@@ -31,7 +31,7 @@ scripts:
     description: Commit changes for Dart package.
 
   publish:real:dart:
-    run: melos exec --ignore="google_vision_flutter" dart pub publish --dry-run
+    run: melos exec --ignore="google_vision_flutter" dart pub publish --force
     description: Real publish for Google_Vision Package.
 
   publish:flutter:
@@ -78,11 +78,6 @@ scripts:
   pana:
     run: melos exec pana --no-dartdoc .
     description: Run pana checks for all packages.
-
-  # homebrew:
-  #   run: melos exec --ignore="google_vision_flutter" grind 'pt-homebrew'
-  #   # run: melos exec echo "path - MELOS_PACKAGE_PATH"
-  #   description: Run homebrew tap generator for specified packages.
 
   clean:deep:
     run: git clean -x -d -f -q
