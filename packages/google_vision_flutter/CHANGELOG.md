@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.1.0
+
+* dependency bump
+
+## 1.1.0
+
+* dependency bump
+
+## 1.1.0
+
+* dependency bump
+
+## 1.1.0
+
+* dependency bump
+
+## 1.1.0
+
+* dependency bump
+
 ## 1.0.0+2
 
 * dependency bump
