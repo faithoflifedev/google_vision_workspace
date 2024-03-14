@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0+3
+
+* added helper methods for the google vision
+* added documentation for the helper methods
+
 ## 1.2.0+2
 
 * added helper methods for the google vision

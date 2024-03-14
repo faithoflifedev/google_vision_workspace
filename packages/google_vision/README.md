@@ -12,6 +12,7 @@ Native [Dart](https://dart.dev/) package that integrates Google Vision features,
     - [pubspec.yaml](#pubspecyaml)
     - [Obtaining Authorization Credentials](#obtaining-authorization-credentials)
     - [Usage of the Cloud Vision API](#usage-of-the-cloud-vision-api)
+  - [New Helper Methods](#new-helper-methods)
   - [Usage with Flutter](#usage-with-flutter)
   - [Vision cli (google\_vision at the command prompt)](#vision-cli-google_vision-at-the-command-prompt)
   - [Reference](#reference)
@@ -22,7 +23,7 @@ Native [Dart](https://dart.dev/) package that integrates Google Vision features,
 
 [![pub package](https://img.shields.io/pub/v/google_vision.svg)](https://pub.dartlang.org/packages/google_vision)
 
-[![Build Status](https://github.com/faithoflifedev/google_vision/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/google_vision/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/google_vision)](https://shields.io/github/last-commit/faithoflifedev/google_vision) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/google_vision/dart.yml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/google_vision/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/google_vision)](https://shields.io/github/issues/faithoflifedev/google_vision)
+[![Build Status](https://github.com/faithoflifedev/google_vision/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/google_vision/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/google_vision)](https://shields.io/github/last-commit/faithoflifedev/google_vision) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/google_vision_workspace/dart.yaml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/google_vision/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/google_vision)](https://shields.io/github/issues/faithoflifedev/google_vision)
 
 Please feel free to submit PRs for any additional helper methods, or report an [issue](https://github.com/faithoflifedev/google_vision/issues) for a missing helper method and I'll add it if I have time available.
 
@@ -55,7 +56,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision: ^1.2.0+2
+  google_vision: ^1.2.0+3
 ```
 
 ### Obtaining Authorization Credentials
@@ -83,20 +84,20 @@ print('done.');
 ```
 ## New Helper Methods
 
-| **Method Signature** | **Description** |
+| <div style="width:420px">**Method Signature** | **Description** |
 | -------------------- | --------------- |
-| Future\<AnnotateImageResponse> **detection**(JsonImage jsonImage, AnnotationType annotationType, {int maxResults = 10}) | Higher level method for a single detection type as specified by annotationType |
-| Future<CropHintsAnnotation?> cropHints(JsonImage jsonImage, { int maxResults = 10}) | Crop Hints suggests vertices for a crop region on an image. |
-| Future<FullTextAnnotation?> **documentTextDetection**(JsonImage jsonImage, {int maxResults = 10}) | Extracts text from an image (or file); the response is optimized for dense text and documents. The break information.  A specific use of documentTextDetection is to detect handwriting in an image. |
-| Future<List<FaceAnnotation>> **faceDetection**(JsonImage jsonImage, {int maxResults = 10}) | Face Detection detects multiple faces within an image along with the associated key facial attributes such as emotional state or wearing headwear. |
-| Future<ImagePropertiesAnnotation?> **imageProperties**(JsonImage jsonImage, {int maxResults = 10}) | The Image Properties feature detects general attributes of the image, such as dominant color. |
-| Future<List<EntityAnnotation>> **labelDetection**(JsonImage jsonImage, {int maxResults = 10}) | Labels can identify general objects, locations, activities, animal species, products, and more.  Labels are returned in English only. |
-| Future<List<EntityAnnotation>> **landmarkDetection**(JsonImage jsonImage, {int maxResults = 10}) | Landmark Detection detects popular natural and human-made structures within an image. |
-| Future<List<EntityAnnotation>> **logoDetection**(JsonImage jsonImage, {int maxResults = 10}) | Logo Detection detects popular product logos within an image. |
-| Future<List<LocalizedObjectAnnotation>> **objectLocalization**(JsonImage jsonImage, {int maxResults = 10}) | The Vision API can detect and extract multiple objects in an image with Object Localization.  Object localization identifies multiple objects in an image and provides a LocalizedObjectAnnotation for each object in the image. Each LocalizedObjectAnnotation identifies information about the object, the position of the object, and rectangular bounds for the region of the image that contains the object.  Object localization identifies both significant and less-prominent objects in an image. |
-| Future<SafeSearchAnnotation?> **safeSearchDetection**(JsonImage jsonImage, {int maxResults = 10}) | SafeSearch Detection detects explicit content such as adult content or violent content within an image. This feature uses five categories (adult, spoof, medical, violence, and racy) and returns the likelihood that each is present in a given image. See the SafeSearchAnnotation page for details on these fields. |
-| Future<List<EntityAnnotation>> **textDetection**(JsonImage jsonImage, {int maxResults = 10}) | Detects and extracts text from any image. For example, a photograph might contain a street sign or traffic sign. The JSON includes the entire extracted string, as well as individual words, and their bounding boxes. |
-| Future<WebDetection?> **webDetection**(JsonImage jsonImage, {int maxResults = 10}) | Web Detection detects Web references to an image. |
+| Future\<AnnotateImageResponse> **detection**(<br/>&nbsp;&nbsp;JsonImage jsonImage,<br/>&nbsp;&nbsp;AnnotationType annotationType,<br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | Lower level method for a single detection type as specified by annotationType |
+| Future<CropHintsAnnotation?> **cropHints**(<br/>&nbsp;&nbsp;JsonImage jsonImage,<br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | Crop Hints suggests vertices for a crop region on an image. |
+| Future<FullTextAnnotation?> **documentTextDetection**(<br/>&nbsp;&nbsp;JsonImage jsonImage, <br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | Extracts text from an image (or file); the response is optimized for dense text and documents. The break information.  A specific use of documentTextDetection is to detect handwriting in an image. |
+| Future<List<FaceAnnotation>> **faceDetection**(<br/>&nbsp;&nbsp;JsonImage jsonImage, <br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | Face Detection detects multiple faces within an image along with the associated key facial attributes such as emotional state or wearing headwear. |
+| Future<ImagePropertiesAnnotation?> **imageProperties**(<br/>&nbsp;&nbsp;JsonImage jsonImage, <br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | The Image Properties feature detects general attributes of the image, such as dominant color. |
+| Future<List<EntityAnnotation>> **labelDetection**(<br/>&nbsp;&nbsp;JsonImage jsonImage, <br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | Labels can identify general objects, locations, activities, animal species, products, and more.  Labels are returned in English only. |
+| Future<List<EntityAnnotation>> **landmarkDetection**(<br/>&nbsp;&nbsp;JsonImage jsonImage, <br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | Landmark Detection detects popular natural and human-made structures within an image. |
+| Future<List<EntityAnnotation>> **logoDetection**(<br/>&nbsp;&nbsp;JsonImage jsonImage, <br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | Logo Detection detects popular product logos within an image. |
+| Future<List<LocalizedObjectAnnotation>> **objectLocalization**(<br/>&nbsp;&nbsp;JsonImage jsonImage, <br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | The Vision API can detect and extract multiple objects in an image with Object Localization.  Object localization identifies multiple objects in an image and provides a LocalizedObjectAnnotation for each object in the image. Each LocalizedObjectAnnotation identifies information about the object, the position of the object, and rectangular bounds for the region of the image that contains the object.  Object localization identifies both significant and less-prominent objects in an image. |
+| Future<SafeSearchAnnotation?> **safeSearchDetection**(<br/>&nbsp;&nbsp;JsonImage jsonImage, <br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | SafeSearch Detection detects explicit content such as adult content or violent content within an image. This feature uses five categories (adult, spoof, medical, violence, and racy) and returns the likelihood that each is present in a given image. See the SafeSearchAnnotation page for details on these fields. |
+| Future<List<EntityAnnotation>> **textDetection**(<br/>&nbsp;&nbsp;JsonImage jsonImage, <br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | Detects and extracts text from any image. For example, a photograph might contain a street sign or traffic sign. The JSON includes the entire extracted string, as well as individual words, and their bounding boxes. |
+| Future<WebDetection?> **webDetection**(<br/>&nbsp;&nbsp;JsonImage jsonImage, <br/>&nbsp;&nbsp;{int maxResults = 10,}<br/>) | Web Detection detects Web references to an image. |
 
 ## Usage with Flutter
 
@@ -112,13 +113,6 @@ Install using `dart pub`:
 
 ```sh
 dart pub global activate google_vision
-```
-
-Install using `brew`:
-
-```sh
-brew tap faithoflifedev/google_vision
-brew install vision
 ```
 
 Run the following command to see help:

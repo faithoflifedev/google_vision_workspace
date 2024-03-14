@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
-import 'package:color/color.dart';
 import 'package:image/image.dart' as img;
 import 'package:universal_io/io.dart';
 
@@ -87,12 +86,6 @@ class Util {
 
     throw Exception('image format unknown');
   }
-
-  static img.ColorRgb8 toRgbColor(Color color) => img.ColorRgb8(
-        color.toRgbColor().r as int,
-        color.toRgbColor().g as int,
-        color.toRgbColor().b as int,
-      );
 
   static img.Image? bmpDecode(Uint8List bytes, {int? frame}) =>
       (img.BmpDecoder()).decode(bytes, frame: frame);
