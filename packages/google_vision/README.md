@@ -30,7 +30,7 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 ## Recent Changes
 
 ### New for v1.2.0
-  - helper methods that simplify any `single` detection so a simple face detection can be performed with the `faceDetection(String filePathOrGsUri)` method, see the table below.
+  - helper methods that simplify any `single` detection so a simple face detection can be performed with the `faceDetection(JsonImage jsonImage)` method, see the table below.
 
 ### New for v1.0.8
   - web entities and pages detection [https://cloud.google.com/vision/docs/detecting-web](https://cloud.google.com/vision/docs/detecting-web), provides urls of web pages that match the specified image
@@ -56,7 +56,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision: ^1.2.0+3
+  google_vision: ^1.2.0+4
 ```
 
 ### Obtaining Authorization Credentials

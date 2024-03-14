@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0+4
+
+* readme tweak
+
 ## 1.2.0+3
 
 * improved readme
