@@ -51,16 +51,15 @@ class _MyHomePageState extends State<FaceDetection> {
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
                     builder: (BuildContext context,
-                        List<FaceAnnotation>? faceAnnotations,
-                        ImageDetail imageDetail) {
-                      return CustomPaint(
-                        foregroundPainter: AnnotationPainter(
-                          faceAnnotations: faceAnnotations,
-                          imageDetail: imageDetail,
-                        ),
-                        child: Image(image: _processImage.image),
-                      );
-                    },
+                            List<FaceAnnotation>? faceAnnotations,
+                            ImageDetail imageDetail) =>
+                        CustomPaint(
+                      foregroundPainter: AnnotationPainter(
+                        faceAnnotations: faceAnnotations,
+                        imageDetail: imageDetail,
+                      ),
+                      child: Image(image: _processImage.image),
+                    ),
                   ),
                 )
               ],

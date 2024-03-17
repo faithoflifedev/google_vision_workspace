@@ -1,6 +1,6 @@
 name: google_vision_flutter
 description: Add Google Visions image labeling, face, logo, and landmark detection into your Flutter applications.
-version: 1.1.0
+version: 1.2.0
 repository: https://github.com/faithoflifedev/google_vision
 homepage: https://github.com/faithoflifedev/google_vision/tree/main/packages/google_vision_flutter
 
@@ -11,7 +11,7 @@ environment:
   flutter: ">=3.16.0"
 
 dependencies:
-  google_vision: ^1.2.0+1
+  google_vision: ^1.2.0+4
   # google_vision:
   #   path: ../google_vision
 

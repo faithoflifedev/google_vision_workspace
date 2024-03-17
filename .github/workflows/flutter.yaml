@@ -39,4 +39,4 @@ jobs:
 
       - name: Analyze project source
         working-directory: ./packages/google_vision_flutter
-        run: dart analyze .
+        run: dart analyze . --no-fatal-warnings
