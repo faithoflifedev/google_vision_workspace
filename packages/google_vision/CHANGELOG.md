@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0+6
+
+* [markdown issue](https:&#x2F;&#x2F;github.com&#x2F;dart-lang&#x2F;markdown&#x2F;issues&#x2F;596) on pub.dev
+
 ## 1.2.0+5
 
 * [markdown issue](https:&#x2F;&#x2F;github.com&#x2F;dart-lang&#x2F;markdown&#x2F;issues&#x2F;596) on pub.dev
