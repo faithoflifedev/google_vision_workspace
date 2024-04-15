@@ -21,7 +21,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision_flutter: ^1.2.0
+  google_vision_flutter: ^1.2.0+6
 ```
 
 <!-- <img src="https://github.com/faithoflifedev/flip_card/blob/master/screenshots/young_man_smiling.png?raw=true&amp;v1" width="320"> -->
