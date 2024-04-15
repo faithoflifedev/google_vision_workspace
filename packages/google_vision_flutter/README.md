@@ -1,10 +1,10 @@
 # Google Vision Images Flutter Widget
 
-[![pub package](https://img.shields.io/pub/v/google_vision.svg)](https://pub.dartlang.org/packages/google_vision)
+[![pub package](https://img.shields.io/pub/v/google_vision_flutter.svg)](https://pub.dartlang.org/packages/google_vision_flutter)
 
 Native [Dart](https://dart.dev/) package that integrates Google Vision features, including image labeling, face, logo, and landmark detection into Flutter applications.
 
-[![Build Status](https://github.com/faithoflifedev/google_vision/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/google_vision/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/google_vision)](https://shields.io/github/last-commit/faithoflifedev/google_vision) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/google_vision/dart.yml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/google_vision/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/google_vision)](https://shields.io/github/issues/faithoflifedev/google_vision)
+[![Build Status](https://github.com/faithoflifedev/google_vision/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/google_vision/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/google_vision)](https://shields.io/github/last-commit/faithoflifedev/google_vision) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/google_vision_workspace/flutter.yaml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/google_vision/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/google_vision)](https://shields.io/github/issues/faithoflifedev/google_vision)
 
 Please feel free to submit PRs for any additional helper methods, or report an [issue](https://github.com/faithoflifedev/google_vision/issues) for a missing helper method and I'll add it if I have time available.
 
@@ -21,7 +21,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision_flutter: ^1.1.0
+  google_vision_flutter: ^1.2.0
 ```
 
 <!-- <img src="https://github.com/faithoflifedev/flip_card/blob/master/screenshots/young_man_smiling.png?raw=true&amp;v1" width="320"> -->
@@ -33,49 +33,80 @@ dependencies:
 
 ### Usage of the GoogleVisionBuilder Widget
 
+See the [example app](https://github.com/faithoflifedev/google_vision_workspace/tree/main/packages/google_vision_flutter/example) for the full code.
+
 ```dart
-GoogleVisionBuilder(
-  // use the underlying `google_vision` package to initialize and authenticate for future API calls
-  googleVision: GoogleVision.withAsset(
-      'assets/service_credentials.json'),
-  // the image that will be processed by the Google Vision API
-  imageProvider: _processImage.image,
-  // the features to detect in the image
-  features: [
-    Feature(
-      maxResults: 10,
-      type: AnnotationType
-          .faceDetection,
-    ),
-    Feature(
-      maxResults: 10,
-      type: AnnotationType
-          .objectLocalization,
-    ),
-  ],
-  builder: (
-    BuildContext context,
-    AsyncSnapshot<AnnotatedResponses> snapshot,
-    ImageDetail? imageDetail,
-  ) {
-    if (snapshot.hasError) {
-      return Text('Error: ${snapshot.error}');
-    }
+import 'package:flutter/material.dart';
+import 'package:google_vision_flutter/google_vision_flutter.dart';
 
-    if (snapshot.hasData) {
-      // custom code that will write annotation text and boxes around detected objects (see example)
-      return CustomPaint(
-        foregroundPainter: AnnotationPainter(
-          annotatedResponses: snapshot.data!,
-          imageDetail: imageDetail!,
+class FaceDetection extends StatefulWidget {
+  const FaceDetection({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<FaceDetection> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<FaceDetection> {
+  final _processImage = Image.asset(
+    'assets/young-man-smiling.jpg',
+    fit: BoxFit.fitWidth,
+  );
+
+  @override
+  Widget build(BuildContext context) => SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            title: Text(widget.title),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text('assets/young-man-smiling.jpg'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _processImage,
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Processed image will appear below:',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GoogleVisionBuilder.faceDetection(
+                    googleVision: GoogleVision.withAsset(
+                        'assets/service_credentials.json'),
+                    imageProvider: _processImage.image,
+                    builder: (BuildContext context,
+                        List<FaceAnnotation>? faceAnnotations,
+                        ImageDetail imageDetail) {
+                      return CustomPaint(
+                        foregroundPainter: AnnotationPainter(
+                          faceAnnotations: faceAnnotations,
+                          imageDetail: imageDetail,
+                        ),
+                        child: Image(image: _processImage.image),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
-        child: Image(image: _processImage.image),
       );
-    }
-
-    return const Center(child: CircularProgressIndicator());
-  },
-)
+}
 ```
 
 ## Contributing
