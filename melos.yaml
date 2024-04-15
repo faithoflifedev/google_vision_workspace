@@ -38,6 +38,10 @@ scripts:
     run: melos exec --ignore="google_vision_flutter" dart pub publish --force
     description: Real publish for Google_Vision Package.
 
+  publish:real:flutter:
+    run: melos exec --ignore="google_vision" dart pub publish --force
+    description: Real publish for Google_Vision Package.
+
   publish:flutter:
     run: melos run meta && melos run analyze && melos run format && melos run markdown && melos run dryrun:flutter
     description: Run `dart publish` for all packages.
