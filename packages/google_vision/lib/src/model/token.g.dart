@@ -8,7 +8,7 @@ part of 'token.dart';
 
 Token _$TokenFromJson(Map<String, dynamic> json) => Token(
       accessToken: json['access_token'] as String,
-      expiresIn: json['expires_in'] as int,
+      expiresIn: (json['expires_in'] as num).toInt(),
       scope: json['scope'] as String?,
       tokenType: json['token_type'] as String,
       refreshToken: json['refresh_token'] as String?,

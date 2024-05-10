@@ -10,8 +10,8 @@ Page _$PageFromJson(Map<String, dynamic> json) => Page(
       property: json['property'] == null
           ? null
           : TextProperty.fromJson(json['property'] as Map<String, dynamic>),
-      width: json['width'] as int,
-      height: json['height'] as int,
+      width: (json['width'] as num).toInt(),
+      height: (json['height'] as num).toInt(),
       blocks: (json['blocks'] as List<dynamic>?)
           ?.map((e) => Block.fromJson(e as Map<String, dynamic>))
           .toList(),

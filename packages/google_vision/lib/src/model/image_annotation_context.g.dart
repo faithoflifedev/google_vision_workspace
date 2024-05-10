@@ -10,7 +10,7 @@ ImageAnnotationContext _$ImageAnnotationContextFromJson(
         Map<String, dynamic> json) =>
     ImageAnnotationContext(
       uri: json['uri'] as String,
-      pageNumber: json['pageNumber'] as int,
+      pageNumber: (json['pageNumber'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ImageAnnotationContextToJson(

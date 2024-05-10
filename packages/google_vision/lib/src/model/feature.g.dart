@@ -7,7 +7,7 @@ part of 'feature.dart';
 // **************************************************************************
 
 Feature _$FeatureFromJson(Map<String, dynamic> json) => Feature(
-      maxResults: json['maxResults'] as int?,
+      maxResults: (json['maxResults'] as num?)?.toInt(),
       type: $enumDecode(_$AnnotationTypeEnumMap, json['type']),
     );
 
