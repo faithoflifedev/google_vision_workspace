@@ -2,6 +2,10 @@
 
 ## 1.0.0+2
 
+* dependency bump
+
+## 1.0.0+2
+
 * helper methods for detection
 
 ## 1.0.0+1
