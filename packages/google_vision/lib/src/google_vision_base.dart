@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
+import 'package:universal_io/io.dart';
 
 /// Integrates Google Vision features, including painter labeling, face, logo,
 /// and landmark detection, optical character recognition (OCR), and detection
@@ -12,11 +13,11 @@ class GoogleVision {
   static final accept = 'application/json';
   static final contentType = 'application/json; charset=UTF-8';
 
-  static TokenGenerator? tokenGenerator;
+  static String? _apiKey;
   static String? _token;
+  static TokenGenerator? tokenGenerator;
 
   GoogleVision() : _rest = VisionClient(dio);
-
   static Future<void> _confirmToken() async {
     if (tokenGenerator == null) {
       throw Exception();
@@ -31,7 +32,14 @@ class GoogleVision {
     }
   }
 
-  /// Authenticate using the supplied token  generator
+  /// Authenticate using an API key.
+  static Future<GoogleVision> withApiKey(String apiKey) async {
+    _apiKey = apiKey;
+
+    return GoogleVision();
+  }
+
+  /// Authenticate using the supplied token generator
   static Future<GoogleVision> withGenerator(TokenGenerator generator) async {
     final yt = GoogleVision();
 
@@ -69,12 +77,21 @@ class GoogleVision {
   }
 
   /// Run detection and annotation for a batch of requests.
-  Future<AnnotatedResponses> annotate({required AnnotationRequests requests}) =>
-      _rest.annotate(
-        'Bearer $_token',
-        contentType,
-        requests.toJson(),
-      );
+  Future<AnnotatedResponses> annotate({required AnnotationRequests requests}) {
+    if (_token != null) {
+      dio.options.headers[HttpHeaders.authorizationHeader] = 'Bearer $_token';
+    }
+
+    if (_apiKey != null) {
+      dio.options.queryParameters['key'] = _apiKey;
+    }
+
+    return _rest.annotate(
+      // 'Bearer $_token',
+      contentType,
+      requests.toJson(),
+    );
+  }
 
   /// Higher level method for a single detection type as specified by [annotationType],
   Future<AnnotateImageResponse> detection(

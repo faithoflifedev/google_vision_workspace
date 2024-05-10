@@ -14,7 +14,7 @@ abstract class VisionClient {
   /// Run image detection and annotation for a batch of images.
   @POST('/images:annotate')
   Future<AnnotatedResponses> annotate(
-      @Header('Authorization') String authorization,
+      // @Header('Authorization') String authorization,
       @Header('Content-Type') String contentType,
       // @Header('x-goog-user-project') String? projectId,
       @Body() Map<String, dynamic> params);

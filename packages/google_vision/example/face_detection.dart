@@ -1,8 +1,12 @@
 import 'package:google_vision/google_vision.dart';
+import 'package:universal_io/io.dart';
 
 void main() async {
-  final googleVision =
-      await GoogleVision.withJwtFile('service_credentials.json');
+  // final googleVision =
+  //     await GoogleVision.withJwtFile('example/service_credentials.json');
+
+  final googleVision = await GoogleVision.withApiKey(
+      Platform.environment['GOOGLE_VISION_API_KEY'] ?? '[YOUR API KEY]');
 
   print('checking...');
 

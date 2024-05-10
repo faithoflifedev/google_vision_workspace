@@ -22,16 +22,12 @@ class _VisionClient implements VisionClient {
 
   @override
   Future<AnnotatedResponses> annotate(
-    String authorization,
     String contentType,
     Map<String, dynamic> params,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{
-      r'Authorization': authorization,
-      r'Content-Type': contentType,
-    };
+    final _headers = <String, dynamic>{r'Content-Type': contentType};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(params);
