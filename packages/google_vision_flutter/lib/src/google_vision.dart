@@ -10,4 +10,7 @@ class GoogleVision extends gv.GoogleVision {
 
     return gv.GoogleVision.withJwt(credentials);
   }
+
+  static Future<gv.GoogleVision> withApiKey(String apiKey) async =>
+      gv.GoogleVision.withApiKey(apiKey);
 }

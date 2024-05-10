@@ -28,3 +28,6 @@ pubspec.lock
 .dart_tool/
 .packages
 build/
+
+
+tool/publish_tools.yaml
