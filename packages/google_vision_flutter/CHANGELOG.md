@@ -2,11 +2,7 @@
 
 ## 1.0.0+3
 
-* dependency bump
-
-## 1.0.0+2
-
-* dependency bump
+* [ISSUE #19](https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision_workspace&#x2F;issues&#x2F;19) - Support for API key
 
 ## 1.0.0+2
 

@@ -24,7 +24,11 @@ scripts:
 
   prep:dart:
     run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format && melos run commit:dart
-    description: Run `dart publish` for all packages.
+    description: Run prep steps dart.
+
+  prep:flutter:
+    run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format && melos run commit:flutter
+    description: Run prep steps Flutter.
 
   commit:dart:
     run: melos exec git add .; git commit -m "chore(release); git push origin main"
