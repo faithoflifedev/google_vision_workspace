@@ -8,6 +8,10 @@
 
 * [ISSUE #19](https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision_workspace&#x2F;issues&#x2F;19) - Support for API key
 
+## 1.2.1
+
+* [ISSUE #19](https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision_workspace&#x2F;issues&#x2F;19) - Support for API key
+
 ## 1.2.0+6
 
 * [markdown issue](https:&#x2F;&#x2F;github.com&#x2F;dart-lang&#x2F;markdown&#x2F;issues&#x2F;596) on pub.dev
