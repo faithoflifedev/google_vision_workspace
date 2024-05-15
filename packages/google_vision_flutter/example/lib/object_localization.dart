@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class ObjectLocalization extends StatefulWidget {
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<ObjectLocalization> {
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
                     builder: (BuildContext context,
-                        List<LocalizedObjectAnnotation>?
+                        List<gv.LocalizedObjectAnnotation>?
                             localizedObjectAnnotations,
                         ImageDetail imageDetail) {
                       return CustomPaint(
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<ObjectLocalization> {
 }
 
 class AnnotationPainter extends CustomPainter {
-  final List<LocalizedObjectAnnotation>? localizedObjectAnnotations;
+  final List<gv.LocalizedObjectAnnotation>? localizedObjectAnnotations;
   // a reference to the original image
   final ImageDetail imageDetail;
 
@@ -129,7 +130,7 @@ class AnnotationPainter extends CustomPainter {
   }
 
   void drawAnnotationsNormalized({
-    required List<NormalizedVertex> vertices,
+    required List<gv.NormalizedVertex> vertices,
     required Canvas canvas,
     required Size size,
     Color? color,

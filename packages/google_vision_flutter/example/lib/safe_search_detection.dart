@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class SafeSearchDetection extends StatefulWidget {
@@ -52,7 +53,7 @@ class _MyHomePageState extends State<SafeSearchDetection> {
                         imageProvider: _processImage.image,
                         builder: (
                           BuildContext context,
-                          SafeSearchAnnotation? safeSearchAnnotation,
+                          gv.SafeSearchAnnotation? safeSearchAnnotation,
                           ImageDetail? imageDetail,
                         ) =>
                             Text('Result: ${safeSearchAnnotation!}')))

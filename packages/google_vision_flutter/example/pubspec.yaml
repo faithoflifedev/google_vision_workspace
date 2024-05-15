@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   color: ^3.0.0
+  google_vision: ^1.2.1
   google_vision_flutter:
     path: ../../google_vision_flutter
   universal_io: ^2.2.2

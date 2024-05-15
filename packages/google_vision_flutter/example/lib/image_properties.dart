@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class ImageProperties extends StatefulWidget {
@@ -53,7 +54,7 @@ class _MyHomePageState extends State<ImageProperties> {
                     imageProvider: _processImage.image,
                     builder: (
                       BuildContext context,
-                      ImagePropertiesAnnotation? imagePropertiesAnnotation,
+                      gv.ImagePropertiesAnnotation? imagePropertiesAnnotation,
                       ImageDetail? imageDetail,
                     ) =>
                         Padding(

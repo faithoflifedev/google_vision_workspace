@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class MultipleDetections extends StatefulWidget {
@@ -58,20 +59,20 @@ class _MyHomePageState extends State<MultipleDetections> {
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
                     features: [
-                      Feature(
+                      gv.Feature(
                         maxResults: 10,
-                        type: AnnotationType
+                        type: gv.AnnotationType
                             .faceDetection, // 'LOGO_DETECTION', // 'FACE_DETECTION'
                       ),
-                      Feature(
+                      gv.Feature(
                         maxResults: 10,
-                        type: AnnotationType
+                        type: gv.AnnotationType
                             .objectLocalization, // 'LOGO_DETECTION', // 'FACE_DETECTION'
                       ),
                     ],
                     builder: (
                       BuildContext context,
-                      AsyncSnapshot<AnnotatedResponses> snapshot,
+                      AsyncSnapshot<gv.AnnotatedResponses> snapshot,
                       ImageDetail? imageDetail,
                     ) {
                       if (snapshot.hasError) {
@@ -100,7 +101,7 @@ class _MyHomePageState extends State<MultipleDetections> {
 }
 
 class AnnotationPainter extends CustomPainter {
-  final AnnotatedResponses annotatedResponses;
+  final gv.AnnotatedResponses annotatedResponses;
 
   // a reference to the original image
   final ImageDetail imageDetail;
@@ -233,7 +234,7 @@ class AnnotationPainter extends CustomPainter {
   }
 
   void drawAnnotationsRect({
-    required List<Vertex> vertices,
+    required List<gv.Vertex> vertices,
     required Canvas canvas,
     required double heightRatio,
     required double widthRatio,
@@ -264,7 +265,7 @@ class AnnotationPainter extends CustomPainter {
   }
 
   void drawAnnotationsNormalized({
-    required List<NormalizedVertex> vertices,
+    required List<gv.NormalizedVertex> vertices,
     required Canvas canvas,
     required Size size,
     Color? color,

@@ -30,13 +30,15 @@ scripts:
     run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format && melos run commit:flutter
     description: Run prep steps Flutter.
 
-  commit:dart:
-    run: melos exec git add .; git commit -m "chore(release); git push origin main"
-    description: Commit changes for Dart package.
+  ## TODO: Add commit steps for Dart and Flutter packages.
 
-  commit:flutter:
-    run: melos exec git add .; git commit -m "chore(release); git push origin main"
-    description: Commit changes for Flutter package.
+  # commit:dart:
+  #   run: melos exec git add .; git commit -m "chore(release); git push origin main"
+  #   description: Commit changes for Dart package.
+
+  # commit:flutter:
+  #   run: melos exec git add .; git commit -m "chore(release); git push origin main"
+  #   description: Commit changes for Flutter package.
 
   publish:real:dart:
     run: melos exec --ignore="google_vision_flutter" dart pub publish --force
@@ -91,6 +93,6 @@ scripts:
     run: melos exec pana --no-dartdoc .
     description: Run pana checks for all packages.
 
-  clean:deep:
-    run: git clean -x -d -f -q
-    description: Clean things very deeply, can be used to establish "pristine checkout" status.
+  # clean:deep:
+  #   run: git clean -x -d -f -q
+  #   description: Clean things very deeply, can be used to establish "pristine checkout" status.

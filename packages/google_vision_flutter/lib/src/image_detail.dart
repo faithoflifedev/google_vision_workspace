@@ -6,5 +6,6 @@ class ImageDetail {
   final int height;
   final ByteBuffer? byteBuffer;
 
+  /// Creates a new instance of [ImageDetail].
   ImageDetail({required this.width, required this.height, this.byteBuffer});
 }

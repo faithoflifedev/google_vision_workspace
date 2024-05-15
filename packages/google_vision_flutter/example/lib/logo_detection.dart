@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class LogoDetection extends StatefulWidget {
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<LogoDetection> {
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
                     builder: (BuildContext context,
-                        List<EntityAnnotation>? entityAnnotations,
+                        List<gv.EntityAnnotation>? entityAnnotations,
                         ImageDetail imageDetail) {
                       return CustomPaint(
                         foregroundPainter: EntityAnnotationPainter(
@@ -71,7 +72,7 @@ class _MyHomePageState extends State<LogoDetection> {
 }
 
 class EntityAnnotationPainter extends CustomPainter {
-  final List<EntityAnnotation>? entityAnnotations;
+  final List<gv.EntityAnnotation>? entityAnnotations;
   // a reference to the original image
   final ImageDetail imageDetail;
 
@@ -141,7 +142,7 @@ class EntityAnnotationPainter extends CustomPainter {
   }
 
   void drawAnnotationsRect({
-    required List<Vertex> vertices,
+    required List<gv.Vertex> vertices,
     required Canvas canvas,
     required double heightRatio,
     required double widthRatio,

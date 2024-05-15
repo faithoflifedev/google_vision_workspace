@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:universal_io/io.dart';
 
+/// A class that holds the details of an image that can be converted to/from JSON.
 class JsonImage {
   final String? imageUri;
 

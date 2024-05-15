@@ -1,28 +1,12 @@
 # Changelog
 
-## 1.2.1
+## 1.2.1+1
 
-* [ISSUE #19](https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision_workspace&#x2F;issues&#x2F;19) - Support for API key
-
-## 1.2.1
-
-* [ISSUE #19](https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision_workspace&#x2F;issues&#x2F;19) - Support for API key
+* updated documentation
 
 ## 1.2.1
 
-* [ISSUE #19](https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision_workspace&#x2F;issues&#x2F;19) - Support for API key
-
-## 1.2.1
-
-* [ISSUE #19](https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision_workspace&#x2F;issues&#x2F;19) - Support for API key
-
-## 1.2.1
-
-* [ISSUE #19](https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision_workspace&#x2F;issues&#x2F;19) - Support for API key
-
-## 1.2.1
-
-* [ISSUE #19](https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision_workspace&#x2F;issues&#x2F;19) - Support for API key
+* [ISSUE #19](https:&#x2F;&#x2F;github.com&#x2F;faithoflifedev&#x2F;google_vision_workspace&#x2F;issues&#x2F;19) - Support for API key authentication
 
 ## 1.2.0+6
 
@@ -49,31 +33,11 @@
 
 * dependency bump
 
-## 1.1.1+3
-
-* dependency bump
-
-## 1.1.1+3
-
-* dependency bump
-
-## 1.1.1+3
-
-* dependency bump
-
-## 1.1.1+3
-
-* dependency bump
-
 ## 1.1.1+2
 
 * dependency bump
   
 ## 1.1.1+1
-
-* adjust ignore
-
-## 1.1.0+4
 
 * adjust ignore
 
@@ -109,11 +73,6 @@
 * add &quot;version&quot; to cli commands
 
 ## 1.0.8+1
-
-* web entities and pages
-* dependency bump
-
-## 1.0.8
 
 * web entities and pages
 * dependency bump
@@ -156,23 +115,6 @@
 * support for `error` responses
 * support for contextual information
 
-## 1.0.7
-
-* support for landmark detection
-* support for logo detection
-* support for text and full-text detection
-* support for image properties detection
-* support for `error` responses
-* support for contextual information
-
-## 1.0.7
-
-* support for landmark detection
-* support for logo detection
-* support for text and full-text detection
-* support for image properties detection
-* support for `error` responses
-* support for contextual information
 
 ## 1.0.6+7
 
@@ -221,10 +163,6 @@
 * added flutter example
 
 ## 1.0.5+3
-
-* support for `publish_tools`
-
-## 1.0.5+2
 
 * support for `publish_tools`
 

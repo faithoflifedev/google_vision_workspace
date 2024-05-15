@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_vision_flutter/google_vision_flutter.dart' as gv;
+import 'package:google_vision/google_vision.dart' as gv;
+import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class WebDetection extends StatefulWidget {
   const WebDetection({super.key, required this.title});
@@ -46,14 +47,14 @@ class _MyHomePageState extends State<WebDetection> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: gv.GoogleVisionBuilder.webDetection(
-                    googleVision: gv.GoogleVision.withAsset(
+                  child: GoogleVisionBuilder.webDetection(
+                    googleVision: GoogleVision.withAsset(
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
                     builder: (
                       BuildContext context,
                       gv.WebDetection? webDetection,
-                      gv.ImageDetail? imageDetail,
+                      ImageDetail? imageDetail,
                     ) =>
                         Padding(
                       padding: const EdgeInsets.all(8.0),

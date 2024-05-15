@@ -76,7 +76,8 @@ class MenuScreen extends StatelessWidget {
         title: const Text('Menu'),
       ),
       body: Center(
-        child: Column(children: [
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           ElevatedButton(
             child: const Text('Multiple Detections'),
             onPressed: () => Navigator.pushNamed(context, '/multiple'),
