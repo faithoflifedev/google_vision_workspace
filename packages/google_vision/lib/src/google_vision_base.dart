@@ -33,8 +33,15 @@ class GoogleVision {
   }
 
   /// Authenticate using an API key.
-  static Future<GoogleVision> withApiKey(String apiKey) async {
+  static Future<GoogleVision> withApiKey(
+    String apiKey, {
+    Map<String, String>? additionalHeaders,
+  }) async {
     _apiKey = apiKey;
+
+    if (additionalHeaders != null) {
+      dio.options.headers.addAll(additionalHeaders);
+    }
 
     return GoogleVision();
   }
@@ -145,7 +152,7 @@ class GoogleVision {
 
   /// Face Detection detects multiple faces within an image along with the
   /// associated key facial attributes such as emotional state or wearing
-  /// headwear.
+  /// head-wear.
   Future<List<FaceAnnotation>> faceDetection(
     JsonImage jsonImage, {
     int maxResults = 10,

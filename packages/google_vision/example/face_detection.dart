@@ -6,7 +6,9 @@ void main() async {
   //     await GoogleVision.withJwtFile('example/service_credentials.json');
 
   final googleVision = await GoogleVision.withApiKey(
-      Platform.environment['GOOGLE_VISION_API_KEY'] ?? '[YOUR API KEY]');
+    Platform.environment['GOOGLE_VISION_API_KEY'] ?? '[YOUR API KEY]',
+    additionalHeaders: {'com.xxx.xxx': 'X-Ios-Bundle-Identifier'},
+  );
 
   print('checking...');
 
