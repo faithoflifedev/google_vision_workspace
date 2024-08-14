@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart' as gv;
-import 'package:google_vision_flutter/google_vision_flutter.dart';
+import 'package:google_vision_flutter/google_vision_flutter.dart' as gv
+    show WebDetection;
+import 'package:google_vision_flutter/google_vision_flutter.dart'
+    hide WebDetection;
 
 class WebDetection extends StatefulWidget {
   const WebDetection({super.key, required this.title});

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class DocumentTextDetection extends StatefulWidget {
@@ -53,7 +52,7 @@ class _MyHomePageState extends State<DocumentTextDetection> {
                     imageProvider: _processImage.image,
                     builder: (
                       BuildContext context,
-                      gv.FullTextAnnotation? fullTextAnnotation,
+                      FullTextAnnotation? fullTextAnnotation,
                       ImageDetail? imageDetail,
                     ) =>
                         Padding(

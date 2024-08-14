@@ -478,44 +478,45 @@ class GoogleVisionBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       FutureBuilder<(GoogleVision, ImageDetail)>(
-          future: waitConcurrently<GoogleVision, ImageDetail>(googleVision,
-              imageProvider.getImageDetails(format: ImageByteFormat.png)),
-          builder: (BuildContext context,
-              AsyncSnapshot<(GoogleVision, ImageDetail)> snapshot) {
-            GoogleVision? googleVision;
+        future: waitConcurrently<GoogleVision, ImageDetail>(googleVision,
+            imageProvider.getImageDetails(format: ImageByteFormat.png)),
+        builder: (BuildContext context,
+            AsyncSnapshot<(GoogleVision, ImageDetail)> snapshot) {
+          GoogleVision? googleVision;
 
-            ImageDetail? imageDetail;
+          ImageDetail? imageDetail;
 
-            if (snapshot.hasError) {
-              return onError != null
-                  ? onError!(snapshot.error!)
-                  : Text(snapshot.error.toString());
-            }
+          if (snapshot.hasError) {
+            return onError != null
+                ? onError!(snapshot.error!)
+                : Text(snapshot.error.toString());
+          }
 
-            if (snapshot.hasData) {
-              googleVision = snapshot.data!.$1;
+          if (snapshot.hasData) {
+            googleVision = snapshot.data!.$1;
 
-              imageDetail = snapshot.data!.$2;
+            imageDetail = snapshot.data!.$2;
 
-              return FutureBuilder<AnnotatedResponses>(
-                future: googleVision.annotate(
-                    requests: AnnotationRequests(requests: [
-                  AnnotationRequest(
-                      jsonImage: JsonImage(byteBuffer: imageDetail.byteBuffer),
-                      features: features)
-                ])),
-                builder: (BuildContext context,
-                        AsyncSnapshot<AnnotatedResponses> snapshot) =>
-                    builder(
-                  context,
-                  snapshot,
-                  imageDetail!,
-                ),
-              );
-            }
+            return FutureBuilder<AnnotatedResponses>(
+              future: googleVision.annotate(
+                  requests: AnnotationRequests(requests: [
+                AnnotationRequest(
+                    jsonImage: JsonImage(byteBuffer: imageDetail.byteBuffer),
+                    features: features)
+              ])),
+              builder: (BuildContext context,
+                      AsyncSnapshot<AnnotatedResponses> snapshot) =>
+                  builder(
+                context,
+                snapshot,
+                imageDetail!,
+              ),
+            );
+          }
 
-            return onLoading != null
-                ? onLoading!()
-                : const CircularProgressIndicator();
-          });
+          return onLoading != null
+              ? onLoading!()
+              : const CircularProgressIndicator();
+        },
+      );
 }

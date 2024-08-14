@@ -1,4 +1,5 @@
-commit: removed reexport of "google_vision" package, added example.md
+commit: package example is now included and added back the google_vision re-export
 changes: |
-  * removed reexport of "google_vision" package
-  * added example.md
+  * added back the google_vision re-export
+  * package example is now included
+  * dependency bump for google_vision

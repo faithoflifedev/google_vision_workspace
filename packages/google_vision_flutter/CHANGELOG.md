@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1+2
+
+* added back the google_vision re-export
+* package example is now included
+* dependency bump for google_vision
+
 ## 1.1.0
 
 * removed reexport of &quot;google_vision&quot; package

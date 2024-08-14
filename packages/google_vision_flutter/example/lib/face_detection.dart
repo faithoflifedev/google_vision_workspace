@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class FaceDetection extends StatefulWidget {
@@ -52,7 +51,7 @@ class _MyHomePageState extends State<FaceDetection> {
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
                     builder: (BuildContext context,
-                            List<gv.FaceAnnotation>? faceAnnotations,
+                            List<FaceAnnotation>? faceAnnotations,
                             ImageDetail imageDetail) =>
                         CustomPaint(
                       foregroundPainter: AnnotationPainter(
@@ -71,7 +70,7 @@ class _MyHomePageState extends State<FaceDetection> {
 }
 
 class AnnotationPainter extends CustomPainter {
-  final List<gv.FaceAnnotation>? faceAnnotations;
+  final List<FaceAnnotation>? faceAnnotations;
   // a reference to the original image
   final ImageDetail imageDetail;
 
@@ -141,7 +140,7 @@ class AnnotationPainter extends CustomPainter {
   }
 
   void drawAnnotationsRect({
-    required List<gv.Vertex> vertices,
+    required List<Vertex> vertices,
     required Canvas canvas,
     required double heightRatio,
     required double widthRatio,

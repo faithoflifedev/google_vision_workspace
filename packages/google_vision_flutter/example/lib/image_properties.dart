@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class ImageProperties extends StatefulWidget {
@@ -12,8 +11,10 @@ class ImageProperties extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<ImageProperties> {
+  static const assetName = 'assets/google_logo.jpg';
+
   final _processImage = Image.asset(
-    'assets/logo.png',
+    assetName,
     fit: BoxFit.fitWidth,
   );
 
@@ -33,7 +34,7 @@ class _MyHomePageState extends State<ImageProperties> {
               children: <Widget>[
                 const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text('assets/logo.png'),
+                  child: Text(assetName),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<ImageProperties> {
                     imageProvider: _processImage.image,
                     builder: (
                       BuildContext context,
-                      gv.ImagePropertiesAnnotation? imagePropertiesAnnotation,
+                      ImagePropertiesAnnotation? imagePropertiesAnnotation,
                       ImageDetail? imageDetail,
                     ) =>
                         Padding(

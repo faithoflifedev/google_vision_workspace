@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 /// Extension methods for the [ImageProvider] class.

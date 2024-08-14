@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class LogoDetection extends StatefulWidget {
@@ -12,8 +11,10 @@ class LogoDetection extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<LogoDetection> {
+  static const assetName = 'assets/google_logo.jpg';
+
   final _processImage = Image.asset(
-    'assets/logo.png',
+    assetName,
     fit: BoxFit.fitWidth,
   );
 
@@ -33,7 +34,7 @@ class _MyHomePageState extends State<LogoDetection> {
               children: <Widget>[
                 const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text('assets/logo.png'),
+                  child: Text(assetName),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -52,16 +53,15 @@ class _MyHomePageState extends State<LogoDetection> {
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
                     builder: (BuildContext context,
-                        List<gv.EntityAnnotation>? entityAnnotations,
-                        ImageDetail imageDetail) {
-                      return CustomPaint(
-                        foregroundPainter: EntityAnnotationPainter(
-                          entityAnnotations: entityAnnotations,
-                          imageDetail: imageDetail,
-                        ),
-                        child: Image(image: _processImage.image),
-                      );
-                    },
+                            List<EntityAnnotation>? entityAnnotations,
+                            ImageDetail imageDetail) =>
+                        CustomPaint(
+                      foregroundPainter: EntityAnnotationPainter(
+                        entityAnnotations: entityAnnotations,
+                        imageDetail: imageDetail,
+                      ),
+                      child: Image(image: _processImage.image),
+                    ),
                   ),
                 )
               ],
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<LogoDetection> {
 }
 
 class EntityAnnotationPainter extends CustomPainter {
-  final List<gv.EntityAnnotation>? entityAnnotations;
+  final List<EntityAnnotation>? entityAnnotations;
   // a reference to the original image
   final ImageDetail imageDetail;
 
@@ -142,7 +142,7 @@ class EntityAnnotationPainter extends CustomPainter {
   }
 
   void drawAnnotationsRect({
-    required List<gv.Vertex> vertices,
+    required List<Vertex> vertices,
     required Canvas canvas,
     required double heightRatio,
     required double widthRatio,

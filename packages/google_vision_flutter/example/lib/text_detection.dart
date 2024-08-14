@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class TextDetection extends StatefulWidget {
@@ -52,7 +51,7 @@ class _MyHomePageState extends State<TextDetection> {
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
                     builder: (BuildContext context,
-                        List<gv.EntityAnnotation>? entityAnnotations,
+                        List<EntityAnnotation>? entityAnnotations,
                         ImageDetail imageDetail) {
                       return CustomPaint(
                         foregroundPainter: AnnotationPainter(
@@ -72,7 +71,7 @@ class _MyHomePageState extends State<TextDetection> {
 }
 
 class AnnotationPainter extends CustomPainter {
-  final List<gv.EntityAnnotation>? entityAnnotations;
+  final List<EntityAnnotation>? entityAnnotations;
   // a reference to the original image
   final ImageDetail imageDetail;
 

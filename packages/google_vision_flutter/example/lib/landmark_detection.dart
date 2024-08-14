@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class LandmarkDetection extends StatefulWidget {
@@ -52,7 +51,7 @@ class _MyHomePageState extends State<LandmarkDetection> {
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
                     builder: (BuildContext context,
-                            List<gv.EntityAnnotation>? entityAnnotations,
+                            List<EntityAnnotation>? entityAnnotations,
                             ImageDetail imageDetail) =>
                         Padding(
                       padding: const EdgeInsets.all(8.0),
