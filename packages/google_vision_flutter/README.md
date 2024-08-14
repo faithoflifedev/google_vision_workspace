@@ -27,7 +27,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision_flutter: ^1.2.1+2
+  google_vision_flutter: ^1.2.1+3
 ```
 
 
@@ -41,7 +41,6 @@ See the [example app](https://github.com/faithoflifedev/google_vision_workspace/
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 class FaceDetection extends StatefulWidget {
@@ -94,7 +93,7 @@ class _MyHomePageState extends State<FaceDetection> {
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
                     builder: (BuildContext context,
-                            List<gv.FaceAnnotation>? faceAnnotations,
+                            List<FaceAnnotation>? faceAnnotations,
                             ImageDetail imageDetail) =>
                         CustomPaint(
                       foregroundPainter: AnnotationPainter(
