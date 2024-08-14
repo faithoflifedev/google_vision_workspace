@@ -32,10 +32,17 @@ class VisionDetectCommand extends VisionHelper {
 
   @override
   void run() async {
-    final imageFile = File(argResults!['image-file']).readAsBytesSync();
+    final imageFile = File(argResults!['image-file']);
 
-    final annotatedResponses = await annotate(imageFile.buffer);
+    if (pages != null) {
+      final annotatedResponses = await annotateFile(imageFile, pages: pages!);
 
-    print(annotatedResponses.responses);
+      print(annotatedResponses.responses);
+    } else {
+      final annotatedResponses =
+          await annotateImage(imageFile.readAsBytesSync().buffer);
+
+      print(annotatedResponses.responses);
+    }
   }
 }

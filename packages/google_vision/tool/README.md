@@ -29,23 +29,16 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 
 ## Recent Changes
 
+### New for v1.3.0
+  - This version of the package supports both the `image` and `file` annotation APIs for Google Vision.  The previous versions of the package supported only the `image` API.
+  - A number of methods and classes have been **Deprecated** in this version.  All the provided examples still work without any changes, so the changes in this package should not cause any issue to existing code.
+  - The `file` functionality added to this release allows for the annotation of file formats that have pages or frames, specifically `pdf`, `tiff` and `gif`.  Google Vision allows annotation of up to 5 pages/frames.
+
 ### New for v1.2.0
   - helper methods that simplify any `single` detection so a simple face detection can be performed with the `faceDetection(JsonImage jsonImage)` method, see the table below.
 
 ### New for v1.0.8
   - web entities and pages detection [https://cloud.google.com/vision/docs/detecting-web](https://cloud.google.com/vision/docs/detecting-web), provides urls of web pages that match the specified image
-
-### New for v1.0.7
-
-[JLuisRojas](https://github.com/JLuisRojas) has provided code for:
-- detect text in images
-- detect handwriting in images
-
-In addition support for the following has also been added:
-- detect crop hints
-- detect image properties
-- detect landmarks
-- detect logos
 
 ## Getting Started
 
@@ -59,20 +52,27 @@ dependencies:
   google_vision: ^{{ pubspec.version }}
 ```
 
-### Obtaining Authorization Credentials
+### Obtaining Authentication/Authorization Credentials
 
-[Authenticating to the Cloud Vision API](https://cloud.google.com/vision/product-search/docs/auth) requires a JSON file with the JWT token information, which you can obtain by [creating a service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account) in the API console.
+[Authenticating to the Cloud Vision API](https://cloud.google.com/vision/product-search/docs/auth) can be done with one of two methods: 
+ - The first method requires a JSON file with the JWT token information, which you can obtain by [creating a service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account) in the API console.
+ - The second method requires an [API key](https://console.cloud.google.com/apis/credentials) to be created.
+
+Both of the authorization/authentication methods listed above assume that you already have a Google account, you have created a Google Cloud project and you have enabled the Cloud Vision API in the Google API library.
 
 ### Usage of the Cloud Vision API
 
 ```dart
-final googleVision =
-    await GoogleVision.withJwtFile('service_credentials.json');
+final googleVision = await GoogleVision.withApiKey(
+  Platform.environment['GOOGLE_VISION_API_KEY'] ?? '[YOUR API KEY]',
+  // additionalHeaders: {'com.xxx.xxx': 'X-Ios-Bundle-Identifier'},
+);
 
 print('checking...');
 
-final faceAnnotationResponses = await googleVision.faceDetection(
-  JsonImage.fromFilePath('sample_image/young-man-smiling-and-thumbs-up.jpg'));
+final faceAnnotationResponses = await googleVision.image.faceDetection(
+    JsonImage.fromGsUri(
+        'gs://gvision-demo/young-man-smiling-and-thumbs-up.jpg'));
 
 for (var faceAnnotation in faceAnnotationResponses) {
   print('Face - ${faceAnnotation.detectionConfidence}');
@@ -80,8 +80,13 @@ for (var faceAnnotation in faceAnnotationResponses) {
   print('Joy - ${faceAnnotation.enumJoyLikelihood}');
 }
 
+// Output:
+// Face - 0.9609375
+// Joy - Likelihood.UNLIKELY
+
 print('done.');
 ```
+
 ## New Helper Methods
 
 | <div style="width:420px">**Method Signature** | **Description** |
@@ -103,7 +108,7 @@ print('done.');
 
 For a quick intro into the use of Google Vision in a Flutter, take a look at the [`google_vision_flutter`](https://github.com/faithoflifedev/google_vision_workspace/tree/main/packages/google_vision_flutter) package and the [example](https://github.com/faithoflifedev/google_vision_workspace/tree/main/packages/google_vision_flutter/example) folder of the project's GitHub repository.
 
-If Flutter specific Google Vision Widget doesn't suite your requirements, then to work with Flutter it's usually necessary to convert an object that is presented as an `Asset` or a `Stream` into a `File` for use by this `google_vision` package.  This [StackOverflow](https://stackoverflow.com/questions/55295593/how-to-convert-asset-image-to-file) post gives an idea on how this can be accomplished.  A similar process can be used for any `Stream` of data that represents an image supported by `google_vision`.  Essentially, the Google Vision REST API needs to be able to convert the image data into its Base64 representation before submitting it to the Google server and having the `bytedata` available in the code makes this easier. 
+If Flutter specific Google Vision Widget doesn't meet your requirements, then to work with Flutter it's usually necessary to convert an object that is presented as an `Asset` or a `Stream` into a `File` for use by this `google_vision` package.  This [StackOverflow](https://stackoverflow.com/questions/55295593/how-to-convert-asset-image-to-file) post gives an idea on how this can be accomplished.  A similar process can be used for any `Stream` of data that represents an image supported by `google_vision`.  Essentially, the Google Vision REST API needs to be able to convert the image data into its Base64 representation before submitting it to the Google server and having the `bytedata` available in the code makes this easier. 
 
 ## Vision cli (google_vision at the command prompt)
 

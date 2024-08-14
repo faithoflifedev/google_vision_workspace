@@ -6,7 +6,7 @@ void main() async {
 
   print('checking...');
 
-  final logoAnnotationsResponses = await googleVision
+  final logoAnnotationsResponses = await googleVision.image
       .logoDetection(JsonImage.fromFilePath('sample_image/logo.png'));
 
   for (var logoAnnotation in logoAnnotationsResponses) {

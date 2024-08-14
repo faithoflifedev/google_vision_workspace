@@ -1,19 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'annotated_responses.dart';
+part of 'batch_annotate_images_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AnnotatedResponses _$AnnotatedResponsesFromJson(Map<String, dynamic> json) =>
-    AnnotatedResponses(
+BatchAnnotateImagesResponse _$BatchAnnotateImagesResponseFromJson(
+        Map<String, dynamic> json) =>
+    BatchAnnotateImagesResponse(
       responses: (json['responses'] as List<dynamic>)
           .map((e) => AnnotateImageResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$AnnotatedResponsesToJson(AnnotatedResponses instance) =>
+Map<String, dynamic> _$BatchAnnotateImagesResponseToJson(
+        BatchAnnotateImagesResponse instance) =>
     <String, dynamic>{
       'responses': instance.responses.map((e) => e.toJson()).toList(),
     };

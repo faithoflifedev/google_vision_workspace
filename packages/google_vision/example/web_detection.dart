@@ -10,9 +10,9 @@ void main() async {
   print('checking...');
 
   AnnotatedResponses annotatedResponses = await googleVision.annotate(
-    requests: AnnotationRequests(
+    requests: AnnotateImageRequests(
       requests: [
-        AnnotationRequest(
+        AnnotateImageRequest(
             jsonImage: JsonImage(byteBuffer: imageFile.buffer),
             features: [
               Feature(maxResults: 10, type: AnnotationType.webDetection)

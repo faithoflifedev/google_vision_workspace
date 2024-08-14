@@ -9,14 +9,14 @@ part 'image_annotation_context.g.dart';
 @JsonSerializable()
 class ImageAnnotationContext {
   /// The URI of the file used to produce the image.
-  final String uri;
+  final String? uri;
 
   /// If the file was a PDF or TIFF, this field gives the page number within the
   /// file used to produce the image.
   final int pageNumber;
 
   ImageAnnotationContext({
-    required this.uri,
+    this.uri,
     required this.pageNumber,
   });
 

@@ -5,6 +5,11 @@ import 'package:universal_io/io.dart';
 void main(List<String> arguments) async {
   CommandRunner('vision',
       'A command line interface for making API requests to the Google Vision.')
+    ..argParser.addOption(
+      'pages',
+      abbr: 'p',
+      valueHelp: 'comma delimited list of pages to process (max 5)',
+    )
     ..argParser.addOption('credential-file',
         defaultsTo: '${Util.userHome}/.vision/credentials.json',
         valueHelp: 'credentials file path')

@@ -4,6 +4,9 @@
 library google_vision;
 
 export 'src/google_vision_base.dart';
+export 'src/google_vision_file.dart';
+export 'src/google_vision_image.dart';
+export 'src/annotate_json_serializable.dart';
 export 'src/token_generator.dart';
 
 export 'src/cmd/vision_crop_hint_command.dart';
@@ -14,10 +17,14 @@ export 'src/cmd/vision_safe_search_command.dart';
 export 'src/cmd/vision_score_command.dart';
 export 'src/cmd/vision_version_command.dart';
 
+export 'src/model/annotate_file_request.dart';
+export 'src/model/annotate_file_response.dart';
 export 'src/model/annotate_image_response.dart';
-export 'src/model/annotated_responses.dart';
-export 'src/model/annotation_request.dart';
-export 'src/model/annotation_requests.dart';
+export 'src/model/batch_annotate_images_response.dart';
+export 'src/model/annotate_image_request.dart';
+// TODO: remove this depricated class in the next verion
+export 'src/model/annotate_image_requests.dart';
+export 'src/model/batch_annotate_files_response.dart';
 export 'src/model/block.dart';
 export 'src/model/bounding_poly.dart';
 export 'src/model/color_info.dart';
@@ -36,6 +43,7 @@ export 'src/model/full_text_annotation.dart';
 export 'src/model/image_annotation_context.dart';
 export 'src/model/image_context.dart';
 export 'src/model/image_properties_annotation.dart';
+export 'src/model/input_config.dart';
 export 'src/model/json_image.dart';
 export 'src/model/json_settings.dart';
 export 'src/model/jwt_credentials.dart';
@@ -62,8 +70,10 @@ export 'src/model/web_detection.dart';
 export 'src/model/web_detection_params.dart';
 export 'src/model/word.dart';
 
+export 'src/provider/files.dart';
+export 'src/provider/images.dart';
 export 'src/provider/oauth.dart';
-export 'src/provider/vision.dart';
 
+export 'src/util/logging_interceptors.dart';
 export 'src/util/serializable_image.dart';
 export 'src/util/util.dart';

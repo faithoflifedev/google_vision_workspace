@@ -3,16 +3,16 @@ import 'package:universal_io/io.dart';
 
 void main() async {
   // final googleVision =
-  //     await GoogleVision.withJwtFile('example/service_credentials.json');
+  //     await GoogleVision.withJwtFile('service_credentials.json');
 
   final googleVision = await GoogleVision.withApiKey(
     Platform.environment['GOOGLE_VISION_API_KEY'] ?? '[YOUR API KEY]',
-    additionalHeaders: {'com.xxx.xxx': 'X-Ios-Bundle-Identifier'},
+    // additionalHeaders: {'com.xxx.xxx': 'X-Ios-Bundle-Identifier'},
   );
 
   print('checking...');
 
-  final faceAnnotationResponses = await googleVision.faceDetection(
+  final faceAnnotationResponses = await googleVision.image.faceDetection(
       JsonImage.fromGsUri(
           'gs://gvision-demo/young-man-smiling-and-thumbs-up.jpg'));
 

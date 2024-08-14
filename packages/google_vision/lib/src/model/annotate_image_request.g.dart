@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'annotation_request.dart';
+part of 'annotate_image_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AnnotationRequest _$AnnotationRequestFromJson(Map<String, dynamic> json) =>
-    AnnotationRequest(
+AnnotateImageRequest _$AnnotateImageRequestFromJson(
+        Map<String, dynamic> json) =>
+    AnnotateImageRequest(
       jsonImage: JsonImage.fromJson(json['image'] as Map<String, dynamic>),
       features: (json['features'] as List<dynamic>)
           .map((e) => Feature.fromJson(e as Map<String, dynamic>))

@@ -9,7 +9,7 @@ part of 'image_annotation_context.dart';
 ImageAnnotationContext _$ImageAnnotationContextFromJson(
         Map<String, dynamic> json) =>
     ImageAnnotationContext(
-      uri: json['uri'] as String,
+      uri: json['uri'] as String?,
       pageNumber: (json['pageNumber'] as num).toInt(),
     );
 

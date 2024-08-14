@@ -2,19 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'vision.g.dart';
+part 'images.g.dart';
 
 /// Integrates Google Vision features, including image labeling, face, logo, and
 /// landmark detection, optical character recognition (OCR), and detection of
 /// explicit content, into applications.
 @RestApi(baseUrl: 'https://vision.googleapis.com/v1')
-abstract class VisionClient {
-  factory VisionClient(Dio dio, {String baseUrl}) = _VisionClient;
+abstract class ImagesClient {
+  factory ImagesClient(Dio dio, {String baseUrl}) = _ImagesClient;
 
   /// Run image detection and annotation for a batch of images.
+
   @POST('/images:annotate')
-  Future<AnnotatedResponses> annotate(
-      // @Header('Authorization') String authorization,
+  Future<BatchAnnotateImagesResponse> annotate(
       @Header('Content-Type') String contentType,
       // @Header('x-goog-user-project') String? projectId,
       @Body() Map<String, dynamic> params);

@@ -1,6 +1,6 @@
 name: google_vision
 description: Allows you to add Google Visions image labeling, face, logo, and landmark detection, OCR, and detection of explicit content, into cross platform applications.
-version: 1.2.1+2
+version: 1.3.0
 repository: https://github.com/faithoflifedev/google_vision
 homepage: https://github.com/faithoflifedev/google_vision/tree/main/packages/google_vision
 
@@ -11,11 +11,13 @@ dependencies:
   args: ^2.5.0
   collection: ^1.18.0
   crypto_keys_plus: ^0.4.0
-  dio: ^5.4.3+1
-  http: ^1.2.1
+  dio: ^5.5.0+1
+  http: ^1.2.2
   image: ^4.1.7
   jose_plus: ^0.4.6
   json_annotation: ^4.9.0
+  loggy: ^2.0.3
+  mime: ^1.0.5
   retrofit: ^4.1.0
   universal_io: ^2.2.2
 
@@ -26,8 +28,7 @@ dev_dependencies:
   lints: ^4.0.0
   # melos: ^6.0.0
   publish_tools: ^1.0.0+4
-  retrofit_generator: ^8.1.0
-  test: ^1.25.5
+  retrofit_generator: ^8.1.2
 
 executables:
   vision:

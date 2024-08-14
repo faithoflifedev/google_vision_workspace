@@ -29,7 +29,7 @@ class VisionCropHintCommand extends VisionHelper {
         globalResults!['credential-file'],
         'https://www.googleapis.com/auth/cloud-vision');
 
-    final imageFile = File(argResults!['image-file']).readAsBytesSync();
+    final imageFile = File(argResults!['image-file']);
 
     final aspectRatios = argResults?['aspect-ratios'] == null
         ? null
@@ -39,9 +39,9 @@ class VisionCropHintCommand extends VisionHelper {
             .map((aspectRatio) => double.parse(aspectRatio))
             .toList();
 
-    final requests = AnnotationRequests(requests: [
-      AnnotationRequest(
-        jsonImage: JsonImage(byteBuffer: imageFile.buffer),
+    final requests = AnnotateImageRequests(requests: [
+      AnnotateImageRequest(
+        jsonImage: JsonImage(byteBuffer: imageFile.readAsBytesSync().buffer),
         features: [Feature(type: AnnotationType.cropHints)],
         imageContext: aspectRatios != null
             ? ImageContext(
@@ -51,8 +51,15 @@ class VisionCropHintCommand extends VisionHelper {
       )
     ]);
 
-    final annotatedResponses = await googleVision.annotate(requests: requests);
+    if (pages != null) {
+      final annotatedResponses = await annotateFile(imageFile, pages: pages!);
 
-    print(annotatedResponses.responses);
+      print(annotatedResponses.responses);
+    } else {
+      final annotatedResponses =
+          await googleVision.annotate(requests: requests);
+
+      print(annotatedResponses.responses);
+    }
   }
 }

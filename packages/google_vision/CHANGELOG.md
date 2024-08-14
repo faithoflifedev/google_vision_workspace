@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0
+
+* custom headers with API Key authentication Issue #23
+
+## 1.3.0
+
+* custom headers with API Key authentication Issue #23
+
 ## 1.2.1+2
 
 * custom headers with API Key authentication Issue #23

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'oauth.dart';
+part of 'files.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,12 +8,12 @@ part of 'oauth.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
-class _OAuthClient implements OAuthClient {
-  _OAuthClient(
+class _FilesClient implements FilesClient {
+  _FilesClient(
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://accounts.google.com/o/oauth2';
+    baseUrl ??= 'https://vision.googleapis.com/v1';
   }
 
   final Dio _dio;
@@ -21,25 +21,26 @@ class _OAuthClient implements OAuthClient {
   String? baseUrl;
 
   @override
-  Future<Token> getToken(Map<String, dynamic> params) async {
+  Future<BatchAnnotateFilesResponse> annotate(
+    String contentType,
+    Map<String, dynamic> params,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{
-      r'Content-Type': 'application/x-www-form-urlencoded'
-    };
+    final _headers = <String, dynamic>{r'Content-Type': contentType};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(params);
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Token>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BatchAnnotateFilesResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
-      contentType: 'application/x-www-form-urlencoded',
+      contentType: contentType,
     )
             .compose(
               _dio.options,
-              '/token',
+              '/files:annotate',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -48,7 +49,7 @@ class _OAuthClient implements OAuthClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final _value = Token.fromJson(_result.data!);
+    final _value = BatchAnnotateFilesResponse.fromJson(_result.data!);
     return _value;
   }
 

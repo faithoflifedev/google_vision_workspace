@@ -1,15 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'vision.dart';
+part of 'images.dart';
 
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
-class _VisionClient implements VisionClient {
-  _VisionClient(
+class _ImagesClient implements ImagesClient {
+  _ImagesClient(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,7 +21,7 @@ class _VisionClient implements VisionClient {
   String? baseUrl;
 
   @override
-  Future<AnnotatedResponses> annotate(
+  Future<BatchAnnotateImagesResponse> annotate(
     String contentType,
     Map<String, dynamic> params,
   ) async {
@@ -31,8 +31,8 @@ class _VisionClient implements VisionClient {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(params);
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<AnnotatedResponses>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BatchAnnotateImagesResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -49,8 +49,8 @@ class _VisionClient implements VisionClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = AnnotatedResponses.fromJson(_result.data!);
-    return value;
+    final _value = BatchAnnotateImagesResponse.fromJson(_result.data!);
+    return _value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

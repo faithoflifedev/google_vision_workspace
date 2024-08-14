@@ -1,19 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'annotation_requests.dart';
+part of 'annotate_image_requests.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AnnotationRequests _$AnnotationRequestsFromJson(Map<String, dynamic> json) =>
-    AnnotationRequests(
+AnnotateImageRequests _$AnnotateImageRequestsFromJson(
+        Map<String, dynamic> json) =>
+    AnnotateImageRequests(
       requests: (json['requests'] as List<dynamic>)
-          .map((e) => AnnotationRequest.fromJson(e as Map<String, dynamic>))
+          .map((e) => AnnotateImageRequest.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$AnnotationRequestsToJson(AnnotationRequests instance) =>
+Map<String, dynamic> _$AnnotateImageRequestsToJson(
+        AnnotateImageRequests instance) =>
     <String, dynamic>{
       'requests': instance.requests.map((e) => e.toJson()).toList(),
     };

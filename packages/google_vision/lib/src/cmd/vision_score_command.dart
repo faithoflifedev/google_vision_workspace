@@ -44,7 +44,7 @@ class VisionScoreCommand extends VisionHelper {
 
       final imageFile = File(argResults!['image-file']).readAsBytesSync();
 
-      final annotatedResponses = await annotate(imageFile.buffer);
+      final annotatedResponses = await annotateImage(imageFile.buffer);
 
       final scores = <double>[];
 

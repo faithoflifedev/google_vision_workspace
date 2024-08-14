@@ -28,8 +28,8 @@ class VisionSafeSearchCommand extends VisionHelper {
 
     final imageFile = File(argResults!['image-file']).readAsBytesSync();
 
-    final requests = AnnotationRequests(requests: [
-      AnnotationRequest(
+    final requests = AnnotateImageRequests(requests: [
+      AnnotateImageRequest(
         jsonImage: JsonImage(byteBuffer: imageFile.buffer),
         features: [Feature(type: AnnotationType.safeSearchDetection)],
       )

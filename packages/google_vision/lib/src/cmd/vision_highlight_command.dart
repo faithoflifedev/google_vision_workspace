@@ -79,7 +79,7 @@ class VisionHighlightCommand extends VisionHelper {
       final Uint8List encodedBytes =
           File(argResults!['image-file']).readAsBytesSync();
 
-      final annotatedResponses = await annotate(encodedBytes.buffer);
+      final annotatedResponses = await annotateImage(encodedBytes.buffer);
 
       final img.Image decodedBytes = img.decodeImage(encodedBytes)!;
 

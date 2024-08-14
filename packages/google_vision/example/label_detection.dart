@@ -6,7 +6,7 @@ void main() async {
 
   print('checking...');
 
-  final entityAnnotations = await googleVision.labelDetection(
+  final entityAnnotations = await googleVision.image.labelDetection(
       JsonImage.fromGsUri(
           'gs://cloud-samples-data/vision/label/setagaya.jpeg'));
 
