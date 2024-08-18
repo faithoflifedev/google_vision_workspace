@@ -10,8 +10,10 @@ class GoogleVisionFile {
   );
 
   /// Run detection and annotation for a batch of requests.
-  Future<BatchAnnotateFilesResponse> annotate(
-      {required List<AnnotateFileRequest> requests, String? parent}) {
+  Future<BatchAnnotateFilesResponse> annotate({
+    required List<AnnotateFileRequest> requests,
+    String? parent,
+  }) {
     googleVision.setAuthHeader();
 
     final jsonRequest = <String, dynamic>{

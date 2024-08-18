@@ -12,8 +12,17 @@ class GoogleVisionImage {
   /// Run detection and annotation for a batch of requests.
   Future<BatchAnnotateImagesResponse> annotate({
     required List<AnnotateImageRequest> requests,
+    String? parent,
   }) {
     googleVision.setAuthHeader();
+
+    final jsonRequest = <String, dynamic>{
+      'requests': requests,
+    };
+
+    if (parent != null) {
+      jsonRequest['parent'] = parent;
+    }
 
     return client.annotate(
       GoogleVision.contentType,
@@ -25,16 +34,21 @@ class GoogleVisionImage {
   Future<AnnotateImageResponse> detection(
     JsonImage jsonImage,
     AnnotationType annotationType, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await annotate(
       requests: [
-        AnnotateImageRequest(jsonImage: jsonImage, features: [
-          Feature(
-            maxResults: maxResults,
-            type: annotationType,
-          ),
-        ])
+        AnnotateImageRequest(
+          jsonImage: jsonImage,
+          features: [
+            Feature(
+              maxResults: maxResults,
+              type: annotationType,
+            ),
+          ],
+          imageContext: imageContext,
+        )
       ],
     );
 
@@ -44,11 +58,13 @@ class GoogleVisionImage {
   /// Crop Hints suggests vertices for a crop region on an image.
   Future<CropHintsAnnotation?> cropHints(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
       jsonImage,
       AnnotationType.cropHints,
+      imageContext: imageContext,
       maxResults: maxResults,
     );
 
@@ -61,6 +77,7 @@ class GoogleVisionImage {
   /// handwriting in an image.
   Future<FullTextAnnotation?> documentTextDetection(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
@@ -77,6 +94,7 @@ class GoogleVisionImage {
   /// head-wear.
   Future<List<FaceAnnotation>> faceDetection(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
@@ -92,6 +110,7 @@ class GoogleVisionImage {
   /// as dominant color.
   Future<ImagePropertiesAnnotation?> imageProperties(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
@@ -107,6 +126,7 @@ class GoogleVisionImage {
   /// species, products, and more.  Labels are returned in English only.
   Future<List<EntityAnnotation>> labelDetection(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
@@ -122,6 +142,7 @@ class GoogleVisionImage {
   /// within an image.
   Future<List<EntityAnnotation>> landmarkDetection(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
@@ -136,6 +157,7 @@ class GoogleVisionImage {
   /// Logo Detection detects popular product logos within an image.
   Future<List<EntityAnnotation>> logoDetection(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
@@ -159,6 +181,7 @@ class GoogleVisionImage {
   /// Object localization identifies both significant and less-prominent objects in an image.
   Future<List<LocalizedObjectAnnotation>> objectLocalization(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
@@ -173,6 +196,7 @@ class GoogleVisionImage {
   /// Run Product Search.
   Future<ProductSearchResults?> productSearch(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
@@ -191,6 +215,7 @@ class GoogleVisionImage {
   /// on these fields.
   Future<SafeSearchAnnotation?> safeSearchDetection(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
@@ -207,6 +232,7 @@ class GoogleVisionImage {
   /// extracted string, as well as individual words, and their bounding boxes.
   Future<List<EntityAnnotation>> textDetection(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(
@@ -221,6 +247,7 @@ class GoogleVisionImage {
   /// Web Detection detects Web references to an image.
   Future<WebDetection?> webDetection(
     JsonImage jsonImage, {
+    ImageContext? imageContext,
     int maxResults = 10,
   }) async {
     final annotatedResponses = await detection(

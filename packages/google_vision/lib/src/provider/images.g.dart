@@ -12,6 +12,7 @@ class _ImagesClient implements ImagesClient {
   _ImagesClient(
     this._dio, {
     this.baseUrl,
+    this.errorLogger,
   }) {
     baseUrl ??= 'https://vision.googleapis.com/v1';
   }
@@ -19,6 +20,8 @@ class _ImagesClient implements ImagesClient {
   final Dio _dio;
 
   String? baseUrl;
+
+  final ParseErrorLogger? errorLogger;
 
   @override
   Future<BatchAnnotateImagesResponse> annotate(
@@ -31,25 +34,31 @@ class _ImagesClient implements ImagesClient {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(params);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<BatchAnnotateImagesResponse>(Options(
+    final _options = _setStreamType<BatchAnnotateImagesResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
       contentType: contentType,
     )
-            .compose(
-              _dio.options,
-              '/images:annotate',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final _value = BatchAnnotateImagesResponse.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          '/images:annotate',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BatchAnnotateImagesResponse _value;
+    try {
+      _value = BatchAnnotateImagesResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
     return _value;
   }
 

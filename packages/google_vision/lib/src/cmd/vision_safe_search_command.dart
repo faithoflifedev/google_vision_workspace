@@ -26,17 +26,11 @@ class VisionSafeSearchCommand extends VisionHelper {
         globalResults!['credential-file'],
         'https://www.googleapis.com/auth/cloud-vision');
 
-    final imageFile = File(argResults!['image-file']).readAsBytesSync();
+    final imageFile = File(argResults!['image-file']);
 
-    final requests = AnnotateImageRequests(requests: [
-      AnnotateImageRequest(
-        jsonImage: JsonImage(byteBuffer: imageFile.buffer),
-        features: [Feature(type: AnnotationType.safeSearchDetection)],
-      )
-    ]);
+    final safeSearchDetection = await googleVision.image
+        .safeSearchDetection(JsonImage.fromFile(imageFile));
 
-    final annotatedResponses = await googleVision.annotate(requests: requests);
-
-    print(annotatedResponses.responses);
+    print(safeSearchDetection);
   }
 }

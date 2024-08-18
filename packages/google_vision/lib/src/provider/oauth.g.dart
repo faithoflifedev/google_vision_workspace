@@ -12,6 +12,7 @@ class _OAuthClient implements OAuthClient {
   _OAuthClient(
     this._dio, {
     this.baseUrl,
+    this.errorLogger,
   }) {
     baseUrl ??= 'https://accounts.google.com/o/oauth2';
   }
@@ -19,6 +20,8 @@ class _OAuthClient implements OAuthClient {
   final Dio _dio;
 
   String? baseUrl;
+
+  final ParseErrorLogger? errorLogger;
 
   @override
   Future<Token> getToken(Map<String, dynamic> params) async {
@@ -30,25 +33,31 @@ class _OAuthClient implements OAuthClient {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(params);
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Token>(Options(
+    final _options = _setStreamType<Token>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
       contentType: 'application/x-www-form-urlencoded',
     )
-            .compose(
-              _dio.options,
-              '/token',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final _value = Token.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          '/token',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late Token _value;
+    try {
+      _value = Token.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
     return _value;
   }
 

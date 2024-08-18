@@ -2,6 +2,19 @@
 
 ## 1.3.0
 
+* support for file API
+* sepeartion of code base into file and image API
+* better support for ImageContext
+* deprecate old methods&#x2F;classes
+
+## 1.2.1+3
+
+* support for file API
+* sepeartion of code base into file and image API
+* deprecate old methods&#x2F;classes
+
+## 1.3.0
+
 * custom headers with API Key authentication Issue #23
 
 ## 1.3.0

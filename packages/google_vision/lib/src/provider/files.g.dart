@@ -12,6 +12,7 @@ class _FilesClient implements FilesClient {
   _FilesClient(
     this._dio, {
     this.baseUrl,
+    this.errorLogger,
   }) {
     baseUrl ??= 'https://vision.googleapis.com/v1';
   }
@@ -19,6 +20,8 @@ class _FilesClient implements FilesClient {
   final Dio _dio;
 
   String? baseUrl;
+
+  final ParseErrorLogger? errorLogger;
 
   @override
   Future<BatchAnnotateFilesResponse> annotate(
@@ -31,25 +34,31 @@ class _FilesClient implements FilesClient {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(params);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<BatchAnnotateFilesResponse>(Options(
+    final _options = _setStreamType<BatchAnnotateFilesResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
       contentType: contentType,
     )
-            .compose(
-              _dio.options,
-              '/files:annotate',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final _value = BatchAnnotateFilesResponse.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          '/files:annotate',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BatchAnnotateFilesResponse _value;
+    try {
+      _value = BatchAnnotateFilesResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
     return _value;
   }
 

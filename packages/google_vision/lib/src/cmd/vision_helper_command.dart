@@ -58,12 +58,14 @@ abstract class VisionHelper extends Command {
   Future<BatchAnnotateFilesResponse> annotateFile(
     File file, {
     String? features,
+    ImageContext? imageContext,
     required List<int> pages,
   }) async =>
       googleVision.file.annotate(requests: [
         AnnotateFileRequest(
           inputConfig: InputConfig.fromFile(file),
           features: getFeatures(features),
+          imageContext: imageContext,
           pages: pages,
         )
       ]);
