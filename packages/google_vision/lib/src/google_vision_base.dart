@@ -27,7 +27,7 @@ class GoogleVision with UiLoggy {
   GoogleVision() {
     Loggy.initLoggy(
       logPrinter: const PrettyPrinter(),
-      logOptions: LogOptions(LogLevel.all),
+      logOptions: LogOptions(LogLevel.off),
     );
 
     GoogleVision.dio.interceptors.add(LoggingInterceptors());

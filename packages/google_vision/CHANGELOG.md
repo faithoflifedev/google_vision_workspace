@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0+1
+
+* less debug output
+
 ## 1.3.0
 
 * support for file API
