@@ -1,5 +1,0 @@
-commit: package example is now included and added back the google_vision re-export
-changes: |
-  * added back the google_vision re-export
-  * package example is now included
-  * dependency bump for google_vision
