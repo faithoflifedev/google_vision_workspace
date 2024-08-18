@@ -12,6 +12,7 @@ dependencies:
   color: ^3.0.0
   google_vision_flutter:
     path: ../
+  syncfusion_flutter_pdfviewer: ^26.2.9
   universal_io: ^2.2.2
 
   flutter:
@@ -24,10 +25,11 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/service_credentials.json
+    - assets/allswell.pdf
+    - assets/census2010.jpg
     - assets/cn_tower.jpg
     - assets/google_logo.jpg
+    - assets/service_credentials.json
+    - assets/setagaya_small.jpg
     - assets/structures.png
     - assets/young-man-smiling.jpg
-    - assets/census2010.jpg
-    - assets/setagaya_small.jpg

@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart';
+import 'package:vision_demo/show_pdf.dart';
 
-class CropHints extends StatefulWidget {
-  const CropHints({super.key, required this.title});
+class DocumentTextDetectionFile extends StatefulWidget {
+  const DocumentTextDetectionFile({super.key, required this.title});
 
   final String title;
 
   @override
-  State<CropHints> createState() => _MyHomePageState();
+  State<DocumentTextDetectionFile> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<CropHints> {
-  static const assetName = 'assets/young-man-smiling.jpg';
-
-  final _processImage = Image.asset(
-    assetName,
-    fit: BoxFit.fitWidth,
-  );
+class _MyHomePageState extends State<DocumentTextDetectionFile> {
+  static const assetName = 'assets/allswell.pdf';
 
   @override
   Widget build(BuildContext context) => SafeArea(
@@ -32,14 +28,14 @@ class _MyHomePageState extends State<CropHints> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(assetName),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: _processImage,
-                ),
+                ElevatedButton(
+                    child: const Text('Show PDF Content'),
+                    onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const ShowPdf(assetName: assetName),
+                          ),
+                        )),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
@@ -48,20 +44,26 @@ class _MyHomePageState extends State<CropHints> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: GoogleVisionBuilder.cropHints(
+                  child: GoogleVisionFileBuilder.documentTextDetection(
                     googleVision: GoogleVision.withAsset(
                         'assets/service_credentials.json'),
-                    imageProvider: _processImage.image,
+                    inputConfig: InputConfig.fromAsset('assets/allswell.pdf'),
                     builder: (
                       BuildContext context,
-                      CropHintsAnnotation? cropHintsAnnotation,
-                      ImageDetail? imageDetail,
+                      List<AnnotateFileResponse>? responses,
+                      Future<InputConfig> inputConfig,
                     ) =>
                         Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
-                          children: cropHintsAnnotation!.cropHints
-                              .map((cropHint) => Text('$cropHint'))
+                          children: responses!
+                              .map((annotateFileResponse) => Row(
+                                    children: [
+                                      const Text('Total Pages - '),
+                                      Text(
+                                          '${annotateFileResponse.totalPages}'),
+                                    ],
+                                  ))
                               .toList()),
                     ),
                   ),

@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.3.0
+
+* added back the google_vision re-export
+* package example is now included
+* dependency bump for google_vision
+* example added for new file functionality
+
+## 1.3.0
+
+* added back the google_vision re-export
+* package example is now included
+* dependency bump for google_vision
+* example added for new file functionality
+
+## 1.2.1+3
+
+* added back the google_vision re-export
+* package example is now included
+* dependency bump for google_vision
+
+## 1.2.1+3
+
+* added back the google_vision re-export
+* package example is now included
+* dependency bump for google_vision
+
+## 1.2.1+3
+
+* added back the google_vision re-export
+* package example is now included
+* dependency bump for google_vision
+
 ## 1.2.1+3
 
 * added back the google_vision re-export

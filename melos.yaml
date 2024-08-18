@@ -23,11 +23,11 @@ scripts:
   #   description: Run publish for all packages.
 
   prep:dart:
-    run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format && melos run commit:dart
+    run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format
     description: Run prep steps dart.
 
   prep:flutter:
-    run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format && melos run commit:flutter
+    run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format
     description: Run prep steps Flutter.
 
   ## TODO: Add commit steps for Dart and Flutter packages.
@@ -37,7 +37,7 @@ scripts:
   #   description: Commit changes for Dart package.
 
   # commit:flutter:
-  #   run: melos exec git add .; git commit -m "chore(release); git push origin main"
+  #   run: melos exec git add .; git commit -m "chore(release)"; git push origin main
   #   description: Commit changes for Flutter package.
 
   publish:real:dart:
@@ -45,7 +45,7 @@ scripts:
     description: Real publish for Google_Vision Package.
 
   publish:real:flutter:
-    run: melos exec --ignore="google_vision" dart pub publish --force
+    run: melos exec --ignore="google_vision" flutter pub publish --force
     description: Real publish for Google_Vision Package.
 
   publish:flutter:

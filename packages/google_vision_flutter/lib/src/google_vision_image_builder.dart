@@ -1,25 +1,24 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart';
+import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart'
     hide GoogleVision, JsonImage;
 
 /// A widget that builds a [GoogleVision] instance.
-@Deprecated('Use GoogleVisionImageBuilder instead.')
-class GoogleVisionBuilder extends GoogleVisionBuilderBase {
+class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// The [ImageProvider] to be used for the image annotation.
   final ImageProvider imageProvider;
 
-  /// The builder for the [GoogleVisionBuilder].
+  /// The builder for the [GoogleVisionImageBuilder].
   final Widget Function(
     BuildContext context,
-    AsyncSnapshot<AnnotatedResponses> snapshot,
+    AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
     ImageDetail imageDetail,
   ) builder;
 
-  /// Creates a new instance of [GoogleVisionBuilder].
-  const GoogleVisionBuilder({
+  /// Creates a new instance of [GoogleVisionImageBuilder].
+  const GoogleVisionImageBuilder({
     super.key,
     required super.googleVision,
     required this.imageProvider,
@@ -30,10 +29,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     int maxResults = 10,
   });
 
-  /// Creates a new instance of [GoogleVisionBuilder] for crop hint detections.
-  factory GoogleVisionBuilder.cropHints({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for crop hint detections.
+  factory GoogleVisionImageBuilder.cropHints({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(BuildContext, CropHintsAnnotation?, ImageDetail)
         builder,
@@ -41,9 +40,8 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
-        builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+      GoogleVisionImageBuilder(
+        builder: (BuildContext context, AsyncSnapshot snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -63,10 +61,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for document text detections.
-  factory GoogleVisionBuilder.documentTextDetection({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for document text detections.
+  factory GoogleVisionImageBuilder.documentTextDetection({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(BuildContext, FullTextAnnotation?, ImageDetail)
         builder,
@@ -74,9 +72,9 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -96,10 +94,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for face detections.
-  factory GoogleVisionBuilder.faceDetection({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for face detections.
+  factory GoogleVisionImageBuilder.faceDetection({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(BuildContext, List<FaceAnnotation>?, ImageDetail)
         builder,
@@ -107,9 +105,9 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -129,10 +127,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for image properties detection.
-  factory GoogleVisionBuilder.imageProperties({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for image properties detection.
+  factory GoogleVisionImageBuilder.imageProperties({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
             BuildContext, ImagePropertiesAnnotation?, ImageDetail)
@@ -141,9 +139,9 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -163,10 +161,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for label detections.
-  factory GoogleVisionBuilder.labelDetection({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for label detections.
+  factory GoogleVisionImageBuilder.labelDetection({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(BuildContext, List<EntityAnnotation>?, ImageDetail)
         builder,
@@ -174,9 +172,9 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -196,10 +194,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for landmark detections.
-  factory GoogleVisionBuilder.landmarkDetection({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for landmark detections.
+  factory GoogleVisionImageBuilder.landmarkDetection({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(BuildContext, List<EntityAnnotation>?, ImageDetail)
         builder,
@@ -207,9 +205,9 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -229,10 +227,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for logo detections.
-  factory GoogleVisionBuilder.logoDetection({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for logo detections.
+  factory GoogleVisionImageBuilder.logoDetection({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(BuildContext, List<EntityAnnotation>?, ImageDetail)
         builder,
@@ -240,9 +238,9 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -262,10 +260,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for object localization detections.
-  factory GoogleVisionBuilder.objectLocalization({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for object localization detections.
+  factory GoogleVisionImageBuilder.objectLocalization({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
             BuildContext, List<LocalizedObjectAnnotation>?, ImageDetail)
@@ -274,9 +272,9 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -296,10 +294,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for product search detections.
-  factory GoogleVisionBuilder.productSearch({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for product search detections.
+  factory GoogleVisionImageBuilder.productSearch({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(BuildContext, ProductSearchResults?, ImageDetail)
         builder,
@@ -307,9 +305,9 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -329,10 +327,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for safe search detections.
-  factory GoogleVisionBuilder.safeSearchDetection({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for safe search detections.
+  factory GoogleVisionImageBuilder.safeSearchDetection({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(BuildContext, SafeSearchAnnotation?, ImageDetail)
         builder,
@@ -340,9 +338,9 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -362,10 +360,10 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for text detections.
-  factory GoogleVisionBuilder.textDetection({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for text detections.
+  factory GoogleVisionImageBuilder.textDetection({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(BuildContext, List<EntityAnnotation>?, ImageDetail)
         builder,
@@ -373,9 +371,9 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -395,19 +393,19 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
         onLoading: onLoading,
       );
 
-  /// Creates a new instance of [GoogleVisionBuilder] for web detections.
-  factory GoogleVisionBuilder.webDetection({
+  /// Creates a new instance of [GoogleVisionImageBuilder] for web detections.
+  factory GoogleVisionImageBuilder.webDetection({
     Key? key,
-    required Future<GoogleVision> googleVision,
+    required Future<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(BuildContext, WebDetection?, ImageDetail) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
     int maxResults = 10,
   }) =>
-      GoogleVisionBuilder(
+      GoogleVisionImageBuilder(
         builder: (BuildContext context,
-                AsyncSnapshot<AnnotatedResponses> snapshot,
+                AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                 ImageDetail imageDetail) =>
             GoogleVisionBuilderBase.checkSnapshot(
               snapshot,
@@ -430,12 +428,16 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
   /// Builds the widget.
   @override
   Widget build(BuildContext context) =>
-      FutureBuilder<(GoogleVision, ImageDetail)>(
-        future: waitConcurrently<GoogleVision, ImageDetail>(googleVision,
-            imageProvider.getImageDetails(format: ImageByteFormat.png)),
-        builder: (BuildContext context,
-            AsyncSnapshot<(GoogleVision, ImageDetail)> snapshot) {
-          GoogleVision? googleVision;
+      FutureBuilder<(gv.GoogleVision, ImageDetail)>(
+        future: waitConcurrently<gv.GoogleVision, ImageDetail>(
+          googleVision,
+          imageProvider.getImageDetails(format: ImageByteFormat.png),
+        ),
+        builder: (
+          BuildContext context,
+          AsyncSnapshot<(gv.GoogleVision, ImageDetail)> snapshot,
+        ) {
+          gv.GoogleVision? googleVision;
 
           ImageDetail? imageDetail;
 
@@ -450,15 +452,14 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
 
             imageDetail = snapshot.data!.$2;
 
-            return FutureBuilder<AnnotatedResponses>(
-              future: googleVision.annotate(
-                  requests: AnnotationRequests(requests: [
-                AnnotationRequest(
-                    jsonImage: JsonImage(byteBuffer: imageDetail.byteBuffer),
+            return FutureBuilder<BatchAnnotateImagesResponse>(
+              future: googleVision.image.annotate(requests: [
+                AnnotateImageRequest(
+                    jsonImage: gv.JsonImage(byteBuffer: imageDetail.byteBuffer),
                     features: features)
-              ])),
+              ]),
               builder: (BuildContext context,
-                      AsyncSnapshot<AnnotatedResponses> snapshot) =>
+                      AsyncSnapshot<BatchAnnotateImagesResponse> snapshot) =>
                   builder(
                 context,
                 snapshot,
