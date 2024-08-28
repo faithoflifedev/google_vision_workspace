@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.0+3
+
+* funding
+
+## 1.3.0+2
+
+* dependency bump
+* parent project
+
 ## 1.3.0+1
 
 * less debug output

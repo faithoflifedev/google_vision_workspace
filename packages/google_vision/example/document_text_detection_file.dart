@@ -1,4 +1,5 @@
 import 'package:google_vision/google_vision.dart';
+import 'package:universal_io/io.dart';
 
 void main() async {
   final googleVision =
@@ -6,33 +7,33 @@ void main() async {
 
   print('checking...');
 
+  const int page = 1;
+
   final annotateFileResponses = await googleVision.file.documentTextDetection(
     InputConfig.fromFilePath('sample_image/allswell.pdf'),
-    pages: [1],
+    pages: [page],
   );
-
-  String text = '';
 
   for (var annotateFileResponse in annotateFileResponses) {
     if (annotateFileResponse.error != null) {
       print('error');
     } else {
-      print('pages: ${annotateFileResponse.totalPages}');
-    }
+      print('page: $page of ${annotateFileResponse.totalPages}');
 
-    for (var annotateImageResponse in annotateFileResponse.responses!) {
-      annotateImageResponse.fullTextAnnotation!.pages.first.blocks
-          ?.forEach((block) {
-        block.paragraphs?.forEach((paragraph) {
-          paragraph.words?.forEach((word) {
-            var segment = word.symbols?.map((e) => e.text).join();
+      for (var annotateImageResponse in annotateFileResponse.responses!) {
+        annotateImageResponse.fullTextAnnotation!.pages.first.blocks
+            ?.forEach((block) {
+          block.paragraphs?.forEach((paragraph) {
+            stdout.write('\n');
 
-            text += (segment ?? '') + ' ';
+            paragraph.words?.forEach((word) {
+              var segment = word.symbols?.map((e) => e.text).join();
+
+              stdout.write('${segment ?? ''} ');
+            });
           });
         });
-      });
+      }
     }
   }
-
-  print(text);
 }

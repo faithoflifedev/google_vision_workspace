@@ -22,11 +22,4 @@ void main() async {
   );
 
   print(annotatedResponses);
-
-  // for (var webDetection
-  //     in annotatedResponses.responses.first.webDetection.webEntities) {
-  //   print(webDetection.description);
-
-  //   print(webDetection.boundingPoly!.vertices);
-  // }
 }

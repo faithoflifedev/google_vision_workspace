@@ -110,10 +110,14 @@ class GoogleVision with UiLoggy {
   }
 
   @Deprecated('Use [GoogleVisionImage.annotate] instead.')
-  Future<AnnotatedResponses> annotate(
-      {required AnnotateImageRequests requests}) async {
-    final batchAnnotateImagesResponse =
-        await image.annotate(requests: requests.requests);
+  Future<AnnotatedResponses> annotate({
+    required AnnotateImageRequests requests,
+    String? parent,
+  }) async {
+    final batchAnnotateImagesResponse = await image.annotate(
+      requests: requests.requests,
+      parent: parent,
+    );
 
     return AnnotatedResponses(responses: batchAnnotateImagesResponse.responses);
   }
