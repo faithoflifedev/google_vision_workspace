@@ -47,15 +47,16 @@ class _MyHomePageState extends State<SafeSearchDetection> {
                 Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GoogleVisionBuilder.safeSearchDetection(
-                        googleVision: GoogleVision.withAsset(
-                            'assets/service_credentials.json'),
-                        imageProvider: _processImage.image,
-                        builder: (
-                          BuildContext context,
-                          SafeSearchAnnotation? safeSearchAnnotation,
-                          ImageDetail? imageDetail,
-                        ) =>
-                            Text('Result: ${safeSearchAnnotation!}')))
+                      googleVision: GoogleVision.withAsset(
+                          'assets/service_credentials.json'),
+                      imageProvider: _processImage.image,
+                      builder: (
+                        BuildContext context,
+                        SafeSearchAnnotation? safeSearchAnnotation,
+                      ) =>
+                          Center(
+                              child: Text('Result: ${safeSearchAnnotation!}')),
+                    ))
               ],
             ),
           ),

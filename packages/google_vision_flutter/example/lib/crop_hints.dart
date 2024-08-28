@@ -55,13 +55,14 @@ class _MyHomePageState extends State<CropHints> {
                     builder: (
                       BuildContext context,
                       CropHintsAnnotation? cropHintsAnnotation,
-                      ImageDetail? imageDetail,
                     ) =>
                         Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                           children: cropHintsAnnotation!.cropHints
-                              .map((cropHint) => Text('$cropHint'))
+                              .map((cropHint) => Center(
+                                    child: Text('$cropHint'),
+                                  ))
                               .toList()),
                     ),
                   ),

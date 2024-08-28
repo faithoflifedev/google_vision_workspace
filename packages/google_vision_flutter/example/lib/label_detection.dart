@@ -27,47 +27,46 @@ class _MyHomePageState extends State<LabelDetection> {
             title: Text(widget.title),
           ),
           body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('assets/setagaya_small.jpg'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: _processImage,
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Process result will appear below:',
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('assets/setagaya_small.jpg'),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GoogleVisionBuilder.labelDetection(
-                    googleVision: GoogleVision.withAsset(
-                        'assets/service_credentials.json'),
-                    imageProvider: _processImage.image,
-                    builder: (
-                      BuildContext context,
-                      List<EntityAnnotation>? entityAnnotations,
-                      ImageDetail? imageDetail,
-                    ) =>
-                        Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                          children: entityAnnotations!
-                              .map((entity) => Row(children: [
-                                    Text(entity.description),
-                                    Text(' -> ${entity.score}')
-                                  ]))
-                              .toList()),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: _processImage,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Process result will appear below:',
                     ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GoogleVisionBuilder.labelDetection(
+                      googleVision: GoogleVision.withAsset(
+                          'assets/service_credentials.json'),
+                      imageProvider: _processImage.image,
+                      builder: (
+                        BuildContext context,
+                        List<EntityAnnotation>? entityAnnotations,
+                      ) =>
+                          Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                            children: entityAnnotations!
+                                .map((entity) => Text(
+                                    '${(entity.score! * 100).toStringAsFixed(2)}% - ${entity.description}'))
+                                .toList()),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

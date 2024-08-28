@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.0+2
+
+* removed FutureBuilder nesting
+* simplified builder signature
+
 ## 1.3.0
 
 * added back the google_vision re-export

@@ -14,6 +14,7 @@ class _MyHomePageState extends State<ObjectLocalization> {
   final _processImage = Image.asset(
     'assets/young-man-smiling.jpg',
     fit: BoxFit.fitWidth,
+    width: 300.0,
   );
 
   @override
@@ -27,45 +28,48 @@ class _MyHomePageState extends State<ObjectLocalization> {
             title: Text(widget.title),
           ),
           body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('assets/young-man-smiling.jpg'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: _processImage,
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Processed image will appear below:',
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('assets/young-man-smiling.jpg'),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GoogleVisionBuilder.objectLocalization(
-                    googleVision: GoogleVision.withAsset(
-                        'assets/service_credentials.json'),
-                    imageProvider: _processImage.image,
-                    builder: (BuildContext context,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: _processImage,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Processed image will appear below:',
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GoogleVisionBuilder.objectLocalization(
+                      googleVision: GoogleVision.withAsset(
+                          'assets/service_credentials.json'),
+                      imageProvider: _processImage.image,
+                      builder: (
+                        BuildContext context,
                         List<LocalizedObjectAnnotation>?
                             localizedObjectAnnotations,
-                        ImageDetail imageDetail) {
-                      return CustomPaint(
-                        foregroundPainter: AnnotationPainter(
-                          localizedObjectAnnotations:
-                              localizedObjectAnnotations,
-                          imageDetail: imageDetail,
-                        ),
-                        child: Image(image: _processImage.image),
-                      );
-                    },
-                  ),
-                )
-              ],
+                      ) {
+                        return CustomPaint(
+                          foregroundPainter: AnnotationPainter(
+                            localizedObjectAnnotations:
+                                localizedObjectAnnotations,
+                            uiImage: _processImage,
+                          ),
+                          child: Image(image: _processImage.image),
+                        );
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -75,11 +79,11 @@ class _MyHomePageState extends State<ObjectLocalization> {
 class AnnotationPainter extends CustomPainter {
   final List<LocalizedObjectAnnotation>? localizedObjectAnnotations;
   // a reference to the original image
-  final ImageDetail imageDetail;
+  final Image uiImage;
 
   AnnotationPainter({
     required this.localizedObjectAnnotations,
-    required this.imageDetail,
+    required this.uiImage,
   });
 
   @override
@@ -87,6 +91,8 @@ class AnnotationPainter extends CustomPainter {
     Canvas canvas,
     Size size,
   ) {
+    var yOffset = 0.0;
+
     // object localization
     for (var localizedObjectAnnotation in localizedObjectAnnotations!) {
       drawAnnotationsNormalized(
@@ -98,10 +104,13 @@ class AnnotationPainter extends CustomPainter {
           text:
               '${localizedObjectAnnotation.name} - ${(localizedObjectAnnotation.score! * 100).toInt()}%',
           offset: localizedObjectAnnotation
-              .boundingPoly!.normalizedVertices.first
-              .toResizedOffset(size),
+                  .boundingPoly!.normalizedVertices.first
+                  .toResizedOffset(size) +
+              Offset(0, yOffset),
           canvas: canvas,
           size: size);
+
+      yOffset += 12.0;
     }
   }
 

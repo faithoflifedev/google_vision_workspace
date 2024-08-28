@@ -56,19 +56,14 @@ class _MyHomePageState extends State<WebDetection> {
                     builder: (
                       BuildContext context,
                       gv.WebDetection? webDetection,
-                      ImageDetail? imageDetail,
                     ) =>
                         Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: webDetection?.webEntities
-                                ?.map((e) => Row(
-                                      children: [
-                                        Text('${e.score} - '),
-                                        Expanded(
-                                          child: Text(e.description),
-                                        ),
-                                      ],
+                                ?.map((e) => Center(
+                                      child:
+                                          Text('${e.score} - ${e.description}'),
                                     ))
                                 .toList() ??
                             const <Widget>[],

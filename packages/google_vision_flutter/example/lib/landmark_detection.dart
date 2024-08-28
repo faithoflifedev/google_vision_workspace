@@ -50,20 +50,21 @@ class _MyHomePageState extends State<LandmarkDetection> {
                     googleVision: GoogleVision.withAsset(
                         'assets/service_credentials.json'),
                     imageProvider: _processImage.image,
-                    builder: (BuildContext context,
-                            List<EntityAnnotation>? entityAnnotations,
-                            ImageDetail imageDetail) =>
+                    builder: (
+                      BuildContext context,
+                      List<EntityAnnotation>? entityAnnotations,
+                    ) =>
                         Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: entityAnnotations!
-                            .map((landmark) => Row(
-                                  children: [
-                                    Text('${landmark.score} - '),
-                                    Text(landmark.description),
-                                  ],
-                                ))
-                            .toList(),
+                      child: Center(
+                        child: Column(
+                          children: entityAnnotations!
+                              .map(
+                                (landmark) => Text(
+                                    '${landmark.score} - ${landmark.description}'),
+                              )
+                              .toList(),
+                        ),
                       ),
                     ),
                   ),

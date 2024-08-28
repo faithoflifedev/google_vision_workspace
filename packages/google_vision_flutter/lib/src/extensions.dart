@@ -7,29 +7,8 @@ import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 /// Extension methods for the [ImageProvider] class.
 extension ImageProviderExt on ImageProvider {
-  /// Converts the image to a [ByteBuffer].
-  Future<ByteBuffer?> toByteBuffer(BuildContext context,
-      {ImageByteFormat format = ImageByteFormat.rawRgba}) async {
-    final completer = Completer<ByteBuffer?>();
-
-    final listener = ImageStreamListener((imageInfo, synchronousCall) async {
-      final byteData = await imageInfo.image.toByteData(format: format);
-
-      completer.complete(byteData?.buffer);
-    });
-
-    final imageStream = resolve(createLocalImageConfiguration(context));
-
-    imageStream.addListener(listener);
-
-    final byteBuffer = await completer.future;
-
-    imageStream.removeListener(listener);
-
-    return byteBuffer;
-  }
-
   /// Returns the image dimensions.
+  @Deprecated('Use getImageInfo instead')
   Future<ImageDetail> getImageDetails(
       {ImageByteFormat format = ImageByteFormat.rawRgba}) async {
     Completer<ImageDetail> completer = Completer<ImageDetail>();
@@ -49,6 +28,47 @@ extension ImageProviderExt on ImageProvider {
 
     return await completer.future;
   }
+
+  /// Converts the image to a [ByteBuffer].
+  Future<ByteBuffer?> toByteBuffer(
+      {ImageByteFormat format = ImageByteFormat.rawRgba}) async {
+    final completer = Completer<ByteBuffer?>();
+
+    return _doCompletion<ByteBuffer>(ImageStreamListener(
+      (imageInfo, synchronousCall) async {
+        final byteData = await imageInfo.image.toByteData(format: format);
+
+        completer.complete(byteData?.buffer);
+      },
+    ));
+  }
+
+  /// Returns the [ImageInfo].
+  Future<ImageInfo> getImageInfo() {
+    final completer = Completer<ImageInfo>();
+
+    return _doCompletion<ImageInfo>(ImageStreamListener(
+      (imageInfo, synchronousCall) {
+        if (!completer.isCompleted) {
+          completer.complete(imageInfo);
+        }
+      },
+    ));
+  }
+
+  Future<T> _doCompletion<T>(ImageStreamListener imageListener) async {
+    final imageStream = resolve(ImageConfiguration.empty);
+
+    final completer = Completer<T>();
+
+    imageStream.addListener(imageListener);
+
+    final image = await completer.future;
+
+    imageStream.removeListener(imageListener);
+
+    return image;
+  }
 }
 
 /// Extension methods for the [Vertex] class.
@@ -59,6 +79,8 @@ extension VertexExt on Vertex {
     double widthRatio = 1,
   }) =>
       Offset(x.toDouble() * widthRatio, y.toDouble() * heightRatio);
+
+  Offset toOffset() => toResizedOffset();
 }
 
 /// Extension methods for the [NormalizedVertex] class.

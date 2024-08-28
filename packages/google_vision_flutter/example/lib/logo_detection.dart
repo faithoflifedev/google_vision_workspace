@@ -29,42 +29,44 @@ class _MyHomePageState extends State<LogoDetection> {
             title: Text(widget.title),
           ),
           body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(assetName),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: _processImage,
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Processed image will appear below:',
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(assetName),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GoogleVisionBuilder.logoDetection(
-                    googleVision: GoogleVision.withAsset(
-                        'assets/service_credentials.json'),
-                    imageProvider: _processImage.image,
-                    builder: (BuildContext context,
-                            List<EntityAnnotation>? entityAnnotations,
-                            ImageDetail imageDetail) =>
-                        CustomPaint(
-                      foregroundPainter: EntityAnnotationPainter(
-                        entityAnnotations: entityAnnotations,
-                        imageDetail: imageDetail,
-                      ),
-                      child: Image(image: _processImage.image),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: _processImage,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Processed image will appear below:',
                     ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GoogleVisionBuilder.logoDetection(
+                      googleVision: GoogleVision.withAsset(
+                          'assets/service_credentials.json'),
+                      imageProvider: _processImage.image,
+                      builder: (
+                        BuildContext context,
+                        List<EntityAnnotation>? entityAnnotations,
+                      ) =>
+                          CustomPaint(
+                        foregroundPainter: EntityAnnotationPainter(
+                          entityAnnotations: entityAnnotations,
+                        ),
+                        child: Image(image: _processImage.image),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -73,45 +75,26 @@ class _MyHomePageState extends State<LogoDetection> {
 
 class EntityAnnotationPainter extends CustomPainter {
   final List<EntityAnnotation>? entityAnnotations;
-  // a reference to the original image
-  final ImageDetail imageDetail;
 
   EntityAnnotationPainter({
     required this.entityAnnotations,
-    required this.imageDetail,
   });
-
-  // since the displayed image may be a different size than the original image,
-  // we need to adjust the offset to the size of the displayed image
-  // [imageDetail] holds the size of the original image
-  double _heightModifier(Size size) => size.height / imageDetail.height;
-
-  double _widthModifier(Size size) => size.width / imageDetail.width;
 
   @override
   void paint(
     Canvas canvas,
     Size size,
   ) {
-    final heightRatio = _heightModifier(size);
-
-    final widthRatio = _widthModifier(size);
-
     // logo detection
     for (var entityAnnotation in entityAnnotations!) {
       drawAnnotationsRect(
         vertices: entityAnnotation.boundingPoly!.vertices,
         canvas: canvas,
-        heightRatio: heightRatio,
-        widthRatio: widthRatio,
       );
 
       drawString(
         text: 'Logo - ${(entityAnnotation.score! * 100).toInt()}%',
-        offset: entityAnnotation.boundingPoly!.vertices.first.toResizedOffset(
-          heightRatio: heightRatio,
-          widthRatio: widthRatio,
-        ),
+        offset: entityAnnotation.boundingPoly!.vertices.first.toOffset(),
         canvas: canvas,
         size: size,
       );
@@ -144,8 +127,6 @@ class EntityAnnotationPainter extends CustomPainter {
   void drawAnnotationsRect({
     required List<Vertex> vertices,
     required Canvas canvas,
-    required double heightRatio,
-    required double widthRatio,
     Color? color,
     double strokeWidth = 1,
   }) {
@@ -159,14 +140,8 @@ class EntityAnnotationPainter extends CustomPainter {
 
     canvas.drawRect(
       Rect.fromPoints(
-        vertices.first.toResizedOffset(
-          heightRatio: heightRatio,
-          widthRatio: widthRatio,
-        ),
-        vertices[2].toResizedOffset(
-          heightRatio: heightRatio,
-          widthRatio: widthRatio,
-        ),
+        vertices.first.toOffset(),
+        vertices[2].toOffset(),
       ),
       paint,
     );

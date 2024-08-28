@@ -11,11 +11,10 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   final Widget Function(
     BuildContext context,
     AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-    Future<InputConfig> inputConfig,
   ) builder;
 
   /// Creates a new instance of [GoogleVisionFileBuilder].
-  const GoogleVisionFileBuilder({
+  GoogleVisionFileBuilder({
     super.key,
     required super.googleVision,
     required this.inputConfig,
@@ -34,7 +33,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -44,24 +42,15 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.cropHints, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for document text detections.
@@ -72,7 +61,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -82,24 +70,15 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.documentTextDetection, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for face detections.
@@ -110,7 +89,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -120,24 +98,15 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.faceDetection, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for image properties detection.
@@ -148,7 +117,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -158,24 +126,15 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.imageProperties, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for label detections.
@@ -186,7 +145,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -196,24 +154,15 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.labelDetection, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for landmark detections.
@@ -224,7 +173,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -234,24 +182,15 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.landmarkDetection, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for logo detections.
@@ -262,7 +201,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -272,24 +210,15 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.logoDetection, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for object localization detections.
@@ -300,7 +229,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -310,24 +238,15 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.objectLocalization, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for product search detections.
@@ -338,7 +257,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -348,24 +266,15 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.productSearch, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for safe search detections.
@@ -376,7 +285,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -386,24 +294,15 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.safeSearchDetection, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for text detections.
@@ -414,7 +313,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -424,26 +322,17 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
           AnnotationType.textDetection,
           maxResults,
         ),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionFileBuilder] for web detections.
@@ -454,7 +343,6 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
     required Widget Function(
       BuildContext,
       List<AnnotateFileResponse>?,
-      Future<InputConfig>,
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
@@ -464,62 +352,51 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
         builder: (
           BuildContext context,
           AsyncSnapshot<BatchAnnotateFilesResponse> snapshot,
-          Future<InputConfig> inputConfig,
         ) =>
-            GoogleVisionBuilderBase.checkSnapshot(
-              snapshot,
-              onError: onError,
-              onLoading: onLoading,
-            ) ??
             builder(
-              context,
-              snapshot.data?.responses,
-              inputConfig,
-            ),
+          context,
+          snapshot.data?.responses,
+        ),
         inputConfig: inputConfig,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
             AnnotationType.webDetection, maxResults),
-        onError: onError,
-        onLoading: onLoading,
       );
 
   /// Builds the widget.
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<(gv.GoogleVision, InputConfig)>(
-        future: waitConcurrently<gv.GoogleVision, InputConfig>(
-          googleVision,
-          inputConfig,
-        ),
-        builder: (
-          BuildContext context,
-          AsyncSnapshot<(gv.GoogleVision, InputConfig)> combinedSnapshot,
-        ) {
-          if (combinedSnapshot.hasError) {
-            return onError != null
-                ? onError!(combinedSnapshot.error!)
-                : Text(combinedSnapshot.error.toString());
-          }
+    final googleVisionFutureResolver = GoogleVisionFutureResolver(
+      googleVisionFuture: googleVision,
+      inputConfigFuture: inputConfig,
+    );
 
-          if (combinedSnapshot.hasData) {
-            final googleVision = combinedSnapshot.data!.$1;
+    return FutureBuilder<BatchAnnotateFilesResponse>(
+      future: googleVisionFutureResolver.resolveFile((inputConfig) => [
+            AnnotateFileRequest(
+              inputConfig: inputConfig,
+              features: features,
+            )
+          ]),
+      builder: (BuildContext context,
+          AsyncSnapshot<BatchAnnotateFilesResponse> snapshot) {
+        Widget? widget = onLoading == null
+            ? const Center(child: CircularProgressIndicator())
+            : onLoading!();
 
-            final resolvedInputConfig = combinedSnapshot.data!.$2;
+        if (snapshot.hasData) {
+          widget = builder(
+            context,
+            snapshot,
+          );
+        } else if (snapshot.hasError) {
+          widget = onError == null
+              ? onError!(snapshot.error!)
+              : Center(child: Text('${snapshot.error}'));
+        }
 
-            return FutureBuilder<BatchAnnotateFilesResponse>(
-              future: googleVision.file.annotate(requests: [
-                AnnotateFileRequest(
-                    inputConfig: resolvedInputConfig, features: features)
-              ]),
-              builder: (BuildContext context,
-                      AsyncSnapshot<BatchAnnotateFilesResponse> snapshot) =>
-                  builder(context, snapshot, inputConfig),
-            );
-          }
-          return onLoading != null
-              ? onLoading!()
-              : const CircularProgressIndicator();
-        });
+        return widget;
+      },
+    );
   }
 }

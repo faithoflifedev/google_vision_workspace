@@ -53,19 +53,15 @@ class _MyHomePageState extends State<DocumentTextDetection> {
                     builder: (
                       BuildContext context,
                       FullTextAnnotation? fullTextAnnotation,
-                      ImageDetail? imageDetail,
                     ) =>
                         Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                           children: fullTextAnnotation!.pages
-                              .map((page) => Row(
-                                    children: [
-                                      const Text('Page Language - '),
-                                      Text(page.property?.detectedLanguages
-                                              ?.first.languageCode ??
-                                          ''),
-                                    ],
+                              .map((page) => Center(
+                                    child: Text(
+                                      'Page Language - ${page.property?.detectedLanguages?.first.languageCode ?? ''}',
+                                    ),
                                   ))
                               .toList()),
                     ),
