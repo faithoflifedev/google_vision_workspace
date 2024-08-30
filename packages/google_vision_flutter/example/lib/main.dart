@@ -9,6 +9,7 @@ import 'label_detection.dart';
 import 'landmark_detection.dart';
 import 'logo_detection.dart';
 import 'multiple_detections.dart';
+import 'multiple_face_detections.dart';
 import 'object_localization.dart';
 import 'safe_search_detection.dart';
 import 'text_detection.dart';
@@ -65,6 +66,9 @@ class MyApp extends StatelessWidget {
             ),
         '/webdetection': (context) => const WebDetection(
               title: 'Document Text Detection from PDF',
+            ),
+        '/multipleface': (context) => const MultipleFaceDetection(
+              title: 'Multiple Image Face Detection',
             ),
       },
     );
@@ -139,6 +143,10 @@ class MenuScreen extends StatelessWidget {
             ElevatedButton(
               child: const Text('Web Detection'),
               onPressed: () => Navigator.pushNamed(context, '/webdetection'),
+            ),
+            ElevatedButton(
+              child: const Text('Multiple Image Face Detection'),
+              onPressed: () => Navigator.pushNamed(context, '/multipleface'),
             ),
             const SizedBox(
               height: 30,

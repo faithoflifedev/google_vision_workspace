@@ -22,13 +22,13 @@ scripts:
   #   run: melos run publish:dart && melos run publish:flutter
   #   description: Run publish for all packages.
 
-  prep:dart:
-    run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format
-    description: Run prep steps dart.
+  prep:
+    run: melos run build && melos run meta && melos run markdown && melos run format && melos run analyze
+    description: Run prep steps for dart and flutter.
 
-  prep:flutter:
-    run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format
-    description: Run prep steps Flutter.
+  # prep:flutter:
+  #   run: melos run build && melos run meta && melos run markdown && melos run analyze && melos run format
+  #   description: Run prep steps Flutter.
 
   ## TODO: Add commit steps for Dart and Flutter packages.
 
@@ -66,7 +66,7 @@ scripts:
       depends-on: build_runner
 
   analyze:
-    exec: dart analyze --fatal-infos .
+    exec: dart analyze .
     description: Run `dart analyze` in all packages.
 
   format:

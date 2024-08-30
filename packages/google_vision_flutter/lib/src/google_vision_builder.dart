@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_image_converter/flutter_image_converter.dart';
 import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart'
     hide GoogleVision, JsonImage, InputConfig;
@@ -16,7 +17,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
   ) builder;
 
   /// Creates a new instance of [GoogleVisionBuilder].
-  GoogleVisionBuilder({
+  const GoogleVisionBuilder({
     super.key,
     required super.googleVision,
     required this.imageProvider,
@@ -24,6 +25,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     required this.builder,
     super.onError,
     super.onLoading,
+    super.parent,
     int maxResults = 10,
   });
 
@@ -38,6 +40,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -66,6 +69,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -94,6 +98,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -122,6 +127,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -150,6 +156,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -178,6 +185,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -206,6 +214,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -234,6 +243,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -262,6 +272,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -290,6 +301,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -318,6 +330,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -346,6 +359,7 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
     ) builder,
     Widget Function(Object)? onError,
     Widget Function()? onLoading,
+    String? parent,
     int maxResults = 10,
   }) =>
       GoogleVisionBuilder(
@@ -363,46 +377,29 @@ class GoogleVisionBuilder extends GoogleVisionBuilderBase {
             AnnotationType.webDetection, maxResults),
       );
 
-  /// Builds the widget.
-  @override
-  Widget build(BuildContext context) {
-    final googleVisionFutureResolver = GoogleVisionFutureResolver(
-      googleVisionFuture: googleVision,
-      imageProvider: imageProvider,
-    );
+  Future<AnnotatedResponses> _annotatedResponses() async {
+    final googleVision = await this.googleVision;
 
-    return FutureBuilder<AnnotatedResponses>(
-      future: googleVisionFutureResolver.resolve(
-        (byteBuffer) => AnnotationRequests(
-          requests: [
-            AnnotationRequest(
-              jsonImage: gv.JsonImage(byteBuffer: byteBuffer),
-              features: features,
-            )
-          ],
-        ),
+    final byteData = await imageProvider.pngByteData;
+
+    return googleVision.annotate(
+      requests: AnnotationRequests(
+        requests: [
+          AnnotationRequest(
+            jsonImage: gv.JsonImage(byteBuffer: byteData.buffer),
+            features: features,
+          )
+        ],
       ),
-      builder: (
-        context,
-        snapshot,
-      ) {
-        Widget? widget = onLoading == null
-            ? const Center(child: CircularProgressIndicator())
-            : onLoading!();
-
-        if (snapshot.hasData) {
-          widget = builder(
-            context,
-            snapshot,
-          );
-        } else if (snapshot.hasError) {
-          widget = onError == null
-              ? onError!(snapshot.error!)
-              : Center(child: Text('${snapshot.error}'));
-        }
-
-        return widget;
-      },
+      parent: parent,
     );
   }
+
+  /// Builds the widget.
+  @override
+  Widget build(BuildContext context) => getBuild<AnnotatedResponses>(
+        context,
+        _annotatedResponses(),
+        builder,
+      );
 }

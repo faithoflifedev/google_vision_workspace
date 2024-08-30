@@ -11,8 +11,10 @@ class MultipleDetections extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MultipleDetections> {
+  static const assetName = 'assets/young-man-smiling.jpg';
+
   final _processImage = Image.asset(
-    'assets/young-man-smiling.jpg', // 'assets/logo.png', // 'assets/young-man-smiling.jpg'
+    assetName,
     fit: BoxFit.fitWidth,
     width: 300,
   );
@@ -34,7 +36,7 @@ class _MyHomePageState extends State<MultipleDetections> {
                 children: <Widget>[
                   const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text('assets/young-man-smiling'),
+                    child: Text(assetName),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
@@ -62,13 +64,11 @@ class _MyHomePageState extends State<MultipleDetections> {
                       features: [
                         Feature(
                           maxResults: 10,
-                          type: AnnotationType
-                              .faceDetection, // 'LOGO_DETECTION', // 'FACE_DETECTION'
+                          type: AnnotationType.faceDetection,
                         ),
                         Feature(
                           maxResults: 10,
-                          type: AnnotationType
-                              .objectLocalization, // 'LOGO_DETECTION', // 'FACE_DETECTION'
+                          type: AnnotationType.objectLocalization,
                         ),
                       ],
                       builder: (

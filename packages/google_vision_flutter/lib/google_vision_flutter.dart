@@ -6,7 +6,6 @@ export 'src/google_vision.dart';
 export 'src/google_vision_builder_base.dart';
 export 'src/google_vision_builder.dart';
 export 'src/google_vision_file_builder.dart';
-export 'src/google_vision_future_resolver.dart';
 export 'src/google_vision_image_builder.dart';
 export 'src/image_detail.dart';
 export 'src/input_config.dart';

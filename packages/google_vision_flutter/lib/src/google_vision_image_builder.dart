@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_image_converter/flutter_image_converter.dart';
 import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart'
     hide GoogleVision, JsonImage;
@@ -15,7 +18,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   ) builder;
 
   /// Creates a new instance of [GoogleVisionImageBuilder].
-  GoogleVisionImageBuilder({
+  const GoogleVisionImageBuilder({
     super.key,
     required super.googleVision,
     required this.imageProvider,
@@ -29,7 +32,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for crop hint detections.
   factory GoogleVisionImageBuilder.cropHints({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -57,7 +60,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for document text detections.
   factory GoogleVisionImageBuilder.documentTextDetection({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -85,7 +88,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for face detections.
   factory GoogleVisionImageBuilder.faceDetection({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -113,7 +116,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for image properties detection.
   factory GoogleVisionImageBuilder.imageProperties({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -141,7 +144,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for label detections.
   factory GoogleVisionImageBuilder.labelDetection({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -169,7 +172,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for landmark detections.
   factory GoogleVisionImageBuilder.landmarkDetection({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -197,7 +200,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for logo detections.
   factory GoogleVisionImageBuilder.logoDetection({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -225,7 +228,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for object localization detections.
   factory GoogleVisionImageBuilder.objectLocalization({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -253,7 +256,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for product search detections.
   factory GoogleVisionImageBuilder.productSearch({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -281,7 +284,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for safe search detections.
   factory GoogleVisionImageBuilder.safeSearchDetection({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -309,7 +312,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for text detections.
   factory GoogleVisionImageBuilder.textDetection({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -337,7 +340,7 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionImageBuilder] for web detections.
   factory GoogleVisionImageBuilder.webDetection({
     Key? key,
-    required Future<gv.GoogleVision> googleVision,
+    required FutureOr<gv.GoogleVision> googleVision,
     required ImageProvider imageProvider,
     required Widget Function(
       BuildContext,
@@ -362,39 +365,27 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
             AnnotationType.webDetection, maxResults),
       );
 
-  /// Builds the widget.
-  @override
-  Widget build(BuildContext context) {
-    final googleVisionFutureResolver = GoogleVisionFutureResolver(
-      googleVisionFuture: googleVision,
-      imageProvider: imageProvider,
-    );
+  Future<BatchAnnotateImagesResponse> _batchAnnotateImagesResponse() async {
+    final googleVision = await this.googleVision;
 
-    return FutureBuilder<BatchAnnotateImagesResponse>(
-      future: googleVisionFutureResolver.resolveImage((byteBuffer) => [
-            AnnotateImageRequest(
-                jsonImage: gv.JsonImage(byteBuffer: byteBuffer),
-                features: features)
-          ]),
-      builder: (BuildContext context,
-          AsyncSnapshot<BatchAnnotateImagesResponse> snapshot) {
-        Widget? widget = onLoading == null
-            ? const Center(child: CircularProgressIndicator())
-            : onLoading!();
+    final byteData = await imageProvider.pngByteData;
 
-        if (snapshot.hasData) {
-          widget = builder(
-            context,
-            snapshot,
-          );
-        } else if (snapshot.hasError) {
-          widget = onError == null
-              ? onError!(snapshot.error!)
-              : Center(child: Text('${snapshot.error}'));
-        }
-
-        return widget;
-      },
+    return googleVision.image.annotate(
+      requests: [
+        AnnotateImageRequest(
+          jsonImage: gv.JsonImage(byteBuffer: byteData.buffer),
+          features: features,
+        )
+      ],
+      parent: parent,
     );
   }
+
+  /// Builds the widget.
+  @override
+  Widget build(BuildContext context) => getBuild<BatchAnnotateImagesResponse>(
+        context,
+        _batchAnnotateImagesResponse(),
+        builder,
+      );
 }

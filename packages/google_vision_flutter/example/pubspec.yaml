@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   color: ^3.0.0
+  google_vision: ^1.3.0+2
   google_vision_flutter:
     path: ../
   syncfusion_flutter_pdfviewer: ^26.2.11
@@ -28,6 +29,7 @@ flutter:
     - assets/allswell.pdf
     - assets/census2010.jpg
     - assets/cn_tower.jpg
+    - assets/dj.jpg # https://commons.wikimedia.org/wiki/Category:Images#/media/File:DJ_Kelblizz.jpg
     - assets/google_logo.jpg
     - assets/service_credentials.json
     - assets/setagaya_small.jpg

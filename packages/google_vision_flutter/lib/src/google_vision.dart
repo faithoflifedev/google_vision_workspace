@@ -12,6 +12,6 @@ class GoogleVision extends gv.GoogleVision {
   }
 
   /// Create a new instance of [GoogleVision] with the given [apiKey].
-  static Future<gv.GoogleVision> withApiKey(String apiKey) async =>
+  static gv.GoogleVision withApiKey(String apiKey) =>
       gv.GoogleVision.withApiKey(apiKey);
 }

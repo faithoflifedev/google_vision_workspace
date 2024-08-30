@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 abstract class GoogleVisionBuilderBase extends StatelessWidget {
-  final Future<gv.GoogleVision> googleVision;
+  final FutureOr<gv.GoogleVision> googleVision;
 
   /// The error builder for the [GoogleVisionFileBuilder].
   final Widget Function(Object error)? onError;
@@ -14,26 +16,26 @@ abstract class GoogleVisionBuilderBase extends StatelessWidget {
   /// The list of [Feature] to be used for the image annotation.
   final List<Feature> features;
 
-  static GoogleVisionFutureResolver? _googleVisionFutureResolver;
-
-  GoogleVisionFutureResolver get googleVisionResolver =>
-      _googleVisionFutureResolver == null
-          ? throw Exception(
-              'GoogleVisionFutureResolver has not been initialized properly.')
-          : _googleVisionFutureResolver!;
+  /// Optional. Target project and location to make a call.
+  ///
+  /// Format: projects/{project-id}/locations/{location-id}.
+  ///
+  /// If no parent is specified, a region will be chosen automatically.
+  ///
+  /// Supported location-ids: us: USA country only, eu: The European Union.
+  ///
+  /// Example: projects/project-A/locations/eu.
+  final String? parent;
 
   /// Creates a new instance of [GoogleVisionBuilderBase].
-  GoogleVisionBuilderBase({
+  const GoogleVisionBuilderBase({
     super.key,
     this.onError,
     this.onLoading,
     required this.googleVision,
     required this.features,
-  }) {
-    _googleVisionFutureResolver = GoogleVisionFutureResolver(
-      googleVisionFuture: googleVision,
-    );
-  }
+    this.parent,
+  });
 
   /// Gets the list of [Feature] for the specified [AnnotationType].
   static List<Feature> getFeatures(
@@ -44,4 +46,37 @@ abstract class GoogleVisionBuilderBase extends StatelessWidget {
           type: annotationType,
         )
       ];
+
+  Widget getBuild<T>(
+    BuildContext context,
+    Future<T> future,
+    Widget Function(
+      BuildContext context,
+      AsyncSnapshot<T> snapshot,
+    ) builder,
+  ) =>
+      FutureBuilder<T>(
+        future: future,
+        builder: (
+          context,
+          snapshot,
+        ) {
+          Widget? widget = onLoading == null
+              ? const Center(child: CircularProgressIndicator())
+              : onLoading!();
+
+          if (snapshot.hasData) {
+            widget = builder(
+              context,
+              snapshot,
+            );
+          } else if (snapshot.hasError) {
+            widget = onError == null
+                ? onError!(snapshot.error!)
+                : Center(child: Text('${snapshot.error}'));
+          }
+
+          return widget;
+        },
+      );
 }
