@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0+4
+
+* readme update
+
 ## 1.3.0+3
 
 * funding

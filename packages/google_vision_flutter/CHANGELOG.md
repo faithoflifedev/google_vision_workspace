@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.0+4
+
+* updated example
+* simplified FutureBuilder
+
 ## 1.3.0+3
 
 * funding
