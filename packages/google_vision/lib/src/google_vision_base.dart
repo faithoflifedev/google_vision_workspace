@@ -2,49 +2,48 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
-import 'package:loggy/loggy.dart';
 
 /// Integrates Google Vision features, including painter labeling, face, logo,
 /// and landmark detection, optical character recognition (OCR), and detection
 /// of explicit content, into applications.
-class GoogleVision with UiLoggy {
-  static final dio = Dio();
-  static final DateTime tokenExpiry = DateTime(2010, 0, 0);
-  static final accept = 'application/json';
-  static final contentType = 'application/json; charset=UTF-8';
+class GoogleVision {
+  static final GoogleVision _instance = GoogleVision._internal();
 
-  static String? _apiKey;
-  static String? _token;
-  static TokenGenerator? tokenGenerator;
+  final dio = Dio();
+  final tokenExpiry = DateTime(2010, 0, 0);
 
-  static final _imagesClient = ImagesClient(dio);
-  final _filesClient = FilesClient(dio);
+  late final _imagesClient = ImagesClient(dio);
+  late final _filesClient = FilesClient(dio);
+
+  static const accept = 'application/json';
+  static const contentType = 'application/json; charset=UTF-8';
+
+  TokenGenerator? tokenGenerator;
+  String? _apiKey;
+  String? _token;
 
   GoogleVisionImage get image => GoogleVisionImage(this, _imagesClient);
 
   GoogleVisionFile get file => GoogleVisionFile(this, _filesClient);
 
-  GoogleVision() {
-    Loggy.initLoggy(
-      logPrinter: const PrettyPrinter(),
-      logOptions: LogOptions(LogLevel.off),
-    );
+  set apiKey(String apiKey) => _apiKey = apiKey;
 
-    GoogleVision.dio.interceptors.add(LoggingInterceptors());
-  }
+  // Private constructor
+  GoogleVision._internal();
+
+  factory GoogleVision() => _instance;
 
   void setAuthHeader() {
     if (_token != null) {
-      GoogleVision.dio.options.headers[HttpHeaders.authorizationHeader] =
-          'Bearer $_token';
+      dio.options.headers[HttpHeaders.authorizationHeader] = 'Bearer $_token';
     }
 
     if (_apiKey != null) {
-      GoogleVision.dio.options.queryParameters['key'] = _apiKey;
+      dio.options.queryParameters['key'] = _apiKey;
     }
   }
 
-  static Future<void> _confirmToken() async {
+  Future<void> confirmToken() async {
     if (tokenGenerator == null) {
       throw Exception();
     } else {
@@ -59,52 +58,62 @@ class GoogleVision with UiLoggy {
   }
 
   /// Authenticate using an API key.
-  static GoogleVision withApiKey(
+  GoogleVision withApiKey(
     String apiKey, {
     Map<String, String>? additionalHeaders,
   }) {
-    _apiKey = apiKey;
+    this.apiKey = apiKey;
 
     if (additionalHeaders != null) {
       dio.options.headers.addAll(additionalHeaders);
     }
 
-    return GoogleVision();
+    return this;
   }
 
   /// Authenticate using the supplied token generator
-  static Future<GoogleVision> withGenerator(TokenGenerator generator) async {
+  Future<GoogleVision> withGenerator(TokenGenerator generator) async {
     final googleVision = GoogleVision();
 
-    GoogleVision.tokenGenerator = generator;
+    googleVision.tokenGenerator = generator;
 
-    await _confirmToken();
-
-    return googleVision;
-  }
-
-  /// Authenticated with JWT.
-  static Future<GoogleVision> withJwt(String credentials,
-      [String scope = 'https://www.googleapis.com/auth/cloud-platform']) async {
-    GoogleVision googleVision = GoogleVision();
-
-    tokenGenerator =
-        JwtGenerator(credentials: credentials, scope: scope, dio: dio);
-
-    await _confirmToken();
+    await googleVision.confirmToken();
 
     return googleVision;
   }
 
   /// Authenticated with JWT.
-  static Future<GoogleVision> withJwtFile(String credentialsFileName,
-      [String scope = 'https://www.googleapis.com/auth/cloud-platform']) async {
+  Future<GoogleVision> withJwt(
+    String credentials, [
+    String scope = 'https://www.googleapis.com/auth/cloud-platform',
+  ]) async {
     GoogleVision googleVision = GoogleVision();
 
-    tokenGenerator = JwtGenerator.fromFile(
-        credentialsFile: credentialsFileName, scope: scope, dio: dio);
+    googleVision.tokenGenerator = JwtGenerator(
+      credentials: credentials,
+      scope: scope,
+      dio: googleVision.dio,
+    );
 
-    await _confirmToken();
+    await googleVision.confirmToken();
+
+    return googleVision;
+  }
+
+  /// Authenticated with JWT.
+  Future<GoogleVision> withJwtFile(
+    String credentialsFileName, [
+    String scope = 'https://www.googleapis.com/auth/cloud-platform',
+  ]) async {
+    GoogleVision googleVision = GoogleVision();
+
+    googleVision.tokenGenerator = JwtGenerator.fromFile(
+      credentialsFile: credentialsFileName,
+      scope: scope,
+      dio: googleVision.dio,
+    );
+
+    await googleVision.confirmToken();
 
     return googleVision;
   }

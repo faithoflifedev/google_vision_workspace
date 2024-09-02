@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0
+
+* switch to Singleton
+
+## 1.3.0+4
+
+* switch to Singleton
+
 ## 1.3.0+4
 
 * readme update

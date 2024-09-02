@@ -22,7 +22,7 @@ class VisionSafeSearchCommand extends VisionHelper {
 
   @override
   void run() async {
-    final googleVision = await GoogleVision.withJwtFile(
+    final googleVision = await GoogleVision().withJwtFile(
         globalResults!['credential-file'],
         'https://www.googleapis.com/auth/cloud-vision');
 

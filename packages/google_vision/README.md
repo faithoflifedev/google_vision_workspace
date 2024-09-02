@@ -4,17 +4,19 @@
 [![pub package](https://img.shields.io/pub/v/google_vision.svg)](https://pub.dartlang.org/packages/google_vision)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Native [Dart](https://dart.dev/) package that integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
+Native [Dart](https://dart.dev/) package that integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into your applications.
+
+**If you are looking at integrating the Google Vision API into your `Flutter` SDK application then you might want to take a look at my related package [google_vision_flutter](https://pub.dev/packages/google_vision_flutter), which provides a widget that wraps the functionality provided by this `Dart` SDK focussed package.**
 
 - [Google Vision Images REST API Client](#google-vision-images-rest-api-client)
   - [Project Status](#project-status)
   - [Recent Changes](#recent-changes)
+    - [New for v1.4.0](#new-for-v140)
+    - [New for v1.3.0](#new-for-v130)
     - [New for v1.2.0](#new-for-v120)
-    - [New for v1.0.8](#new-for-v108)
-    - [New for v1.0.7](#new-for-v107)
   - [Getting Started](#getting-started)
     - [pubspec.yaml](#pubspecyaml)
-    - [Obtaining Authorization Credentials](#obtaining-authorization-credentials)
+    - [Obtaining Authentication/Authorization Credentials](#obtaining-authenticationauthorization-credentials)
     - [Usage of the Cloud Vision API](#usage-of-the-cloud-vision-api)
   - [New Helper Methods](#new-helper-methods)
   - [Usage with Flutter](#usage-with-flutter)
@@ -23,8 +25,8 @@ Native [Dart](https://dart.dev/) package that integrates Google Vision features,
   - [Contributors](#contributors)
   - [Contributing](#contributing)
 
-## Project Status
 
+## Project Status
 
 [![Build Status](https://github.com/faithoflifedev/google_vision/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/google_vision/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/google_vision)](https://shields.io/github/last-commit/faithoflifedev/google_vision) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/google_vision_workspace/dart.yaml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/google_vision/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/google_vision)](https://shields.io/github/issues/faithoflifedev/google_vision)
 
@@ -34,6 +36,17 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 
 ## Recent Changes
 
+### New for v1.4.0
+  - A breaking change from the previous version is that the `GoogleVision` class now follows the Singleton design pattern.  Now the object is instantiated as follows:
+```dart
+
+// Old method from v1.3.x and earlier
+// final googleVision = await GoogleVision.withJwtFile('service_credentials.json');
+
+// New
+final googleVision = await GoogleVision().withJwtFile('service_credentials.json');
+```
+
 ### New for v1.3.0
   - This version of the package supports both the `image` and `file` annotation APIs for Google Vision.  The previous versions of the package supported only the `image` API.
   - A number of methods and classes have been **Deprecated** in this version.  All the provided examples still work without any changes, so the changes in this package should not cause any issue to existing code.
@@ -41,10 +54,7 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 
 ### New for v1.2.0
   - helper methods that simplify any `single` detection so a simple face detection can be performed with the `faceDetection(JsonImage jsonImage)` method, see the table below.
-
-### New for v1.0.8
-  - web entities and pages detection [https://cloud.google.com/vision/docs/detecting-web](https://cloud.google.com/vision/docs/detecting-web), provides urls of web pages that match the specified image
-
+  
 ## Getting Started
 
 ### pubspec.yaml
@@ -54,7 +64,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision: ^1.3.0+4
+  google_vision: ^1.4.0
 ```
 
 ### Obtaining Authentication/Authorization Credentials
@@ -68,7 +78,7 @@ Both of the authorization/authentication methods listed above assume that you al
 ### Usage of the Cloud Vision API
 
 ```dart
-final googleVision = await GoogleVision.withApiKey(
+final googleVision = await GoogleVision().withApiKey(
   Platform.environment['GOOGLE_VISION_API_KEY'] ?? '[YOUR API KEY]',
   // additionalHeaders: {'com.xxx.xxx': 'X-Ios-Bundle-Identifier'},
 );

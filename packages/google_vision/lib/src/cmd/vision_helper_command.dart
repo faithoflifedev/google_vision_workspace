@@ -24,7 +24,7 @@ abstract class VisionHelper extends Command {
 
   Future<void> initializeGoogleVision() async {
     _googleVision =
-        await GoogleVision.withJwtFile(globalResults!['credential-file']);
+        await GoogleVision().withJwtFile(globalResults!['credential-file']);
 
     pages =
         (argResults!['pages'] as String?)?.split(',').map(int.parse).toList();

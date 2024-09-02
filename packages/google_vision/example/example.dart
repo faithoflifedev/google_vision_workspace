@@ -2,7 +2,7 @@ import 'package:google_vision/google_vision.dart';
 
 void main() async {
   final googleVision =
-      await GoogleVision.withJwtFile('service_credentials.json');
+      await GoogleVision().withJwtFile('service_credentials.json');
 
   final requests = AnnotationRequests(requests: [
     AnnotationRequest(

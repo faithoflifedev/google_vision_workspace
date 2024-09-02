@@ -3,7 +3,7 @@ import 'package:universal_io/io.dart';
 
 void main() async {
   final googleVision =
-      await GoogleVision.withJwtFile('service_credentials.json');
+      await GoogleVision().withJwtFile('service_credentials.json');
 
   print('checking...');
 

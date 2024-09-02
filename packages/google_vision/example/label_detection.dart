@@ -2,7 +2,7 @@ import 'package:google_vision/google_vision.dart';
 
 void main() async {
   final googleVision =
-      await GoogleVision.withJwtFile('service_credentials.json');
+      await GoogleVision().withJwtFile('service_credentials.json');
 
   print('checking...');
 
@@ -13,7 +13,7 @@ void main() async {
   for (var entityAnnotation in entityAnnotations) {
     print('Description: - ${entityAnnotation.description}');
 
-    print('Score: - ${entityAnnotation.boundingPoly?.normalizedVertices}');
+    print('Score: - ${entityAnnotation.score}');
   }
 
   print('done.');

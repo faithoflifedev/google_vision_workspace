@@ -74,6 +74,5 @@ export 'src/provider/files.dart';
 export 'src/provider/images.dart';
 export 'src/provider/oauth.dart';
 
-export 'src/util/logging_interceptors.dart';
 export 'src/util/serializable_image.dart';
 export 'src/util/util.dart';

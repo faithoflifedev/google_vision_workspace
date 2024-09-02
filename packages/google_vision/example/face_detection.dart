@@ -2,10 +2,7 @@ import 'package:google_vision/google_vision.dart';
 import 'package:universal_io/io.dart';
 
 void main() async {
-  // final googleVision =
-  //     await GoogleVision.withJwtFile('service_credentials.json');
-
-  final googleVision = GoogleVision.withApiKey(
+  final googleVision = GoogleVision().withApiKey(
     Platform.environment['GOOGLE_VISION_API_KEY'] ?? '[YOUR API KEY]',
     // additionalHeaders: {'com.xxx.xxx': 'X-Ios-Bundle-Identifier'},
   );
