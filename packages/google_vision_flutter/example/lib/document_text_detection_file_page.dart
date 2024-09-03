@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart';
-import 'package:vision_demo/show_pdf.dart';
+import 'example_base.dart';
+import 'show_pdf.dart';
 
-class DocumentTextDetectionFile extends StatefulWidget {
-  const DocumentTextDetectionFile({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<DocumentTextDetectionFile> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<DocumentTextDetectionFile> {
+class DocumentTextDetectionFilePage extends ExampleBase {
   static const assetName = 'assets/allswell.pdf';
+
+  const DocumentTextDetectionFilePage({
+    super.key,
+    required super.googleVision,
+    required super.title,
+  });
 
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            title: Text(widget.title),
-          ),
+          appBar: getAppBar(context),
           body: SingleChildScrollView(
             child: Center(
               child: Column(
@@ -52,8 +44,7 @@ class _MyHomePageState extends State<DocumentTextDetectionFile> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GoogleVisionFileBuilder.documentTextDetection(
-                      googleVision: GoogleVision.withAsset(
-                          'assets/service_credentials.json'),
+                      googleVision: googleVision,
                       inputConfig: InputConfig.fromAsset('assets/allswell.pdf'),
                       builder: (
                         BuildContext context,

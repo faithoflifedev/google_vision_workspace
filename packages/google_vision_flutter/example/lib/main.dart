@@ -1,73 +1,94 @@
 import 'package:flutter/material.dart';
+import 'package:google_vision_flutter/google_vision_flutter.dart'
+    hide WebDetection;
 
-import 'crop_hints.dart';
-import 'document_text_detection.dart';
-import 'document_text_detection_file.dart';
-import 'face_detection.dart';
-import 'image_properties.dart';
-import 'label_detection.dart';
-import 'landmark_detection.dart';
-import 'logo_detection.dart';
-import 'multiple_detections.dart';
-import 'multiple_face_detections.dart';
-import 'object_localization.dart';
-import 'safe_search_detection.dart';
-import 'text_detection.dart';
-import 'web_detection.dart';
+import 'crop_hints_page.dart';
+import 'document_text_detection_page.dart';
+import 'document_text_detection_file_page.dart';
+import 'face_detection_page.dart';
+import 'image_properties_page.dart';
+import 'label_detection_page.dart';
+import 'landmark_detection_page.dart';
+import 'logo_detection_page.dart';
+import 'multiple_detections_page.dart';
+import 'multiple_face_detections_page.dart';
+import 'object_localization_page.dart';
+import 'safe_search_detection_page.dart';
+import 'text_detection_page.dart';
+import 'web_detection_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final googleVision =
+      GoogleVision().withAsset('assets/service_credentials.json');
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
         '/': (context) => const MenuScreen(),
-        '/multiple': (context) => const MultipleDetections(
-              title: 'Object and Face Detection',
+        '/multiple': (context) => MultipleDetectionsPage(
+              googleVision: googleVision,
+              title: 'Multiple Detections',
             ),
-        '/crophints': (context) => const CropHints(
+        '/crophints': (context) => CropHintsPage(
+              googleVision: googleVision,
               title: 'Crop Hints',
             ),
-        '/documenttextdetection': (context) => const DocumentTextDetection(
+        '/documenttextdetection': (context) => DocumentTextDetectionPage(
+              googleVision: googleVision,
               title: 'Document Text Detection',
             ),
         '/documenttextdetectionfile': (context) =>
-            const DocumentTextDetectionFile(
+            DocumentTextDetectionFilePage(
+              googleVision: googleVision,
               title: 'Document Text Detection',
             ),
-        '/facedetection': (context) => const FaceDetection(
+        '/facedetection': (context) => FaceDetectionPage(
+              googleVision: googleVision,
               title: 'Face Detection',
             ),
-        '/imageproperties': (context) => const ImageProperties(
+        '/imageproperties': (context) => ImagePropertiesPage(
+              googleVision: googleVision,
               title: 'Image Properties',
             ),
-        '/labeldetection': (context) => const LabelDetection(
+        '/labeldetection': (context) => LabelDetectionPage(
+              googleVision: googleVision,
               title: 'Label Detection',
             ),
-        '/landmarkdetection': (context) => const LandmarkDetection(
+        '/landmarkdetection': (context) => LandmarkDetectionPage(
+              googleVision: googleVision,
               title: 'Landmark Detection',
             ),
-        '/logodetection': (context) => const LogoDetection(
+        '/logodetection': (context) => LogoDetectionPage(
+              googleVision: googleVision,
               title: 'Logo Detection',
             ),
-        '/objectlocalization': (context) => const ObjectLocalization(
+        '/objectlocalization': (context) => ObjectLocalizationPage(
+              googleVision: googleVision,
               title: 'Object Localization',
             ),
-        '/safesearchdetection': (context) => const SafeSearchDetection(
+        '/safesearchdetection': (context) => SafeSearchDetectionPage(
+              googleVision: googleVision,
               title: 'Safe Search Detection',
             ),
-        '/textdetection': (context) => const TextDetection(
+        '/textdetection': (context) => TextDetectionPage(
+              googleVision: googleVision,
               title: 'Text Detection',
             ),
-        '/webdetection': (context) => const WebDetection(
-              title: 'Document Text Detection from PDF',
+        '/webdetection': (context) => WebDetectionPage(
+              googleVision: googleVision,
+              title: 'Web Detection',
             ),
-        '/multipleface': (context) => const MultipleFaceDetection(
+        '/multipleface': (context) => MultipleFaceDetectionPage(
+              googleVision: googleVision,
               title: 'Multiple Image Face Detection',
             ),
       },

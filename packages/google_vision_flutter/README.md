@@ -19,6 +19,19 @@ Please feel free to submit PRs for any additional helper methods, or report an [
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-1.svg)](https://www.buymeacoffee.com/faithoflif2)
 
+## Recent Changes
+
+### New for v1.4.0
+  - A **breaking change** from the previous version is that the `GoogleVision` class now follows the Singleton design pattern.  Now the object is instantiated as follows:
+```dart
+
+// Old method from v1.3.x and earlier
+// final googleVision = await GoogleVision.withJwtFile('service_credentials.json');
+
+// New
+final googleVision = await GoogleVision().withJwtFile('service_credentials.json');
+```
+
 ## Getting Started
 
 ### pubspec.yaml
@@ -28,7 +41,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision_flutter: ^1.3.0+4
+  google_vision_flutter: ^1.4.0
 ```
 
 
@@ -54,8 +67,10 @@ class LabelDetection extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<LabelDetection> {
+  final imageAsset = 'assets/setagaya_small.jpg';
+
   final _processImage = Image.asset(
-    'assets/setagaya_small.jpg',
+    imageAsset,
     fit: BoxFit.fitWidth,
   );
 
@@ -76,7 +91,7 @@ class _MyHomePageState extends State<LabelDetection> {
                 children: <Widget>[
                   const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text('assets/setagaya_small.jpg'),
+                    child: Text(imageAsset),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -91,7 +106,7 @@ class _MyHomePageState extends State<LabelDetection> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GoogleVisionBuilder.labelDetection(
-                      googleVision: GoogleVision.withAsset(
+                      googleVision: GoogleVision().withAsset(
                           'assets/service_credentials.json'),
                       imageProvider: _processImage.image,
                       builder: (

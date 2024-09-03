@@ -1,74 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart';
+import 'example_base.dart';
 
-class ObjectLocalization extends StatefulWidget {
-  const ObjectLocalization({super.key, required this.title});
+class ObjectLocalizationPage extends ExampleBase {
+  static const assetName = 'assets/young-man-smiling.jpg';
 
-  final String title;
-
-  @override
-  State<ObjectLocalization> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<ObjectLocalization> {
   final _processImage = Image.asset(
-    'assets/young-man-smiling.jpg',
+    assetName,
     fit: BoxFit.fitWidth,
     width: 300.0,
   );
 
+  ObjectLocalizationPage({
+    super.key,
+    required super.googleVision,
+    required super.title,
+  });
+
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            title: Text(widget.title),
-          ),
-          body: SingleChildScrollView(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text('assets/young-man-smiling.jpg'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: _processImage,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Processed image will appear below:',
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GoogleVisionBuilder.objectLocalization(
-                      googleVision: GoogleVision.withAsset(
-                          'assets/service_credentials.json'),
-                      imageProvider: _processImage.image,
-                      builder: (
-                        BuildContext context,
-                        List<LocalizedObjectAnnotation>?
-                            localizedObjectAnnotations,
-                      ) {
-                        return CustomPaint(
-                          foregroundPainter: AnnotationPainter(
-                            localizedObjectAnnotations:
-                                localizedObjectAnnotations,
-                            uiImage: _processImage,
-                          ),
-                          child: Image(image: _processImage.image),
-                        );
-                      },
-                    ),
-                  )
-                ],
+          appBar: getAppBar(context),
+          body: simpleColumn(
+            assetName: assetName,
+            sampleImage: _processImage,
+            result: GoogleVisionBuilder.objectLocalization(
+              googleVision: googleVision,
+              imageProvider: _processImage.image,
+              builder: (
+                BuildContext context,
+                List<LocalizedObjectAnnotation>? localizedObjectAnnotations,
+              ) =>
+                  CustomPaint(
+                foregroundPainter: AnnotationPainter(
+                  localizedObjectAnnotations: localizedObjectAnnotations,
+                  uiImage: _processImage,
+                ),
+                child: Image(image: _processImage.image),
               ),
             ),
           ),

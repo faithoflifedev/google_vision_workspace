@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.4.0
+
+* singleton
+
+## 1.4.0
+
+* updated example
+* simplified FutureBuilder
+
+## 1.3.0+4
+
+* updated example
+* simplified FutureBuilder
+
+## 1.3.0+4
+
+* updated example
+* simplified FutureBuilder
+
 ## 1.3.0+4
 
 * updated example

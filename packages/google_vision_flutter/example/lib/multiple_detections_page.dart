@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart';
+import 'example_base.dart';
 
-class MultipleDetections extends StatefulWidget {
-  const MultipleDetections({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MultipleDetections> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MultipleDetections> {
+class MultipleDetectionsPage extends ExampleBase {
   static const assetName = 'assets/young-man-smiling.jpg';
 
   final _processImage = Image.asset(
@@ -19,16 +11,16 @@ class _MyHomePageState extends State<MultipleDetections> {
     width: 300,
   );
 
+  MultipleDetectionsPage({
+    super.key,
+    required super.googleVision,
+    required super.title,
+  });
+
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            title: Text(widget.title),
-          ),
+          appBar: getAppBar(context),
           body: SingleChildScrollView(
             child: Center(
               child: Column(
@@ -58,8 +50,7 @@ class _MyHomePageState extends State<MultipleDetections> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GoogleVisionBuilder(
-                      googleVision: GoogleVision.withAsset(
-                          'assets/service_credentials.json'),
+                      googleVision: googleVision,
                       imageProvider: _processImage.image,
                       features: [
                         Feature(

@@ -1,57 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart';
+import 'example_base.dart';
 
-class FaceDetection extends StatefulWidget {
-  const FaceDetection({super.key, required this.title});
+class MultipleFaceDetectionPage extends ExampleBase {
+  static const assetName1 = 'assets/young-man-smiling.jpg';
 
-  final String title;
+  static const assetName2 = 'assets/dj.jpg';
 
-  @override
-  State<FaceDetection> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<FaceDetection> {
-  final _processImage = Image.asset(
-    'assets/young-man-smiling.jpg',
+  final _processImage1 = Image.asset(
+    assetName1,
     fit: BoxFit.fitWidth,
-    width: 300,
+    height: 300,
   );
+
+  final _processImage2 = Image.asset(
+    assetName2,
+    fit: BoxFit.fitWidth,
+    height: 300,
+  );
+
+  MultipleFaceDetectionPage({
+    super.key,
+    required super.googleVision,
+    required super.title,
+  });
 
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            title: Text(widget.title),
-          ),
+          appBar: getAppBar(context),
           body: SingleChildScrollView(
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text('assets/young-man-smiling.jpg'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: _processImage,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(children: [
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(assetName1),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: _processImage1,
+                        ),
+                      ]),
+                      Column(children: [
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(assetName2),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: _processImage2,
+                        ),
+                      ]),
+                    ],
                   ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Processed image will appear below:',
+                      'Processed images will appear below:',
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: GoogleVisionBuilder.faceDetection(
-                      googleVision: GoogleVision.withAsset(
-                          'assets/service_credentials.json'),
-                      imageProvider: _processImage.image,
+                    child: GoogleVisionImageBuilder.faceDetection(
+                      googleVision: googleVision,
+                      imageProvider: _processImage1.image,
                       builder: (
                         BuildContext context,
                         List<FaceAnnotation>? faceAnnotations,
@@ -60,7 +78,24 @@ class _MyHomePageState extends State<FaceDetection> {
                         foregroundPainter: AnnotationPainter(
                           faceAnnotations: faceAnnotations,
                         ),
-                        child: Image(image: _processImage.image),
+                        child: Image(image: _processImage1.image),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GoogleVisionImageBuilder.faceDetection(
+                      googleVision: googleVision,
+                      imageProvider: _processImage2.image,
+                      builder: (
+                        BuildContext context,
+                        List<FaceAnnotation>? faceAnnotations,
+                      ) =>
+                          CustomPaint(
+                        foregroundPainter: AnnotationPainter(
+                          faceAnnotations: faceAnnotations,
+                        ),
+                        child: Image(image: _processImage2.image),
                       ),
                     ),
                   )

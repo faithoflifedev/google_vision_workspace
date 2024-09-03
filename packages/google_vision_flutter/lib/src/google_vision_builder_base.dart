@@ -72,8 +72,8 @@ abstract class GoogleVisionBuilderBase extends StatelessWidget {
             );
           } else if (snapshot.hasError) {
             widget = onError == null
-                ? onError!(snapshot.error!)
-                : Center(child: Text('${snapshot.error}'));
+                ? Center(child: Text('${snapshot.error}'))
+                : onError!(snapshot.error!);
           }
 
           return widget;
