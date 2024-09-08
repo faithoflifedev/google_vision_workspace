@@ -1,8 +1,9 @@
 import 'package:google_vision/google_vision.dart';
+import 'package:universal_io/io.dart';
 
 void main() async {
-  final googleVision =
-      await GoogleVision().withJwtFile('service_credentials.json');
+  final googleVision = await GoogleVision()
+      .withJwt(File('service_credentials.json').readAsStringSync());
 
   print('checking...');
 

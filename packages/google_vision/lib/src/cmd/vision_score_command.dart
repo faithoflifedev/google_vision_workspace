@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:args/command_runner.dart';
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
-import 'package:universal_io/io.dart';
+import 'package:google_vision/google_vision_cli.dart';
 
 /// For OBJECT_LOCALIZATION, get the score(s) for the object specified with
 /// "look-for".
@@ -13,7 +13,7 @@ class VisionScoreCommand extends VisionHelper {
 
   @override
   String get description =>
-      'For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for".';
+      'For OBJECT_LOCALIZATION, get the score(s) for the object specified with "look-for".  This command does not work with some multi-page or multi-frame files like TIFFs and PDFs.';
 
   /// For OBJECT_LOCALIZATION, get the score(s) for the object specified with
   /// "look-for".
@@ -42,9 +42,7 @@ class VisionScoreCommand extends VisionHelper {
     try {
       await initializeGoogleVision();
 
-      final imageFile = File(argResults!['image-file']).readAsBytesSync();
-
-      final annotatedResponses = await annotateImage(imageFile.buffer);
+      final annotatedResponses = await annotateImage();
 
       final scores = <double>[];
 

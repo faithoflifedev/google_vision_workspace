@@ -3,8 +3,8 @@ import 'dart:typed_data';
 import 'package:args/command_runner.dart';
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
+import 'package:google_vision/google_vision_cli.dart';
 import 'package:image/image.dart' as img;
-import 'package:universal_io/io.dart';
 
 /// Draw a box to highlight any objects detected.
 class VisionHighlightCommand extends VisionHelper {
@@ -12,7 +12,8 @@ class VisionHighlightCommand extends VisionHelper {
   String get name => 'highlight';
 
   @override
-  String get description => 'Draw a box to highlight any objects detected.';
+  String get description =>
+      'Draw a box to highlight any objects detected.  This command does not work with some multi-page or multi-frame files like TIFFs and PDFs.';
 
   /// Draw a box to highlight any objects detected.
   VisionHighlightCommand() {
@@ -76,12 +77,9 @@ class VisionHighlightCommand extends VisionHelper {
     try {
       await initializeGoogleVision();
 
-      final Uint8List encodedBytes =
-          File(argResults!['image-file']).readAsBytesSync();
+      final annotatedResponses = await annotateImage();
 
-      final annotatedResponses = await annotateImage(encodedBytes.buffer);
-
-      final img.Image decodedBytes = img.decodeImage(encodedBytes)!;
+      final img.Image decodedBytes = img.decodeImage(imageBytes)!;
 
       for (var annotatedResponse in annotatedResponses.responses) {
         // check for faces

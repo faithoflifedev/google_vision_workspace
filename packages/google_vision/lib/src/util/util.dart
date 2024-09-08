@@ -3,7 +3,6 @@ import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 import 'package:image/image.dart' as img;
-import 'package:universal_io/io.dart';
 
 Function listEquality = const ListEquality().equals;
 
@@ -56,10 +55,6 @@ class Util {
 
     return locationUri.queryParameters['upload_id']!;
   }
-
-  /// Attempt to retrieve the 'home' folder of the user if running on a desktop.
-  static String? get userHome =>
-      Platform.environment['HOME'] ?? Platform.environment['USERPROFILE'];
 
   static ImageEncoding getImageEncoding(List<int> bytes) {
     Uint8List headerBytes = Uint8List.fromList(bytes.sublist(0,

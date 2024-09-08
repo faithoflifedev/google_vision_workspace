@@ -4,8 +4,7 @@ import 'package:crypto_keys_plus/crypto_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
 import 'package:jose_plus/jose.dart';
-
-import 'package:universal_io/io.dart';
+// import 'package:universal_io/io.dart';
 
 abstract class TokenGenerator {
   Future<Token> generate();
@@ -25,15 +24,15 @@ class JwtGenerator implements TokenGenerator {
   }) : jwtCredentials = JwtCredentials.fromJson(
             {'settings': jsonDecode(credentials), 'scope': scope});
 
-  factory JwtGenerator.fromFile({
-    required String credentialsFile,
-    required String scope,
-    required Dio dio,
-  }) =>
-      JwtGenerator(
-          credentials: File(credentialsFile).readAsStringSync(),
-          scope: scope,
-          dio: dio);
+  // factory JwtGenerator.fromFile({
+  //   required String credentialsFile,
+  //   required String scope,
+  //   required Dio dio,
+  // }) =>
+  //     JwtGenerator(
+  //         credentials: File(credentialsFile).readAsStringSync(),
+  //         scope: scope,
+  //         dio: dio);
 
   /// generate a OAuth2 refresh token from JWT credentials
   @override

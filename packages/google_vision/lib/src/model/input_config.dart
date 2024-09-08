@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:mime/mime.dart';
-import 'package:universal_io/io.dart';
 
 import 'gcs_source.dart';
 
@@ -46,29 +45,15 @@ class InputConfig {
           'mimeType': mimeType,
         };
 
-  factory InputConfig.fromBuffer(ByteBuffer buffer, String mimeType) =>
-      InputConfig(content: buffer, mimeType: mimeType);
+  factory InputConfig.fromBuffer(ByteBuffer buffer, [String? mimeType]) =>
+      InputConfig(
+          content: buffer, mimeType: mimeType ?? mimeTypeFromContent(buffer));
 
   factory InputConfig.fromGsUri(String gsUri) => InputConfig(
       gcsSource: GcsSource(uri: gsUri),
       mimeType: mimeTypeFromFileName(
         gsUri.split('/').last,
       ));
-
-  factory InputConfig.fromFile(File file) => InputConfig(
-      content: file.readAsBytesSync().buffer,
-      mimeType: mimeTypeFromFile(
-        file,
-      ));
-
-  factory InputConfig.fromFilePath(String fileNameAndPath) {
-    final content = File(fileNameAndPath).readAsBytesSync().buffer;
-
-    return InputConfig(
-      content: content,
-      mimeType: mimeTypeFromContent(content),
-    );
-  }
 
   static String mimeTypeFromFileName(String fileName) {
     final mimeType = lookupMimeType(fileName.split('/').last);
@@ -90,9 +75,6 @@ class InputConfig {
 
     return mimeType;
   }
-
-  static String mimeTypeFromFile(File file) =>
-      mimeTypeFromContent(file.readAsBytesSync().buffer);
 
   @override
   String toString() => json.encode(toJson());

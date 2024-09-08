@@ -1,4 +1,5 @@
-import 'package:universal_io/io.dart';
+import 'package:args/command_runner.dart';
+import 'package:dio/dio.dart';
 
 import 'vision_helper_command.dart';
 
@@ -19,6 +20,11 @@ class VisionDetectCommand extends VisionHelper {
           mandatory: true,
           valueHelp: 'image file path',
           help: 'The path to the file that will be processed.')
+      ..addOption(
+        'pages',
+        abbr: 'p',
+        valueHelp: 'comma delimited list of pages to process (max 5)',
+      )
       ..addOption('features',
           mandatory: true,
           help:
@@ -32,17 +38,20 @@ class VisionDetectCommand extends VisionHelper {
 
   @override
   void run() async {
-    final imageFile = File(argResults!['image-file']);
+    try {
+      await initializeGoogleVision();
 
-    if (pages != null) {
-      final annotatedResponses = await annotateFile(imageFile, pages: pages!);
+      if (pages != null) {
+        final annotatedResponses = await annotateFile();
 
-      print(annotatedResponses.responses);
-    } else {
-      final annotatedResponses =
-          await annotateImage(imageFile.readAsBytesSync().buffer);
+        print(annotatedResponses.responses);
+      } else {
+        final annotatedResponses = await annotateImage();
 
-      print(annotatedResponses.responses);
+        print(annotatedResponses.responses);
+      }
+    } on DioException catch (err) {
+      throw UsageException('API usage error:', err.usage);
     }
   }
 }

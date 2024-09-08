@@ -1,12 +1,14 @@
 # Changelog
 
-## 1.4.0
+## 2.0.0
 
-* switch to Singleton
+* added web platform support
+* removed deprecated classes and methods
+* logging with the `loggy` package
 
-## 1.4.0
+## 1.4.0+1
 
-* switch to Singleton
+* better reporting of web platform support
 
 ## 1.4.0
 

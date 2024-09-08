@@ -1,5 +1,7 @@
+import 'package:args/command_runner.dart';
+import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
-import 'package:universal_io/io.dart';
+import 'package:google_vision/google_vision_cli.dart';
 
 /// Set of crop hints that are used to generate new crops when serving images.
 class VisionCropHintCommand extends VisionHelper {
@@ -8,7 +10,7 @@ class VisionCropHintCommand extends VisionHelper {
 
   @override
   String get description =>
-      'Set of crop hints that are used to generate new crops when serving images.';
+      'Set of crop hints that are used to generate new crops when serving images. When using this command with multi-page or multi-frame files like TIFFs and PDFs you must also provide a value for the the \'--pages\' argument.';
 
   /// Set of crop hints that are used to generate new crops when serving images.
   VisionCropHintCommand() {
@@ -17,6 +19,11 @@ class VisionCropHintCommand extends VisionHelper {
           mandatory: true,
           valueHelp: 'image file path',
           help: 'The path to the file that will be processed.')
+      ..addOption(
+        'pages',
+        abbr: 'p',
+        valueHelp: 'comma delimited list of pages to process (max 5)',
+      )
       ..addOption('aspect-ratios',
           valueHelp: 'aspect ratios',
           help:
@@ -25,41 +32,41 @@ class VisionCropHintCommand extends VisionHelper {
 
   @override
   void run() async {
-    final googleVision = await GoogleVision().withJwtFile(
-        globalResults!['credential-file'],
-        'https://www.googleapis.com/auth/cloud-vision');
+    try {
+      await initializeGoogleVision();
 
-    final imageFile = File(argResults!['image-file']);
+      final aspectRatios = argResults?['aspect-ratios'] == null
+          ? null
+          : argResults!['aspect-ratios']
+              .toString()
+              .split(',')
+              .map((aspectRatio) => double.parse(aspectRatio))
+              .toList();
 
-    final aspectRatios = argResults?['aspect-ratios'] == null
-        ? null
-        : argResults!['aspect-ratios']
-            .toString()
-            .split(',')
-            .map((aspectRatio) => double.parse(aspectRatio))
-            .toList();
+      final imageContext = aspectRatios != null
+          ? ImageContext(
+              cropHintsParams: CropHintsParams(aspectRatios: aspectRatios),
+            )
+          : null;
 
-    final imageContext = aspectRatios != null
-        ? ImageContext(
-            cropHintsParams: CropHintsParams(aspectRatios: aspectRatios),
-          )
-        : null;
+      if (pages != null) {
+        final annotatedResponses = await googleVision.file.cropHints(
+          InputConfig.fromBuffer(imageBytes.buffer),
+          imageContext: imageContext,
+          pages: pages!,
+        );
 
-    if (pages != null) {
-      final annotatedResponses = await annotateFile(
-        imageFile,
-        imageContext: imageContext,
-        pages: pages!,
-      );
+        print(annotatedResponses);
+      } else {
+        final annotatedResponses = await googleVision.image.cropHints(
+          JsonImage.fromBuffer(imageBytes.buffer),
+          imageContext: imageContext,
+        );
 
-      print(annotatedResponses.responses);
-    } else {
-      final annotatedResponses = await googleVision.image.cropHints(
-        JsonImage.fromFile(imageFile),
-        imageContext: imageContext,
-      );
-
-      print(annotatedResponses?.cropHints);
+        print(annotatedResponses?.cropHints);
+      }
+    } on DioException catch (err) {
+      throw UsageException('API usage error:', err.usage);
     }
   }
 }

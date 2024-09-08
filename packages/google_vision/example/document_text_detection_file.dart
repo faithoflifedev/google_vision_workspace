@@ -2,15 +2,19 @@ import 'package:google_vision/google_vision.dart';
 import 'package:universal_io/io.dart';
 
 void main() async {
-  final googleVision =
-      await GoogleVision().withJwtFile('service_credentials.json');
+  final googleVision = await GoogleVision()
+      .withJwt(File('service_credentials.json').readAsStringSync());
 
   print('checking...');
 
   const int page = 1;
 
+  const fileName = 'sample_image/allswell.pdf';
+
+  final file = File(fileName);
+
   final annotateFileResponses = await googleVision.file.documentTextDetection(
-    InputConfig.fromFilePath('sample_image/allswell.pdf'),
+    InputConfig.fromBuffer(file.readAsBytesSync().buffer),
     pages: [page],
   );
 

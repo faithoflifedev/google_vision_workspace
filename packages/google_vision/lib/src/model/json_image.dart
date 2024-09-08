@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:universal_io/io.dart';
-
 /// A class that holds the details of an image that can be converted to/from JSON.
 class JsonImage {
   final String? imageUri;
@@ -22,12 +20,6 @@ class JsonImage {
       JsonImage(byteBuffer: buffer);
 
   factory JsonImage.fromGsUri(String gsUri) => JsonImage(imageUri: gsUri);
-
-  factory JsonImage.fromFile(File file) =>
-      JsonImage(byteBuffer: file.readAsBytesSync().buffer);
-
-  factory JsonImage.fromFilePath(String fileNameAndPath) =>
-      JsonImage(byteBuffer: File(fileNameAndPath).readAsBytesSync().buffer);
 
   factory JsonImage.fromJson(Map<String, dynamic> json) => JsonImage(
         byteBuffer: json.containsKey('content')

@@ -34,6 +34,7 @@ class GoogleVisionFile {
   Future<List<AnnotateFileResponse>> detection(
     InputConfig inputConfig,
     AnnotationType annotationType, {
+    ImageContext? imageContext,
     int maxResults = 10,
     List<int>? pages,
     String? parent,
@@ -48,6 +49,7 @@ class GoogleVisionFile {
               maxResults: maxResults,
             ),
           ],
+          imageContext: imageContext,
           pages: pages,
         )
       ],
@@ -60,6 +62,7 @@ class GoogleVisionFile {
   /// Crop Hints suggests vertices for a crop region on an image.
   Future<List<AnnotateFileResponse>> cropHints(
     InputConfig inputConfig, {
+    ImageContext? imageContext,
     int maxResults = 10,
     List<int>? pages,
     String? parent,
@@ -67,6 +70,7 @@ class GoogleVisionFile {
     final annotatedFileResponses = await detection(
       inputConfig,
       AnnotationType.cropHints,
+      imageContext: imageContext,
       maxResults: maxResults,
       pages: pages,
       parent: parent,

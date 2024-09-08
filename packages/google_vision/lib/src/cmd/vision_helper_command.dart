@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:args/command_runner.dart';
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
+import 'package:loggy/loggy.dart';
 import 'package:universal_io/io.dart';
 
 /// Helper method to that retrieves error message string.
@@ -18,36 +19,52 @@ extension UsageExtension on DioException {
 abstract class VisionHelper extends Command {
   GoogleVision? _googleVision;
 
-  List<int>? pages;
-
   GoogleVision get googleVision => _googleVision!;
 
-  Future<void> initializeGoogleVision() async {
-    _googleVision =
-        await GoogleVision().withJwtFile(globalResults!['credential-file']);
+  List<int>? pages;
 
-    pages =
-        (argResults!['pages'] as String?)?.split(',').map(int.parse).toList();
+  late final File imageFile;
+
+  late final Uint8List imageBytes;
+
+  Future<void> initializeGoogleVision() async {
+    final logLevel = _toLogLevel(globalResults!['log-level']);
+
+    _googleVision = await GoogleVision(logLevel)
+        .withJwt(credentialsFromFile(File(globalResults!['credential-file'])));
+
+    imageFile = File(argResults!['image-file']);
+
+    imageBytes = await imageFile.readAsBytes();
+
+    if (argResults != null && argResults!['pages'] != null) {
+      pages =
+          (argResults!['pages'] as String?)?.split(',').map(int.parse).toList();
+    }
   }
 
+  String credentialsFromFile(File file) => file.readAsStringSync();
+
+  String credentialsFromFileName(String fileName) =>
+      credentialsFromFile(File(fileName));
+
   /// Helper method to get the features from the command line.
-  List<Feature> getFeatures([String? features]) =>
-      (argResults!['features'] as String)
-          .split(',')
-          .map(
-            (element) => Feature(
-                maxResults: int.parse(argResults!['max-results']),
-                type: AnnotationType.values.byName(element)),
-          )
-          .toList();
+  List<Feature> getFeatures() => (argResults!['features'] as String)
+      .split(',')
+      .map(
+        (element) => Feature(
+          maxResults: int.parse(argResults!['max-results']),
+          type: _toAnnotationType(element),
+        ),
+      )
+      .toList();
 
   /// Helper methods used by most of the cli commands.
-  Future<BatchAnnotateImagesResponse> annotateImage(ByteBuffer buffer,
-      [String? features]) async {
+  Future<BatchAnnotateImagesResponse> annotateImage() {
     final requests = [
       AnnotateImageRequest(
-        jsonImage: JsonImage(byteBuffer: buffer),
-        features: getFeatures(features),
+        jsonImage: JsonImage(byteBuffer: imageBytes.buffer),
+        features: getFeatures(),
       )
     ];
 
@@ -55,18 +72,26 @@ abstract class VisionHelper extends Command {
   }
 
   /// Helper methods used by most of the cli commands.
-  Future<BatchAnnotateFilesResponse> annotateFile(
-    File file, {
-    String? features,
+  Future<BatchAnnotateFilesResponse> annotateFile({
     ImageContext? imageContext,
-    required List<int> pages,
-  }) async =>
-      googleVision.file.annotate(requests: [
-        AnnotateFileRequest(
-          inputConfig: InputConfig.fromFile(file),
-          features: getFeatures(features),
-          imageContext: imageContext,
-          pages: pages,
-        )
-      ]);
+  }) async {
+    return googleVision.file.annotate(requests: [
+      AnnotateFileRequest(
+        inputConfig: InputConfig.fromBuffer(imageBytes.buffer),
+        features: getFeatures(),
+        imageContext: imageContext,
+        pages: pages,
+      )
+    ]);
+  }
+
+  /// Helper method to convert string from cli argument to enum.
+  static AnnotationType _toAnnotationType(type) => AnnotationType.values
+      .firstWhere((annotationType) => annotationType.type == type.trim(),
+          orElse: () => AnnotationType.typeUnspecified);
+
+  /// Helper method to convert string from cli argument to enum.
+  static LogLevel _toLogLevel(String name) => LogLevel.values.firstWhere(
+      (logLevel) => logLevel.name.toLowerCase() == name.trim().toLowerCase(),
+      orElse: () => LogLevel.off);
 }

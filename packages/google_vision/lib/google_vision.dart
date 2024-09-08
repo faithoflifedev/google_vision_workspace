@@ -9,21 +9,11 @@ export 'src/google_vision_image.dart';
 export 'src/annotate_json_serializable.dart';
 export 'src/token_generator.dart';
 
-export 'src/cmd/vision_crop_hint_command.dart';
-export 'src/cmd/vision_detect_command.dart';
-export 'src/cmd/vision_helper_command.dart';
-export 'src/cmd/vision_highlight_command.dart';
-export 'src/cmd/vision_safe_search_command.dart';
-export 'src/cmd/vision_score_command.dart';
-export 'src/cmd/vision_version_command.dart';
-
 export 'src/model/annotate_file_request.dart';
 export 'src/model/annotate_file_response.dart';
 export 'src/model/annotate_image_response.dart';
 export 'src/model/batch_annotate_images_response.dart';
 export 'src/model/annotate_image_request.dart';
-// TODO: remove this depricated class in the next verion
-export 'src/model/annotate_image_requests.dart';
 export 'src/model/batch_annotate_files_response.dart';
 export 'src/model/block.dart';
 export 'src/model/bounding_poly.dart';

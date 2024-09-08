@@ -17,6 +17,7 @@ Map<String, dynamic> _$FeatureToJson(Feature instance) => <String, dynamic>{
     };
 
 const _$AnnotationTypeEnumMap = {
+  AnnotationType.typeUnspecified: 'TYPE_UNSPECIFIED',
   AnnotationType.faceDetection: 'FACE_DETECTION',
   AnnotationType.landmarkDetection: 'LANDMARK_DETECTION',
   AnnotationType.logoDetection: 'LOGO_DETECTION',

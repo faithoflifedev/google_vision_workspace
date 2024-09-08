@@ -1,6 +1,5 @@
 # Google Vision Images REST API Client
 
-
 [![pub package](https://img.shields.io/pub/v/google_vision.svg)](https://pub.dartlang.org/packages/google_vision)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -11,9 +10,9 @@ Native [Dart](https://dart.dev/) package that integrates Google Vision features,
 - [Google Vision Images REST API Client](#google-vision-images-rest-api-client)
   - [Project Status](#project-status)
   - [Recent Changes](#recent-changes)
+    - [New for v2.0.0](#new-for-v200)
     - [New for v1.4.0](#new-for-v140)
     - [New for v1.3.0](#new-for-v130)
-    - [New for v1.2.0](#new-for-v120)
   - [Getting Started](#getting-started)
     - [pubspec.yaml](#pubspecyaml)
     - [Obtaining Authentication/Authorization Credentials](#obtaining-authenticationauthorization-credentials)
@@ -25,7 +24,6 @@ Native [Dart](https://dart.dev/) package that integrates Google Vision features,
   - [Contributors](#contributors)
   - [Contributing](#contributing)
 
-
 ## Project Status
 
 [![Build Status](https://github.com/faithoflifedev/google_vision/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/google_vision/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/google_vision)](https://shields.io/github/last-commit/faithoflifedev/google_vision) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/google_vision_workspace/dart.yaml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/google_vision/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/google_vision)](https://shields.io/github/issues/faithoflifedev/google_vision)
@@ -35,6 +33,14 @@ Native [Dart](https://dart.dev/) package that integrates Google Vision features,
 Please feel free to submit PRs for any additional helper methods, or report an [issue](https://github.com/faithoflifedev/google_vision/issues) for a missing helper method and I'll add it if I have time available.
 
 ## Recent Changes
+
+### New for v2.0.0
+  - Even though this package worked when used with the `web` platform the **pub.dev** analyzer would not show it as `web` platform compatible due to the use of the `universal_io` package which has a dependency on `dart:io`.  This version has removed the `universal_io` dependency from the core package, so some related method signatures have been removed.
+  - The deprecated methods from in v1.3.x have been removed in this version.
+  - Logging functionality has been added to the package
+  ```dart
+  final googleVision = await GoogleVision(LogLevel.all).withJwtFile('service_credentials.json');
+  ```
 
 ### New for v1.4.0
   - A breaking change from the previous version is that the `GoogleVision` class now follows the Singleton design pattern.  Now the object is instantiated as follows:
@@ -51,9 +57,6 @@ final googleVision = await GoogleVision().withJwtFile('service_credentials.json'
   - This version of the package supports both the `image` and `file` annotation APIs for Google Vision.  The previous versions of the package supported only the `image` API.
   - A number of methods and classes have been **Deprecated** in this version.  All the provided examples still work without any changes, so the changes in this package should not cause any issue to existing code.
   - The `file` functionality added to this release allows for the annotation of file formats that have pages or frames, specifically `pdf`, `tiff` and `gif`.  Google Vision allows annotation of up to 5 pages/frames.
-
-### New for v1.2.0
-  - helper methods that simplify any `single` detection so a simple face detection can be performed with the `faceDetection(JsonImage jsonImage)` method, see the table below.
   
 ## Getting Started
 
@@ -64,7 +67,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision: ^1.4.0
+  google_vision: ^2.0.0
 ```
 
 ### Obtaining Authentication/Authorization Credentials

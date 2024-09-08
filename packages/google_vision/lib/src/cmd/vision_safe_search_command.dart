@@ -1,5 +1,7 @@
+import 'package:args/command_runner.dart';
+import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
-import 'package:universal_io/io.dart';
+import 'package:google_vision/google_vision_cli.dart';
 
 /// SafeSearch Detection detects explicit content such as adult content or
 /// violent content within an image.
@@ -9,7 +11,7 @@ class VisionSafeSearchCommand extends VisionHelper {
 
   @override
   String get description =>
-      'SafeSearch Detection detects explicit content such as adult content or violent content within an image.';
+      'SafeSearch Detection detects explicit content such as adult content or violent content within an image.  This command does not work with some multi-page or multi-frame files like TIFFs and PDFs.';
 
   /// SafeSearch Detection detects explicit content such as adult content or
   /// violent content within an image.
@@ -22,15 +24,15 @@ class VisionSafeSearchCommand extends VisionHelper {
 
   @override
   void run() async {
-    final googleVision = await GoogleVision().withJwtFile(
-        globalResults!['credential-file'],
-        'https://www.googleapis.com/auth/cloud-vision');
+    try {
+      await initializeGoogleVision();
 
-    final imageFile = File(argResults!['image-file']);
+      final safeSearchDetection = await googleVision.image
+          .safeSearchDetection(JsonImage.fromBuffer(imageBytes.buffer));
 
-    final safeSearchDetection = await googleVision.image
-        .safeSearchDetection(JsonImage.fromFile(imageFile));
-
-    print(safeSearchDetection);
+      print(safeSearchDetection);
+    } on DioException catch (err) {
+      throw UsageException('API usage error:', err.usage);
+    }
   }
 }

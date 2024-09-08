@@ -31,6 +31,9 @@ class Feature {
 
 @JsonEnum(valueField: 'type')
 enum AnnotationType {
+  /// unspecified
+  typeUnspecified('TYPE_UNSPECIFIED'),
+
   /// Face detection
   faceDetection('FACE_DETECTION'),
 
