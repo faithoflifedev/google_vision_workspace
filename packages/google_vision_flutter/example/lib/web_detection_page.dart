@@ -3,11 +3,12 @@ import 'package:google_vision_flutter/google_vision_flutter.dart';
 import 'example_base.dart';
 
 class WebDetectionPage extends ExampleBase {
-  static const assetName = 'assets/young-man-smiling.jpg';
+  static const assetName = 'assets/structures.png';
 
   final _processImage = Image.asset(
     assetName,
     fit: BoxFit.fitWidth,
+    height: 600.0,
   );
 
   WebDetectionPage({
@@ -23,7 +24,7 @@ class WebDetectionPage extends ExampleBase {
           body: simpleColumn(
             assetName: assetName,
             sampleImage: _processImage,
-            result: GoogleVisionBuilder.webDetection(
+            result: GoogleVisionImageBuilder.webDetection(
               googleVision: googleVision,
               imageProvider: _processImage.image,
               builder: (

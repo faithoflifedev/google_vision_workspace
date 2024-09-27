@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:google_vision/google_vision.dart' as gv;
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 
 /// A widget that builds a [GoogleVisionFileBuilder] instance.
@@ -31,7 +30,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for crop hint detections.
   factory GoogleVisionFileBuilder.cropHints({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -59,7 +58,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for document text detections.
   factory GoogleVisionFileBuilder.documentTextDetection({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -87,7 +86,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for face detections.
   factory GoogleVisionFileBuilder.faceDetection({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -115,7 +114,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for image properties detection.
   factory GoogleVisionFileBuilder.imageProperties({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -143,7 +142,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for label detections.
   factory GoogleVisionFileBuilder.labelDetection({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -171,7 +170,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for landmark detections.
   factory GoogleVisionFileBuilder.landmarkDetection({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -199,7 +198,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for logo detections.
   factory GoogleVisionFileBuilder.logoDetection({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -227,7 +226,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for object localization detections.
   factory GoogleVisionFileBuilder.objectLocalization({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -255,7 +254,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for product search detections.
   factory GoogleVisionFileBuilder.productSearch({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -283,7 +282,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for safe search detections.
   factory GoogleVisionFileBuilder.safeSearchDetection({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -311,7 +310,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for text detections.
   factory GoogleVisionFileBuilder.textDetection({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,
@@ -341,7 +340,7 @@ class GoogleVisionFileBuilder extends GoogleVisionBuilderBase {
   /// Creates a new instance of [GoogleVisionFileBuilder] for web detections.
   factory GoogleVisionFileBuilder.webDetection({
     Key? key,
-    required FutureOr<gv.GoogleVision> googleVision,
+    required FutureOr<GoogleVision> googleVision,
     required Future<InputConfig> inputConfig,
     required Widget Function(
       BuildContext,

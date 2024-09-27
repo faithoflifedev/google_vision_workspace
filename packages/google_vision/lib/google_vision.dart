@@ -1,7 +1,7 @@
 /// Integrates Google Vision features, including image labeling, face, logo, and
 /// landmark detection, optical character recognition (OCR), and detection of
 /// explicit content, into applications.
-library google_vision;
+library;
 
 export 'src/google_vision_base.dart';
 export 'src/google_vision_file.dart';

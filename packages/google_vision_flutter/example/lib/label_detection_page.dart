@@ -23,7 +23,7 @@ class LabelDetectionPage extends ExampleBase {
           body: simpleColumn(
             assetName: assetName,
             sampleImage: _processImage,
-            result: GoogleVisionBuilder.labelDetection(
+            result: GoogleVisionImageBuilder.labelDetection(
               googleVision: googleVision,
               imageProvider: _processImage.image,
               builder: (

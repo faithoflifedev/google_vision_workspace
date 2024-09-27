@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:args/command_runner.dart';
 import 'package:google_vision/google_vision_cli.dart';
-import 'package:universal_io/io.dart';
 
 /// Attempt to retrieve the 'home' folder of the user if running on a desktop.
 String? get _userHome =>

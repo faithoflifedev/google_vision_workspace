@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_vision_flutter/extensions/vertex.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 import 'package:vision_demo/example_base.dart';
 
@@ -23,7 +24,7 @@ class TextDetectionPage extends ExampleBase {
           body: simpleColumn(
             assetName: assetName,
             sampleImage: _processImage,
-            result: GoogleVisionBuilder.textDetection(
+            result: GoogleVisionImageBuilder.textDetection(
               googleVision: googleVision,
               imageProvider: _processImage.image,
               builder: (

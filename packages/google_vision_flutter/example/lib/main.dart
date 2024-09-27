@@ -38,56 +38,56 @@ class MyApp extends StatelessWidget {
               googleVision: googleVision,
               title: 'Multiple Detections',
             ),
-        '/crophints': (context) => CropHintsPage(
+        '/cropHints': (context) => CropHintsPage(
               googleVision: googleVision,
               title: 'Crop Hints',
             ),
-        '/documenttextdetection': (context) => DocumentTextDetectionPage(
+        '/documentTextDetection': (context) => DocumentTextDetectionPage(
               googleVision: googleVision,
               title: 'Document Text Detection',
             ),
-        '/documenttextdetectionfile': (context) =>
+        '/documentTextDetectionFile': (context) =>
             DocumentTextDetectionFilePage(
               googleVision: googleVision,
               title: 'Document Text Detection',
             ),
-        '/facedetection': (context) => FaceDetectionPage(
+        '/faceDetection': (context) => FaceDetectionPage(
               googleVision: googleVision,
               title: 'Face Detection',
             ),
-        '/imageproperties': (context) => ImagePropertiesPage(
+        '/imageProperties': (context) => ImagePropertiesPage(
               googleVision: googleVision,
               title: 'Image Properties',
             ),
-        '/labeldetection': (context) => LabelDetectionPage(
+        '/labelDetection': (context) => LabelDetectionPage(
               googleVision: googleVision,
               title: 'Label Detection',
             ),
-        '/landmarkdetection': (context) => LandmarkDetectionPage(
+        '/landmarkDetection': (context) => LandmarkDetectionPage(
               googleVision: googleVision,
               title: 'Landmark Detection',
             ),
-        '/logodetection': (context) => LogoDetectionPage(
+        '/logoDetection': (context) => LogoDetectionPage(
               googleVision: googleVision,
               title: 'Logo Detection',
             ),
-        '/objectlocalization': (context) => ObjectLocalizationPage(
+        '/objectLocalization': (context) => ObjectLocalizationPage(
               googleVision: googleVision,
               title: 'Object Localization',
             ),
-        '/safesearchdetection': (context) => SafeSearchDetectionPage(
+        '/safeSearchDetection': (context) => SafeSearchDetectionPage(
               googleVision: googleVision,
               title: 'Safe Search Detection',
             ),
-        '/textdetection': (context) => TextDetectionPage(
+        '/textDetection': (context) => TextDetectionPage(
               googleVision: googleVision,
               title: 'Text Detection',
             ),
-        '/webdetection': (context) => WebDetectionPage(
+        '/webDetection': (context) => WebDetectionPage(
               googleVision: googleVision,
               title: 'Web Detection',
             ),
-        '/multipleface': (context) => MultipleFaceDetectionPage(
+        '/multipleFace': (context) => MultipleFaceDetectionPage(
               googleVision: googleVision,
               title: 'Multiple Image Face Detection',
             ),
@@ -119,55 +119,55 @@ class MenuScreen extends StatelessWidget {
             ),
             ElevatedButton(
               child: const Text('Crop Hints'),
-              onPressed: () => Navigator.pushNamed(context, '/crophints'),
+              onPressed: () => Navigator.pushNamed(context, '/cropHints'),
             ),
             ElevatedButton(
               child: const Text('Document Text Detection'),
               onPressed: () =>
-                  Navigator.pushNamed(context, '/documenttextdetection'),
+                  Navigator.pushNamed(context, '/documentTextDetection'),
             ),
             ElevatedButton(
               child: const Text('Face Detection'),
-              onPressed: () => Navigator.pushNamed(context, '/facedetection'),
+              onPressed: () => Navigator.pushNamed(context, '/faceDetection'),
             ),
             ElevatedButton(
               child: const Text('Image Properties'),
-              onPressed: () => Navigator.pushNamed(context, '/imageproperties'),
+              onPressed: () => Navigator.pushNamed(context, '/imageProperties'),
             ),
             ElevatedButton(
               child: const Text('Label Detection'),
-              onPressed: () => Navigator.pushNamed(context, '/labeldetection'),
+              onPressed: () => Navigator.pushNamed(context, '/labelDetection'),
             ),
             ElevatedButton(
               child: const Text('Landmark Detection'),
               onPressed: () =>
-                  Navigator.pushNamed(context, '/landmarkdetection'),
+                  Navigator.pushNamed(context, '/landmarkDetection'),
             ),
             ElevatedButton(
               child: const Text('Logo Detection'),
-              onPressed: () => Navigator.pushNamed(context, '/logodetection'),
+              onPressed: () => Navigator.pushNamed(context, '/logoDetection'),
             ),
             ElevatedButton(
               child: const Text('Object Localization'),
               onPressed: () =>
-                  Navigator.pushNamed(context, '/objectlocalization'),
+                  Navigator.pushNamed(context, '/objectLocalization'),
             ),
             ElevatedButton(
               child: const Text('Safe Search Detection'),
               onPressed: () =>
-                  Navigator.pushNamed(context, '/safesearchdetection'),
+                  Navigator.pushNamed(context, '/safeSearchDetection'),
             ),
             ElevatedButton(
               child: const Text('Text Detection'),
-              onPressed: () => Navigator.pushNamed(context, '/textdetection'),
+              onPressed: () => Navigator.pushNamed(context, '/textDetection'),
             ),
             ElevatedButton(
               child: const Text('Web Detection'),
-              onPressed: () => Navigator.pushNamed(context, '/webdetection'),
+              onPressed: () => Navigator.pushNamed(context, '/webDetection'),
             ),
             ElevatedButton(
               child: const Text('Multiple Image Face Detection'),
-              onPressed: () => Navigator.pushNamed(context, '/multipleface'),
+              onPressed: () => Navigator.pushNamed(context, '/multipleFace'),
             ),
             const SizedBox(
               height: 30,
@@ -176,7 +176,7 @@ class MenuScreen extends StatelessWidget {
             ElevatedButton(
               child: const Text('Document Text Detection from PDF'),
               onPressed: () =>
-                  Navigator.pushNamed(context, '/documenttextdetectionfile'),
+                  Navigator.pushNamed(context, '/documentTextDetectionFile'),
             ),
           ],
         ),

@@ -1,10 +1,8 @@
 /// A Flutter plugin for Google Vision API.
-library google_vision_flutter;
+library;
 
-export 'src/extensions.dart';
 export 'src/google_vision.dart';
 export 'src/google_vision_builder_base.dart';
-export 'src/google_vision_builder.dart';
 export 'src/google_vision_file_builder.dart';
 export 'src/google_vision_image_builder.dart';
 export 'src/image_detail.dart';

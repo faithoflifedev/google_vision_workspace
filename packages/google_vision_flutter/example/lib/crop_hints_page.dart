@@ -8,6 +8,7 @@ class CropHintsPage extends ExampleBase {
   final _processImage = Image.asset(
     assetName,
     fit: BoxFit.fitWidth,
+    width: 300,
   );
 
   CropHintsPage({
@@ -23,7 +24,7 @@ class CropHintsPage extends ExampleBase {
           body: simpleColumn(
               assetName: assetName,
               sampleImage: _processImage,
-              result: GoogleVisionBuilder.cropHints(
+              result: GoogleVisionImageBuilder.cropHints(
                 googleVision: googleVision,
                 imageProvider: _processImage.image,
                 builder: (

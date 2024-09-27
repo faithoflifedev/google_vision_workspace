@@ -23,7 +23,7 @@ class ImagePropertiesPage extends ExampleBase {
           body: simpleColumn(
             assetName: assetName,
             sampleImage: _processImage,
-            result: GoogleVisionBuilder.imageProperties(
+            result: GoogleVisionImageBuilder.imageProperties(
               maxResults: 5,
               googleVision: googleVision,
               imageProvider: _processImage.image,

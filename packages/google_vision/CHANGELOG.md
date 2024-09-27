@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0+3
+
+* dependency bump
+
+## 2.0.0+2
+
+* dependency bump
+
 ## 2.0.0
 
 * added web platform support

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_vision_flutter/extensions/vertex.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 import 'example_base.dart';
 
@@ -24,7 +25,7 @@ class FaceDetectionPage extends ExampleBase {
           body: simpleColumn(
             assetName: assetName,
             sampleImage: _processImage,
-            result: GoogleVisionBuilder.faceDetection(
+            result: GoogleVisionImageBuilder.faceDetection(
               googleVision: googleVision,
               imageProvider: _processImage.image,
               builder: (

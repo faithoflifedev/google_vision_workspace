@@ -8,6 +8,7 @@ class SafeSearchDetectionPage extends ExampleBase {
   final _processImage = Image.asset(
     assetName,
     fit: BoxFit.fitWidth,
+    width: 300,
   );
 
   SafeSearchDetectionPage({
@@ -23,7 +24,7 @@ class SafeSearchDetectionPage extends ExampleBase {
             body: simpleColumn(
                 assetName: assetName,
                 sampleImage: _processImage,
-                result: GoogleVisionBuilder.safeSearchDetection(
+                result: GoogleVisionImageBuilder.safeSearchDetection(
                   googleVision: googleVision,
                   imageProvider: _processImage.image,
                   builder: (

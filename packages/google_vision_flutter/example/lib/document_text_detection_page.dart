@@ -8,6 +8,7 @@ class DocumentTextDetectionPage extends ExampleBase {
   final _processImage = Image.asset(
     assetName,
     fit: BoxFit.fitWidth,
+    width: 400,
   );
   DocumentTextDetectionPage({
     super.key,
@@ -22,7 +23,7 @@ class DocumentTextDetectionPage extends ExampleBase {
           body: simpleColumn(
             assetName: assetName,
             sampleImage: _processImage,
-            result: GoogleVisionBuilder.documentTextDetection(
+            result: GoogleVisionImageBuilder.documentTextDetection(
               googleVision: googleVision,
               imageProvider: _processImage.image,
               builder: (

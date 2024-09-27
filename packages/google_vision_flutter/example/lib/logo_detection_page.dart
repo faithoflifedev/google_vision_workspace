@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_vision_flutter/extensions/vertex.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 import 'example_base.dart';
 
@@ -8,6 +9,7 @@ class LogoDetectionPage extends ExampleBase {
   final _processImage = Image.asset(
     assetName,
     fit: BoxFit.fitWidth,
+    width: 300,
   );
 
   LogoDetectionPage({
@@ -23,7 +25,7 @@ class LogoDetectionPage extends ExampleBase {
             body: simpleColumn(
               assetName: assetName,
               sampleImage: _processImage,
-              result: GoogleVisionBuilder.logoDetection(
+              result: GoogleVisionImageBuilder.logoDetection(
                 googleVision: googleVision,
                 imageProvider: _processImage.image,
                 builder: (

@@ -8,6 +8,7 @@ class LandmarkDetectionPage extends ExampleBase {
   final _processImage = Image.asset(
     assetName,
     fit: BoxFit.fitWidth,
+    height: 400,
   );
 
   LandmarkDetectionPage({
@@ -23,7 +24,7 @@ class LandmarkDetectionPage extends ExampleBase {
             body: simpleColumn(
               assetName: assetName,
               sampleImage: _processImage,
-              result: GoogleVisionBuilder.landmarkDetection(
+              result: GoogleVisionImageBuilder.landmarkDetection(
                 googleVision: googleVision,
                 imageProvider: _processImage.image,
                 builder: (

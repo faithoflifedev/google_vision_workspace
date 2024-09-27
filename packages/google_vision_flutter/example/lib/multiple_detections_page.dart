@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_vision_flutter/extensions/vertex.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart';
 import 'example_base.dart';
 
@@ -49,7 +50,7 @@ class MultipleDetectionsPage extends ExampleBase {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: GoogleVisionBuilder(
+                    child: GoogleVisionImageBuilder(
                       googleVision: googleVision,
                       imageProvider: _processImage.image,
                       features: [
@@ -64,7 +65,7 @@ class MultipleDetectionsPage extends ExampleBase {
                       ],
                       builder: (
                         BuildContext context,
-                        AsyncSnapshot<AnnotatedResponses> snapshot,
+                        AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                       ) {
                         if (snapshot.hasError) {
                           return Text('Error: ${snapshot.error}');
@@ -92,7 +93,7 @@ class MultipleDetectionsPage extends ExampleBase {
 }
 
 class AnnotationPainter extends CustomPainter {
-  final AnnotatedResponses annotatedResponses;
+  final BatchAnnotateImagesResponse annotatedResponses;
 
   AnnotationPainter({
     required this.annotatedResponses,

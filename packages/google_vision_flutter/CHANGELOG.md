@@ -1,8 +1,16 @@
 # Changelog
 
-## 1.4.0
+## 2.0.0+3
 
-* singleton
+* dependency bump
+
+## 2.0.0+2
+
+* dependency bump
+
+## 2.0.0
+
+* web platform support
 
 ## 1.4.0
 

@@ -1,10 +1,10 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:args/command_runner.dart';
 import 'package:dio/dio.dart';
 import 'package:google_vision/google_vision.dart';
 import 'package:loggy/loggy.dart';
-import 'package:universal_io/io.dart';
 
 /// Helper method to that retrieves error message string.
 extension UsageExtension on DioException {

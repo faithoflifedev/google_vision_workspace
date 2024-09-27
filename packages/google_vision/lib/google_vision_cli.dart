@@ -1,4 +1,4 @@
-library google_vision_cli;
+library;
 
 export 'src/cmd/vision_crop_hint_command.dart';
 export 'src/cmd/vision_detect_command.dart';

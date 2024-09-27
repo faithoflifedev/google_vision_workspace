@@ -31,3 +31,8 @@ build/
 
 
 tool/publish_tools.yaml
+
+# deleted files
+lib/src/extensions.dart
+lib/src/google_vision_builder.dart
+pubspec_overrides.yaml

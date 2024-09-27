@@ -10,18 +10,16 @@ environment:
 
 dependencies:
   color: ^3.0.0
-  google_vision:
-    path: ../../google_vision
-  google_vision_flutter:
-    path: ../
-  syncfusion_flutter_pdfviewer: ^26.2.11
-  universal_io: ^2.2.2
+  google_vision_flutter: ^2.0.0
+  # google_vision_flutter:
+  #   path: ../
+  syncfusion_flutter_pdfviewer: ^27.1.50
 
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
