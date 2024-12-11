@@ -5,6 +5,11 @@
 * dependency bump
 * adjustments for new Dart SDK
 
+## 2.0.0+4
+
+* dependency bump
+* adjustments for new Dart SDK
+
 ## 2.0.0+3
 
 * dependency bump

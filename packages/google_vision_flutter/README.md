@@ -1,5 +1,8 @@
 # Google Vision Images Flutter Widget
 
+<center><img src="https://github.com/faithoflifedev/google_vision_workspace/blob/main/packages/google_vision_flutter/extra/google_vision_flutter.png?raw=true&amp;v1" width="320"></center>
+<br/>
+
 ![SDK version](https://badgen.net/pub/sdk-version/google_vision_flutter?style=for-the-badge)
 ![Supported platforms](https://badgen.net/pub/flutter-platform/google_vision_flutter?style=for-the-badge)
 ![Supported SDKs](https://badgen.net/pub/dart-platform/google_vision_flutter?style=for-the-badge)
@@ -23,7 +26,6 @@ Please feel free to submit PRs for any additional helper methods, or report an [
   - [Usage of the GoogleVisionBuilder Widget](#usage-of-the-googlevisionbuilder-widget)
 - [Contributors](#contributors)
 - [Contributing](#contributing)
-
 
 ## Recent Changes
 
@@ -56,7 +58,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision_flutter: ^2.0.0+5
+  google_vision_flutter: ^2.0.0+6
 ```
 
 
@@ -123,7 +125,7 @@ class LabelDetectionPage extends ExampleBase {
 
 ```
 
-<center><img src="https://github.com/faithoflifedev/google_vision_workspace/blob/main/packages/google_vision_flutter/screenshot/Screenshot.png?raw=true&amp;v1" width="320"></center>
+<center><img src="https://github.com/faithoflifedev/google_vision_workspace/blob/main/packages/google_vision_flutter/extra/Screenshot.png?raw=true&amp;v1" width="320"></center>
 
 ## Contributors
 
