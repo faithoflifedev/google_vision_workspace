@@ -36,6 +36,3 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   grinder: ^0.9.5
   publish_tools: ^1.0.0+10
-
-dependency_overrides:
-  collection: ^1.18.0

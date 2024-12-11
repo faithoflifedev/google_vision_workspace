@@ -5,6 +5,11 @@
 * add additional headers to concrete impl of google vision #28
 * add logging to the example app
 
+## 2.0.0+5
+
+* add additional headers to concrete impl of google vision #28
+* add logging to the example app
+
 ## 2.0.0+4
 
 * dependency bump
