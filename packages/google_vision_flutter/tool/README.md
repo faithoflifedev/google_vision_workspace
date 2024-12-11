@@ -8,32 +8,22 @@ Native [Dart](https://dart.dev/) package that integrates Google Vision features,
 
 Please feel free to submit PRs for any additional helper methods, or report an [issue](https://github.com/faithoflifedev/google_vision/issues) for a missing helper method and I'll add it if I have time available.
 
-## Table of Contents
-- [Google Vision Images Flutter Widget](#google-vision-images-flutter-widget)
-  - [Table of Contents](#table-of-contents)
-  - [Recent Changes](#recent-changes)
-    - [New for v2.0.0](#new-for-v200)
-    - [New for v1.4.0](#new-for-v140)
-  - [Getting Started](#getting-started)
-    - [pubspec.yaml](#pubspecyaml)
-    - [Obtaining Authorization Credentials](#obtaining-authorization-credentials)
-    - [Usage of the GoogleVisionBuilder Widget](#usage-of-the-googlevisionbuilder-widget)
-  - [ShoutOut](#shoutout)
-  - [Contributing](#contributing)
-
-[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Pub Package](https://img.shields.io/pub/v/google_vision_flutter.svg?logo=dart&logoColor=00b9fc&color=blue&style=for-the-badge)](https://pub.dartlang.org/packages/google_vision_flutter)
-[![Code Size](https://img.shields.io/github/languages/code-size/faithoflifedev/google_vision_workspace?logo=github&logoColor=white&style=for-the-badge)](https://github.com/faithoflifedev/google_vision_workspace)
-[![Publisher](https://img.shields.io/pub/publisher/google_vision_flutter?style=for-the-badge)](https://pub.dev/publishers/muayid.com)
-
-[![Build Status](https://img.shields.io/github/actions/workflow/status/faithoflifedev/google_vision_workspace/flutter.yaml?branch=main&logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/faithoflifedev/google_vision_workspace/actions)
-[![Pull Requests](https://img.shields.io/github/issues-pr/faithoflifedev/google_vision_workspace?logo=github&logoColor=white&style=for-the-badge)](https://github.com/faithoflifedev/flutter_image_converter/pulls)
-[![Issues](https://img.shields.io/github/issues/faithoflifedev/google_vision_workspace?logo=github&logoColor=white&style=for-the-badge)](https://github.com/faithoflifedev/google_vision_workspace/issues)
-[![github last commit](https://shields.io/github/last-commit/faithoflifedev/google_vision?logo=github&logoColor=white&style=for-the-badge)](https://shields.io/github/last-commit/faithoflifedev/google_vision)
+[![popularity](https://img.shields.io/pub/popularity/google_vision_flutter?style=for-the-badge&logo=dart)](https://pub.dev/packages/google_vision_flutter/score)
 [![Pub Score](https://img.shields.io/pub/points/google_vision_flutter?logo=dart&logoColor=00b9fc&style=for-the-badge)](https://pub.dev/packages/google_vision_flutter/score)
+[![likes](https://img.shields.io/pub/likes/google_vision_flutter?style=for-the-badge&logo=dart)](https://pub.dev/packages/google_vision_flutter/score)
 
 
-[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-1.svg)](https://www.buymeacoffee.com/faithoflif2)
+## Table of Contents
+- [Recent Changes](#recent-changes)
+  - [New for v2.0.0](#new-for-v200)
+  - [New for v1.4.0](#new-for-v140)
+- [Getting Started](#getting-started)
+  - [pubspec.yaml](#pubspecyaml)
+  - [Obtaining Authorization Credentials](#obtaining-authorization-credentials)
+  - [Usage of the GoogleVisionBuilder Widget](#usage-of-the-googlevisionbuilder-widget)
+- [Contributors](#contributors)
+- [Contributing](#contributing)
+
 
 ## Recent Changes
 
@@ -42,7 +32,8 @@ Please feel free to submit PRs for any additional helper methods, or report an [
   - The deprecated methods from in v1.3.x have been removed in this version.
   - Logging functionality has been added to the package
   ```dart
-  final googleVision = await GoogleVision(LogLevel.all).withJwtFile('service_credentials.json');
+final googleVision =
+    GoogleVision(LogLevel.all).withAsset('assets/service_credentials.json');
   ```
 
 ### New for v1.4.0
@@ -134,9 +125,9 @@ class LabelDetectionPage extends ExampleBase {
 
 <center><img src="https://github.com/faithoflifedev/google_vision_workspace/blob/main/packages/google_vision_flutter/screenshot/face_detection.png?raw=true&amp;v1" width="320"></center>
 
-## ShoutOut
+## Contributors
 
- - To [Andrii Syrokomskyi](https://github.com/signmotion) for creating [flutter_image_converter](https://github.com/signmotion/flutter_image_converter), I've borrowed some of the code included in the `flutter_image_converter` in this package.  This package originally had a dependency on `flutter_image_converter`, but that had to be removed to achieve `web` platform support.
+- [hieupm2096](https://github.com/hieupm2096)
 
 ## Contributing
 

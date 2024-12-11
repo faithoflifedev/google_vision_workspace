@@ -3,16 +3,17 @@ description: A simple app to test the google_vision_flutter package
 
 publish_to: none
 
-version: 1.0.0+2
+version: 1.0.0+3
 
 environment:
   sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
   color: ^3.0.0
-  google_vision_flutter: ^2.0.0
+  google_vision_flutter: ^2.0.0+2
   # google_vision_flutter:
   #   path: ../
+  loggy: ^2.0.3
   syncfusion_flutter_pdfviewer: ^27.1.50
 
   flutter:

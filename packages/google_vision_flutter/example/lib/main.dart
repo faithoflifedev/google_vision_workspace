@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_vision_flutter/google_vision_flutter.dart'
     hide WebDetection;
+import 'package:loggy/loggy.dart';
 
 import 'crop_hints_page.dart';
 import 'document_text_detection_page.dart';
@@ -25,7 +26,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final googleVision =
-      GoogleVision().withAsset('assets/service_credentials.json');
+      GoogleVision(LogLevel.off).withAsset('assets/service_credentials.json');
 
   MyApp({super.key});
 
