@@ -123,7 +123,7 @@ class LabelDetectionPage extends ExampleBase {
 
 ```
 
-<center><img src="https://github.com/faithoflifedev/google_vision_workspace/blob/main/packages/google_vision_flutter/screenshot/face_detection.png?raw=true&amp;v1" width="320"></center>
+<center><img src="https://github.com/faithoflifedev/google_vision_workspace/blob/main/packages/google_vision_flutter/screenshot/Screenshot.png?raw=true&amp;v1" width="320"></center>
 
 ## Contributors
 
