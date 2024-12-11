@@ -44,7 +44,10 @@ class GoogleVision with UiLoggy implements gv.GoogleVision {
     String apiKey, {
     Map<String, String>? additionalHeaders,
   }) {
-    _googleVision.withApiKey(apiKey);
+    _googleVision.withApiKey(
+      apiKey,
+      additionalHeaders: additionalHeaders,
+    );
 
     return this;
   }
