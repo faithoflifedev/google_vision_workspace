@@ -9,7 +9,11 @@ part of 'images.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _ImagesClient implements ImagesClient {
-  _ImagesClient(this._dio, {this.baseUrl, this.errorLogger}) {
+  _ImagesClient(
+    this._dio, {
+    this.baseUrl,
+    this.errorLogger,
+  }) {
     baseUrl ??= 'https://vision.googleapis.com/v1';
   }
 
@@ -30,21 +34,23 @@ class _ImagesClient implements ImagesClient {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(params);
-    final _options = _setStreamType<BatchAnnotateImagesResponse>(
-      Options(
-        method: 'POST',
-        headers: _headers,
-        extra: _extra,
-        contentType: contentType,
-      )
-          .compose(
-            _dio.options,
-            '/images:annotate',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
+    final _options = _setStreamType<BatchAnnotateImagesResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: contentType,
+    )
+        .compose(
+          _dio.options,
+          '/images:annotate',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late BatchAnnotateImagesResponse _value;
     try {
@@ -69,7 +75,10 @@ class _ImagesClient implements ImagesClient {
     return requestOptions;
   }
 
-  String _combineBaseUrls(String dioBaseUrl, String? baseUrl) {
+  String _combineBaseUrls(
+    String dioBaseUrl,
+    String? baseUrl,
+  ) {
     if (baseUrl == null || baseUrl.trim().isEmpty) {
       return dioBaseUrl;
     }
