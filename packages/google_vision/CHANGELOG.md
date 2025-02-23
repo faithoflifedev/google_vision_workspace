@@ -1,9 +1,9 @@
 # Changelog
 
-## 2.0.0+4
+## 2.0.0+5
 
 * dependency bump
-* adjustments for new Dart SDK
+* Fix incorrect face landmark keys #29
 
 ## 2.0.0+4
 
