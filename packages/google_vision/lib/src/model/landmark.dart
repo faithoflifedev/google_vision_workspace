@@ -15,77 +15,77 @@ part 'landmark.g.dart';
 enum LandmarkType {
   @JsonValue('Unknown')
   UNKNOWN_LANDMARK,
-  @JsonValue('Left eye')
+  @JsonValue('LEFT_EYE')
   LEFT_EYE,
-  @JsonValue('Right eye')
+  @JsonValue('RIGHT_EYE')
   RIGHT_EYE,
-  @JsonValue('Left of left eyebrow')
+  @JsonValue('LEFT_OF_LEFT_EYEBROW')
   LEFT_OF_LEFT_EYEBROW,
-  @JsonValue('Right of left eyebrow')
+  @JsonValue('RIGHT_OF_LEFT_EYEBROW')
   RIGHT_OF_LEFT_EYEBROW,
-  @JsonValue('Left of right eyebrow')
+  @JsonValue('LEFT_OF_RIGHT_EYEBROW')
   LEFT_OF_RIGHT_EYEBROW,
-  @JsonValue('Right of right eyebrow')
+  @JsonValue('RIGHT_OF_RIGHT_EYEBROW')
   RIGHT_OF_RIGHT_EYEBROW,
-  @JsonValue('Midpoint between eyes')
+  @JsonValue('MIDPOINT_BETWEEN_EYES')
   MIDPOINT_BETWEEN_EYES,
-  @JsonValue('Nose tip')
+  @JsonValue('NOSE_TIP')
   NOSE_TIP,
-  @JsonValue('Upper lip')
+  @JsonValue('UPPER_LIP')
   UPPER_LIP,
-  @JsonValue('Lower lip')
+  @JsonValue('LOWER_LIP')
   LOWER_LIP,
-  @JsonValue('Mouth left')
+  @JsonValue('MOUTH_LEFT')
   MOUTH_LEFT,
-  @JsonValue('Mouth right')
+  @JsonValue('MOUTH_RIGHT')
   MOUTH_RIGHT,
-  @JsonValue('Mouth center')
+  @JsonValue('MOUTH_CENTER')
   MOUTH_CENTER,
-  @JsonValue('Nose, bottom right')
+  @JsonValue('NOSE_BOTTOM_RIGHT')
   NOSE_BOTTOM_RIGHT,
-  @JsonValue('Nose, bottom left')
+  @JsonValue('NOSE_BOTTOM_LEFT')
   NOSE_BOTTOM_LEFT,
-  @JsonValue('Nose, bottom center')
+  @JsonValue('NOSE_BOTTOM_CENTER')
   NOSE_BOTTOM_CENTER,
-  @JsonValue('Left eye, top boundary')
+  @JsonValue('LEFT_EYE_TOP_BOUNDARY')
   LEFT_EYE_TOP_BOUNDARY,
-  @JsonValue('Left eye, right corner')
+  @JsonValue('LEFT_EYE_RIGHT_CORNER')
   LEFT_EYE_RIGHT_CORNER,
-  @JsonValue('Left eye, bottom bound')
+  @JsonValue('LEFT_EYE_BOTTOM_BOUNDARY')
   LEFT_EYE_BOTTOM_BOUNDARY,
-  @JsonValue('Left eye, left corner')
+  @JsonValue('LEFT_EYE_LEFT_CORNER')
   LEFT_EYE_LEFT_CORNER,
-  @JsonValue('Right eye, top boundary')
+  @JsonValue('RIGHT_EYE_TOP_BOUNDARY')
   RIGHT_EYE_TOP_BOUNDARY,
-  @JsonValue('Right eye, right corner')
+  @JsonValue('RIGHT_EYE_RIGHT_CORNER')
   RIGHT_EYE_RIGHT_CORNER,
-  @JsonValue('Right eye, bottom boundary')
+  @JsonValue('RIGHT_EYE_BOTTOM_BOUNDARY')
   RIGHT_EYE_BOTTOM_BOUNDARY,
-  @JsonValue('Right eye, left corner')
+  @JsonValue('RIGHT_EYE_LEFT_CORNER')
   RIGHT_EYE_LEFT_CORNER,
-  @JsonValue('Left eyebrow, upper midpoint')
+  @JsonValue('LEFT_EYEBROW_UPPER_MIDPOINT')
   LEFT_EYEBROW_UPPER_MIDPOINT,
-  @JsonValue('Right eyebrow, upper midpoint')
+  @JsonValue('RIGHT_EYEBROW_UPPER_MIDPOINT')
   RIGHT_EYEBROW_UPPER_MIDPOINT,
-  @JsonValue('Left ear tragion')
+  @JsonValue('LEFT_EAR_TRAGION')
   LEFT_EAR_TRAGION,
-  @JsonValue('Right ear tragion')
+  @JsonValue('RIGHT_EAR_TRAGION')
   RIGHT_EAR_TRAGION,
-  @JsonValue('Left eye pupil')
+  @JsonValue('LEFT_EYE_PUPIL')
   LEFT_EYE_PUPIL,
-  @JsonValue('Right eye pupil')
+  @JsonValue('RIGHT_EYE_PUPIL')
   RIGHT_EYE_PUPIL,
-  @JsonValue('Forehead glabella')
+  @JsonValue('FOREHEAD_GLABELLA')
   FOREHEAD_GLABELLA,
-  @JsonValue('Chin gnathion')
+  @JsonValue('CHIN_GNATHION')
   CHIN_GNATHION,
-  @JsonValue('Chin left gonion')
+  @JsonValue('CHIN_LEFT_GONION')
   CHIN_LEFT_GONION,
-  @JsonValue('Chin right gonion')
+  @JsonValue('CHIN_RIGHT_GONION')
   CHIN_RIGHT_GONION,
-  @JsonValue('Left cheek center')
+  @JsonValue('LEFT_CHEEK_CENTER')
   LEFT_CHEEK_CENTER,
-  @JsonValue('Right cheek center')
+  @JsonValue('RIGHT_CHEEK_CENTER')
   RIGHT_CHEEK_CENTER
 }
 
