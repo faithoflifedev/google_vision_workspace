@@ -52,7 +52,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.cropHints, maxResults),
+          AnnotationType.cropHints,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for document text detections.
@@ -80,7 +84,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.documentTextDetection, maxResults),
+          AnnotationType.documentTextDetection,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for face detections.
@@ -108,7 +116,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.faceDetection, maxResults),
+          AnnotationType.faceDetection,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for image properties detection.
@@ -136,7 +148,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.imageProperties, maxResults),
+          AnnotationType.imageProperties,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for label detections.
@@ -164,7 +180,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.labelDetection, maxResults),
+          AnnotationType.labelDetection,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for landmark detections.
@@ -192,7 +212,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.landmarkDetection, maxResults),
+          AnnotationType.landmarkDetection,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for logo detections.
@@ -220,7 +244,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.logoDetection, maxResults),
+          AnnotationType.logoDetection,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for object localization detections.
@@ -248,7 +276,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.objectLocalization, maxResults),
+          AnnotationType.objectLocalization,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for product search detections.
@@ -276,7 +308,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.productSearch, maxResults),
+          AnnotationType.productSearch,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for safe search detections.
@@ -304,7 +340,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.safeSearchDetection, maxResults),
+          AnnotationType.safeSearchDetection,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for text detections.
@@ -332,7 +372,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.textDetection, maxResults),
+          AnnotationType.textDetection,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   /// Creates a new instance of [GoogleVisionImageBuilder] for web detections.
@@ -360,7 +404,11 @@ class GoogleVisionImageBuilder extends GoogleVisionBuilderBase {
         imageProvider: imageProvider,
         googleVision: googleVision,
         features: GoogleVisionBuilderBase.getFeatures(
-            AnnotationType.webDetection, maxResults),
+          AnnotationType.webDetection,
+          maxResults,
+        ),
+        onError: onError,
+        onLoading: onLoading,
       );
 
   Future<BatchAnnotateImagesResponse> _batchAnnotateImagesResponse() async {

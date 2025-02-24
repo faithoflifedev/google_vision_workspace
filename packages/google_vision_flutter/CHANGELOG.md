@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0+7
+
+* onError, onLoading are discarded #27
+
 ## 2.0.0+6
 
 * logo
