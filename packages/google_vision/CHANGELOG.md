@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0+6
+
+* Fix color fromJson method #30
+
 ## 2.0.0+5
 
 * dependency bump

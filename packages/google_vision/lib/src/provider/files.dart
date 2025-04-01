@@ -12,7 +12,11 @@ part 'files.g.dart';
 /// file provided and perform detection and annotation for each image extracted.
 @RestApi(baseUrl: 'https://vision.googleapis.com/v1')
 abstract class FilesClient {
-  factory FilesClient(Dio dio, {String baseUrl}) = _FilesClient;
+  factory FilesClient(
+    Dio dio, {
+    String baseUrl,
+    ParseErrorLogger? errorLogger,
+  }) = _FilesClient;
 
   /// Run image detection and annotation for a batch of images.
   @POST('/files:annotate')

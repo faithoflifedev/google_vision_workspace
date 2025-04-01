@@ -177,6 +177,7 @@ Please see the cli documentation [README.md](https://github.com/faithoflifedev/g
 - [DeadBryam](https://github.com/DeadBryam)
 - [husitawi](https://github.com/husitawi)
 - [EricApostal](https://github.com/EricApostal)
+- [trullse](https://github.com/trullse)
 
 ## Contributing
 

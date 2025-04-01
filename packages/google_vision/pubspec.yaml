@@ -1,6 +1,6 @@
 name: google_vision
 description: Allows you to add Google Visions image labeling, face, logo, and landmark detection, OCR, and detection of explicit content, into cross platform applications.
-version: 2.0.0+5
+version: 2.0.0+6
 repository: https://github.com/faithoflifedev/google_vision
 homepage: https://github.com/faithoflifedev/google_vision/tree/main/packages/google_vision
 
@@ -16,13 +16,13 @@ environment:
   sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
-  args: ^2.6.0
+  args: ^2.7.0
   collection: ^1.18.0
   crypto_keys_plus: ^0.4.0
   dio: ^5.8.0+1
   flutter_loggy_dio: ^3.1.0
   http: ^1.3.0
-  image: ^4.5.3
+  image: ^4.5.4
   jose_plus: ^0.4.6
   json_annotation: ^4.9.0
   loggy: ^2.0.3

@@ -9,7 +9,11 @@ part 'images.g.dart';
 /// explicit content, into applications.
 @RestApi(baseUrl: 'https://vision.googleapis.com/v1')
 abstract class ImagesClient {
-  factory ImagesClient(Dio dio, {String baseUrl}) = _ImagesClient;
+  factory ImagesClient(
+    Dio dio, {
+    String baseUrl,
+    ParseErrorLogger? errorLogger,
+  }) = _ImagesClient;
 
   /// Run image detection and annotation for a batch of images.
 
