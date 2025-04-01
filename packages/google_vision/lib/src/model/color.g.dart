@@ -7,9 +7,9 @@ part of 'color.dart';
 // **************************************************************************
 
 Color _$ColorFromJson(Map<String, dynamic> json) => Color(
-      red: (json['red'] as num).toDouble(),
-      green: (json['green'] as num).toDouble(),
-      blue: (json['blue'] as num).toDouble(),
+      red: (json['red'] as num?)?.toDouble() ?? 0.0,
+      green: (json['green'] as num?)?.toDouble() ?? 0.0,
+      blue: (json['blue'] as num?)?.toDouble() ?? 0.0,
       alpha: (json['alpha'] as num?)?.toDouble(),
     );
 
