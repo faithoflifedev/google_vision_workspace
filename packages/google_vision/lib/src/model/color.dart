@@ -23,12 +23,15 @@ part 'color.g.dart';
 @JsonSerializable()
 class Color {
   /// The amount of red in the color as a value in the interval \[0, 1\].
+  @JsonKey(defaultValue: 0.0)
   final double red;
 
   /// The amount of green in the color as a value in the interval \[0, 1\].
+  @JsonKey(defaultValue: 0.0)
   final double green;
 
   /// The amount of blue in the color as a value in the interval \[0, 1\].
+  @JsonKey(defaultValue: 0.0)
   final double blue;
 
   /// The amount of alpha in the color as a value in the interval \[0, 1\].
