@@ -28,98 +28,95 @@ class MultipleFaceDetectionPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: getAppBar(context),
-          body: SingleChildScrollView(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: [
-                      Column(children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(assetName1),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: _processImage1,
-                        ),
-                      ]),
-                      Column(children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(assetName2),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: _processImage2,
-                        ),
-                      ]),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(assetName1),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: _processImage1,
+                      ),
                     ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Processed images will appear below:',
-                    ),
+                  Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(assetName2),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: _processImage2,
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GoogleVisionImageBuilder.faceDetection(
-                      googleVision: googleVision,
-                      imageProvider: _processImage1.image,
-                      builder: (
+                ],
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('Processed images will appear below:'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GoogleVisionImageBuilder.faceDetection(
+                  googleVision: googleVision,
+                  imageProvider: _processImage1.image,
+                  builder:
+                      (
                         BuildContext context,
                         List<FaceAnnotation>? faceAnnotations,
-                      ) =>
-                          CustomPaint(
+                      ) => CustomPaint(
                         foregroundPainter: AnnotationPainter(
                           faceAnnotations: faceAnnotations,
                         ),
                         child: Image(image: _processImage1.image),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GoogleVisionImageBuilder.faceDetection(
-                      googleVision: googleVision,
-                      imageProvider: _processImage2.image,
-                      builder: (
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GoogleVisionImageBuilder.faceDetection(
+                  googleVision: googleVision,
+                  imageProvider: _processImage2.image,
+                  builder:
+                      (
                         BuildContext context,
                         List<FaceAnnotation>? faceAnnotations,
-                      ) =>
-                          CustomPaint(
+                      ) => CustomPaint(
                         foregroundPainter: AnnotationPainter(
                           faceAnnotations: faceAnnotations,
                         ),
                         child: Image(image: _processImage2.image),
                       ),
-                    ),
-                  )
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class AnnotationPainter extends CustomPainter {
   final List<FaceAnnotation>? faceAnnotations;
 
-  AnnotationPainter({
-    required this.faceAnnotations,
-  });
+  AnnotationPainter({required this.faceAnnotations});
 
   @override
-  void paint(
-    Canvas canvas,
-    Size size,
-  ) {
+  void paint(Canvas canvas, Size size) {
     // face detection
     for (var faceAnnotation in faceAnnotations!) {
       drawAnnotationsRect(
@@ -174,10 +171,7 @@ class AnnotationPainter extends CustomPainter {
     paint.color = color;
 
     canvas.drawRect(
-      Rect.fromPoints(
-        vertices.first.toOffset(),
-        vertices[2].toOffset(),
-      ),
+      Rect.fromPoints(vertices.first.toOffset(), vertices[2].toOffset()),
       paint,
     );
   }

@@ -7,11 +7,7 @@ part of 'web_detection_params.dart';
 // **************************************************************************
 
 WebDetectionParams _$WebDetectionParamsFromJson(Map<String, dynamic> json) =>
-    WebDetectionParams(
-      includeGeoResults: json['includeGeoResults'] as bool,
-    );
+    WebDetectionParams(includeGeoResults: json['includeGeoResults'] as bool);
 
 Map<String, dynamic> _$WebDetectionParamsToJson(WebDetectionParams instance) =>
-    <String, dynamic>{
-      'includeGeoResults': instance.includeGeoResults,
-    };
+    <String, dynamic>{'includeGeoResults': instance.includeGeoResults};

@@ -7,15 +7,12 @@ part of 'image_annotation_context.dart';
 // **************************************************************************
 
 ImageAnnotationContext _$ImageAnnotationContextFromJson(
-        Map<String, dynamic> json) =>
-    ImageAnnotationContext(
-      uri: json['uri'] as String?,
-      pageNumber: (json['pageNumber'] as num).toInt(),
-    );
+  Map<String, dynamic> json,
+) => ImageAnnotationContext(
+  uri: json['uri'] as String?,
+  pageNumber: (json['pageNumber'] as num).toInt(),
+);
 
 Map<String, dynamic> _$ImageAnnotationContextToJson(
-        ImageAnnotationContext instance) =>
-    <String, dynamic>{
-      'uri': instance.uri,
-      'pageNumber': instance.pageNumber,
-    };
+  ImageAnnotationContext instance,
+) => <String, dynamic>{'uri': instance.uri, 'pageNumber': instance.pageNumber};

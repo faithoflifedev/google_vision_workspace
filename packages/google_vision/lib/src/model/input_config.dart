@@ -23,37 +23,29 @@ class InputConfig {
   /// "image/gif" are supported. Wildcards are not supported.
   final String mimeType;
 
-  InputConfig({
-    this.gcsSource,
-    this.content,
-    required this.mimeType,
-  });
+  InputConfig({this.gcsSource, this.content, required this.mimeType});
 
   factory InputConfig.fromJson(Map<String, dynamic> json) => InputConfig(
-      content: json.containsKey('content')
-          ? base64.decode(json['content']).buffer
-          : null,
-      mimeType: json['mimeType']);
+    content: json.containsKey('content')
+        ? base64.decode(json['content']).buffer
+        : null,
+    mimeType: json['mimeType'],
+  );
 
   Map<String, dynamic> toJson() => content != null
-      ? {
-          'content': base64Encode(content!.asUint8List()),
-          'mimeType': mimeType,
-        }
-      : {
-          'gcsSource': gcsSource,
-          'mimeType': mimeType,
-        };
+      ? {'content': base64Encode(content!.asUint8List()), 'mimeType': mimeType}
+      : {'gcsSource': gcsSource, 'mimeType': mimeType};
 
   factory InputConfig.fromBuffer(ByteBuffer buffer, [String? mimeType]) =>
       InputConfig(
-          content: buffer, mimeType: mimeType ?? mimeTypeFromContent(buffer));
+        content: buffer,
+        mimeType: mimeType ?? mimeTypeFromContent(buffer),
+      );
 
   factory InputConfig.fromGsUri(String gsUri) => InputConfig(
-      gcsSource: GcsSource(uri: gsUri),
-      mimeType: mimeTypeFromFileName(
-        gsUri.split('/').last,
-      ));
+    gcsSource: GcsSource(uri: gsUri),
+    mimeType: mimeTypeFromFileName(gsUri.split('/').last),
+  );
 
   static String mimeTypeFromFileName(String fileName) {
     final mimeType = lookupMimeType(fileName.split('/').last);
@@ -66,8 +58,10 @@ class InputConfig {
   }
 
   static String mimeTypeFromContent(ByteBuffer content) {
-    final mimeType =
-        lookupMimeType('', headerBytes: content.asUint8List().sublist(0, 8));
+    final mimeType = lookupMimeType(
+      '',
+      headerBytes: content.asUint8List().sublist(0, 8),
+    );
 
     if (mimeType == null) {
       throw Exception('Invalid mimeType');

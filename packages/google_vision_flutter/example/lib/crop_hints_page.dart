@@ -11,36 +11,32 @@ class CropHintsPage extends ExampleBase {
     width: 300,
   );
 
-  CropHintsPage({
-    super.key,
-    required super.googleVision,
-    required super.title,
-  });
+  CropHintsPage({super.key, required super.googleVision, required super.title});
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: getAppBar(context),
-          body: simpleColumn(
-              assetName: assetName,
-              sampleImage: _processImage,
-              result: GoogleVisionImageBuilder.cropHints(
-                googleVision: googleVision,
-                imageProvider: _processImage.image,
-                builder: (
-                  BuildContext context,
-                  CropHintsAnnotation? cropHintsAnnotation,
-                ) =>
-                    Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                      children: cropHintsAnnotation!.cropHints
-                          .map((cropHint) => Center(
-                                child: Text('$cropHint'),
-                              ))
-                          .toList()),
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: simpleColumn(
+        assetName: assetName,
+        sampleImage: _processImage,
+        result: GoogleVisionImageBuilder.cropHints(
+          googleVision: googleVision,
+          imageProvider: _processImage.image,
+          builder:
+              (
+                BuildContext context,
+                CropHintsAnnotation? cropHintsAnnotation,
+              ) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: cropHintsAnnotation!.cropHints
+                      .map((cropHint) => Center(child: Text('$cropHint')))
+                      .toList(),
                 ),
-              )),
+              ),
         ),
-      );
+      ),
+    ),
+  );
 }

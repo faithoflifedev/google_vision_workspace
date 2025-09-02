@@ -21,8 +21,10 @@ class JwtGenerator implements TokenGenerator {
     required String credentials,
     required String scope,
     required this.dio,
-  }) : jwtCredentials = JwtCredentials.fromJson(
-            {'settings': jsonDecode(credentials), 'scope': scope});
+  }) : jwtCredentials = JwtCredentials.fromJson({
+         'settings': jsonDecode(credentials),
+         'scope': scope,
+       });
 
   // factory JwtGenerator.fromFile({
   //   required String credentialsFile,
@@ -65,7 +67,7 @@ class JwtGenerator implements TokenGenerator {
 
     return await oAuthClient.getToken({
       'grant_type': 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-      'assertion': jwt
+      'assertion': jwt,
     });
   }
 }

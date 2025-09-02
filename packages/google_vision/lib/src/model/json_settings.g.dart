@@ -7,17 +7,17 @@ part of 'json_settings.dart';
 // **************************************************************************
 
 JsonSettings _$JsonSettingsFromJson(Map<String, dynamic> json) => JsonSettings(
-      type: json['type'] as String,
-      projectId: json['project_id'] as String,
-      projectKeyId: json['private_key_id'] as String,
-      privateKey: json['private_key'] as String,
-      clientEmail: json['client_email'] as String,
-      clientId: json['client_id'] as String,
-      authUri: json['auth_uri'] as String,
-      tokenUri: json['token_uri'] as String,
-      authProviderX509CertUrl: json['auth_provider_x509_cert_url'] as String,
-      clientX509CertUrl: json['client_x509_cert_url'] as String,
-    );
+  type: json['type'] as String,
+  projectId: json['project_id'] as String,
+  projectKeyId: json['private_key_id'] as String,
+  privateKey: json['private_key'] as String,
+  clientEmail: json['client_email'] as String,
+  clientId: json['client_id'] as String,
+  authUri: json['auth_uri'] as String,
+  tokenUri: json['token_uri'] as String,
+  authProviderX509CertUrl: json['auth_provider_x509_cert_url'] as String,
+  clientX509CertUrl: json['client_x509_cert_url'] as String,
+);
 
 Map<String, dynamic> _$JsonSettingsToJson(JsonSettings instance) =>
     <String, dynamic>{

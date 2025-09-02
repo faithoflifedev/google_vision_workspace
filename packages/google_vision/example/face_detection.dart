@@ -10,8 +10,10 @@ void main() async {
   print('checking...');
 
   final faceAnnotationResponses = await googleVision.image.faceDetection(
-      JsonImage.fromGsUri(
-          'gs://gvision-demo/young-man-smiling-and-thumbs-up.jpg'));
+    JsonImage.fromGsUri(
+      'gs://gvision-demo/young-man-smiling-and-thumbs-up.jpg',
+    ),
+  );
 
   for (var faceAnnotation in faceAnnotationResponses) {
     print('Face - ${faceAnnotation.detectionConfidence}');

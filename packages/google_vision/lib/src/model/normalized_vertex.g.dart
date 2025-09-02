@@ -13,7 +13,4 @@ NormalizedVertex _$NormalizedVertexFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$NormalizedVertexToJson(NormalizedVertex instance) =>
-    <String, dynamic>{
-      'x': instance.x,
-      'y': instance.y,
-    };
+    <String, dynamic>{'x': instance.x, 'y': instance.y};

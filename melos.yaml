@@ -2,28 +2,81 @@ name: google_vision_workspace
 repository: https://github.com/faithoflifedev/google_vision_workspace
 
 packages:
-  - packages/*
+  - packages/**
 
-command:
-  version:
-    branch: main
-    message: "chore(release): publish %s"
+categories:
+  document:
+    - packages/google_vision
+    - packages/google_vision_flutter
 
-bootstrap:
-  runPubGetInParallel: false
-  usePubspecOverrides: true
 
 scripts:
-  lint:all:
-    run: melos run analyze && melos run format
-    description: Run all static analysis checks.
+  analyze:
+    exec: dart analyze .
+    failFast: true
 
-  # publish:all:
-  #   run: melos run publish:dart && melos run publish:flutter
-  #   description: Run publish for all packages.
+  dep:
+    exec: dart pub get
+
+  build:
+    exec: dart run build_runner build
+    failFast: true
+    packageFilters:
+      fileExists: melos_google_vision.iml
+    select-package:
+      depends-on: build_runner    
+
+  cleanup:
+    packageFilters:
+      fileExists: google_vision_flutter.iml
+    steps:
+      - flutter clean
+      - flutter pub get
+
+  format:
+    exec: dart format .
+    failFast: true
+
+  doc:
+    exec: dart doc .
+    failFast: true
+    packageFilters:
+      ignore:
+        - "*example*"
+        - "*demo*"
+
+  meta:
+    exec: grind 'pt-meta'
+    failFast: true
+    packageFilters:
+      ignore:
+        - "*example*"
+        - "*demo*"
+    description: Run metadata generator for all packages.
+
+  pana:
+    exec: pana --no-dartdoc .
+    packageFilters:
+      ignore:
+        - "*example*"
+        - "*demo*"    
+    description: Run pana checks for all packages.
+
+  markdown:
+    exec: grind 'pt-markdown'
+    packageFilters:
+      ignore:
+        - "*example*"
+        - "*demo*"    
+    description: Run markdown generator for all packages.
 
   prep:
-    run: melos run build && melos run meta && melos run markdown && melos run format && melos run analyze
+    steps:
+      - melos run build
+      - melos run meta
+      - melos run markdown
+      - melos run format
+      - melos run analyze
     description: Run prep steps for dart and flutter.
 
   # prep:flutter:
@@ -59,39 +112,6 @@ scripts:
   dryrun:flutter:
     run: melos exec --ignore="google_vision_flutter" flutter pub publish --dry-run
     description: Run `flutter pub publish` for Flutter package.
-
-  build:
-    run: melos exec --ignore="google_vision_flutter" dart run build_runner build --delete-conflicting-outputs
-    select-package:
-      depends-on: build_runner
-
-  analyze:
-    exec: dart analyze .
-    description: Run `dart analyze` in all packages.
-
-  format:
-    run: melos exec dart format . --fix
-    description: Run `dart format` for all packages.
-
-  format-check:
-    run: melos exec dart format . --set-exit-if-changed
-    description: Run `dart format` checks for all packages.
-
-  dartdoc:
-    run: melos exec dart doc .
-    description: Run dartdoc checks for all packages.
-
-  markdown:
-    run: melos exec grind 'pt-markdown'
-    description: Run markdown generator for all packages.
-
-  meta:
-    run: melos exec grind 'pt-meta'
-    description: Run metadata generator for all packages.
-
-  pana:
-    run: melos exec pana --no-dartdoc .
-    description: Run pana checks for all packages.
 
   # clean:deep:
   #   run: git clean -x -d -f -q

@@ -5,10 +5,7 @@ import 'example_base.dart';
 class LabelDetectionPage extends ExampleBase {
   static const assetName = 'assets/setagaya_small.jpg';
 
-  final _processImage = Image.asset(
-    assetName,
-    fit: BoxFit.fitWidth,
-  );
+  final _processImage = Image.asset(assetName, fit: BoxFit.fitWidth);
 
   LabelDetectionPage({
     super.key,
@@ -18,28 +15,32 @@ class LabelDetectionPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: getAppBar(context),
-          body: simpleColumn(
-            assetName: assetName,
-            sampleImage: _processImage,
-            result: GoogleVisionImageBuilder.labelDetection(
-              googleVision: googleVision,
-              imageProvider: _processImage.image,
-              builder: (
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: simpleColumn(
+        assetName: assetName,
+        sampleImage: _processImage,
+        result: GoogleVisionImageBuilder.labelDetection(
+          googleVision: googleVision,
+          imageProvider: _processImage.image,
+          builder:
+              (
                 BuildContext context,
                 List<EntityAnnotation>? entityAnnotations,
-              ) =>
-                  Padding(
+              ) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
-                    children: entityAnnotations!
-                        .map((entity) => Text(
-                            '${(entity.score! * 100).toStringAsFixed(2)}% - ${entity.description}'))
-                        .toList()),
+                  children: entityAnnotations!
+                      .map(
+                        (entity) => Text(
+                          '${(entity.score! * 100).toStringAsFixed(2)}% - ${entity.description}',
+                        ),
+                      )
+                      .toList(),
+                ),
               ),
-            ),
-          ),
         ),
-      );
+      ),
+    ),
+  );
 }

@@ -2,8 +2,9 @@ import 'package:google_vision/google_vision.dart';
 import 'package:universal_io/io.dart';
 
 void main() async {
-  final googleVision = await GoogleVision()
-      .withJwt(File('service_credentials.json').readAsStringSync());
+  final googleVision = await GoogleVision().withJwt(
+    File('service_credentials.json').readAsStringSync(),
+  );
 
   print('checking...');
 
@@ -25,8 +26,9 @@ void main() async {
       print('page: $page of ${annotateFileResponse.totalPages}');
 
       for (var annotateImageResponse in annotateFileResponse.responses!) {
-        annotateImageResponse.fullTextAnnotation!.pages.first.blocks
-            ?.forEach((block) {
+        annotateImageResponse.fullTextAnnotation!.pages.first.blocks?.forEach((
+          block,
+        ) {
           block.paragraphs?.forEach((paragraph) {
             stdout.write('\n');
 

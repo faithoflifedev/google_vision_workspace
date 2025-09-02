@@ -13,9 +13,7 @@ class BatchAnnotateFilesResponse {
   /// AnnotateFileRequest in BatchAnnotateFilesRequest.
   final List<AnnotateFileResponse> responses;
 
-  BatchAnnotateFilesResponse({
-    required this.responses,
-  });
+  BatchAnnotateFilesResponse({required this.responses});
 
   factory BatchAnnotateFilesResponse.fromJson(Map<String, dynamic> json) =>
       _$BatchAnnotateFilesResponseFromJson(json);

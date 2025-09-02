@@ -6,10 +6,7 @@ import 'package:vision_demo/example_base.dart';
 class TextDetectionPage extends ExampleBase {
   static const assetName = 'assets/setagaya_small.jpg';
 
-  final _processImage = Image.asset(
-    assetName,
-    fit: BoxFit.fitWidth,
-  );
+  final _processImage = Image.asset(assetName, fit: BoxFit.fitWidth);
 
   TextDetectionPage({
     super.key,
@@ -19,41 +16,37 @@ class TextDetectionPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: getAppBar(context),
-          body: simpleColumn(
-            assetName: assetName,
-            sampleImage: _processImage,
-            result: GoogleVisionImageBuilder.textDetection(
-              googleVision: googleVision,
-              imageProvider: _processImage.image,
-              builder: (
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: simpleColumn(
+        assetName: assetName,
+        sampleImage: _processImage,
+        result: GoogleVisionImageBuilder.textDetection(
+          googleVision: googleVision,
+          imageProvider: _processImage.image,
+          builder:
+              (
                 BuildContext context,
                 List<EntityAnnotation>? entityAnnotations,
-              ) =>
-                  CustomPaint(
-                foregroundPainter:
-                    AnnotationPainter(entityAnnotations: entityAnnotations),
+              ) => CustomPaint(
+                foregroundPainter: AnnotationPainter(
+                  entityAnnotations: entityAnnotations,
+                ),
                 child: _processImage,
               ),
-            ),
-          ),
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class AnnotationPainter extends CustomPainter {
   final List<EntityAnnotation>? entityAnnotations;
 
-  AnnotationPainter({
-    required this.entityAnnotations,
-  });
+  AnnotationPainter({required this.entityAnnotations});
 
   @override
-  void paint(
-    Canvas canvas,
-    Size size,
-  ) {
+  void paint(Canvas canvas, Size size) {
     for (var entityAnnotation in entityAnnotations!) {
       drawString(
         text: entityAnnotation.description,

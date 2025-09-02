@@ -37,11 +37,12 @@ class ProductSearchParams {
   /// "color: red" is not acceptable because it uses a ':' instead of an '='.
   final String filter;
 
-  ProductSearchParams(
-      {this.boundingPoly,
-      required this.productSet,
-      required this.productCategories,
-      required this.filter});
+  ProductSearchParams({
+    this.boundingPoly,
+    required this.productSet,
+    required this.productCategories,
+    required this.filter,
+  });
 
   factory ProductSearchParams.fromJson(Map<String, dynamic> json) =>
       _$ProductSearchParamsFromJson(json);

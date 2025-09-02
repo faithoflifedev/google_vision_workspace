@@ -18,10 +18,7 @@ class FullTextAnnotation {
   /// Entity textual description, expressed in its locale language.
   final String text;
 
-  FullTextAnnotation({
-    required this.pages,
-    required this.text,
-  });
+  FullTextAnnotation({required this.pages, required this.text});
 
   factory FullTextAnnotation.fromJson(Map<String, dynamic> json) =>
       _$FullTextAnnotationFromJson(json);

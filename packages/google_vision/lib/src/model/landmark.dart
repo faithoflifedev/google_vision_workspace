@@ -86,7 +86,7 @@ enum LandmarkType {
   @JsonValue('LEFT_CHEEK_CENTER')
   LEFT_CHEEK_CENTER,
   @JsonValue('RIGHT_CHEEK_CENTER')
-  RIGHT_CHEEK_CENTER
+  RIGHT_CHEEK_CENTER,
 }
 
 /// Face landmark (feature) type. Left and right are defined from the vantage of

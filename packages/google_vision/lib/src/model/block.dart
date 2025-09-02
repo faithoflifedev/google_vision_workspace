@@ -68,11 +68,4 @@ class Block {
 
 /// Type of a block (text, image etc) as identified by OCR.
 @JsonEnum()
-enum BlockType {
-  UNKNOWN,
-  TEXT,
-  TABLE,
-  PICTURE,
-  RULER,
-  BARCODE,
-}
+enum BlockType { UNKNOWN, TEXT, TABLE, PICTURE, RULER, BARCODE }

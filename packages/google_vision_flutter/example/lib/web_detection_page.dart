@@ -19,31 +19,31 @@ class WebDetectionPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: getAppBar(context),
-          body: simpleColumn(
-            assetName: assetName,
-            sampleImage: _processImage,
-            result: GoogleVisionImageBuilder.webDetection(
-              googleVision: googleVision,
-              imageProvider: _processImage.image,
-              builder: (
-                BuildContext context,
-                WebDetection? webDetection,
-              ) =>
-                  Padding(
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: simpleColumn(
+        assetName: assetName,
+        sampleImage: _processImage,
+        result: GoogleVisionImageBuilder.webDetection(
+          googleVision: googleVision,
+          imageProvider: _processImage.image,
+          builder: (BuildContext context, WebDetection? webDetection) =>
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
-                  children: webDetection?.webEntities
-                          ?.map((e) => Center(
-                                child: Text('${e.score} - ${e.description}'),
-                              ))
+                  children:
+                      webDetection?.webEntities
+                          ?.map(
+                            (e) => Center(
+                              child: Text('${e.score} - ${e.description}'),
+                            ),
+                          )
                           .toList() ??
                       const <Widget>[],
                 ),
               ),
-            ),
-          ),
         ),
-      );
+      ),
+    ),
+  );
 }

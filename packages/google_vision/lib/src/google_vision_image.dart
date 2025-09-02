@@ -4,10 +4,7 @@ class GoogleVisionImage {
   final GoogleVision googleVision;
   final ImagesClient client;
 
-  GoogleVisionImage(
-    this.googleVision,
-    this.client,
-  );
+  GoogleVisionImage(this.googleVision, this.client);
 
   /// Run detection and annotation for a batch of requests.
   Future<BatchAnnotateImagesResponse> annotate({
@@ -16,18 +13,13 @@ class GoogleVisionImage {
   }) {
     googleVision.setAuthHeader();
 
-    final jsonRequest = <String, dynamic>{
-      'requests': requests,
-    };
+    final jsonRequest = <String, dynamic>{'requests': requests};
 
     if (parent != null) {
       jsonRequest['parent'] = parent;
     }
 
-    return client.annotate(
-      GoogleVision.contentType,
-      {'requests': requests},
-    );
+    return client.annotate(GoogleVision.contentType, {'requests': requests});
   }
 
   /// Higher level method for a single detection type as specified by [annotationType],
@@ -41,14 +33,9 @@ class GoogleVisionImage {
       requests: [
         AnnotateImageRequest(
           jsonImage: jsonImage,
-          features: [
-            Feature(
-              maxResults: maxResults,
-              type: annotationType,
-            ),
-          ],
+          features: [Feature(maxResults: maxResults, type: annotationType)],
           imageContext: imageContext,
-        )
+        ),
       ],
     );
 

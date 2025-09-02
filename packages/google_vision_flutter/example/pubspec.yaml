@@ -6,21 +6,21 @@ publish_to: none
 version: 1.0.0+3
 
 environment:
-  sdk: ">=3.2.0 <4.0.0"
+  sdk: ^3.8.0
 
 dependencies:
   color: ^3.0.0
-  google_vision_flutter: ^2.0.0+2
+  google_vision_flutter: ^2.0.0+7
   # google_vision_flutter:
   #   path: ../
   loggy: ^2.0.3
-  syncfusion_flutter_pdfviewer: ^27.1.50
+  syncfusion_flutter_pdfviewer: ^30.2.7
 
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true

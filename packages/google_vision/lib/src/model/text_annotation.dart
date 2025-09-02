@@ -18,11 +18,7 @@ class TextAnnotation {
   /// Image region to which this text belongs. This must be populated.
   final BoundingPoly? boundingPoly;
 
-  TextAnnotation({
-    required this.locale,
-    this.description,
-    this.boundingPoly,
-  });
+  TextAnnotation({required this.locale, this.description, this.boundingPoly});
 
   factory TextAnnotation.fromJson(Map<String, dynamic> json) =>
       _$TextAnnotationFromJson(json);

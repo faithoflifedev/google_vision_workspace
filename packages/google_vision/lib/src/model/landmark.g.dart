@@ -7,15 +7,18 @@ part of 'landmark.dart';
 // **************************************************************************
 
 Landmark _$LandmarkFromJson(Map<String, dynamic> json) => Landmark(
-      type: $enumDecode(_$LandmarkTypeEnumMap, json['type'],
-          unknownValue: LandmarkType.UNKNOWN_LANDMARK),
-      position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    );
+  type: $enumDecode(
+    _$LandmarkTypeEnumMap,
+    json['type'],
+    unknownValue: LandmarkType.UNKNOWN_LANDMARK,
+  ),
+  position: Position.fromJson(json['position'] as Map<String, dynamic>),
+);
 
 Map<String, dynamic> _$LandmarkToJson(Landmark instance) => <String, dynamic>{
-      'type': _$LandmarkTypeEnumMap[instance.type]!,
-      'position': instance.position.toJson(),
-    };
+  'type': _$LandmarkTypeEnumMap[instance.type]!,
+  'position': instance.position.toJson(),
+};
 
 const _$LandmarkTypeEnumMap = {
   LandmarkType.UNKNOWN_LANDMARK: 'Unknown',

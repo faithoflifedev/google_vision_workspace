@@ -19,19 +19,21 @@ class SafeSearchDetectionPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-            appBar: getAppBar(context),
-            body: simpleColumn(
-                assetName: assetName,
-                sampleImage: _processImage,
-                result: GoogleVisionImageBuilder.safeSearchDetection(
-                  googleVision: googleVision,
-                  imageProvider: _processImage.image,
-                  builder: (
-                    BuildContext context,
-                    SafeSearchAnnotation? safeSearchAnnotation,
-                  ) =>
-                      Center(child: Text('Result: ${safeSearchAnnotation!}')),
-                ))),
-      );
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: simpleColumn(
+        assetName: assetName,
+        sampleImage: _processImage,
+        result: GoogleVisionImageBuilder.safeSearchDetection(
+          googleVision: googleVision,
+          imageProvider: _processImage.image,
+          builder:
+              (
+                BuildContext context,
+                SafeSearchAnnotation? safeSearchAnnotation,
+              ) => Center(child: Text('Result: ${safeSearchAnnotation!}')),
+        ),
+      ),
+    ),
+  );
 }

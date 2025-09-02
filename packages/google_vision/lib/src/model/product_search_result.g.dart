@@ -14,9 +14,9 @@ ProductSearchResult _$ProductSearchResultFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ProductSearchResultToJson(
-        ProductSearchResult instance) =>
-    <String, dynamic>{
-      'product': instance.product,
-      'score': instance.score,
-      'image': instance.image,
-    };
+  ProductSearchResult instance,
+) => <String, dynamic>{
+  'product': instance.product,
+  'score': instance.score,
+  'image': instance.image,
+};

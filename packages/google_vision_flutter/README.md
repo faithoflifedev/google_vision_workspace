@@ -58,7 +58,7 @@ To use this package, add the dependency to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   ...
-  google_vision_flutter: ^2.0.0+7
+  google_vision_flutter: ^2.0.0+8
 ```
 
 

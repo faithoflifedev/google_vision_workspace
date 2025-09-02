@@ -14,12 +14,13 @@ class Token {
   @JsonKey(name: 'refresh_token')
   String? refreshToken;
 
-  Token(
-      {required this.accessToken,
-      required this.expiresIn,
-      this.scope,
-      required this.tokenType,
-      this.refreshToken});
+  Token({
+    required this.accessToken,
+    required this.expiresIn,
+    this.scope,
+    required this.tokenType,
+    this.refreshToken,
+  });
 
   factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
 

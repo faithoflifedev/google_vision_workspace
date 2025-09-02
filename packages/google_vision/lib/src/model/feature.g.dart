@@ -7,14 +7,14 @@ part of 'feature.dart';
 // **************************************************************************
 
 Feature _$FeatureFromJson(Map<String, dynamic> json) => Feature(
-      maxResults: (json['maxResults'] as num?)?.toInt(),
-      type: $enumDecode(_$AnnotationTypeEnumMap, json['type']),
-    );
+  maxResults: (json['maxResults'] as num?)?.toInt(),
+  type: $enumDecode(_$AnnotationTypeEnumMap, json['type']),
+);
 
 Map<String, dynamic> _$FeatureToJson(Feature instance) => <String, dynamic>{
-      'maxResults': instance.maxResults,
-      'type': _$AnnotationTypeEnumMap[instance.type]!,
-    };
+  'maxResults': instance.maxResults,
+  'type': _$AnnotationTypeEnumMap[instance.type]!,
+};
 
 const _$AnnotationTypeEnumMap = {
   AnnotationType.typeUnspecified: 'TYPE_UNSPECIFIED',

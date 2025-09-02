@@ -19,10 +19,10 @@ ProductSearchParams _$ProductSearchParamsFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ProductSearchParamsToJson(
-        ProductSearchParams instance) =>
-    <String, dynamic>{
-      'boundingPoly': instance.boundingPoly,
-      'productSet': instance.productSet,
-      'productCategories': instance.productCategories,
-      'filter': instance.filter,
-    };
+  ProductSearchParams instance,
+) => <String, dynamic>{
+  'boundingPoly': instance.boundingPoly,
+  'productSet': instance.productSet,
+  'productCategories': instance.productCategories,
+  'filter': instance.filter,
+};

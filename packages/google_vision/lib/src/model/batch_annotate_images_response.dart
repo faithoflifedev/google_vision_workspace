@@ -11,9 +11,7 @@ class BatchAnnotateImagesResponse {
   /// Individual responses to image annotation requests within the batch.
   final List<AnnotateImageResponse> responses;
 
-  BatchAnnotateImagesResponse({
-    required this.responses,
-  });
+  BatchAnnotateImagesResponse({required this.responses});
 
   factory BatchAnnotateImagesResponse.fromJson(Map<String, dynamic> json) =>
       _$BatchAnnotateImagesResponseFromJson(json);
@@ -26,7 +24,5 @@ class BatchAnnotateImagesResponse {
 
 @Deprecated('Use AnnotatedResponses')
 class AnnotatedResponses extends BatchAnnotateImagesResponse {
-  AnnotatedResponses({
-    required super.responses,
-  });
+  AnnotatedResponses({required super.responses});
 }

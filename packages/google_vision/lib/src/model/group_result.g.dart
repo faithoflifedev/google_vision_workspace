@@ -8,8 +8,9 @@ part of 'group_result.dart';
 
 GroupedResult _$GroupedResultFromJson(Map<String, dynamic> json) =>
     GroupedResult(
-      boundingPoly:
-          BoundingPoly.fromJson(json['boundingPoly'] as Map<String, dynamic>),
+      boundingPoly: BoundingPoly.fromJson(
+        json['boundingPoly'] as Map<String, dynamic>,
+      ),
       productResults: (json['results'] as List<dynamic>)
           .map((e) => ProductSearchResult.fromJson(e as Map<String, dynamic>))
           .toList(),

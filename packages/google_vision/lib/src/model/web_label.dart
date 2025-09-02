@@ -14,10 +14,7 @@ class WebLabel {
   /// information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
   final String? languageCode;
 
-  WebLabel({
-    required this.label,
-    this.languageCode,
-  });
+  WebLabel({required this.label, this.languageCode});
 
   factory WebLabel.fromJson(Map<String, dynamic> json) =>
       _$WebLabelFromJson(json);

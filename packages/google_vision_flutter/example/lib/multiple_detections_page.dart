@@ -20,50 +20,43 @@ class MultipleDetectionsPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: getAppBar(context),
-          body: SingleChildScrollView(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(assetName),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Operation: FACE_DETECTION and OBJECT_LOCALIZATION',
-                      textAlign: TextAlign.center,
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(assetName),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Operation: FACE_DETECTION and OBJECT_LOCALIZATION',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(padding: const EdgeInsets.all(8.0), child: _processImage),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('Processed image will appear below:'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GoogleVisionImageBuilder(
+                  googleVision: googleVision,
+                  imageProvider: _processImage.image,
+                  features: [
+                    Feature(maxResults: 10, type: AnnotationType.faceDetection),
+                    Feature(
+                      maxResults: 10,
+                      type: AnnotationType.objectLocalization,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: _processImage,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Processed image will appear below:',
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GoogleVisionImageBuilder(
-                      googleVision: googleVision,
-                      imageProvider: _processImage.image,
-                      features: [
-                        Feature(
-                          maxResults: 10,
-                          type: AnnotationType.faceDetection,
-                        ),
-                        Feature(
-                          maxResults: 10,
-                          type: AnnotationType.objectLocalization,
-                        ),
-                      ],
-                      builder: (
+                  ],
+                  builder:
+                      (
                         BuildContext context,
                         AsyncSnapshot<BatchAnnotateImagesResponse> snapshot,
                       ) {
@@ -82,28 +75,23 @@ class MultipleDetectionsPage extends ExampleBase {
 
                         return const Center(child: CircularProgressIndicator());
                       },
-                    ),
-                  )
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class AnnotationPainter extends CustomPainter {
   final BatchAnnotateImagesResponse annotatedResponses;
 
-  AnnotationPainter({
-    required this.annotatedResponses,
-  });
+  AnnotationPainter({required this.annotatedResponses});
 
   @override
-  void paint(
-    Canvas canvas,
-    Size size,
-  ) {
+  void paint(Canvas canvas, Size size) {
     var faceOffset = Offset.zero;
     var landmarkOffset = Offset.zero;
     var objectOffset = Offset.zero;
@@ -138,7 +126,8 @@ class AnnotationPainter extends CustomPainter {
 
       drawString(
         text: 'Landmark - ${(landmarkAnnotation.score! * 100).toInt()}%',
-        offset: landmarkAnnotation.boundingPoly!.vertices.first.toOffset() +
+        offset:
+            landmarkAnnotation.boundingPoly!.vertices.first.toOffset() +
             landmarkOffset,
         canvas: canvas,
         size: size,
@@ -156,14 +145,15 @@ class AnnotationPainter extends CustomPainter {
       );
 
       drawString(
-          text:
-              '${localizedObjectAnnotation.name} - ${(localizedObjectAnnotation.score! * 100).toInt()}%',
-          offset: localizedObjectAnnotation
-                  .boundingPoly!.normalizedVertices.first
-                  .toResizedOffset(size) +
-              objectOffset,
-          canvas: canvas,
-          size: size);
+        text:
+            '${localizedObjectAnnotation.name} - ${(localizedObjectAnnotation.score! * 100).toInt()}%',
+        offset:
+            localizedObjectAnnotation.boundingPoly!.normalizedVertices.first
+                .toResizedOffset(size) +
+            objectOffset,
+        canvas: canvas,
+        size: size,
+      );
 
       objectOffset += const Offset(0, 10);
     }
@@ -227,10 +217,7 @@ class AnnotationPainter extends CustomPainter {
     paint.color = color;
 
     canvas.drawRect(
-      Rect.fromPoints(
-        vertices.first.toOffset(),
-        vertices[2].toOffset(),
-      ),
+      Rect.fromPoints(vertices.first.toOffset(), vertices[2].toOffset()),
       paint,
     );
   }

@@ -2,11 +2,13 @@
 
 part of 'images.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _ImagesClient implements ImagesClient {
   _ImagesClient(this._dio, {this.baseUrl, this.errorLogger}) {
@@ -32,11 +34,11 @@ class _ImagesClient implements ImagesClient {
     _data.addAll(params);
     final _options = _setStreamType<BatchAnnotateImagesResponse>(
       Options(
-        method: 'POST',
-        headers: _headers,
-        extra: _extra,
-        contentType: contentType,
-      )
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: contentType,
+          )
           .compose(
             _dio.options,
             '/images:annotate',
@@ -83,3 +85,5 @@ class _ImagesClient implements ImagesClient {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

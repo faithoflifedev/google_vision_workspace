@@ -7,11 +7,11 @@ part of 'web_label.dart';
 // **************************************************************************
 
 WebLabel _$WebLabelFromJson(Map<String, dynamic> json) => WebLabel(
-      label: json['label'] as String,
-      languageCode: json['languageCode'] as String?,
-    );
+  label: json['label'] as String,
+  languageCode: json['languageCode'] as String?,
+);
 
 Map<String, dynamic> _$WebLabelToJson(WebLabel instance) => <String, dynamic>{
-      'label': instance.label,
-      'languageCode': instance.languageCode,
-    };
+  'label': instance.label,
+  'languageCode': instance.languageCode,
+};

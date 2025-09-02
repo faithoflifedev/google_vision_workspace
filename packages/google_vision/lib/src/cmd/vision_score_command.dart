@@ -19,22 +19,30 @@ class VisionScoreCommand extends VisionHelper {
   /// "look-for".
   VisionScoreCommand() {
     argParser
-      ..addOption('image-file',
-          mandatory: true,
-          valueHelp: 'image file path',
-          help: 'The path to the file that will be processed.')
-      ..addOption('features',
-          allowed: AnnotationType.values.map((e) => e.name).toList(),
-          help:
-              'Comma separated list of detections to be done on the image. See [https://cloud.google.com/vision/docs/reference/rest/v1/Feature#Type]')
-      ..addOption('look-for',
-          // mandatory: true,
-          help: 'Comma separated list of Objects to provide a score for')
-      ..addOption('max-results',
-          defaultsTo: '10',
-          valueHelp: 'int',
-          help:
-              'The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive. The default value is 10.');
+      ..addOption(
+        'image-file',
+        mandatory: true,
+        valueHelp: 'image file path',
+        help: 'The path to the file that will be processed.',
+      )
+      ..addOption(
+        'features',
+        allowed: AnnotationType.values.map((e) => e.name).toList(),
+        help:
+            'Comma separated list of detections to be done on the image. See [https://cloud.google.com/vision/docs/reference/rest/v1/Feature#Type]',
+      )
+      ..addOption(
+        'look-for',
+        // mandatory: true,
+        help: 'Comma separated list of Objects to provide a score for',
+      )
+      ..addOption(
+        'max-results',
+        defaultsTo: '10',
+        valueHelp: 'int',
+        help:
+            'The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive. The default value is 10.',
+      );
   }
 
   @override
@@ -49,9 +57,11 @@ class VisionScoreCommand extends VisionHelper {
       (argResults!['features'] as String).split(',').forEach((feature) {
         switch (AnnotationType.values.byName(feature)) {
           case AnnotationType.faceDetection:
-            scores.addAll(annotatedResponses.responses.first.faceAnnotations
-                .map((faceAnnotation) => faceAnnotation.detectionConfidence)
-                .toList());
+            scores.addAll(
+              annotatedResponses.responses.first.faceAnnotations
+                  .map((faceAnnotation) => faceAnnotation.detectionConfidence)
+                  .toList(),
+            );
             break;
 
           case AnnotationType.landmarkDetection:
@@ -59,15 +69,18 @@ class VisionScoreCommand extends VisionHelper {
           case AnnotationType.labelDetection:
           case AnnotationType.textDetection:
           case AnnotationType.objectLocalization:
-            scores.addAll(annotatedResponses.responses.first.annotations
-                .map((annotation) => annotation.score!)
-                .toList());
+            scores.addAll(
+              annotatedResponses.responses.first.annotations
+                  .map((annotation) => annotation.score!)
+                  .toList(),
+            );
             break;
 
           default:
             throw UsageException(
-                '${AnnotationType.values.byName(feature)} is not supported for this command.',
-                usage);
+              '${AnnotationType.values.byName(feature)} is not supported for this command.',
+              usage,
+            );
         }
       });
 

@@ -22,9 +22,12 @@ class LocalizedObjectAnnotation extends Annotation {
   /// Image region to which this object belongs. This must be populated.
   // BoundingPoly? boundingPoly;
 
-  LocalizedObjectAnnotation(
-      {required this.mid, required this.name, super.score, super.boundingPoly})
-      : super(isLocalized: true, description: name);
+  LocalizedObjectAnnotation({
+    required this.mid,
+    required this.name,
+    super.score,
+    super.boundingPoly,
+  }) : super(isLocalized: true, description: name);
 
   factory LocalizedObjectAnnotation.fromJson(Map<String, dynamic> json) =>
       _$LocalizedObjectAnnotationFromJson(json);

@@ -7,10 +7,7 @@ class JsonImage {
 
   final ByteBuffer? byteBuffer;
 
-  JsonImage({
-    this.imageUri,
-    this.byteBuffer,
-  }) {
+  JsonImage({this.imageUri, this.byteBuffer}) {
     if (imageUri == null && byteBuffer == null) {
       throw Exception('Invalid JsonImage');
     }
@@ -22,19 +19,19 @@ class JsonImage {
   factory JsonImage.fromGsUri(String gsUri) => JsonImage(imageUri: gsUri);
 
   factory JsonImage.fromJson(Map<String, dynamic> json) => JsonImage(
-        byteBuffer: json.containsKey('content')
-            ? base64.decode(json['content']).buffer
-            : null,
-        imageUri:
-            json.containsKey('source') && json['source'].containsKey('imageUri')
-                ? json['source']['imageUri']
-                : null,
-      );
+    byteBuffer: json.containsKey('content')
+        ? base64.decode(json['content']).buffer
+        : null,
+    imageUri:
+        json.containsKey('source') && json['source'].containsKey('imageUri')
+        ? json['source']['imageUri']
+        : null,
+  );
 
   Map<String, dynamic> toJson() => byteBuffer != null
       ? {'content': base64Encode(byteBuffer!.asUint8List())}
       : {
-          'source': {'imageUri': imageUri}
+          'source': {'imageUri': imageUri},
         };
 
   @override

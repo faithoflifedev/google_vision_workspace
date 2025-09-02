@@ -10,9 +10,7 @@ class GcsSource {
   /// Cloud Storage object. Wildcards are not currently supported.
   final String uri;
 
-  GcsSource({
-    required this.uri,
-  });
+  GcsSource({required this.uri});
 
   factory GcsSource.fromJson(Map<String, dynamic> json) =>
       _$GcsSourceFromJson(json);

@@ -35,17 +35,18 @@ class JsonSettings {
   @JsonKey(name: 'client_x509_cert_url')
   final String clientX509CertUrl;
 
-  JsonSettings(
-      {required this.type,
-      required this.projectId,
-      required this.projectKeyId,
-      required this.privateKey,
-      required this.clientEmail,
-      required this.clientId,
-      required this.authUri,
-      required this.tokenUri,
-      required this.authProviderX509CertUrl,
-      required this.clientX509CertUrl});
+  JsonSettings({
+    required this.type,
+    required this.projectId,
+    required this.projectKeyId,
+    required this.privateKey,
+    required this.clientEmail,
+    required this.clientId,
+    required this.authUri,
+    required this.tokenUri,
+    required this.authProviderX509CertUrl,
+    required this.clientX509CertUrl,
+  });
 
   factory JsonSettings.fromJson(Map<String, dynamic> json) =>
       _$JsonSettingsFromJson(json);

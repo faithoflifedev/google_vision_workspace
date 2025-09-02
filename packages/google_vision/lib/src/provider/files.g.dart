@@ -2,11 +2,13 @@
 
 part of 'files.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _FilesClient implements FilesClient {
   _FilesClient(this._dio, {this.baseUrl, this.errorLogger}) {
@@ -32,11 +34,11 @@ class _FilesClient implements FilesClient {
     _data.addAll(params);
     final _options = _setStreamType<BatchAnnotateFilesResponse>(
       Options(
-        method: 'POST',
-        headers: _headers,
-        extra: _extra,
-        contentType: contentType,
-      )
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: contentType,
+          )
           .compose(
             _dio.options,
             '/files:annotate',
@@ -83,3 +85,5 @@ class _FilesClient implements FilesClient {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

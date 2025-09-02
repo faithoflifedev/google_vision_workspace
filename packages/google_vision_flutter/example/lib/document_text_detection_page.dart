@@ -18,31 +18,34 @@ class DocumentTextDetectionPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: getAppBar(context),
-          body: simpleColumn(
-            assetName: assetName,
-            sampleImage: _processImage,
-            result: GoogleVisionImageBuilder.documentTextDetection(
-              googleVision: googleVision,
-              imageProvider: _processImage.image,
-              builder: (
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: simpleColumn(
+        assetName: assetName,
+        sampleImage: _processImage,
+        result: GoogleVisionImageBuilder.documentTextDetection(
+          googleVision: googleVision,
+          imageProvider: _processImage.image,
+          builder:
+              (
                 BuildContext context,
                 FullTextAnnotation? fullTextAnnotation,
-              ) =>
-                  Padding(
+              ) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
-                    children: fullTextAnnotation!.pages
-                        .map((page) => Center(
-                              child: Text(
-                                'Page Language - ${page.property?.detectedLanguages?.first.languageCode ?? ''}',
-                              ),
-                            ))
-                        .toList()),
+                  children: fullTextAnnotation!.pages
+                      .map(
+                        (page) => Center(
+                          child: Text(
+                            'Page Language - ${page.property?.detectedLanguages?.first.languageCode ?? ''}',
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
               ),
-            ),
-          ),
         ),
-      );
+      ),
+    ),
+  );
 }

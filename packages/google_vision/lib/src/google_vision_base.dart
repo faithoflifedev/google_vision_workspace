@@ -33,24 +33,22 @@ class GoogleVision with UiLoggy {
 
   factory GoogleVision([LogLevel logLevel = LogLevel.off]) {
     if (logLevel != LogLevel.off) {
-      _instance.dio.interceptors.add(LoggyDioInterceptor(
-        requestBody: true,
-        responseBody: true,
-        requestHeader: true,
-        responseHeader: true,
-        requestLevel: logLevel,
-        responseLevel: logLevel,
-        errorLevel: logLevel,
-      ));
+      _instance.dio.interceptors.add(
+        LoggyDioInterceptor(
+          requestBody: true,
+          responseBody: true,
+          requestHeader: true,
+          responseHeader: true,
+          requestLevel: logLevel,
+          responseLevel: logLevel,
+          errorLevel: logLevel,
+        ),
+      );
     }
 
     Loggy.initLoggy(
-      logPrinter: const PrettyPrinter(
-        showColors: true,
-      ),
-      logOptions: LogOptions(
-        logLevel,
-      ),
+      logPrinter: const PrettyPrinter(showColors: true),
+      logOptions: LogOptions(logLevel),
     );
 
     return _instance;

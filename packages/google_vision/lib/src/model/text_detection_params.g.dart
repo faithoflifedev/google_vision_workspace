@@ -13,8 +13,8 @@ TextDetectionParams _$TextDetectionParamsFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$TextDetectionParamsToJson(
-        TextDetectionParams instance) =>
-    <String, dynamic>{
-      'enableTextDetectionConfidenceScore':
-          instance.enableTextDetectionConfidenceScore,
-    };
+  TextDetectionParams instance,
+) => <String, dynamic>{
+  'enableTextDetectionConfidenceScore':
+      instance.enableTextDetectionConfidenceScore,
+};

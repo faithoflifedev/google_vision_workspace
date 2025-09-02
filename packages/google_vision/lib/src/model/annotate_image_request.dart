@@ -29,10 +29,10 @@ class AnnotateImageRequest {
       _$AnnotateImageRequestFromJson(json);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'image': jsonImage.toJson(),
-        'features': features.map((e) => e.toJson()).toList(),
-        'imageContext': imageContext?.toJson(),
-      };
+    'image': jsonImage.toJson(),
+    'features': features.map((e) => e.toJson()).toList(),
+    'imageContext': imageContext?.toJson(),
+  };
 
   @override
   String toString() => json.encode(toJson());
@@ -40,8 +40,5 @@ class AnnotateImageRequest {
 
 @Deprecated('Use AnnotateImageRequest instead.')
 class AnnotationRequest extends AnnotateImageRequest {
-  AnnotationRequest({
-    required super.jsonImage,
-    required super.features,
-  });
+  AnnotationRequest({required super.jsonImage, required super.features});
 }

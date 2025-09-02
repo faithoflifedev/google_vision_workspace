@@ -18,30 +18,40 @@ class VisionHighlightCommand extends VisionHelper {
   /// Draw a box to highlight any objects detected.
   VisionHighlightCommand() {
     argParser
-      ..addOption('image-file',
-          mandatory: true,
-          valueHelp: 'image file path',
-          help: 'The path to the file that will be processed.')
-      ..addOption('output-file',
-          mandatory: true,
-          valueHelp: 'image file path',
-          help:
-              'The path to the image file that will display the detected objects highlighted')
-      ..addOption('line-color',
-          valueHelp: 'String',
-          allowed: Util.colorMap.keys.toList(),
-          defaultsTo: 'red',
-          help:
-              'The path to the image file that will display the detected objects highlighted')
-      ..addOption('features',
-          allowed: AnnotationType.values.map((e) => e.name).toList(),
-          help:
-              'Comma separated list of detections to be done on the image. See [https://cloud.google.com/vision/docs/reference/rest/v1/Feature#Type]')
-      ..addOption('max-results',
-          defaultsTo: '10',
-          valueHelp: 'int',
-          help:
-              'The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive.');
+      ..addOption(
+        'image-file',
+        mandatory: true,
+        valueHelp: 'image file path',
+        help: 'The path to the file that will be processed.',
+      )
+      ..addOption(
+        'output-file',
+        mandatory: true,
+        valueHelp: 'image file path',
+        help:
+            'The path to the image file that will display the detected objects highlighted',
+      )
+      ..addOption(
+        'line-color',
+        valueHelp: 'String',
+        allowed: Util.colorMap.keys.toList(),
+        defaultsTo: 'red',
+        help:
+            'The path to the image file that will display the detected objects highlighted',
+      )
+      ..addOption(
+        'features',
+        allowed: AnnotationType.values.map((e) => e.name).toList(),
+        help:
+            'Comma separated list of detections to be done on the image. See [https://cloud.google.com/vision/docs/reference/rest/v1/Feature#Type]',
+      )
+      ..addOption(
+        'max-results',
+        defaultsTo: '10',
+        valueHelp: 'int',
+        help:
+            'The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive.',
+      );
   }
 
   /// Draw a box on the supplied [img.Image] represented by [ByteData] around
@@ -89,7 +99,8 @@ class VisionHighlightCommand extends VisionHelper {
             'Face - ${faceAnnotation.detectionConfidence}',
             font: img.arial14,
             x: faceAnnotation.boundingPoly.vertices.first.x + 2,
-            y: faceAnnotation.boundingPoly.vertices.first.y *
+            y:
+                faceAnnotation.boundingPoly.vertices.first.y *
                     decodedBytes.height +
                 2,
             color: Util.convertColorNameToImageColor(argResults!['line-color']),
@@ -111,7 +122,8 @@ class VisionHighlightCommand extends VisionHelper {
             '${landmarkAnnotation.description} - ${landmarkAnnotation.score}',
             font: img.arial14,
             x: landmarkAnnotation.boundingPoly!.vertices.first.x + 4,
-            y: landmarkAnnotation.boundingPoly!.vertices.first.y *
+            y:
+                landmarkAnnotation.boundingPoly!.vertices.first.y *
                     decodedBytes.height +
                 4 +
                 textOffset,
@@ -135,12 +147,20 @@ class VisionHighlightCommand extends VisionHelper {
             decodedBytes,
             '${localizedObjectAnnotation.name} - ${localizedObjectAnnotation.score}',
             font: img.arial14,
-            x: (localizedObjectAnnotation
-                        .boundingPoly!.normalizedVertices.first.x *
-                    decodedBytes.width)
-                .toInt(),
-            y: (localizedObjectAnnotation
-                            .boundingPoly!.normalizedVertices.first.y *
+            x:
+                (localizedObjectAnnotation
+                            .boundingPoly!
+                            .normalizedVertices
+                            .first
+                            .x *
+                        decodedBytes.width)
+                    .toInt(),
+            y:
+                (localizedObjectAnnotation
+                            .boundingPoly!
+                            .normalizedVertices
+                            .first
+                            .y *
                         decodedBytes.height)
                     .toInt() -
                 16,
@@ -148,11 +168,11 @@ class VisionHighlightCommand extends VisionHelper {
           );
 
           drawAnnotations(
-              vertices: localizedObjectAnnotation.boundingPoly!.vertices,
-              image: decodedBytes,
-              color:
-                  Util.convertColorNameToImageColor(argResults!['line-color']),
-              isNormalized: true);
+            vertices: localizedObjectAnnotation.boundingPoly!.vertices,
+            image: decodedBytes,
+            color: Util.convertColorNameToImageColor(argResults!['line-color']),
+            isNormalized: true,
+          );
         }
       }
 

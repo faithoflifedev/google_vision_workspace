@@ -57,8 +57,9 @@ class Util {
   }
 
   static ImageEncoding getImageEncoding(List<int> bytes) {
-    Uint8List headerBytes = Uint8List.fromList(bytes.sublist(0,
-        16)); // Adjust the size based on the maximum header size for the formats you're interested in.
+    Uint8List headerBytes = Uint8List.fromList(
+      bytes.sublist(0, 16),
+    ); // Adjust the size based on the maximum header size for the formats you're interested in.
 
     // Define known image file signatures
     Map<List<int>, ImageEncoding> signatures = {
@@ -102,6 +103,6 @@ class Util {
 
   static img.Color convertColorNameToImageColor(String colorName) =>
       (colorMap.containsKey(colorName)
-          ? colorMap[colorName]!
-          : throw Exception('Invalid color name'));
+      ? colorMap[colorName]!
+      : throw Exception('Invalid color name'));
 }

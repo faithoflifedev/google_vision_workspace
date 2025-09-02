@@ -20,42 +20,35 @@ class FaceDetectionPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: getAppBar(context),
-          body: simpleColumn(
-            assetName: assetName,
-            sampleImage: _processImage,
-            result: GoogleVisionImageBuilder.faceDetection(
-              googleVision: googleVision,
-              imageProvider: _processImage.image,
-              builder: (
-                BuildContext context,
-                List<FaceAnnotation>? faceAnnotations,
-              ) =>
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: simpleColumn(
+        assetName: assetName,
+        sampleImage: _processImage,
+        result: GoogleVisionImageBuilder.faceDetection(
+          googleVision: googleVision,
+          imageProvider: _processImage.image,
+          builder:
+              (BuildContext context, List<FaceAnnotation>? faceAnnotations) =>
                   CustomPaint(
-                foregroundPainter: AnnotationPainter(
-                  faceAnnotations: faceAnnotations,
-                ),
-                child: Image(image: _processImage.image),
-              ),
-            ),
-          ),
+                    foregroundPainter: AnnotationPainter(
+                      faceAnnotations: faceAnnotations,
+                    ),
+                    child: Image(image: _processImage.image),
+                  ),
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class AnnotationPainter extends CustomPainter {
   final List<FaceAnnotation>? faceAnnotations;
 
-  AnnotationPainter({
-    required this.faceAnnotations,
-  });
+  AnnotationPainter({required this.faceAnnotations});
 
   @override
-  void paint(
-    Canvas canvas,
-    Size size,
-  ) {
+  void paint(Canvas canvas, Size size) {
     // face detection
     for (var faceAnnotation in faceAnnotations!) {
       drawAnnotationsRect(
@@ -110,10 +103,7 @@ class AnnotationPainter extends CustomPainter {
     paint.color = color;
 
     canvas.drawRect(
-      Rect.fromPoints(
-        vertices.first.toOffset(),
-        vertices[2].toOffset(),
-      ),
+      Rect.fromPoints(vertices.first.toOffset(), vertices[2].toOffset()),
       paint,
     );
   }

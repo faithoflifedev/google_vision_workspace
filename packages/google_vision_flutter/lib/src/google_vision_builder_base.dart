@@ -39,44 +39,30 @@ abstract class GoogleVisionBuilderBase extends StatelessWidget {
 
   /// Gets the list of [Feature] for the specified [AnnotationType].
   static List<Feature> getFeatures(
-          AnnotationType annotationType, int maxResults) =>
-      [
-        Feature(
-          maxResults: maxResults,
-          type: annotationType,
-        )
-      ];
+    AnnotationType annotationType,
+    int maxResults,
+  ) => [Feature(maxResults: maxResults, type: annotationType)];
 
   Widget getBuild<T>(
     BuildContext context,
     Future<T> future,
-    Widget Function(
-      BuildContext context,
-      AsyncSnapshot<T> snapshot,
-    ) builder,
-  ) =>
-      FutureBuilder<T>(
-        future: future,
-        builder: (
-          context,
-          snapshot,
-        ) {
-          Widget? widget = onLoading == null
-              ? const Center(child: CircularProgressIndicator())
-              : onLoading!();
+    Widget Function(BuildContext context, AsyncSnapshot<T> snapshot) builder,
+  ) => FutureBuilder<T>(
+    future: future,
+    builder: (context, snapshot) {
+      Widget? widget = onLoading == null
+          ? const Center(child: CircularProgressIndicator())
+          : onLoading!();
 
-          if (snapshot.hasData) {
-            widget = builder(
-              context,
-              snapshot,
-            );
-          } else if (snapshot.hasError) {
-            widget = onError == null
-                ? Center(child: Text('${snapshot.error}'))
-                : onError!(snapshot.error!);
-          }
+      if (snapshot.hasData) {
+        widget = builder(context, snapshot);
+      } else if (snapshot.hasError) {
+        widget = onError == null
+            ? Center(child: Text('${snapshot.error}'))
+            : onError!(snapshot.error!);
+      }
 
-          return widget;
-        },
-      );
+      return widget;
+    },
+  );
 }

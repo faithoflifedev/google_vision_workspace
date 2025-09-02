@@ -20,11 +20,7 @@ class Status {
 
   final List<dynamic>? details;
 
-  Status({
-    required this.code,
-    required this.message,
-    this.details,
-  });
+  Status({required this.code, required this.message, this.details});
 
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
 

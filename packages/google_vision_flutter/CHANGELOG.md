@@ -8,15 +8,6 @@
 
 * logo
 
-## 2.0.0+6
-
-* logo
-
-## 2.0.0+5
-
-* add additional headers to concrete impl of google vision #28
-* add logging to the example app
-
 ## 2.0.0+5
 
 * add additional headers to concrete impl of google vision #28
@@ -48,16 +39,6 @@
 * updated example
 * simplified FutureBuilder
 
-## 1.3.0+4
-
-* updated example
-* simplified FutureBuilder
-
-## 1.3.0+4
-
-* updated example
-* simplified FutureBuilder
-
 ## 1.3.0+3
 
 * funding
@@ -73,31 +54,6 @@
 * package example is now included
 * dependency bump for google_vision
 * example added for new file functionality
-
-## 1.3.0
-
-* added back the google_vision re-export
-* package example is now included
-* dependency bump for google_vision
-* example added for new file functionality
-
-## 1.2.1+3
-
-* added back the google_vision re-export
-* package example is now included
-* dependency bump for google_vision
-
-## 1.2.1+3
-
-* added back the google_vision re-export
-* package example is now included
-* dependency bump for google_vision
-
-## 1.2.1+3
-
-* added back the google_vision re-export
-* package example is now included
-* dependency bump for google_vision
 
 ## 1.2.1+3
 

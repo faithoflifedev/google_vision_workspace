@@ -7,13 +7,13 @@ part of 'web_entity.dart';
 // **************************************************************************
 
 WebEntity _$WebEntityFromJson(Map<String, dynamic> json) => WebEntity(
-      entityId: json['entityId'] as String,
-      score: json['score'] as num,
-      description: json['description'] as String,
-    );
+  entityId: json['entityId'] as String,
+  score: json['score'] as num,
+  description: json['description'] as String,
+);
 
 Map<String, dynamic> _$WebEntityToJson(WebEntity instance) => <String, dynamic>{
-      'entityId': instance.entityId,
-      'score': instance.score,
-      'description': instance.description,
-    };
+  'entityId': instance.entityId,
+  'score': instance.score,
+  'description': instance.description,
+};

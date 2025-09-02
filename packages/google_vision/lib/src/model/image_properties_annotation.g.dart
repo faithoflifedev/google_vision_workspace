@@ -7,14 +7,13 @@ part of 'image_properties_annotation.dart';
 // **************************************************************************
 
 ImagePropertiesAnnotation _$ImagePropertiesAnnotationFromJson(
-        Map<String, dynamic> json) =>
-    ImagePropertiesAnnotation(
-      dominantColors: DominantColorsAnnotation.fromJson(
-          json['dominantColors'] as Map<String, dynamic>),
-    );
+  Map<String, dynamic> json,
+) => ImagePropertiesAnnotation(
+  dominantColors: DominantColorsAnnotation.fromJson(
+    json['dominantColors'] as Map<String, dynamic>,
+  ),
+);
 
 Map<String, dynamic> _$ImagePropertiesAnnotationToJson(
-        ImagePropertiesAnnotation instance) =>
-    <String, dynamic>{
-      'dominantColors': instance.dominantColors,
-    };
+  ImagePropertiesAnnotation instance,
+) => <String, dynamic>{'dominantColors': instance.dominantColors};

@@ -7,13 +7,13 @@ part of 'property.dart';
 // **************************************************************************
 
 Property _$PropertyFromJson(Map<String, dynamic> json) => Property(
-      name: json['name'] as String,
-      value: json['value'] as String?,
-      number: json['number'] as num?,
-    );
+  name: json['name'] as String,
+  value: json['value'] as String?,
+  number: json['number'] as num?,
+);
 
 Map<String, dynamic> _$PropertyToJson(Property instance) => <String, dynamic>{
-      'name': instance.name,
-      'value': instance.value,
-      'number': instance.number,
-    };
+  'name': instance.name,
+  'value': instance.value,
+  'number': instance.number,
+};

@@ -16,10 +16,7 @@ class TextProperty {
   /// Detected start or end of a text segment.
   final DetectedBreak? detectedBreak;
 
-  TextProperty({
-    required this.detectedLanguages,
-    required this.detectedBreak,
-  });
+  TextProperty({required this.detectedLanguages, required this.detectedBreak});
 
   factory TextProperty.fromJson(Map<String, dynamic> json) =>
       _$TextPropertyFromJson(json);

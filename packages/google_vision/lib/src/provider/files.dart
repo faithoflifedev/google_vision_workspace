@@ -21,7 +21,8 @@ abstract class FilesClient {
   /// Run image detection and annotation for a batch of images.
   @POST('/files:annotate')
   Future<BatchAnnotateFilesResponse> annotate(
-      @Header('Content-Type') String contentType,
-      // @Header('x-goog-user-project') String? projectId,
-      @Body() Map<String, dynamic> params);
+    @Header('Content-Type') String contentType,
+    // @Header('x-goog-user-project') String? projectId,
+    @Body() Map<String, dynamic> params,
+  );
 }

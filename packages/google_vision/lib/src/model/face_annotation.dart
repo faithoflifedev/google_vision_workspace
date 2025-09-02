@@ -24,7 +24,7 @@ enum Likelihood {
   @JsonValue('LIKELY')
   LIKELY,
   @JsonValue('VERY_LIKELY')
-  VERY_LIKELY
+  VERY_LIKELY,
 }
 
 /// A face annotation object contains the results of face detection.
@@ -96,22 +96,23 @@ class FaceAnnotation {
   @JsonKey(name: 'headwearLikelihood', unknownEnumValue: Likelihood.UNKNOWN)
   final Likelihood enumHeadwearLikelihood;
 
-  FaceAnnotation(
-      {required this.boundingPoly,
-      required this.fdBoundingPoly,
-      required this.landmarks,
-      required this.rollAngle,
-      required this.panAngle,
-      required this.tiltAngle,
-      required this.detectionConfidence,
-      required this.landmarkingConfidence,
-      required this.enumJoyLikelihood,
-      required this.enumSorrowLikelihood,
-      required this.enumAngerLikelihood,
-      required this.enumSurpriseLikelihood,
-      required this.enumUnderExposedLikelihood,
-      required this.enumBlurredLikelihood,
-      required this.enumHeadwearLikelihood});
+  FaceAnnotation({
+    required this.boundingPoly,
+    required this.fdBoundingPoly,
+    required this.landmarks,
+    required this.rollAngle,
+    required this.panAngle,
+    required this.tiltAngle,
+    required this.detectionConfidence,
+    required this.landmarkingConfidence,
+    required this.enumJoyLikelihood,
+    required this.enumSorrowLikelihood,
+    required this.enumAngerLikelihood,
+    required this.enumSurpriseLikelihood,
+    required this.enumUnderExposedLikelihood,
+    required this.enumBlurredLikelihood,
+    required this.enumHeadwearLikelihood,
+  });
 
   factory FaceAnnotation.fromJson(Map<String, dynamic> json) =>
       _$FaceAnnotationFromJson(json);

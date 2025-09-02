@@ -19,32 +19,34 @@ class LandmarkDetectionPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-            appBar: getAppBar(context),
-            body: simpleColumn(
-              assetName: assetName,
-              sampleImage: _processImage,
-              result: GoogleVisionImageBuilder.landmarkDetection(
-                googleVision: googleVision,
-                imageProvider: _processImage.image,
-                builder: (
-                  BuildContext context,
-                  List<EntityAnnotation>? entityAnnotations,
-                ) =>
-                    Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Center(
-                    child: Column(
-                      children: entityAnnotations!
-                          .map(
-                            (landmark) => Text(
-                                '${landmark.score} - ${landmark.description}'),
-                          )
-                          .toList(),
-                    ),
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: simpleColumn(
+        assetName: assetName,
+        sampleImage: _processImage,
+        result: GoogleVisionImageBuilder.landmarkDetection(
+          googleVision: googleVision,
+          imageProvider: _processImage.image,
+          builder:
+              (
+                BuildContext context,
+                List<EntityAnnotation>? entityAnnotations,
+              ) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Column(
+                    children: entityAnnotations!
+                        .map(
+                          (landmark) => Text(
+                            '${landmark.score} - ${landmark.description}',
+                          ),
+                        )
+                        .toList(),
                   ),
                 ),
               ),
-            )),
-      );
+        ),
+      ),
+    ),
+  );
 }

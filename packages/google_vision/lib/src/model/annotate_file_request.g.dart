@@ -8,8 +8,9 @@ part of 'annotate_file_request.dart';
 
 AnnotateFileRequest _$AnnotateFileRequestFromJson(Map<String, dynamic> json) =>
     AnnotateFileRequest(
-      inputConfig:
-          InputConfig.fromJson(json['inputConfig'] as Map<String, dynamic>),
+      inputConfig: InputConfig.fromJson(
+        json['inputConfig'] as Map<String, dynamic>,
+      ),
       features: (json['features'] as List<dynamic>)
           .map((e) => Feature.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -22,10 +23,10 @@ AnnotateFileRequest _$AnnotateFileRequestFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$AnnotateFileRequestToJson(
-        AnnotateFileRequest instance) =>
-    <String, dynamic>{
-      'inputConfig': instance.inputConfig,
-      'features': instance.features,
-      'imageContext': instance.imageContext,
-      'pages': instance.pages,
-    };
+  AnnotateFileRequest instance,
+) => <String, dynamic>{
+  'inputConfig': instance.inputConfig,
+  'features': instance.features,
+  'imageContext': instance.imageContext,
+  'pages': instance.pages,
+};

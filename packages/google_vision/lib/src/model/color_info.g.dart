@@ -7,13 +7,13 @@ part of 'color_info.dart';
 // **************************************************************************
 
 ColorInfo _$ColorInfoFromJson(Map<String, dynamic> json) => ColorInfo(
-      color: Color.fromJson(json['color'] as Map<String, dynamic>),
-      score: (json['score'] as num).toDouble(),
-      pixelFraction: (json['pixelFraction'] as num).toDouble(),
-    );
+  color: Color.fromJson(json['color'] as Map<String, dynamic>),
+  score: (json['score'] as num).toDouble(),
+  pixelFraction: (json['pixelFraction'] as num).toDouble(),
+);
 
 Map<String, dynamic> _$ColorInfoToJson(ColorInfo instance) => <String, dynamic>{
-      'color': instance.color,
-      'score': instance.score,
-      'pixelFraction': instance.pixelFraction,
-    };
+  'color': instance.color,
+  'score': instance.score,
+  'pixelFraction': instance.pixelFraction,
+};

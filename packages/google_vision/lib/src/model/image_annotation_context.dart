@@ -15,10 +15,7 @@ class ImageAnnotationContext {
   /// file used to produce the image.
   final int pageNumber;
 
-  ImageAnnotationContext({
-    this.uri,
-    required this.pageNumber,
-  });
+  ImageAnnotationContext({this.uri, required this.pageNumber});
 
   factory ImageAnnotationContext.fromJson(Map<String, dynamic> json) =>
       _$ImageAnnotationContextFromJson(json);

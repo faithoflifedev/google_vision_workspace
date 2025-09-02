@@ -16,10 +16,12 @@ class VisionSafeSearchCommand extends VisionHelper {
   /// SafeSearch Detection detects explicit content such as adult content or
   /// violent content within an image.
   VisionSafeSearchCommand() {
-    argParser.addOption('image-file',
-        mandatory: true,
-        valueHelp: 'image file path',
-        help: 'The path to the file that will be processed.');
+    argParser.addOption(
+      'image-file',
+      mandatory: true,
+      valueHelp: 'image file path',
+      help: 'The path to the file that will be processed.',
+    );
   }
 
   @override
@@ -27,8 +29,9 @@ class VisionSafeSearchCommand extends VisionHelper {
     try {
       await initializeGoogleVision();
 
-      final safeSearchDetection = await googleVision.image
-          .safeSearchDetection(JsonImage.fromBuffer(imageBytes.buffer));
+      final safeSearchDetection = await googleVision.image.safeSearchDetection(
+        JsonImage.fromBuffer(imageBytes.buffer),
+      );
 
       print(safeSearchDetection);
     } on DioException catch (err) {

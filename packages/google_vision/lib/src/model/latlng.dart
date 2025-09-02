@@ -16,10 +16,7 @@ class LatLng {
   /// The longitude in degrees. It must be in the range [-180.0, +180.0].
   final double longitude;
 
-  LatLng({
-    required this.latitude,
-    required this.longitude,
-  });
+  LatLng({required this.latitude, required this.longitude});
 
   factory LatLng.fromJson(Map<String, dynamic> json) => _$LatLngFromJson(json);
 

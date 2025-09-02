@@ -13,10 +13,7 @@ class WebImage {
   /// (Deprecated) Overall relevancy score for the image.
   final num? score;
 
-  WebImage({
-    required this.url,
-    required this.score,
-  });
+  WebImage({required this.url, required this.score});
 
   factory WebImage.fromJson(Map<String, dynamic> json) =>
       _$WebImageFromJson(json);

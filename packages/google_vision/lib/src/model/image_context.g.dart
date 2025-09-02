@@ -7,30 +7,35 @@ part of 'image_context.dart';
 // **************************************************************************
 
 ImageContext _$ImageContextFromJson(Map<String, dynamic> json) => ImageContext(
-      languageHints: (json['languageHints'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      cropHintsParams: json['cropHintsParams'] == null
-          ? null
-          : CropHintsParams.fromJson(
-              json['cropHintsParams'] as Map<String, dynamic>),
-      productSearchParams: json['productSearchParams'] == null
-          ? null
-          : ProductSearchParams.fromJson(
-              json['productSearchParams'] as Map<String, dynamic>),
-      webDetectionParams: json['webDetectionParams'] == null
-          ? null
-          : WebDetectionParams.fromJson(
-              json['webDetectionParams'] as Map<String, dynamic>),
-      textDetectionParams: json['textDetectionParams'] == null
-          ? null
-          : TextDetectionParams.fromJson(
-              json['textDetectionParams'] as Map<String, dynamic>),
-      faceRecognitionParams: json['faceRecognitionParams'] == null
-          ? null
-          : FaceRecognitionParams.fromJson(
-              json['faceRecognitionParams'] as Map<String, dynamic>),
-    );
+  languageHints: (json['languageHints'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+  cropHintsParams: json['cropHintsParams'] == null
+      ? null
+      : CropHintsParams.fromJson(
+          json['cropHintsParams'] as Map<String, dynamic>,
+        ),
+  productSearchParams: json['productSearchParams'] == null
+      ? null
+      : ProductSearchParams.fromJson(
+          json['productSearchParams'] as Map<String, dynamic>,
+        ),
+  webDetectionParams: json['webDetectionParams'] == null
+      ? null
+      : WebDetectionParams.fromJson(
+          json['webDetectionParams'] as Map<String, dynamic>,
+        ),
+  textDetectionParams: json['textDetectionParams'] == null
+      ? null
+      : TextDetectionParams.fromJson(
+          json['textDetectionParams'] as Map<String, dynamic>,
+        ),
+  faceRecognitionParams: json['faceRecognitionParams'] == null
+      ? null
+      : FaceRecognitionParams.fromJson(
+          json['faceRecognitionParams'] as Map<String, dynamic>,
+        ),
+);
 
 Map<String, dynamic> _$ImageContextToJson(ImageContext instance) =>
     <String, dynamic>{

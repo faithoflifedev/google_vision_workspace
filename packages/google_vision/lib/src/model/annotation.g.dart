@@ -7,13 +7,13 @@ part of 'annotation.dart';
 // **************************************************************************
 
 Annotation _$AnnotationFromJson(Map<String, dynamic> json) => Annotation(
-      description: json['description'] as String,
-      boundingPoly: json['boundingPoly'] == null
-          ? null
-          : BoundingPoly.fromJson(json['boundingPoly'] as Map<String, dynamic>),
-      isLocalized: json['isLocalized'] as bool? ?? false,
-      score: (json['score'] as num?)?.toDouble(),
-    );
+  description: json['description'] as String,
+  boundingPoly: json['boundingPoly'] == null
+      ? null
+      : BoundingPoly.fromJson(json['boundingPoly'] as Map<String, dynamic>),
+  isLocalized: json['isLocalized'] as bool? ?? false,
+  score: (json['score'] as num?)?.toDouble(),
+);
 
 Map<String, dynamic> _$AnnotationToJson(Annotation instance) =>
     <String, dynamic>{

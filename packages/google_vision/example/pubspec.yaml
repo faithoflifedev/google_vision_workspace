@@ -7,10 +7,10 @@ homepage: https://github.com/faithoflifedev/google_vision
 publish_to: none
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ^3.8.0
 
 dependencies:
-  pcanvas: ^1.1.0
+  pcanvas: ^1.1.2
   google_vision:
     path: ../
   mime: ^2.0.0

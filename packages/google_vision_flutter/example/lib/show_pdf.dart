@@ -12,8 +12,6 @@ class ShowPdf extends StatefulWidget {
 
 class _MyHomePageState extends State<ShowPdf> {
   @override
-  Widget build(BuildContext context) => SafeArea(
-          child: Scaffold(
-        body: SfPdfViewer.asset(widget.assetName),
-      ));
+  Widget build(BuildContext context) =>
+      SafeArea(child: Scaffold(body: SfPdfViewer.asset(widget.assetName)));
 }

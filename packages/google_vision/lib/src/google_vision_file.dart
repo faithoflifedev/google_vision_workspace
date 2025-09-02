@@ -4,10 +4,7 @@ class GoogleVisionFile {
   final GoogleVision googleVision;
   final FilesClient client;
 
-  GoogleVisionFile(
-    this.googleVision,
-    this.client,
-  );
+  GoogleVisionFile(this.googleVision, this.client);
 
   /// Run detection and annotation for a batch of requests.
   Future<BatchAnnotateFilesResponse> annotate({
@@ -16,18 +13,13 @@ class GoogleVisionFile {
   }) {
     googleVision.setAuthHeader();
 
-    final jsonRequest = <String, dynamic>{
-      'requests': requests,
-    };
+    final jsonRequest = <String, dynamic>{'requests': requests};
 
     if (parent != null) {
       jsonRequest['parent'] = parent;
     }
 
-    return client.annotate(
-      GoogleVision.contentType,
-      jsonRequest,
-    );
+    return client.annotate(GoogleVision.contentType, jsonRequest);
   }
 
   /// Higher level method for a single detection type as specified by [annotationType],
@@ -43,15 +35,10 @@ class GoogleVisionFile {
       requests: [
         AnnotateFileRequest(
           inputConfig: inputConfig,
-          features: [
-            Feature(
-              type: annotationType,
-              maxResults: maxResults,
-            ),
-          ],
+          features: [Feature(type: annotationType, maxResults: maxResults)],
           imageContext: imageContext,
           pages: pages,
-        )
+        ),
       ],
       parent: parent,
     );

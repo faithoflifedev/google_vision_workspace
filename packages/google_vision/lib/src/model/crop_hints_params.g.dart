@@ -14,6 +14,4 @@ CropHintsParams _$CropHintsParamsFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$CropHintsParamsToJson(CropHintsParams instance) =>
-    <String, dynamic>{
-      'aspectRatios': instance.aspectRatios,
-    };
+    <String, dynamic>{'aspectRatios': instance.aspectRatios};

@@ -8,8 +8,12 @@ part of 'detected_break.dart';
 
 DetectedBreak _$DetectedBreakFromJson(Map<String, dynamic> json) =>
     DetectedBreak(
-      type: $enumDecodeNullable(_$BreakTypeEnumMap, json['type'],
-              unknownValue: BreakType.UNKNOWN) ??
+      type:
+          $enumDecodeNullable(
+            _$BreakTypeEnumMap,
+            json['type'],
+            unknownValue: BreakType.UNKNOWN,
+          ) ??
           BreakType.UNKNOWN,
       isPrefix: json['isPrefix'] as bool?,
     );

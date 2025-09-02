@@ -16,11 +16,7 @@ class Property {
   /// Value of numeric properties.
   final num? number;
 
-  Property({
-    required this.name,
-    this.value,
-    this.number,
-  });
+  Property({required this.name, this.value, this.number});
 
   factory Property.fromJson(Map<String, dynamic> json) =>
       _$PropertyFromJson(json);

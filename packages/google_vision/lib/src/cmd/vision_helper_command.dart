@@ -30,16 +30,19 @@ abstract class VisionHelper extends Command {
   Future<void> initializeGoogleVision() async {
     final logLevel = _toLogLevel(globalResults!['log-level']);
 
-    _googleVision = await GoogleVision(logLevel)
-        .withJwt(credentialsFromFile(File(globalResults!['credential-file'])));
+    _googleVision = await GoogleVision(
+      logLevel,
+    ).withJwt(credentialsFromFile(File(globalResults!['credential-file'])));
 
     imageFile = File(argResults!['image-file']);
 
     imageBytes = await imageFile.readAsBytes();
 
     if (argResults != null && argResults!['pages'] != null) {
-      pages =
-          (argResults!['pages'] as String?)?.split(',').map(int.parse).toList();
+      pages = (argResults!['pages'] as String?)
+          ?.split(',')
+          .map(int.parse)
+          .toList();
     }
   }
 
@@ -65,7 +68,7 @@ abstract class VisionHelper extends Command {
       AnnotateImageRequest(
         jsonImage: JsonImage(byteBuffer: imageBytes.buffer),
         features: getFeatures(),
-      )
+      ),
     ];
 
     return googleVision.image.annotate(requests: requests);
@@ -75,23 +78,28 @@ abstract class VisionHelper extends Command {
   Future<BatchAnnotateFilesResponse> annotateFile({
     ImageContext? imageContext,
   }) async {
-    return googleVision.file.annotate(requests: [
-      AnnotateFileRequest(
-        inputConfig: InputConfig.fromBuffer(imageBytes.buffer),
-        features: getFeatures(),
-        imageContext: imageContext,
-        pages: pages,
-      )
-    ]);
+    return googleVision.file.annotate(
+      requests: [
+        AnnotateFileRequest(
+          inputConfig: InputConfig.fromBuffer(imageBytes.buffer),
+          features: getFeatures(),
+          imageContext: imageContext,
+          pages: pages,
+        ),
+      ],
+    );
   }
 
   /// Helper method to convert string from cli argument to enum.
-  static AnnotationType _toAnnotationType(type) => AnnotationType.values
-      .firstWhere((annotationType) => annotationType.type == type.trim(),
-          orElse: () => AnnotationType.typeUnspecified);
+  static AnnotationType _toAnnotationType(String type) =>
+      AnnotationType.values.firstWhere(
+        (annotationType) => annotationType.type == type.trim(),
+        orElse: () => AnnotationType.typeUnspecified,
+      );
 
   /// Helper method to convert string from cli argument to enum.
   static LogLevel _toLogLevel(String name) => LogLevel.values.firstWhere(
-      (logLevel) => logLevel.name.toLowerCase() == name.trim().toLowerCase(),
-      orElse: () => LogLevel.off);
+    (logLevel) => logLevel.name.toLowerCase() == name.trim().toLowerCase(),
+    orElse: () => LogLevel.off,
+  );
 }

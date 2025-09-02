@@ -25,8 +25,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final googleVision =
-      GoogleVision(LogLevel.off).withAsset('assets/service_credentials.json');
+  final googleVision = GoogleVision(
+    LogLevel.off,
+  ).withAsset('assets/service_credentials.json');
 
   MyApp({super.key});
 
@@ -36,62 +37,60 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const MenuScreen(),
         '/multiple': (context) => MultipleDetectionsPage(
-              googleVision: googleVision,
-              title: 'Multiple Detections',
-            ),
-        '/cropHints': (context) => CropHintsPage(
-              googleVision: googleVision,
-              title: 'Crop Hints',
-            ),
+          googleVision: googleVision,
+          title: 'Multiple Detections',
+        ),
+        '/cropHints': (context) =>
+            CropHintsPage(googleVision: googleVision, title: 'Crop Hints'),
         '/documentTextDetection': (context) => DocumentTextDetectionPage(
-              googleVision: googleVision,
-              title: 'Document Text Detection',
-            ),
+          googleVision: googleVision,
+          title: 'Document Text Detection',
+        ),
         '/documentTextDetectionFile': (context) =>
             DocumentTextDetectionFilePage(
               googleVision: googleVision,
               title: 'Document Text Detection',
             ),
         '/faceDetection': (context) => FaceDetectionPage(
-              googleVision: googleVision,
-              title: 'Face Detection',
-            ),
+          googleVision: googleVision,
+          title: 'Face Detection',
+        ),
         '/imageProperties': (context) => ImagePropertiesPage(
-              googleVision: googleVision,
-              title: 'Image Properties',
-            ),
+          googleVision: googleVision,
+          title: 'Image Properties',
+        ),
         '/labelDetection': (context) => LabelDetectionPage(
-              googleVision: googleVision,
-              title: 'Label Detection',
-            ),
+          googleVision: googleVision,
+          title: 'Label Detection',
+        ),
         '/landmarkDetection': (context) => LandmarkDetectionPage(
-              googleVision: googleVision,
-              title: 'Landmark Detection',
-            ),
+          googleVision: googleVision,
+          title: 'Landmark Detection',
+        ),
         '/logoDetection': (context) => LogoDetectionPage(
-              googleVision: googleVision,
-              title: 'Logo Detection',
-            ),
+          googleVision: googleVision,
+          title: 'Logo Detection',
+        ),
         '/objectLocalization': (context) => ObjectLocalizationPage(
-              googleVision: googleVision,
-              title: 'Object Localization',
-            ),
+          googleVision: googleVision,
+          title: 'Object Localization',
+        ),
         '/safeSearchDetection': (context) => SafeSearchDetectionPage(
-              googleVision: googleVision,
-              title: 'Safe Search Detection',
-            ),
+          googleVision: googleVision,
+          title: 'Safe Search Detection',
+        ),
         '/textDetection': (context) => TextDetectionPage(
-              googleVision: googleVision,
-              title: 'Text Detection',
-            ),
+          googleVision: googleVision,
+          title: 'Text Detection',
+        ),
         '/webDetection': (context) => WebDetectionPage(
-              googleVision: googleVision,
-              title: 'Web Detection',
-            ),
+          googleVision: googleVision,
+          title: 'Web Detection',
+        ),
         '/multipleFace': (context) => MultipleFaceDetectionPage(
-              googleVision: googleVision,
-              title: 'Multiple Image Face Detection',
-            ),
+          googleVision: googleVision,
+          title: 'Multiple Image Face Detection',
+        ),
       },
     );
   }
@@ -103,17 +102,12 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Menu'),
-      ),
+      appBar: AppBar(title: const Text('Menu')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const SizedBox(
-              height: 30,
-              child: Text('Image Functions'),
-            ),
+            const SizedBox(height: 30, child: Text('Image Functions')),
             ElevatedButton(
               child: const Text('Multiple Detections'),
               onPressed: () => Navigator.pushNamed(context, '/multiple'),
@@ -170,10 +164,7 @@ class MenuScreen extends StatelessWidget {
               child: const Text('Multiple Image Face Detection'),
               onPressed: () => Navigator.pushNamed(context, '/multipleFace'),
             ),
-            const SizedBox(
-              height: 30,
-              child: Text('File Functions'),
-            ),
+            const SizedBox(height: 30, child: Text('File Functions')),
             ElevatedButton(
               child: const Text('Document Text Detection from PDF'),
               onPressed: () =>

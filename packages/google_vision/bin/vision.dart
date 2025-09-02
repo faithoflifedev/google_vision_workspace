@@ -8,14 +8,20 @@ String? get _userHome =>
     Platform.environment['HOME'] ?? Platform.environment['USERPROFILE'];
 
 void main(List<String> arguments) async {
-  CommandRunner('vision',
-      'A command line interface for making API requests to the Google Vision.')
-    ..argParser.addOption('credential-file',
-        defaultsTo: '$_userHome/.vision/credentials.json',
-        valueHelp: 'credentials file path')
-    ..argParser.addOption('log-level',
-        allowed: ['all', 'debug', 'info', 'warning', 'error', 'off'],
-        defaultsTo: 'off')
+  CommandRunner(
+      'vision',
+      'A command line interface for making API requests to the Google Vision.',
+    )
+    ..argParser.addOption(
+      'credential-file',
+      defaultsTo: '$_userHome/.vision/credentials.json',
+      valueHelp: 'credentials file path',
+    )
+    ..argParser.addOption(
+      'log-level',
+      allowed: ['all', 'debug', 'info', 'warning', 'error', 'off'],
+      defaultsTo: 'off',
+    )
     ..addCommand(VisionCropHintCommand())
     ..addCommand(VisionDetectCommand())
     ..addCommand(VisionHighlightCommand())

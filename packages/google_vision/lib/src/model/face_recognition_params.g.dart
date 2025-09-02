@@ -7,15 +7,13 @@ part of 'face_recognition_params.dart';
 // **************************************************************************
 
 FaceRecognitionParams _$FaceRecognitionParamsFromJson(
-        Map<String, dynamic> json) =>
-    FaceRecognitionParams(
-      celebritySet: (json['celebritySet'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-    );
+  Map<String, dynamic> json,
+) => FaceRecognitionParams(
+  celebritySet: (json['celebritySet'] as List<dynamic>)
+      .map((e) => e as String)
+      .toList(),
+);
 
 Map<String, dynamic> _$FaceRecognitionParamsToJson(
-        FaceRecognitionParams instance) =>
-    <String, dynamic>{
-      'celebritySet': instance.celebritySet,
-    };
+  FaceRecognitionParams instance,
+) => <String, dynamic>{'celebritySet': instance.celebritySet};

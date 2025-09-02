@@ -2,11 +2,13 @@
 
 part of 'oauth.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _OAuthClient implements OAuthClient {
   _OAuthClient(this._dio, {this.baseUrl, this.errorLogger}) {
@@ -31,11 +33,11 @@ class _OAuthClient implements OAuthClient {
     _data.addAll(params);
     final _options = _setStreamType<Token>(
       Options(
-        method: 'POST',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/x-www-form-urlencoded',
-      )
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/x-www-form-urlencoded',
+          )
           .compose(
             _dio.options,
             '/token',
@@ -82,3 +84,5 @@ class _OAuthClient implements OAuthClient {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

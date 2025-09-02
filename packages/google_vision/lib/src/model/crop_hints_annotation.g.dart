@@ -14,7 +14,5 @@ CropHintsAnnotation _$CropHintsAnnotationFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$CropHintsAnnotationToJson(
-        CropHintsAnnotation instance) =>
-    <String, dynamic>{
-      'cropHints': instance.cropHints,
-    };
+  CropHintsAnnotation instance,
+) => <String, dynamic>{'cropHints': instance.cropHints};

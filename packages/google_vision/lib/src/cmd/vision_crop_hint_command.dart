@@ -15,19 +15,23 @@ class VisionCropHintCommand extends VisionHelper {
   /// Set of crop hints that are used to generate new crops when serving images.
   VisionCropHintCommand() {
     argParser
-      ..addOption('image-file',
-          mandatory: true,
-          valueHelp: 'image file path',
-          help: 'The path to the file that will be processed.')
+      ..addOption(
+        'image-file',
+        mandatory: true,
+        valueHelp: 'image file path',
+        help: 'The path to the file that will be processed.',
+      )
       ..addOption(
         'pages',
         abbr: 'p',
         valueHelp: 'comma delimited list of pages to process (max 5)',
       )
-      ..addOption('aspect-ratios',
-          valueHelp: 'aspect ratios',
-          help:
-              'Comma delimitated list of aspect ratios in floats, representing the ratio of the width to the height of the image. For example, if the desired aspect ratio is 4/3, the corresponding float value should be 1.33333. If not specified, the best possible crop is returned. The number of provided aspect ratios is limited to a maximum of 16; any aspect ratios provided after the 16th are ignored.');
+      ..addOption(
+        'aspect-ratios',
+        valueHelp: 'aspect ratios',
+        help:
+            'Comma delimitated list of aspect ratios in floats, representing the ratio of the width to the height of the image. For example, if the desired aspect ratio is 4/3, the corresponding float value should be 1.33333. If not specified, the best possible crop is returned. The number of provided aspect ratios is limited to a maximum of 16; any aspect ratios provided after the 16th are ignored.',
+      );
   }
 
   @override
@@ -38,10 +42,10 @@ class VisionCropHintCommand extends VisionHelper {
       final aspectRatios = argResults?['aspect-ratios'] == null
           ? null
           : argResults!['aspect-ratios']
-              .toString()
-              .split(',')
-              .map((aspectRatio) => double.parse(aspectRatio))
-              .toList();
+                .toString()
+                .split(',')
+                .map((aspectRatio) => double.parse(aspectRatio))
+                .toList();
 
       final imageContext = aspectRatios != null
           ? ImageContext(

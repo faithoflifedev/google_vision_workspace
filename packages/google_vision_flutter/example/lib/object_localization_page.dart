@@ -20,29 +20,29 @@ class ObjectLocalizationPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: getAppBar(context),
-          body: simpleColumn(
-            assetName: assetName,
-            sampleImage: _processImage,
-            result: GoogleVisionImageBuilder.objectLocalization(
-              googleVision: googleVision,
-              imageProvider: _processImage.image,
-              builder: (
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: simpleColumn(
+        assetName: assetName,
+        sampleImage: _processImage,
+        result: GoogleVisionImageBuilder.objectLocalization(
+          googleVision: googleVision,
+          imageProvider: _processImage.image,
+          builder:
+              (
                 BuildContext context,
                 List<LocalizedObjectAnnotation>? localizedObjectAnnotations,
-              ) =>
-                  CustomPaint(
+              ) => CustomPaint(
                 foregroundPainter: AnnotationPainter(
                   localizedObjectAnnotations: localizedObjectAnnotations,
                   uiImage: _processImage,
                 ),
                 child: Image(image: _processImage.image),
               ),
-            ),
-          ),
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class AnnotationPainter extends CustomPainter {
@@ -56,28 +56,27 @@ class AnnotationPainter extends CustomPainter {
   });
 
   @override
-  void paint(
-    Canvas canvas,
-    Size size,
-  ) {
+  void paint(Canvas canvas, Size size) {
     var yOffset = 0.0;
 
     // object localization
     for (var localizedObjectAnnotation in localizedObjectAnnotations!) {
       drawAnnotationsNormalized(
-          vertices: localizedObjectAnnotation.boundingPoly!.normalizedVertices,
-          canvas: canvas,
-          size: size);
+        vertices: localizedObjectAnnotation.boundingPoly!.normalizedVertices,
+        canvas: canvas,
+        size: size,
+      );
 
       drawString(
-          text:
-              '${localizedObjectAnnotation.name} - ${(localizedObjectAnnotation.score! * 100).toInt()}%',
-          offset: localizedObjectAnnotation
-                  .boundingPoly!.normalizedVertices.first
-                  .toResizedOffset(size) +
-              Offset(0, yOffset),
-          canvas: canvas,
-          size: size);
+        text:
+            '${localizedObjectAnnotation.name} - ${(localizedObjectAnnotation.score! * 100).toInt()}%',
+        offset:
+            localizedObjectAnnotation.boundingPoly!.normalizedVertices.first
+                .toResizedOffset(size) +
+            Offset(0, yOffset),
+        canvas: canvas,
+        size: size,
+      );
 
       yOffset += 12.0;
     }

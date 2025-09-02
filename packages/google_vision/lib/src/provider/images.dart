@@ -19,7 +19,8 @@ abstract class ImagesClient {
 
   @POST('/images:annotate')
   Future<BatchAnnotateImagesResponse> annotate(
-      @Header('Content-Type') String contentType,
-      // @Header('x-goog-user-project') String? projectId,
-      @Body() Map<String, dynamic> params);
+    @Header('Content-Type') String contentType,
+    // @Header('x-goog-user-project') String? projectId,
+    @Body() Map<String, dynamic> params,
+  );
 }

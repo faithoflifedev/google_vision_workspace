@@ -20,41 +20,37 @@ class LogoDetectionPage extends ExampleBase {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-            appBar: getAppBar(context),
-            body: simpleColumn(
-              assetName: assetName,
-              sampleImage: _processImage,
-              result: GoogleVisionImageBuilder.logoDetection(
-                googleVision: googleVision,
-                imageProvider: _processImage.image,
-                builder: (
-                  BuildContext context,
-                  List<EntityAnnotation>? entityAnnotations,
-                ) =>
-                    CustomPaint(
-                  foregroundPainter: EntityAnnotationPainter(
-                    entityAnnotations: entityAnnotations,
-                  ),
-                  child: Image(image: _processImage.image),
+    child: Scaffold(
+      appBar: getAppBar(context),
+      body: simpleColumn(
+        assetName: assetName,
+        sampleImage: _processImage,
+        result: GoogleVisionImageBuilder.logoDetection(
+          googleVision: googleVision,
+          imageProvider: _processImage.image,
+          builder:
+              (
+                BuildContext context,
+                List<EntityAnnotation>? entityAnnotations,
+              ) => CustomPaint(
+                foregroundPainter: EntityAnnotationPainter(
+                  entityAnnotations: entityAnnotations,
                 ),
+                child: Image(image: _processImage.image),
               ),
-            )),
-      );
+        ),
+      ),
+    ),
+  );
 }
 
 class EntityAnnotationPainter extends CustomPainter {
   final List<EntityAnnotation>? entityAnnotations;
 
-  EntityAnnotationPainter({
-    required this.entityAnnotations,
-  });
+  EntityAnnotationPainter({required this.entityAnnotations});
 
   @override
-  void paint(
-    Canvas canvas,
-    Size size,
-  ) {
+  void paint(Canvas canvas, Size size) {
     // logo detection
     for (var entityAnnotation in entityAnnotations!) {
       drawAnnotationsRect(
@@ -109,10 +105,7 @@ class EntityAnnotationPainter extends CustomPainter {
     paint.color = color;
 
     canvas.drawRect(
-      Rect.fromPoints(
-        vertices.first.toOffset(),
-        vertices[2].toOffset(),
-      ),
+      Rect.fromPoints(vertices.first.toOffset(), vertices[2].toOffset()),
       paint,
     );
   }
