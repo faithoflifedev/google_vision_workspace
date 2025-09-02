@@ -4,8 +4,6 @@ version: 2.0.0+8
 repository: https://github.com/faithoflifedev/google_vision
 homepage: https://github.com/faithoflifedev/google_vision/tree/main/packages/google_vision
 
-publish_to: none
-
 topics:
   - api
   - image

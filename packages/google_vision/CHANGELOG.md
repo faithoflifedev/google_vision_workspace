@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0+8
+
+* dependency bump
+* correct analyzer warnings
+* SDK bump
+
 ## 2.0.0+6
 
 * Fix color fromJson method #30

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0+8
+
+* dependency bump
+* correct analyzer warnings
+* SDK bump
+
 ## 2.0.0+7
 
 * onError, onLoading are discarded #27
