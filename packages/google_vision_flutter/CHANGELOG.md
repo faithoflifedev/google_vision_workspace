@@ -2,7 +2,7 @@
 
 ## 2.0.0+10
 
-* pub.dev update
+* pub.dev fix
 
 ## 2.0.0+9
 

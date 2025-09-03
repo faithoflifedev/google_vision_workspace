@@ -21,7 +21,7 @@ environment:
 dependencies:
   dio: ^5.9.0
   flutter_image_converter: ^0.4.1
-  google_vision: ^2.0.0+8
+  google_vision: ^2.0.0+10
   # google_vision:
   #   path: ../google_vision
   image: ^4.5.3
