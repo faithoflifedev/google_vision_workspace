@@ -6,5 +6,5 @@ library;
 import 'dart:convert' show json;
 
 final pubSpec = json.decode(
-  '{"description":"Allows you to add Google Visions image labeling, face, logo, and landmark detection, OCR, and detection of explicit content, into cross platform applications.","homepage":"https://github.com/faithoflifedev/google_vision/tree/main/packages/google_vision","documentation":"null","repository":"https://github.com/faithoflifedev/google_vision","issueTracker":"null","name":"google_vision","publish_to":"none","version":"2.0.0+8"}',
+  '{"description":"Allows you to add Google Visions image labeling, face, logo, and landmark detection, OCR, and detection of explicit content, into cross platform applications.","homepage":"https://github.com/faithoflifedev/google_vision_workspace/tree/main/packages/google_vision","documentation":"null","repository":"https://github.com/faithoflifedev/google_vision_workspace","issueTracker":"null","name":"google_vision","publish_to":"null","version":"2.0.0+10"}',
 );

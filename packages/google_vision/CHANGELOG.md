@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0+10
+
+* pub.dev update
+
+## 2.0.0+9
+
+* pub.dev update
+
 ## 2.0.0+8
 
 * dependency bump
